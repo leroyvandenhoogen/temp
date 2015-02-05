@@ -4,6 +4,7 @@
 .classpath
 .project
 .springBeans
+.metadata
 
 # target folder van modules bevat .class bestanden die door compiler worden gemaakt op basis van files in src folder
 */target/
