@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="7" failures="0" name="nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest" time="113.039" errors="0" skipped="0">
+<testsuite tests="7" failures="0" name="nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest" time="74.036" errors="1" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\java\jdk1.8.0_05\jre\bin"/>
@@ -63,11 +63,518 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest" name="testGetByIdMetAdressen" time="0.497"/>
-  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest" name="testDeleteAdresVanRelatie" time="27.275"/>
-  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest" name="testUpdateVelden" time="18.249"/>
-  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest" name="testSaveEnGet" time="16.805"/>
-  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest" name="testDelete" time="17.744"/>
-  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest" name="testGetAll" time="14.844"/>
-  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest" name="testGetAllMetAdres" time="17.625"/>
+  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest" name="testGetByIdMetAdressen" time="0.287"/>
+  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest" name="testDeleteAdresVanRelatie" time="14.577"/>
+  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest" name="testUpdateVelden" time="14.079"/>
+  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest" name="testSaveEnGet" time="12.703"/>
+  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest" name="testDelete" time="15.236"/>
+  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest" name="testGetAll" time="13.613"/>
+  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest" name="testGetAllMetAdres" time="3.541">
+    <error message="Could not open Hibernate Session for transaction; nested exception is org.hibernate.exception.JDBCConnectionException: Could not open connection" type="org.springframework.transaction.CannotCreateTransactionException">org.springframework.transaction.CannotCreateTransactionException: Could not open Hibernate Session for transaction; nested exception is org.hibernate.exception.JDBCConnectionException: Could not open connection
+	at org.springframework.orm.hibernate4.HibernateTransactionManager.doBegin(HibernateTransactionManager.java:515)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.getTransaction(AbstractPlatformTransactionManager.java:373)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.createTransactionIfNecessary(TransactionAspectSupport.java:420)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:257)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:95)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:207)
+	at com.sun.proxy.$Proxy45.save(Unknown Source)
+	at nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest.setUp(RelatieServiceTest.java:151)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:24)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:233)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:87)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:176)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.hibernate.exception.JDBCConnectionException: Could not open connection
+	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:132)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:49)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:126)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:112)
+	at org.hibernate.engine.jdbc.internal.LogicalConnectionImpl.obtainConnection(LogicalConnectionImpl.java:235)
+	at org.hibernate.engine.jdbc.internal.LogicalConnectionImpl.getConnection(LogicalConnectionImpl.java:171)
+	at org.hibernate.internal.SessionImpl.connection(SessionImpl.java:450)
+	at org.springframework.orm.hibernate4.HibernateTransactionManager.doBegin(HibernateTransactionManager.java:429)
+	... 42 more
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:408)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:377)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1036)
+	at com.mysql.jdbc.MysqlIO.&lt;init&gt;(MysqlIO.java:338)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2232)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2265)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2064)
+	at com.mysql.jdbc.ConnectionImpl.&lt;init&gt;(ConnectionImpl.java:790)
+	at com.mysql.jdbc.JDBC4Connection.&lt;init&gt;(JDBC4Connection.java:44)
+	at sun.reflect.GeneratedConstructorAccessor30.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:408)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:377)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:395)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:325)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:208)
+	at org.springframework.jdbc.datasource.DriverManagerDataSource.getConnectionFromDriverManager(DriverManagerDataSource.java:153)
+	at org.springframework.jdbc.datasource.DriverManagerDataSource.getConnectionFromDriver(DriverManagerDataSource.java:144)
+	at org.springframework.jdbc.datasource.AbstractDriverBasedDataSource.getConnectionFromDriver(AbstractDriverBasedDataSource.java:155)
+	at org.springframework.jdbc.datasource.AbstractDriverBasedDataSource.getConnection(AbstractDriverBasedDataSource.java:120)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:139)
+	at org.hibernate.internal.AbstractSessionImpl$NonContextualJdbcConnectionAccess.obtainConnection(AbstractSessionImpl.java:380)
+	at org.hibernate.engine.jdbc.internal.LogicalConnectionImpl.obtainConnection(LogicalConnectionImpl.java:228)
+	... 45 more
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:345)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at java.net.Socket.connect(Socket.java:538)
+	at java.net.Socket.&lt;init&gt;(Socket.java:434)
+	at java.net.Socket.&lt;init&gt;(Socket.java:244)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:243)
+	at com.mysql.jdbc.MysqlIO.&lt;init&gt;(MysqlIO.java:297)
+	... 65 more
+</error>
+    <system-out>14:19:35,527  INFO main xml.XmlBeanDefinitionReader:316 - Loading XML bean definitions from class path resource [icarastestdb-context.xml]
+14:19:35,590  INFO main support.GenericApplicationContext:513 - Refreshing org.springframework.context.support.GenericApplicationContext@47a0e73: startup date [Tue Feb 10 14:19:35 CET 2015]; root of context hierarchy
+14:19:35,603  INFO main config.PropertyPlaceholderConfigurer:172 - Loading properties file from class path resource [icarastestdb.properties]
+14:19:35,608  INFO main datasource.DriverManagerDataSource:133 - Loaded JDBC driver: com.mysql.jdbc.Driver
+14:19:35,632  INFO main dialect.Dialect:145 - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+14:19:35,652  INFO main internal.TransactionFactoryInitiator:62 - HHH000399: Using default transaction strategy (direct JDBC transactions)
+14:19:35,653  INFO main ast.ASTQueryTranslatorFactory:47 - HHH000397: Using ASTQueryTranslatorFactory
+14:19:35,726  INFO main hbm2ddl.SchemaExport:343 - HHH000227: Running hbm2ddl schema export
+Hibernate: alter table Aanbieding drop foreign key FK_5wsgol9m9lpj65lh7aajkhufi
+Hibernate: alter table Aanbieding drop foreign key FK_50pu6glt6c5pqs76emu1dgdvj
+Hibernate: alter table Aanbieding drop foreign key FK_rcpwqoschywl988mabhqi2t8j
+Hibernate: alter table Arbeidsovereenkomst drop foreign key FK_5hcxjv59olb8tlcc3by8enc30
+Hibernate: alter table Arbeidsovereenkomst drop foreign key FK_qs5c5a4p6x7tfcyveiboisbjx
+Hibernate: alter table Arbeidsovereenkomst drop foreign key FK_dmdwlt0mb5erwxpdnlccdu42m
+Hibernate: alter table Bedrijf_Aanbieding drop foreign key FK_coyq42vi8p6lg5w0voh49ac7t
+Hibernate: alter table Bedrijf_Aanbieding drop foreign key FK_7txk6c2jf01ve7tsu4cg93eqj
+Hibernate: alter table Bedrijf_Arbeidsovereenkomst drop foreign key FK_2gecl6xwajs29323x8lxp0mwm
+Hibernate: alter table Bedrijf_Arbeidsovereenkomst drop foreign key FK_7ug5sd6e6sul6obsqr2v884as
+Hibernate: alter table Bedrijf_Persoon drop foreign key FK_aw9vwf5diwdf3dswo32qaua80
+Hibernate: alter table Bedrijf_Persoon drop foreign key FK_1xtjuoiijtc23hobax1e224mk
+Hibernate: alter table Bedrijf_Vacature drop foreign key FK_mdts7kk03sgjwwc5lk8llrugb
+14:19:36,857 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Bedrijf_Vacature drop foreign key FK_mdts7kk03sgjwwc5lk8llrugb
+14:19:36,858 ERROR main hbm2ddl.SchemaExport:426 - Communications link failure
+
+The last packet successfully received from the server was 162 milliseconds ago.  The last packet sent successfully to the server was 162 milliseconds ago.
+Hibernate: alter table Bedrijf_Vacature drop foreign key FK_2juk9dr9iwpkq0nqvpqt620aa
+14:19:36,877 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Bedrijf_Vacature drop foreign key FK_2juk9dr9iwpkq0nqvpqt620aa
+14:19:36,878 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Contactpersoon_Organisatie drop foreign key FK_17488smiyw2x63pfbkj07opbc
+14:19:36,880 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Contactpersoon_Organisatie drop foreign key FK_17488smiyw2x63pfbkj07opbc
+14:19:36,882 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Contactpersoon_Organisatie drop foreign key FK_ag34h3xcqybsffrnit1tk6nlp
+14:19:36,884 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Contactpersoon_Organisatie drop foreign key FK_ag34h3xcqybsffrnit1tk6nlp
+14:19:36,886 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Kandidaat drop foreign key FK_lmiity7up1dv854msfl0sm0no
+14:19:36,891 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Kandidaat drop foreign key FK_lmiity7up1dv854msfl0sm0no
+14:19:36,891 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Kandidaat_Aanbieding drop foreign key FK_a17uurovpey3drwa7y8ixg1gx
+14:19:36,892 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Kandidaat_Aanbieding drop foreign key FK_a17uurovpey3drwa7y8ixg1gx
+14:19:36,893 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Kandidaat_Aanbieding drop foreign key FK_pb9bh6x68jwsgxh860e6y0ao2
+14:19:36,896 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Kandidaat_Aanbieding drop foreign key FK_pb9bh6x68jwsgxh860e6y0ao2
+14:19:36,896 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Organisatie drop foreign key FK_ogid6gcwg2581wm8hj5ju6uo8
+14:19:36,897 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Organisatie drop foreign key FK_ogid6gcwg2581wm8hj5ju6uo8
+14:19:36,898 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Organisatie_OrganisatieRol drop foreign key FK_2i63j8y4vj8p758ftxt7kvxji
+14:19:36,899 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Organisatie_OrganisatieRol drop foreign key FK_2i63j8y4vj8p758ftxt7kvxji
+14:19:36,899 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Organisatie_Persoon drop foreign key FK_7toc08gb26xp4oi76jjx6x7vk
+14:19:36,900 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Organisatie_Persoon drop foreign key FK_7toc08gb26xp4oi76jjx6x7vk
+14:19:36,901 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Organisatie_Persoon drop foreign key FK_8weqxcffors81450a8r0vcdgx
+14:19:36,902 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Organisatie_Persoon drop foreign key FK_8weqxcffors81450a8r0vcdgx
+14:19:36,903 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Persoon drop foreign key FK_jl7oikgfw27rfpisaycjrffa1
+14:19:36,904 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Persoon drop foreign key FK_jl7oikgfw27rfpisaycjrffa1
+14:19:36,905 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Persoon_PersoonsRol drop foreign key FK_9rb614udnhmo2s3yk7dlq8bci
+14:19:36,906 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Persoon_PersoonsRol drop foreign key FK_9rb614udnhmo2s3yk7dlq8bci
+14:19:36,906 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Relatie_Adres drop foreign key FK_2mmjuay63pycd6wr68cwysqs4
+14:19:36,907 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Relatie_Adres drop foreign key FK_2mmjuay63pycd6wr68cwysqs4
+14:19:36,908 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Relatie_Adres drop foreign key FK_e7hlnc3486x5h8dkfa12jd9rm
+14:19:36,909 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Relatie_Adres drop foreign key FK_e7hlnc3486x5h8dkfa12jd9rm
+14:19:36,909 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Relatie_Nfa drop foreign key FK_biqsn8feo258et0e14jjcffq3
+14:19:36,910 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Relatie_Nfa drop foreign key FK_biqsn8feo258et0e14jjcffq3
+14:19:36,911 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Relatie_Nfa drop foreign key FK_bke2b6hh4eap5qev2kj6lpnh2
+14:19:36,913 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Relatie_Nfa drop foreign key FK_bke2b6hh4eap5qev2kj6lpnh2
+14:19:36,919 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Vacature drop foreign key FK_ocuixgwnveak6rnrrjgpryvi
+14:19:36,920 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Vacature drop foreign key FK_ocuixgwnveak6rnrrjgpryvi
+14:19:36,931 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Vacature_Aanbieding drop foreign key FK_8qnt1dl7r5hsslcfoejqampnv
+14:19:36,932 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Vacature_Aanbieding drop foreign key FK_8qnt1dl7r5hsslcfoejqampnv
+14:19:36,932 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Vacature_Aanbieding drop foreign key FK_mtqunrc9hm03scp2eiyxw3pj5
+14:19:36,933 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Vacature_Aanbieding drop foreign key FK_mtqunrc9hm03scp2eiyxw3pj5
+14:19:36,933 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Werknemer_Arbeidsovereenkomst drop foreign key FK_t3mho50b8n1hb86io5dbevdp6
+14:19:36,934 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Werknemer_Arbeidsovereenkomst drop foreign key FK_t3mho50b8n1hb86io5dbevdp6
+14:19:36,934 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Werknemer_Arbeidsovereenkomst drop foreign key FK_g6d8a6euvdsspofp1j2kjq4ye
+14:19:36,935 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Werknemer_Arbeidsovereenkomst drop foreign key FK_g6d8a6euvdsspofp1j2kjq4ye
+14:19:36,935 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: drop table if exists Aanbieding
+14:19:36,935 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: drop table if exists Aanbieding
+14:19:36,935 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: drop table if exists Adres
+14:19:36,935 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: drop table if exists Adres
+14:19:36,935 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: drop table if exists Arbeidsovereenkomst
+14:19:36,935 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: drop table if exists Arbeidsovereenkomst
+14:19:36,936 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: drop table if exists Bedrijf
+14:19:36,936 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: drop table if exists Bedrijf
+14:19:36,936 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: drop table if exists Bedrijf_Aanbieding
+14:19:36,936 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: drop table if exists Bedrijf_Aanbieding
+14:19:36,936 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: drop table if exists Bedrijf_Arbeidsovereenkomst
+14:19:36,936 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: drop table if exists Bedrijf_Arbeidsovereenkomst
+14:19:36,936 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: drop table if exists Bedrijf_Persoon
+14:19:36,937 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: drop table if exists Bedrijf_Persoon
+14:19:36,937 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: drop table if exists Bedrijf_Vacature
+14:19:36,937 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: drop table if exists Bedrijf_Vacature
+14:19:36,937 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: drop table if exists Contactpersoon
+14:19:36,937 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: drop table if exists Contactpersoon
+14:19:36,937 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: drop table if exists Contactpersoon_Organisatie
+14:19:36,938 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: drop table if exists Contactpersoon_Organisatie
+14:19:36,938 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: drop table if exists Kandidaat
+14:19:36,938 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: drop table if exists Kandidaat
+14:19:36,938 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: drop table if exists Kandidaat_Aanbieding
+14:19:36,938 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: drop table if exists Kandidaat_Aanbieding
+14:19:36,938 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: drop table if exists Leverancier
+14:19:36,938 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: drop table if exists Leverancier
+14:19:36,939 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: drop table if exists Nfa
+14:19:36,939 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: drop table if exists Nfa
+14:19:36,939 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: drop table if exists Organisatie
+14:19:36,939 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: drop table if exists Organisatie
+14:19:36,939 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: drop table if exists Organisatie_OrganisatieRol
+14:19:36,939 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: drop table if exists Organisatie_OrganisatieRol
+14:19:36,940 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: drop table if exists Organisatie_Persoon
+14:19:36,940 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: drop table if exists Organisatie_Persoon
+14:19:36,940 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: drop table if exists Persoon
+14:19:36,940 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: drop table if exists Persoon
+14:19:36,940 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: drop table if exists Persoon_PersoonsRol
+14:19:36,940 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: drop table if exists Persoon_PersoonsRol
+14:19:36,940 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: drop table if exists Relatie
+14:19:36,941 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: drop table if exists Relatie
+14:19:36,941 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: drop table if exists Relatie_Adres
+14:19:36,941 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: drop table if exists Relatie_Adres
+14:19:36,941 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: drop table if exists Relatie_Nfa
+14:19:36,941 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: drop table if exists Relatie_Nfa
+14:19:36,941 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: drop table if exists Vacature
+14:19:36,942 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: drop table if exists Vacature
+14:19:36,942 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: drop table if exists Vacature_Aanbieding
+14:19:36,942 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: drop table if exists Vacature_Aanbieding
+14:19:36,942 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: drop table if exists Werknemer
+14:19:36,942 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: drop table if exists Werknemer
+14:19:36,942 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: drop table if exists Werknemer_Arbeidsovereenkomst
+14:19:36,942 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: drop table if exists Werknemer_Arbeidsovereenkomst
+14:19:36,943 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: drop table if exists hibernate_sequences
+14:19:36,943 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: drop table if exists hibernate_sequences
+14:19:36,943 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: create table Aanbieding (id integer not null auto_increment, organisatie_relatie_id integer not null, persoon_relatie_Id integer not null, vacature_id integer, primary key (id))
+14:19:36,943 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: create table Aanbieding (id integer not null auto_increment, organisatie_relatie_id integer not null, persoon_relatie_Id integer not null, vacature_id integer, primary key (id))
+14:19:36,943 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: create table Adres (id integer not null auto_increment, huisOfPostbusNummer varchar(255), isCorrespondentieAdres bit not null, isPostbus bit, plaats varchar(255), postcode varchar(255), straat varchar(255), primary key (id))
+14:19:36,943 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: create table Adres (id integer not null auto_increment, huisOfPostbusNummer varchar(255), isCorrespondentieAdres bit not null, isPostbus bit, plaats varchar(255), postcode varchar(255), straat varchar(255), primary key (id))
+14:19:36,943 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: create table Arbeidsovereenkomst (id integer not null auto_increment, aanbieding_id integer, organisatie_relatie_id integer, persoon_relatie_Id integer, primary key (id))
+14:19:36,944 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: create table Arbeidsovereenkomst (id integer not null auto_increment, aanbieding_id integer, organisatie_relatie_id integer, persoon_relatie_Id integer, primary key (id))
+14:19:36,944 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: create table Bedrijf (rolId integer not null, gearchiveerd bit not null, opmerking varchar(255), primary key (rolId))
+14:19:36,944 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: create table Bedrijf (rolId integer not null, gearchiveerd bit not null, opmerking varchar(255), primary key (rolId))
+14:19:36,944 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: create table Bedrijf_Aanbieding (Bedrijf_rolId integer not null, aanbiedingen_id integer not null, primary key (Bedrijf_rolId, aanbiedingen_id))
+14:19:36,951 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: create table Bedrijf_Aanbieding (Bedrijf_rolId integer not null, aanbiedingen_id integer not null, primary key (Bedrijf_rolId, aanbiedingen_id))
+14:19:36,952 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: create table Bedrijf_Arbeidsovereenkomst (Bedrijf_rolId integer not null, arbeidsovereenkomsten_id integer not null, primary key (Bedrijf_rolId, arbeidsovereenkomsten_id))
+14:19:36,952 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: create table Bedrijf_Arbeidsovereenkomst (Bedrijf_rolId integer not null, arbeidsovereenkomsten_id integer not null, primary key (Bedrijf_rolId, arbeidsovereenkomsten_id))
+14:19:36,952 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: create table Bedrijf_Persoon (Bedrijf_rolId integer not null, medewerkers_relatie_Id integer not null, primary key (Bedrijf_rolId, medewerkers_relatie_Id))
+14:19:36,953 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: create table Bedrijf_Persoon (Bedrijf_rolId integer not null, medewerkers_relatie_Id integer not null, primary key (Bedrijf_rolId, medewerkers_relatie_Id))
+14:19:36,953 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: create table Bedrijf_Vacature (Bedrijf_rolId integer not null, vacatures_id integer not null, primary key (Bedrijf_rolId, vacatures_id))
+14:19:36,953 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: create table Bedrijf_Vacature (Bedrijf_rolId integer not null, vacatures_id integer not null, primary key (Bedrijf_rolId, vacatures_id))
+14:19:36,954 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: create table Contactpersoon (rolId integer not null, gearchiveerd bit not null, opmerking varchar(255), functie varchar(255) not null, primary key (rolId))
+14:19:36,954 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: create table Contactpersoon (rolId integer not null, gearchiveerd bit not null, opmerking varchar(255), functie varchar(255) not null, primary key (rolId))
+14:19:36,954 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: create table Contactpersoon_Organisatie (Contactpersoon_rolId integer not null, organisaties_relatie_id integer not null)
+14:19:36,955 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: create table Contactpersoon_Organisatie (Contactpersoon_rolId integer not null, organisaties_relatie_id integer not null)
+14:19:36,955 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: create table Kandidaat (rolId integer not null, gearchiveerd bit not null, opmerking varchar(255), persoon_relatie_Id integer, primary key (rolId))
+14:19:36,956 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: create table Kandidaat (rolId integer not null, gearchiveerd bit not null, opmerking varchar(255), persoon_relatie_Id integer, primary key (rolId))
+14:19:36,956 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: create table Kandidaat_Aanbieding (Kandidaat_rolId integer not null, aanbiedingen_id integer not null, primary key (Kandidaat_rolId, aanbiedingen_id))
+14:19:36,957 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: create table Kandidaat_Aanbieding (Kandidaat_rolId integer not null, aanbiedingen_id integer not null, primary key (Kandidaat_rolId, aanbiedingen_id))
+14:19:36,957 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: create table Leverancier (rolId integer not null, gearchiveerd bit not null, opmerking varchar(255), functie varchar(255), primary key (rolId))
+14:19:36,957 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: create table Leverancier (rolId integer not null, gearchiveerd bit not null, opmerking varchar(255), functie varchar(255), primary key (rolId))
+14:19:36,958 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: create table Nfa (discriminator varchar(31) not null, id integer not null auto_increment, extraInfo varchar(255), nfaAdres varchar(255) not null, nfaSoort varchar(255), primary key (id))
+14:19:36,958 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: create table Nfa (discriminator varchar(31) not null, id integer not null auto_increment, extraInfo varchar(255), nfaAdres varchar(255) not null, nfaSoort varchar(255), primary key (id))
+14:19:36,959 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: create table Organisatie (naam varchar(255), relatie_id integer not null, primary key (relatie_id))
+14:19:36,959 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: create table Organisatie (naam varchar(255), relatie_id integer not null, primary key (relatie_id))
+14:19:36,960 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: create table Organisatie_OrganisatieRol (Organisatie_relatie_id integer not null, rollen_rolId integer not null, primary key (Organisatie_relatie_id, rollen_rolId))
+14:19:36,960 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: create table Organisatie_OrganisatieRol (Organisatie_relatie_id integer not null, rollen_rolId integer not null, primary key (Organisatie_relatie_id, rollen_rolId))
+14:19:36,961 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: create table Organisatie_Persoon (Organisatie_relatie_id integer not null, contactpersonen_relatie_Id integer not null, primary key (Organisatie_relatie_id, contactpersonen_relatie_Id))
+14:19:36,961 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: create table Organisatie_Persoon (Organisatie_relatie_id integer not null, contactpersonen_relatie_Id integer not null, primary key (Organisatie_relatie_id, contactpersonen_relatie_Id))
+14:19:36,961 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: create table Persoon (achternaam varchar(255) not null, geboortedatum date, tussenvoegsels varchar(255) not null, voornaam varchar(255) not null, relatie_Id integer not null, primary key (relatie_Id))
+14:19:36,962 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: create table Persoon (achternaam varchar(255) not null, geboortedatum date, tussenvoegsels varchar(255) not null, voornaam varchar(255) not null, relatie_Id integer not null, primary key (relatie_Id))
+14:19:36,962 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: create table Persoon_PersoonsRol (Persoon_relatie_Id integer not null, rollen_rolId integer not null)
+14:19:36,963 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: create table Persoon_PersoonsRol (Persoon_relatie_Id integer not null, rollen_rolId integer not null)
+14:19:36,963 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: create table Relatie (id integer not null auto_increment, gearchiveerd bit not null, opmerking varchar(255), priveRelatie bit not null, primary key (id))
+14:19:36,964 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: create table Relatie (id integer not null auto_increment, gearchiveerd bit not null, opmerking varchar(255), priveRelatie bit not null, primary key (id))
+14:19:36,965 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: create table Relatie_Adres (Relatie_id integer not null, adressen_id integer not null, primary key (Relatie_id, adressen_id))
+14:19:36,965 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: create table Relatie_Adres (Relatie_id integer not null, adressen_id integer not null, primary key (Relatie_id, adressen_id))
+14:19:36,966 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: create table Relatie_Nfa (Relatie_id integer not null, nfaLijst_id integer not null, primary key (Relatie_id, nfaLijst_id))
+14:19:36,966 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: create table Relatie_Nfa (Relatie_id integer not null, nfaLijst_id integer not null, primary key (Relatie_id, nfaLijst_id))
+14:19:36,967 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: create table Vacature (id integer not null auto_increment, omschrijving varchar(255) not null, website longtext, organisatie_relatie_id integer not null, primary key (id))
+14:19:36,967 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: create table Vacature (id integer not null auto_increment, omschrijving varchar(255) not null, website longtext, organisatie_relatie_id integer not null, primary key (id))
+14:19:36,967 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: create table Vacature_Aanbieding (Vacature_id integer not null, aanbiedingen_id integer not null, primary key (Vacature_id, aanbiedingen_id))
+14:19:36,968 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: create table Vacature_Aanbieding (Vacature_id integer not null, aanbiedingen_id integer not null, primary key (Vacature_id, aanbiedingen_id))
+14:19:36,968 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: create table Werknemer (rolId integer not null, gearchiveerd bit not null, opmerking varchar(255), primary key (rolId))
+14:19:36,969 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: create table Werknemer (rolId integer not null, gearchiveerd bit not null, opmerking varchar(255), primary key (rolId))
+14:19:36,969 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: create table Werknemer_Arbeidsovereenkomst (Werknemer_rolId integer not null, arbeidsovereenkomsten_id integer not null, primary key (Werknemer_rolId, arbeidsovereenkomsten_id))
+14:19:36,970 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: create table Werknemer_Arbeidsovereenkomst (Werknemer_rolId integer not null, arbeidsovereenkomsten_id integer not null, primary key (Werknemer_rolId, arbeidsovereenkomsten_id))
+14:19:36,970 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Bedrijf_Aanbieding add constraint UK_coyq42vi8p6lg5w0voh49ac7t  unique (aanbiedingen_id)
+14:19:36,971 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Bedrijf_Aanbieding add constraint UK_coyq42vi8p6lg5w0voh49ac7t  unique (aanbiedingen_id)
+14:19:36,971 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Bedrijf_Arbeidsovereenkomst add constraint UK_2gecl6xwajs29323x8lxp0mwm  unique (arbeidsovereenkomsten_id)
+14:19:36,972 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Bedrijf_Arbeidsovereenkomst add constraint UK_2gecl6xwajs29323x8lxp0mwm  unique (arbeidsovereenkomsten_id)
+14:19:36,972 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Bedrijf_Vacature add constraint UK_mdts7kk03sgjwwc5lk8llrugb  unique (vacatures_id)
+14:19:36,973 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Bedrijf_Vacature add constraint UK_mdts7kk03sgjwwc5lk8llrugb  unique (vacatures_id)
+14:19:36,973 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Contactpersoon add constraint UK_jyvmd2c9g5qb0h5gy42nt32r1  unique (functie)
+14:19:36,973 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Contactpersoon add constraint UK_jyvmd2c9g5qb0h5gy42nt32r1  unique (functie)
+14:19:36,974 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Contactpersoon_Organisatie add constraint UK_17488smiyw2x63pfbkj07opbc  unique (organisaties_relatie_id)
+14:19:36,974 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Contactpersoon_Organisatie add constraint UK_17488smiyw2x63pfbkj07opbc  unique (organisaties_relatie_id)
+14:19:36,975 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Kandidaat_Aanbieding add constraint UK_a17uurovpey3drwa7y8ixg1gx  unique (aanbiedingen_id)
+14:19:36,976 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Kandidaat_Aanbieding add constraint UK_a17uurovpey3drwa7y8ixg1gx  unique (aanbiedingen_id)
+14:19:36,976 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Leverancier add constraint UK_5xmqjsy993fsqtgkiijihruek  unique (functie)
+14:19:36,977 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Leverancier add constraint UK_5xmqjsy993fsqtgkiijihruek  unique (functie)
+14:19:36,977 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Organisatie add constraint UK_gm0a2e2u99ndooo0l1er6dwt8  unique (naam)
+14:19:36,978 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Organisatie add constraint UK_gm0a2e2u99ndooo0l1er6dwt8  unique (naam)
+14:19:36,979 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Organisatie_OrganisatieRol add constraint UK_5fee61jh16qi0w33g2uo783uf  unique (rollen_rolId)
+14:19:36,979 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Organisatie_OrganisatieRol add constraint UK_5fee61jh16qi0w33g2uo783uf  unique (rollen_rolId)
+14:19:36,980 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Persoon_PersoonsRol add constraint UK_fjg9afw4sp4lqdk2e886shju8  unique (rollen_rolId)
+14:19:36,980 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Persoon_PersoonsRol add constraint UK_fjg9afw4sp4lqdk2e886shju8  unique (rollen_rolId)
+14:19:36,980 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Relatie_Adres add constraint UK_2mmjuay63pycd6wr68cwysqs4  unique (adressen_id)
+14:19:36,981 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Relatie_Adres add constraint UK_2mmjuay63pycd6wr68cwysqs4  unique (adressen_id)
+14:19:36,981 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Relatie_Nfa add constraint UK_biqsn8feo258et0e14jjcffq3  unique (nfaLijst_id)
+14:19:36,982 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Relatie_Nfa add constraint UK_biqsn8feo258et0e14jjcffq3  unique (nfaLijst_id)
+14:19:36,982 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Vacature add constraint UK_byryim0qc7297yk6c862lac1o  unique (omschrijving)
+14:19:36,983 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Vacature add constraint UK_byryim0qc7297yk6c862lac1o  unique (omschrijving)
+14:19:36,983 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Vacature_Aanbieding add constraint UK_8qnt1dl7r5hsslcfoejqampnv  unique (aanbiedingen_id)
+14:19:36,983 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Vacature_Aanbieding add constraint UK_8qnt1dl7r5hsslcfoejqampnv  unique (aanbiedingen_id)
+14:19:36,984 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Werknemer_Arbeidsovereenkomst add constraint UK_t3mho50b8n1hb86io5dbevdp6  unique (arbeidsovereenkomsten_id)
+14:19:36,984 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Werknemer_Arbeidsovereenkomst add constraint UK_t3mho50b8n1hb86io5dbevdp6  unique (arbeidsovereenkomsten_id)
+14:19:36,985 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Aanbieding add constraint FK_5wsgol9m9lpj65lh7aajkhufi foreign key (organisatie_relatie_id) references Organisatie (relatie_id)
+14:19:36,985 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Aanbieding add constraint FK_5wsgol9m9lpj65lh7aajkhufi foreign key (organisatie_relatie_id) references Organisatie (relatie_id)
+14:19:36,986 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Aanbieding add constraint FK_50pu6glt6c5pqs76emu1dgdvj foreign key (persoon_relatie_Id) references Persoon (relatie_Id)
+14:19:36,986 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Aanbieding add constraint FK_50pu6glt6c5pqs76emu1dgdvj foreign key (persoon_relatie_Id) references Persoon (relatie_Id)
+14:19:36,986 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Aanbieding add constraint FK_rcpwqoschywl988mabhqi2t8j foreign key (vacature_id) references Vacature (id)
+14:19:36,987 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Aanbieding add constraint FK_rcpwqoschywl988mabhqi2t8j foreign key (vacature_id) references Vacature (id)
+14:19:36,987 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Arbeidsovereenkomst add constraint FK_5hcxjv59olb8tlcc3by8enc30 foreign key (aanbieding_id) references Aanbieding (id)
+14:19:36,988 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Arbeidsovereenkomst add constraint FK_5hcxjv59olb8tlcc3by8enc30 foreign key (aanbieding_id) references Aanbieding (id)
+14:19:36,988 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Arbeidsovereenkomst add constraint FK_qs5c5a4p6x7tfcyveiboisbjx foreign key (organisatie_relatie_id) references Organisatie (relatie_id)
+14:19:36,989 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Arbeidsovereenkomst add constraint FK_qs5c5a4p6x7tfcyveiboisbjx foreign key (organisatie_relatie_id) references Organisatie (relatie_id)
+14:19:36,989 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Arbeidsovereenkomst add constraint FK_dmdwlt0mb5erwxpdnlccdu42m foreign key (persoon_relatie_Id) references Persoon (relatie_Id)
+14:19:36,989 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Arbeidsovereenkomst add constraint FK_dmdwlt0mb5erwxpdnlccdu42m foreign key (persoon_relatie_Id) references Persoon (relatie_Id)
+14:19:36,990 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Bedrijf_Aanbieding add constraint FK_coyq42vi8p6lg5w0voh49ac7t foreign key (aanbiedingen_id) references Aanbieding (id)
+14:19:36,990 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Bedrijf_Aanbieding add constraint FK_coyq42vi8p6lg5w0voh49ac7t foreign key (aanbiedingen_id) references Aanbieding (id)
+14:19:36,991 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Bedrijf_Aanbieding add constraint FK_7txk6c2jf01ve7tsu4cg93eqj foreign key (Bedrijf_rolId) references Bedrijf (rolId)
+14:19:36,991 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Bedrijf_Aanbieding add constraint FK_7txk6c2jf01ve7tsu4cg93eqj foreign key (Bedrijf_rolId) references Bedrijf (rolId)
+14:19:36,992 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Bedrijf_Arbeidsovereenkomst add constraint FK_2gecl6xwajs29323x8lxp0mwm foreign key (arbeidsovereenkomsten_id) references Arbeidsovereenkomst (id)
+14:19:36,992 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Bedrijf_Arbeidsovereenkomst add constraint FK_2gecl6xwajs29323x8lxp0mwm foreign key (arbeidsovereenkomsten_id) references Arbeidsovereenkomst (id)
+14:19:36,993 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Bedrijf_Arbeidsovereenkomst add constraint FK_7ug5sd6e6sul6obsqr2v884as foreign key (Bedrijf_rolId) references Bedrijf (rolId)
+14:19:36,993 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Bedrijf_Arbeidsovereenkomst add constraint FK_7ug5sd6e6sul6obsqr2v884as foreign key (Bedrijf_rolId) references Bedrijf (rolId)
+14:19:36,994 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Bedrijf_Persoon add constraint FK_aw9vwf5diwdf3dswo32qaua80 foreign key (medewerkers_relatie_Id) references Persoon (relatie_Id)
+14:19:36,994 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Bedrijf_Persoon add constraint FK_aw9vwf5diwdf3dswo32qaua80 foreign key (medewerkers_relatie_Id) references Persoon (relatie_Id)
+14:19:36,995 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Bedrijf_Persoon add constraint FK_1xtjuoiijtc23hobax1e224mk foreign key (Bedrijf_rolId) references Bedrijf (rolId)
+14:19:36,995 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Bedrijf_Persoon add constraint FK_1xtjuoiijtc23hobax1e224mk foreign key (Bedrijf_rolId) references Bedrijf (rolId)
+14:19:36,995 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Bedrijf_Vacature add constraint FK_mdts7kk03sgjwwc5lk8llrugb foreign key (vacatures_id) references Vacature (id)
+14:19:36,996 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Bedrijf_Vacature add constraint FK_mdts7kk03sgjwwc5lk8llrugb foreign key (vacatures_id) references Vacature (id)
+14:19:36,996 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Bedrijf_Vacature add constraint FK_2juk9dr9iwpkq0nqvpqt620aa foreign key (Bedrijf_rolId) references Bedrijf (rolId)
+14:19:36,996 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Bedrijf_Vacature add constraint FK_2juk9dr9iwpkq0nqvpqt620aa foreign key (Bedrijf_rolId) references Bedrijf (rolId)
+14:19:36,997 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Contactpersoon_Organisatie add constraint FK_17488smiyw2x63pfbkj07opbc foreign key (organisaties_relatie_id) references Organisatie (relatie_id)
+14:19:36,997 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Contactpersoon_Organisatie add constraint FK_17488smiyw2x63pfbkj07opbc foreign key (organisaties_relatie_id) references Organisatie (relatie_id)
+14:19:36,997 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Contactpersoon_Organisatie add constraint FK_ag34h3xcqybsffrnit1tk6nlp foreign key (Contactpersoon_rolId) references Contactpersoon (rolId)
+14:19:36,998 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Contactpersoon_Organisatie add constraint FK_ag34h3xcqybsffrnit1tk6nlp foreign key (Contactpersoon_rolId) references Contactpersoon (rolId)
+14:19:36,998 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Kandidaat add constraint FK_lmiity7up1dv854msfl0sm0no foreign key (persoon_relatie_Id) references Persoon (relatie_Id)
+14:19:36,998 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Kandidaat add constraint FK_lmiity7up1dv854msfl0sm0no foreign key (persoon_relatie_Id) references Persoon (relatie_Id)
+14:19:36,999 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Kandidaat_Aanbieding add constraint FK_a17uurovpey3drwa7y8ixg1gx foreign key (aanbiedingen_id) references Aanbieding (id)
+14:19:36,999 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Kandidaat_Aanbieding add constraint FK_a17uurovpey3drwa7y8ixg1gx foreign key (aanbiedingen_id) references Aanbieding (id)
+14:19:36,999 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Kandidaat_Aanbieding add constraint FK_pb9bh6x68jwsgxh860e6y0ao2 foreign key (Kandidaat_rolId) references Kandidaat (rolId)
+14:19:37,001 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Kandidaat_Aanbieding add constraint FK_pb9bh6x68jwsgxh860e6y0ao2 foreign key (Kandidaat_rolId) references Kandidaat (rolId)
+14:19:37,003 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Organisatie add constraint FK_ogid6gcwg2581wm8hj5ju6uo8 foreign key (relatie_id) references Relatie (id)
+14:19:37,005 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Organisatie add constraint FK_ogid6gcwg2581wm8hj5ju6uo8 foreign key (relatie_id) references Relatie (id)
+14:19:37,006 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Organisatie_OrganisatieRol add constraint FK_2i63j8y4vj8p758ftxt7kvxji foreign key (Organisatie_relatie_id) references Organisatie (relatie_id)
+14:19:37,007 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Organisatie_OrganisatieRol add constraint FK_2i63j8y4vj8p758ftxt7kvxji foreign key (Organisatie_relatie_id) references Organisatie (relatie_id)
+14:19:37,008 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Organisatie_Persoon add constraint FK_7toc08gb26xp4oi76jjx6x7vk foreign key (contactpersonen_relatie_Id) references Persoon (relatie_Id)
+14:19:37,010 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Organisatie_Persoon add constraint FK_7toc08gb26xp4oi76jjx6x7vk foreign key (contactpersonen_relatie_Id) references Persoon (relatie_Id)
+14:19:37,010 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Organisatie_Persoon add constraint FK_8weqxcffors81450a8r0vcdgx foreign key (Organisatie_relatie_id) references Organisatie (relatie_id)
+14:19:37,011 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Organisatie_Persoon add constraint FK_8weqxcffors81450a8r0vcdgx foreign key (Organisatie_relatie_id) references Organisatie (relatie_id)
+14:19:37,011 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Persoon add constraint FK_jl7oikgfw27rfpisaycjrffa1 foreign key (relatie_Id) references Relatie (id)
+14:19:37,013 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Persoon add constraint FK_jl7oikgfw27rfpisaycjrffa1 foreign key (relatie_Id) references Relatie (id)
+14:19:37,014 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Persoon_PersoonsRol add constraint FK_9rb614udnhmo2s3yk7dlq8bci foreign key (Persoon_relatie_Id) references Persoon (relatie_Id)
+14:19:37,016 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Persoon_PersoonsRol add constraint FK_9rb614udnhmo2s3yk7dlq8bci foreign key (Persoon_relatie_Id) references Persoon (relatie_Id)
+14:19:37,017 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Relatie_Adres add constraint FK_2mmjuay63pycd6wr68cwysqs4 foreign key (adressen_id) references Adres (id)
+14:19:37,018 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Relatie_Adres add constraint FK_2mmjuay63pycd6wr68cwysqs4 foreign key (adressen_id) references Adres (id)
+14:19:37,019 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Relatie_Adres add constraint FK_e7hlnc3486x5h8dkfa12jd9rm foreign key (Relatie_id) references Relatie (id)
+14:19:37,020 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Relatie_Adres add constraint FK_e7hlnc3486x5h8dkfa12jd9rm foreign key (Relatie_id) references Relatie (id)
+14:19:37,020 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Relatie_Nfa add constraint FK_biqsn8feo258et0e14jjcffq3 foreign key (nfaLijst_id) references Nfa (id)
+14:19:37,021 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Relatie_Nfa add constraint FK_biqsn8feo258et0e14jjcffq3 foreign key (nfaLijst_id) references Nfa (id)
+14:19:37,021 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Relatie_Nfa add constraint FK_bke2b6hh4eap5qev2kj6lpnh2 foreign key (Relatie_id) references Relatie (id)
+14:19:37,021 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Relatie_Nfa add constraint FK_bke2b6hh4eap5qev2kj6lpnh2 foreign key (Relatie_id) references Relatie (id)
+14:19:37,022 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Vacature add constraint FK_ocuixgwnveak6rnrrjgpryvi foreign key (organisatie_relatie_id) references Organisatie (relatie_id)
+14:19:37,022 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Vacature add constraint FK_ocuixgwnveak6rnrrjgpryvi foreign key (organisatie_relatie_id) references Organisatie (relatie_id)
+14:19:37,023 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Vacature_Aanbieding add constraint FK_8qnt1dl7r5hsslcfoejqampnv foreign key (aanbiedingen_id) references Aanbieding (id)
+14:19:37,023 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Vacature_Aanbieding add constraint FK_8qnt1dl7r5hsslcfoejqampnv foreign key (aanbiedingen_id) references Aanbieding (id)
+14:19:37,024 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Vacature_Aanbieding add constraint FK_mtqunrc9hm03scp2eiyxw3pj5 foreign key (Vacature_id) references Vacature (id)
+14:19:37,024 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Vacature_Aanbieding add constraint FK_mtqunrc9hm03scp2eiyxw3pj5 foreign key (Vacature_id) references Vacature (id)
+14:19:37,024 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Werknemer_Arbeidsovereenkomst add constraint FK_t3mho50b8n1hb86io5dbevdp6 foreign key (arbeidsovereenkomsten_id) references Arbeidsovereenkomst (id)
+14:19:37,025 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Werknemer_Arbeidsovereenkomst add constraint FK_t3mho50b8n1hb86io5dbevdp6 foreign key (arbeidsovereenkomsten_id) references Arbeidsovereenkomst (id)
+14:19:37,025 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: alter table Werknemer_Arbeidsovereenkomst add constraint FK_g6d8a6euvdsspofp1j2kjq4ye foreign key (Werknemer_rolId) references Werknemer (rolId)
+14:19:37,025 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Werknemer_Arbeidsovereenkomst add constraint FK_g6d8a6euvdsspofp1j2kjq4ye foreign key (Werknemer_rolId) references Werknemer (rolId)
+14:19:37,026 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+Hibernate: create table hibernate_sequences ( sequence_name varchar(255),  sequence_next_hi_value integer )
+14:19:37,026 ERROR main hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: create table hibernate_sequences ( sequence_name varchar(255),  sequence_next_hi_value integer )
+14:19:37,026 ERROR main hbm2ddl.SchemaExport:426 - No operations allowed after statement closed.
+14:19:37,026  INFO main hbm2ddl.SchemaExport:405 - HHH000230: Schema export complete
+14:19:37,051  INFO main hibernate4.HibernateTransactionManager:339 - Using DataSource [org.springframework.jdbc.datasource.DriverManagerDataSource@5460452a] of Hibernate SessionFactory for HibernateTransactionManager
+14:19:39,058  WARN main spi.SqlExceptionHelper:144 - SQL Error: 0, SQLState: 08S01
+14:19:39,058 ERROR main spi.SqlExceptionHelper:146 - Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+14:19:39,063  INFO main support.GenericApplicationContext:873 - Closing org.springframework.context.support.GenericApplicationContext@47a0e73: startup date [Tue Feb 10 14:19:35 CET 2015]; root of context hierarchy
+</system-out>
+  </testcase>
 </testsuite>

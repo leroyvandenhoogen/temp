@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: nl.rsvier.icaras.dao.relatiebeheer.OrganisatieDaoHibernateTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.334 sec <<< FAILURE!
-test_getAll(nl.rsvier.icaras.dao.relatiebeheer.OrganisatieDaoHibernateTest)  Time elapsed: 0.056 sec  <<< FAILURE!
+Tests run: 4, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.267 sec <<< FAILURE!
+test_getAll(nl.rsvier.icaras.dao.relatiebeheer.OrganisatieDaoHibernateTest)  Time elapsed: 0.047 sec  <<< FAILURE!
 java.lang.AssertionError: De collecties komen overeen
 	at org.junit.Assert.fail(Assert.java:88)
 	at org.junit.Assert.assertTrue(Assert.java:41)

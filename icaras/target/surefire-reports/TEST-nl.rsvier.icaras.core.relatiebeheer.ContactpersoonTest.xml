@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="5" failures="0" name="nl.rsvier.icaras.core.relatiebeheer.ContactpersoonTest" time="0.002" errors="0" skipped="0">
+<testsuite tests="5" failures="0" name="nl.rsvier.icaras.core.relatiebeheer.ContactpersoonTest" time="0" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\java\jdk1.8.0_05\jre\bin"/>
@@ -66,6 +66,6 @@
   <testcase classname="nl.rsvier.icaras.core.relatiebeheer.ContactpersoonTest" name="test_addOrganisatieFail" time="0"/>
   <testcase classname="nl.rsvier.icaras.core.relatiebeheer.ContactpersoonTest" name="test_equals" time="0"/>
   <testcase classname="nl.rsvier.icaras.core.relatiebeheer.ContactpersoonTest" name="test_RemoveOrganisatieFail" time="0"/>
-  <testcase classname="nl.rsvier.icaras.core.relatiebeheer.ContactpersoonTest" name="test_organisatieMagWordenToegevoegd" time="0.001"/>
-  <testcase classname="nl.rsvier.icaras.core.relatiebeheer.ContactpersoonTest" name="testBidirectioneleRelatie_Contactpersoon_Organisatie" time="0.001"/>
+  <testcase classname="nl.rsvier.icaras.core.relatiebeheer.ContactpersoonTest" name="test_organisatieMagWordenToegevoegd" time="0"/>
+  <testcase classname="nl.rsvier.icaras.core.relatiebeheer.ContactpersoonTest" name="testBidirectioneleRelatie_Contactpersoon_Organisatie" time="0"/>
 </testsuite>

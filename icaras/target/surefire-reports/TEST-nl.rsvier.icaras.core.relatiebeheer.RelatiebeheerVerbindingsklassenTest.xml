@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="8" failures="0" name="nl.rsvier.icaras.core.relatiebeheer.RelatiebeheerVerbindingsklassenTest" time="0.001" errors="0" skipped="0">
+<testsuite tests="8" failures="0" name="nl.rsvier.icaras.core.relatiebeheer.RelatiebeheerVerbindingsklassenTest" time="0" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\java\jdk1.8.0_05\jre\bin"/>
@@ -69,6 +69,6 @@
   <testcase classname="nl.rsvier.icaras.core.relatiebeheer.RelatiebeheerVerbindingsklassenTest" name="testAddAndRemoveArbeidsovereenkomstFail" time="0"/>
   <testcase classname="nl.rsvier.icaras.core.relatiebeheer.RelatiebeheerVerbindingsklassenTest" name="testVacatureAanbiedingFail" time="0"/>
   <testcase classname="nl.rsvier.icaras.core.relatiebeheer.RelatiebeheerVerbindingsklassenTest" name="testVacatureAanbiedingVerschillendeOrganisaties" time="0"/>
-  <testcase classname="nl.rsvier.icaras.core.relatiebeheer.RelatiebeheerVerbindingsklassenTest" name="testDuplicaatAanbiedingConstrueren" time="0.001"/>
+  <testcase classname="nl.rsvier.icaras.core.relatiebeheer.RelatiebeheerVerbindingsklassenTest" name="testDuplicaatAanbiedingConstrueren" time="0"/>
   <testcase classname="nl.rsvier.icaras.core.relatiebeheer.RelatiebeheerVerbindingsklassenTest" name="testAddAndRemoveAanbiedingFail" time="0"/>
 </testsuite>
