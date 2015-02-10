@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="4" failures="0" name="nl.rsvier.icaras.dao.arbeidsmarkt.VacatureDaoHibernateTest" time="0.576" errors="0" skipped="0">
+<testsuite tests="4" failures="0" name="nl.rsvier.icaras.dao.arbeidsmarkt.VacatureDaoHibernateTest" time="0.708" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\java\jdk1.8.0_05\jre\bin"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="Service Pack 1"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="C:\Users\Remi\Documents\ADMIN\RSVIER\Icaras\icaras-midden\Icaras\icaras"/>
+    <property name="user.dir" value="C:\Users\Remi\Documents\ADMIN\PROJECTEN\icaras\icaras"/>
     <property name="java.runtime.version" value="1.8.0_05-b13"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="C:\java\jdk1.8.0_05\jre\lib\endorsed"/>
@@ -28,7 +28,7 @@
     <property name="os.name" value="Windows 7"/>
     <property name="classworlds.conf" value="c:\java\maven\bin\..\bin\m2.conf"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\java\jdk1.8.0_05\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Android\sdk\tools;C:\Android\sdk\platform-tools;C:\ProgramData\Oracle\Java\javapath;C:\oraclexe\app\oracle\product\11.2.0\server\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Python33\;C:\RailsInstaller\Git\cmd;C:\RailsInstaller\Ruby1.9.3\bin;C:\Ruby200\bin;C:\java\jdk1.8.0_05\bin;C:\Program Files (x86)\PC Connectivity Solution\;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files\TortoiseSVN\bin;c:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;c:\Program Files\Microsoft SQL Server\100\Tools\Binn\;c:\Program Files\Microsoft SQL Server\100\DTS\Binn\;c:\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v1.0\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files (x86)\K-3D 0.8.0.1\bin;C:\Program Files\jEdit;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files\TortoiseGit\bin;C:\Program Files (x86)\Git\cmd;C:\java\gradle-2.0\bin;c:\java\maven\bin;c:\java\ant\bin;c:\jruby\bin;C:\Program Files (x86)\Common Files\Hackety Hack\0.r1529\..;.;;."/>
+    <property name="java.library.path" value="C:\java\jdk1.8.0_05\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Android\sdk\tools;C:\Android\sdk\platform-tools;C:\ProgramData\Oracle\Java\javapath;C:\oraclexe\app\oracle\product\11.2.0\server\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Python33\;C:\RailsInstaller\Git\cmd;C:\RailsInstaller\Ruby1.9.3\bin;C:\Ruby200\bin;C:\java\jdk1.8.0_05\bin;C:\Program Files (x86)\PC Connectivity Solution\;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files\TortoiseSVN\bin;c:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;c:\Program Files\Microsoft SQL Server\100\Tools\Binn\;c:\Program Files\Microsoft SQL Server\100\DTS\Binn\;c:\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v1.0\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files (x86)\K-3D 0.8.0.1\bin;C:\Program Files\jEdit;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files\TortoiseGit\bin;C:\Program Files (x86)\Git\cmd;C:\java\gradle-2.0\bin;c:\java\maven\bin;c:\java\ant\bin;c:\jruby\bin;C:\Program Files (x86)\Common Files\Hackety Hack\0.r1529\..;.;;.;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
@@ -63,8 +63,8 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="nl.rsvier.icaras.dao.arbeidsmarkt.VacatureDaoHibernateTest" name="testGet" time="0.151"/>
-  <testcase classname="nl.rsvier.icaras.dao.arbeidsmarkt.VacatureDaoHibernateTest" name="testSave" time="0.145"/>
-  <testcase classname="nl.rsvier.icaras.dao.arbeidsmarkt.VacatureDaoHibernateTest" name="test_delete" time="0.119"/>
-  <testcase classname="nl.rsvier.icaras.dao.arbeidsmarkt.VacatureDaoHibernateTest" name="testGetAll" time="0.161"/>
+  <testcase classname="nl.rsvier.icaras.dao.arbeidsmarkt.VacatureDaoHibernateTest" name="testGet" time="0.19"/>
+  <testcase classname="nl.rsvier.icaras.dao.arbeidsmarkt.VacatureDaoHibernateTest" name="testSave" time="0.178"/>
+  <testcase classname="nl.rsvier.icaras.dao.arbeidsmarkt.VacatureDaoHibernateTest" name="test_delete" time="0.168"/>
+  <testcase classname="nl.rsvier.icaras.dao.arbeidsmarkt.VacatureDaoHibernateTest" name="testGetAll" time="0.172"/>
 </testsuite>
