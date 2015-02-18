@@ -1,12 +1,12 @@
 -------------------------------------------------------------------------------
 Test set: nl.rsvier.icaras.dao.relatiebeheer.OrganisatieDaoHibernateTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.267 sec <<< FAILURE!
-test_getAll(nl.rsvier.icaras.dao.relatiebeheer.OrganisatieDaoHibernateTest)  Time elapsed: 0.047 sec  <<< FAILURE!
-java.lang.AssertionError: De collecties komen overeen
+Tests run: 4, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.682 sec <<< FAILURE!
+test_getAll(nl.rsvier.icaras.dao.relatiebeheer.OrganisatieDaoHibernateTest)  Time elapsed: 0.04 sec  <<< FAILURE!
+java.lang.AssertionError: Begin test met een lege collectie
 	at org.junit.Assert.fail(Assert.java:88)
 	at org.junit.Assert.assertTrue(Assert.java:41)
-	at nl.rsvier.icaras.dao.relatiebeheer.OrganisatieDaoHibernateTest.test_getAll(OrganisatieDaoHibernateTest.java:198)
+	at nl.rsvier.icaras.dao.relatiebeheer.OrganisatieDaoHibernateTest.test_getAll(OrganisatieDaoHibernateTest.java:171)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

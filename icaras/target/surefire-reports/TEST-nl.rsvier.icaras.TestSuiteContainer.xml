@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="115" failures="0" name="nl.rsvier.icaras.TestSuiteContainer" time="8.926" errors="0" skipped="0">
+<testsuite tests="115" failures="0" name="nl.rsvier.icaras.TestSuiteContainer" time="305.264" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\java\jdk1.8.0_05\jre\bin"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="Service Pack 1"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="C:\Users\Remi\Documents\ADMIN\RSVIER\Icaras\icaras-midden\Icaras\icaras"/>
+    <property name="user.dir" value="C:\Users\Remi\Documents\ADMIN\PROJECTEN\icaras"/>
     <property name="java.runtime.version" value="1.8.0_05-b13"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="C:\java\jdk1.8.0_05\jre\lib\endorsed"/>
@@ -86,7 +86,7 @@
   <testcase classname="nl.rsvier.icaras.core.relatiebeheer.OrganisatieTest" name="test_naamMagWordenToegevoegd" time="0"/>
   <testcase classname="nl.rsvier.icaras.core.relatiebeheer.OrganisatieTest" name="test_addRol" time="0"/>
   <testcase classname="nl.rsvier.icaras.core.relatiebeheer.OrganisatieTest" name="test_equals" time="0"/>
-  <testcase classname="nl.rsvier.icaras.core.relatiebeheer.OrganisatieTest" name="test_getRol" time="0.001"/>
+  <testcase classname="nl.rsvier.icaras.core.relatiebeheer.OrganisatieTest" name="test_getRol" time="0"/>
   <testcase classname="nl.rsvier.icaras.core.relatiebeheer.OrganisatieTest" name="testBidirectioneleRelatie_Organisatie_Contactpersoon" time="0"/>
   <testcase classname="nl.rsvier.icaras.core.relatiebeheer.OrganisatieTest" name="test_heeftRol" time="0"/>
   <testcase classname="nl.rsvier.icaras.core.relatiebeheer.LeverancierTest" name="test_equals" time="0"/>
@@ -103,7 +103,7 @@
   <testcase classname="nl.rsvier.icaras.core.arbeidsmarkt.AanbiedingTest" name="test_removeAllReferences" time="0"/>
   <testcase classname="nl.rsvier.icaras.core.arbeidsmarkt.AanbiedingTest" name="testAanbiedingConflicterendeOrganisatie" time="0"/>
   <testcase classname="nl.rsvier.icaras.core.arbeidsmarkt.AanbiedingTest" name="test_organisatieConstraint" time="0"/>
-  <testcase classname="nl.rsvier.icaras.core.arbeidsmarkt.AanbiedingTest" name="test_setVacatureReferentie" time="0.001"/>
+  <testcase classname="nl.rsvier.icaras.core.arbeidsmarkt.AanbiedingTest" name="test_setVacatureReferentie" time="0"/>
   <testcase classname="nl.rsvier.icaras.core.arbeidsmarkt.AanbiedingTest" name="testEquals" time="0"/>
   <testcase classname="nl.rsvier.icaras.core.arbeidsmarkt.AanbiedingTest" name="test_organisatieMagWordenToegevoegd" time="0"/>
   <testcase classname="nl.rsvier.icaras.core.arbeidsmarkt.AanbiedingTest" name="testConstructorIncorrectBusinessKey_NullOrganisatie" time="0"/>
@@ -119,63 +119,63 @@
   <testcase classname="nl.rsvier.icaras.core.arbeidsmarkt.VacatureTest" name="testEquals" time="0"/>
   <testcase classname="nl.rsvier.icaras.core.arbeidsmarkt.VacatureTest" name="testConstructorIncorrectBusinessKey_LegeOmschrijving" time="0"/>
   <testcase classname="nl.rsvier.icaras.core.arbeidsmarkt.VacatureTest" name="test_organisatieMagWordenToegevoegd" time="0"/>
-  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.AdresDaoHibernateTest" name="testDeleteAdres" time="0.37"/>
-  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.AdresDaoHibernateTest" name="testSaveEnGetAdres" time="0.024"/>
-  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.AdresDaoHibernateTest" name="updateAdres" time="0.021"/>
-  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.AdresDaoHibernateTest" name="testGetAllAdressen" time="0.022"/>
-  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.NfaDaoHibernateTest" name="testSaveEnGet" time="0.018"/>
-  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.NfaDaoHibernateTest" name="testDelete" time="0.019"/>
-  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.NfaDaoHibernateTest" name="testGetAll" time="0.023"/>
-  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.NfaDaoHibernateTest" name="testUpdate" time="0.02"/>
-  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.OrganisatieDaoHibernateTest" name="test_getById" time="0.031"/>
-  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.OrganisatieDaoHibernateTest" name="test_delete" time="0.034"/>
-  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.OrganisatieDaoHibernateTest" name="test_getAll" time="0.032"/>
-  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.OrganisatieDaoHibernateTest" name="test_saveOrUpdate" time="0.039"/>
-  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.RelatieDaoHibernateTest" name="testSaveEnGet" time="0.024"/>
-  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.RelatieDaoHibernateTest" name="testDelete" time="0.025"/>
-  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.RelatieDaoHibernateTest" name="testGetAll" time="0.023"/>
-  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.RelatieDaoHibernateTest" name="testUpdate" time="0.022"/>
-  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.PersoonsRolDaoHibernateTest" name="test_getById" time="0.087"/>
-  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.PersoonsRolDaoHibernateTest" name="test_delete" time="0.108"/>
-  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.PersoonsRolDaoHibernateTest" name="test_getAll" time="0.026"/>
-  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.PersoonsRolDaoHibernateTest" name="test_saveOrUpdate" time="0.147"/>
-  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.OrganisatieRolDaoHibernateTest" name="test_getById" time="0.084"/>
-  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.OrganisatieRolDaoHibernateTest" name="test_delete" time="0.102"/>
-  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.OrganisatieRolDaoHibernateTest" name="test_getAll" time="0.029"/>
-  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.OrganisatieRolDaoHibernateTest" name="test_saveOrUpdate" time="0.114"/>
-  <testcase classname="nl.rsvier.icaras.dao.arbeidsmarkt.AanbiedingDaoHibernateTest" name="testDao_save" time="0.121"/>
-  <testcase classname="nl.rsvier.icaras.dao.arbeidsmarkt.AanbiedingDaoHibernateTest" name="testDao_getAll" time="0.161"/>
-  <testcase classname="nl.rsvier.icaras.dao.arbeidsmarkt.AanbiedingDaoHibernateTest" name="test_delete" time="0.109"/>
-  <testcase classname="nl.rsvier.icaras.dao.arbeidsmarkt.AanbiedingDaoHibernateTest" name="testDao_update" time="0.152"/>
-  <testcase classname="nl.rsvier.icaras.dao.arbeidsmarkt.AanbiedingDaoHibernateTest" name="testDao_get" time="0.133"/>
-  <testcase classname="nl.rsvier.icaras.dao.arbeidsmarkt.VacatureDaoHibernateTest" name="testGet" time="0.063"/>
-  <testcase classname="nl.rsvier.icaras.dao.arbeidsmarkt.VacatureDaoHibernateTest" name="testSave" time="0.068"/>
-  <testcase classname="nl.rsvier.icaras.dao.arbeidsmarkt.VacatureDaoHibernateTest" name="test_delete" time="0.065"/>
-  <testcase classname="nl.rsvier.icaras.dao.arbeidsmarkt.VacatureDaoHibernateTest" name="testGetAll" time="0.066"/>
-  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.TestDaoAdapterTest" name="testDaoHelper" time="0.029"/>
-  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.TestDaoAdapterTest" name="test2DaoHelpers1Injector" time="0.019"/>
-  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.TestDaoAdapterTest" name="testDaoHelperGetAllGetById" time="0.02"/>
-  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieAdresNfaTest" name="testNullSave" time="0.012"/>
-  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieAdresNfaTest" name="testSaveRelatieMetNullAdressen" time="0.025"/>
-  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieAdresNfaTest" name="testCascadeUpdate" time="0.059"/>
-  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieAdresNfaTest" name="testSaveEnGet" time="0.036"/>
-  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieAdresNfaTest" name="testDelete" time="0.049"/>
-  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieAdresNfaTest" name="testGetAll" time="0.053"/>
-  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest" name="testGetByIdMetAdressen" time="0.037"/>
-  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest" name="testDeleteAdresVanRelatie" time="0.258"/>
-  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest" name="testUpdateVelden" time="0.227"/>
-  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest" name="testSaveEnGet" time="0.257"/>
-  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest" name="testDelete" time="0.371"/>
-  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest" name="testGetAll" time="0.213"/>
-  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest" name="testGetAllMetAdres" time="0.217"/>
-  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.PersoonOrganisatieServiceTest" name="testGetAllAanTeBiedenOrganisaties" time="1.009"/>
-  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.PersoonOrganisatieServiceTest" name="testGetAllMetContactPersoon" time="0.335"/>
-  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.PersoonOrganisatieServiceTest" name="testDeleteMetMeerdereOvereenkomsten" time="0.756"/>
-  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.PersoonOrganisatieServiceTest" name="testGetAllMetWerknemerEnKandidaat" time="0.351"/>
-  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.PersoonOrganisatieServiceTest" name="testDeleteZonderOVereenkomsten" time="0.271"/>
-  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.PersoonOrganisatieServiceTest" name="testDeletePersoon" time="0.449"/>
-  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.PersoonOrganisatieServiceTest" name="testBefore" time="0.344"/>
-  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.PersoonOrganisatieServiceTest" name="testDeleteOrganisatie" time="0.451"/>
-  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.PersoonOrganisatieServiceTest" name="testGetAllMetKandidaat" time="0.327"/>
-  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.PersoonOrganisatieServiceTest" name="testGetAllMetBedrijfsrol" time="0.367"/>
+  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.AdresDaoHibernateTest" name="testDeleteAdres" time="25.548"/>
+  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.AdresDaoHibernateTest" name="testSaveEnGetAdres" time="0.03"/>
+  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.AdresDaoHibernateTest" name="updateAdres" time="0.01"/>
+  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.AdresDaoHibernateTest" name="testGetAllAdressen" time="0.02"/>
+  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.NfaDaoHibernateTest" name="testSaveEnGet" time="0.1"/>
+  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.NfaDaoHibernateTest" name="testDelete" time="0.01"/>
+  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.NfaDaoHibernateTest" name="testGetAll" time="0.03"/>
+  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.NfaDaoHibernateTest" name="testUpdate" time="0.04"/>
+  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.OrganisatieDaoHibernateTest" name="test_getById" time="0.35"/>
+  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.OrganisatieDaoHibernateTest" name="test_delete" time="0.26"/>
+  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.OrganisatieDaoHibernateTest" name="test_getAll" time="0.07"/>
+  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.OrganisatieDaoHibernateTest" name="test_saveOrUpdate" time="0.04"/>
+  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.RelatieDaoHibernateTest" name="testSaveEnGet" time="0.05"/>
+  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.RelatieDaoHibernateTest" name="testDelete" time="0.26"/>
+  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.RelatieDaoHibernateTest" name="testGetAll" time="0.05"/>
+  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.RelatieDaoHibernateTest" name="testUpdate" time="0.11"/>
+  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.PersoonsRolDaoHibernateTest" name="test_getById" time="0.42"/>
+  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.PersoonsRolDaoHibernateTest" name="test_delete" time="0.17"/>
+  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.PersoonsRolDaoHibernateTest" name="test_getAll" time="0.06"/>
+  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.PersoonsRolDaoHibernateTest" name="test_saveOrUpdate" time="0.152"/>
+  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.OrganisatieRolDaoHibernateTest" name="test_getById" time="0.64"/>
+  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.OrganisatieRolDaoHibernateTest" name="test_delete" time="0.1"/>
+  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.OrganisatieRolDaoHibernateTest" name="test_getAll" time="0.05"/>
+  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.OrganisatieRolDaoHibernateTest" name="test_saveOrUpdate" time="0.1"/>
+  <testcase classname="nl.rsvier.icaras.dao.arbeidsmarkt.AanbiedingDaoHibernateTest" name="testDao_save" time="0.44"/>
+  <testcase classname="nl.rsvier.icaras.dao.arbeidsmarkt.AanbiedingDaoHibernateTest" name="testDao_getAll" time="0.214"/>
+  <testcase classname="nl.rsvier.icaras.dao.arbeidsmarkt.AanbiedingDaoHibernateTest" name="test_delete" time="0.13"/>
+  <testcase classname="nl.rsvier.icaras.dao.arbeidsmarkt.AanbiedingDaoHibernateTest" name="testDao_update" time="0.12"/>
+  <testcase classname="nl.rsvier.icaras.dao.arbeidsmarkt.AanbiedingDaoHibernateTest" name="testDao_get" time="0.25"/>
+  <testcase classname="nl.rsvier.icaras.dao.arbeidsmarkt.VacatureDaoHibernateTest" name="testGet" time="0.08"/>
+  <testcase classname="nl.rsvier.icaras.dao.arbeidsmarkt.VacatureDaoHibernateTest" name="testSave" time="0.12"/>
+  <testcase classname="nl.rsvier.icaras.dao.arbeidsmarkt.VacatureDaoHibernateTest" name="test_delete" time="0.12"/>
+  <testcase classname="nl.rsvier.icaras.dao.arbeidsmarkt.VacatureDaoHibernateTest" name="testGetAll" time="0.132"/>
+  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.TestDaoAdapterTest" name="testDaoHelper" time="0.04"/>
+  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.TestDaoAdapterTest" name="test2DaoHelpers1Injector" time="0.112"/>
+  <testcase classname="nl.rsvier.icaras.dao.relatiebeheer.TestDaoAdapterTest" name="testDaoHelperGetAllGetById" time="0.04"/>
+  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieAdresNfaTest" name="testNullSave" time="0.01"/>
+  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieAdresNfaTest" name="testSaveRelatieMetNullAdressen" time="0.15"/>
+  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieAdresNfaTest" name="testCascadeUpdate" time="0.2"/>
+  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieAdresNfaTest" name="testSaveEnGet" time="0.02"/>
+  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieAdresNfaTest" name="testDelete" time="0.06"/>
+  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieAdresNfaTest" name="testGetAll" time="0.03"/>
+  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest" name="testGetByIdMetAdressen" time="0.17"/>
+  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest" name="testDeleteAdresVanRelatie" time="26.162"/>
+  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest" name="testUpdateVelden" time="24.747"/>
+  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest" name="testSaveEnGet" time="27.081"/>
+  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest" name="testDelete" time="23.643"/>
+  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest" name="testGetAll" time="16.421"/>
+  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.RelatieServiceTest" name="testGetAllMetAdres" time="17.362"/>
+  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.PersoonOrganisatieServiceTest" name="testGetAllAanTeBiedenOrganisaties" time="15.088"/>
+  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.PersoonOrganisatieServiceTest" name="testGetAllMetContactPersoon" time="14.544"/>
+  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.PersoonOrganisatieServiceTest" name="testDeleteMetMeerdereOvereenkomsten" time="15.656"/>
+  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.PersoonOrganisatieServiceTest" name="testGetAllMetWerknemerEnKandidaat" time="13.122"/>
+  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.PersoonOrganisatieServiceTest" name="testDeleteZonderOVereenkomsten" time="13.162"/>
+  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.PersoonOrganisatieServiceTest" name="testDeletePersoon" time="15.017"/>
+  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.PersoonOrganisatieServiceTest" name="testBefore" time="12.969"/>
+  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.PersoonOrganisatieServiceTest" name="testDeleteOrganisatie" time="14.063"/>
+  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.PersoonOrganisatieServiceTest" name="testGetAllMetKandidaat" time="11.584"/>
+  <testcase classname="nl.rsvier.icaras.service.relatiebeheer.PersoonOrganisatieServiceTest" name="testGetAllMetBedrijfsrol" time="13.535"/>
 </testsuite>
