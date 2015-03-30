@@ -8,7 +8,9 @@
 	<description>
 		Leerproject voor Java-cursisten RSVier
 	</description>
-<!-- 							####Leek een fout te geven####
+<!--
+							####Leek een fout te geven####
+							
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:cuvosdb-context.xml </param-value>
@@ -17,8 +19,12 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
- -->
-
+	
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+-->
+							
 	<servlet>
 		<servlet-name>icaras</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
