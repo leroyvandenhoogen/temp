@@ -1,0 +1,140 @@
+ <?link rel="stylesheet" type="text/css" href="/style.css"?>
+ <?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver" ?>
+ <window apply="nl.rsvier.icaras.controller.relatiebeheer.PersoonlijstController" border="normal" hflex="1" vflex="1"
+ 	contentStyle="overflow:auto">
+ 	<caption sclass="caption" label="Persoonlijst" />
+ 	<borderlayout>
+	 	<center autoscroll="true" border="none">
+	 		<vlayout hflex="1" vflex="1">
+	 		
+	 			<!-- persoon lijst -->
+	 			<listbox id="persoonListbox" vflex="1">
+	 				<listhead>
+	 					<listheader label="Naam:" hflex="1" height="min" />
+	 					<listheader label="Rollen: " hflex="1" height="min" />
+	 				</listhead>
+	 				<template name="model">
+	 					<listitem value="${each}">
+	 						<listcell>
+	 							<label value="${each.volledigeNaam}"/>
+	 						</listcell>
+	 						<listcell>
+	 							<label value="${each.rollen}"/>
+	 						</listcell>
+	 					</listitem>
+	 				</template>
+	 			</listbox>
+	 		</vlayout>
+	 	</center>
+	 	
+	 	<!-- persoonsgegevens na selectie persoon -->
+	 	<east id="selectedPersoonBlock" visible="false" width="300px" border="none" collapsible="false" splittable="true"
+	 		minsize="300" autoscroll="true">
+	 		<vlayout>
+		 		<grid hflex="1">
+					<columns>
+						<column label="Persoongegevens" align="right" hflex="1"/>
+						<column/>
+					</columns>
+		 			<!-- select persoon details -->
+	 				<rows>
+	 				
+	 					<!-- naam -->
+		 				<row>
+		 					<cell sclass="row-title">Voornaam: </cell>
+		 					<cell>
+		 						<textbox id="selectedPersoonVoornaam" constraint="no empty: Voer een voornaam in" width="200px"/>	 								
+		 					</cell>
+		 				</row>
+		 				
+		 				<row>
+		 					<cell sclass="row-title">Tussenvoegsels: </cell>
+		 					<cell>
+		 						<textbox id="selectedPersoonTussenvoegsels" width="200px"/>	 								
+		 					</cell>
+		 				</row>
+		 				
+		 				<row>
+		 					<cell sclass="row-title">Achternaam: </cell>
+		 					<cell>
+		 						<textbox id="selectedPersoonAchternaam" constraint="no empty: Voer een achternaam in" width="200px"/>	 								
+		 					</cell>
+		 				</row>
+		 				
+		 				<!-- geboortedatum -->
+		 				<row>
+		 					<cell sclass="row-title">Geboortedatum: </cell>
+		 					<cell>
+		 						<datebox id="selectedPersoonGeboortedatum" constraint="no future: Kan geen toekomstige datum zijn" width="200px" />
+		 					</cell>
+		 				</row>
+		 				
+		 				<!-- adres -->
+		 				<row>
+		 					<cell sclass="row-title">Straat: </cell>
+		 					
+			 					<cell>
+			 						<textbox id="selectedPersoonStraat" width="150px" />
+			 						<textbox id="selectedPersoonStraatNummer" width="50px" />
+			 					</cell>
+			 				
+		 				</row>
+		 				
+		 				<row>
+		 					<cell sclass="row-title">Postcode: </cell>
+		 					<cell>
+		 						<textbox id="selectedPersoonPostcode" width="200px" />
+		 					</cell>
+		 				</row>
+		 				
+		 				<row>
+		 					<cell sclass="row-title">Plaats: </cell>
+		 					<cell>
+		 						<textbox id="selectedPersoonPlaats" width="200px" />
+		 					</cell>
+		 				</row>
+		 					
+		 				<!-- niet fysieke adressen -->
+		 				<row>
+		 					<cell sclass="row-title">Telefoonnummer: </cell>
+		 					<cell>
+		 						<textbox id="selectedPersoonTelefoonNummer" width="200px" />
+		 					</cell>
+		 				</row>
+		 				
+		 				<row>
+		 					<cell sclass="row-title">Email: </cell>
+		 					<cell>
+		 						<textbox id="selectedPersoonEmail" width="200px" />
+		 					</cell>
+		 				</row>
+		 				
+		 				<!-- opmerking -->
+		 				<row>
+		 					<cell sclass="row-title">Opmerking: </cell>
+		 					<cell>
+		 						<textbox id="selectedPersoonOpmerking" rows="5" width="200px" />
+		 					</cell>
+		 				</row>
+	 				</rows>
+	 				
+		 		</grid>
+
+		 		
+		 		<!-- persoonsrollen -->
+	 			<listbox id="persoonsRolListbox" emptyMessage="Deze persoon heeft geen rollen" >
+	 				<listhead>
+	 					<listheader label="Persoonsrol" hflex="1" height="min" />
+	 				</listhead>
+	 				<template name="model">
+	 					<listitem value="${each}">
+	 						<listcell>
+	 							<label value="${each}"/>
+	 						</listcell>
+	 					</listitem>
+	 				</template>
+	 			</listbox>
+	 		</vlayout>
+	 	</east>
+	 </borderlayout>
+</window>
