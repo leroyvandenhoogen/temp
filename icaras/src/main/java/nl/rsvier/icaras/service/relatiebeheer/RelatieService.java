@@ -1,6 +1,7 @@
 package nl.rsvier.icaras.service.relatiebeheer;
 
 import java.util.List;
+
 import javax.transaction.Transactional;
 
 import nl.rsvier.icaras.core.relatiebeheer.Relatie;
@@ -8,6 +9,8 @@ import nl.rsvier.icaras.dao.relatiebeheer.IRelatieDao;
 import nl.rsvier.icaras.dao.relatiebeheer.RelatieDaoHibernate;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,6 +24,7 @@ import org.springframework.stereotype.Service;
  */
 @Service("IRelatieService")
 @Transactional
+//@Scope(value="singleton", proxyMode=ScopedProxyMode.TARGET_CLASS)
 public class RelatieService implements IRelatieService {
 
 	@Autowired

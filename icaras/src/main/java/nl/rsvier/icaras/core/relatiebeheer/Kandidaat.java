@@ -158,7 +158,8 @@ public class Kandidaat extends PersoonsRol {
 	}
 
 	public String toString() {
-		return "Kandidatenrol, subklasse van: " + super.toString();
+		return "Kandidaat";
+//		return "Kandidatenrol, subklasse van: " + super.toString();
 	}
 
 }

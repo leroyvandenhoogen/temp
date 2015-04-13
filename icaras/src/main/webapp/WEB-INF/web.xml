@@ -10,10 +10,10 @@
 	</description>
 <!--
 							####Leek een fout te geven####
-							
+-->							
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:cuvosdb-context.xml </param-value>
+		<param-value>classpath:icarasdb-context.xml </param-value>
 	</context-param>
 
 	<listener>
@@ -23,7 +23,7 @@
 	<listener>
 		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
 	</listener>
--->
+
 							
 	<servlet>
 		<servlet-name>icaras</servlet-name>

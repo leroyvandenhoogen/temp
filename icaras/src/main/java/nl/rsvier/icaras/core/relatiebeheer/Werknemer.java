@@ -146,4 +146,8 @@ public class Werknemer extends PersoonsRol {
 		}
 		return false;
 	}
+	
+	public String toString() {
+		return "Werknemer";
+	}
 }

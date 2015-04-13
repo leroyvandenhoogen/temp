@@ -16,10 +16,13 @@ import nl.rsvier.icaras.core.relatiebeheer.Werknemer;
 import nl.rsvier.icaras.dao.relatiebeheer.IPersoonDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 
 @Service("IPersoonService")
 @Transactional
+@Scope(value="singleton", proxyMode=ScopedProxyMode.TARGET_CLASS)
 public class PersoonService implements IPersoonService {
 
 	@Autowired
