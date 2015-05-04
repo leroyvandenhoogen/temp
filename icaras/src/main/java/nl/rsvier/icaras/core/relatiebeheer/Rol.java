@@ -1,87 +1,45 @@
 package nl.rsvier.icaras.core.relatiebeheer;
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Rol {
+@Table(name = "rol", catalog = "icaras")
+public class Rol implements java.io.Serializable {
 
-	private int id;
-	protected boolean gearchiveerd;
-	protected String opmerking = "";
+	private static final long serialVersionUID = 1L;
+	private Integer id;
+	private Set<Persoonsrol> persoonsrollen = new HashSet<Persoonsrol>(0);
 
-	/*
-	 * Identifier
-	 */
-
-	@Id
-	@Column(name = "rolId")
-	@GeneratedValue(strategy = GenerationType.TABLE)
-	public int getId() {
-		return id;
+	public Rol() {
 	}
 
-	public void setId(int id) {
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
+	public Integer getId() {
+		return this.id;
+	}
+
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	/*
-	 * Archief
-	 */
-
-	@Column(name = "isGearchiveerd")
-	private boolean getGearchiveerd() {
-		return this.gearchiveerd;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "rol")
+	public Set<Persoonsrol> getPersoonsrols() {
+		return this.persoonsrollen;
 	}
 
-	/*
-	 * Reflection requires a getter, even though standard naming convention for
-	 * boolean getters is: "isBoolean()", provide an "isGearchiveerd()" method
-	 */
-	public boolean isGearchiveerd() {
-		return this.getGearchiveerd();
-	}
-
-	public void setGearchiveerd(boolean b) {
-		this.gearchiveerd = b;
-	}
-
-	/*
-	 * Opmerking
-	 */
-
-	public String getOpmerking() {
-		return this.opmerking;
-	}
-
-	public void setOpmerking(String s) {
-		this.opmerking = s;
-	}
-
-	/*
-	 * Utils
-	 */
-
-	@Override
-	public boolean equals(Object obj) {
-		if (obj == null || !(obj instanceof Rol)) {
-			return false;
-		} else {
-			Rol other = (Rol) obj;
-			if (!this.isGearchiveerd() == other.isGearchiveerd()) {
-				return false;
-			}
-			if (!this.getOpmerking().equals(other.getOpmerking())) {
-				return false;
-			}
-		}
-		return true;
+	public void setPersoonsrols(Set<Persoonsrol> persoonsrollen) {
+		this.persoonsrollen = persoonsrollen;
 	}
 
 }

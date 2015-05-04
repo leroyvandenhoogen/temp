@@ -1,16 +1,16 @@
 package nl.rsvier.icaras.core;
 
-import nl.rsvier.icaras.core.arbeidsmarkt.AanbiedingTest;
-import nl.rsvier.icaras.core.arbeidsmarkt.VacatureTest;
-import nl.rsvier.icaras.core.relatiebeheer.AdresTest;
-import nl.rsvier.icaras.core.relatiebeheer.BedrijfTest;
-import nl.rsvier.icaras.core.relatiebeheer.ContactpersoonTest;
-import nl.rsvier.icaras.core.relatiebeheer.CorrespondentieAdresTest;
-import nl.rsvier.icaras.core.relatiebeheer.LeverancierTest;
-import nl.rsvier.icaras.core.relatiebeheer.NfaTest;
-import nl.rsvier.icaras.core.relatiebeheer.OrganisatieTest;
-import nl.rsvier.icaras.core.relatiebeheer.PersoonKandidaatCVGeneratorTest;
-import nl.rsvier.icaras.core.relatiebeheer.RelatiebeheerVerbindingsklassenTest;
+import nl.rsvier.icaras.refactor.core.AanbiedingTest;
+import nl.rsvier.icaras.refactor.core.AdresTest;
+import nl.rsvier.icaras.refactor.core.BedrijfTest;
+import nl.rsvier.icaras.refactor.core.ContactpersoonTest;
+import nl.rsvier.icaras.refactor.core.CorrespondentieAdresTest;
+import nl.rsvier.icaras.refactor.core.LeverancierTest;
+import nl.rsvier.icaras.refactor.core.NfaTest;
+import nl.rsvier.icaras.refactor.core.OrganisatieTest;
+import nl.rsvier.icaras.refactor.core.PersoonKandidaatCVGeneratorTest;
+import nl.rsvier.icaras.refactor.core.RelatiebeheerVerbindingsklassenTest;
+import nl.rsvier.icaras.refactor.core.VacatureTest;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

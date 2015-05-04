@@ -1,324 +1,159 @@
 package nl.rsvier.icaras.core.relatiebeheer;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-
-import javax.persistence.CascadeType;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
-import javax.validation.constraints.NotNull;
-
-import nl.rsvier.icaras.core.IEntity;
-
-// TODO: Auto-generated Javadoc
-
-/**
- * Instanties van deze klasse representeren personen in de database. Heeft een
- * lijst van persoonsrollen met daarin de verschillende rollen die deze persoon
- * bekleedt (bijvoorbeeld kandidaat, cursist etc.) Erft ook een deel van de
- * persoonsgegevens van zijn superklasse relatie.
- * 
- * @Author: Leroy van den Hoogen
- * @Author: Thomas Slippens
- * @Author: Gordon Brouwer
- * 
- * @version: 1.0
- *
- */
 
 @Entity
-@PrimaryKeyJoinColumn(name = "relatie_Id")
-// @org.hibernate.annotations.Proxy(lazy = false)
-public class Persoon extends Relatie implements IEntity {
+@Table(name = "persoon", catalog = "icaras")
+public class Persoon implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
+	private Integer id;
 	private String voornaam;
 	private String achternaam;
-	private String tussenvoegsels = "";
-	private Calendar geboortedatum;
-	private List<PersoonsRol> rollen;
-
-	/*
-	 * Constructoren
-	 */
-
-	public Persoon(String v, String t, String a, Calendar date) {
-		this(v, t, a);
-		this.setGeboortedatum(date);
-	}
-
-	public Persoon(String v, String t, String a) {
-		this(v, a);
-		this.setTussenvoegsels(t);
-	}
-
-	public Persoon(String v, String a) {
-		this();
-		this.setVoornaam(v);
-		this.setAchternaam(a);
-	}
+	private String tussenvoegsel;
+	private Date geboortedatum;
+	private String geboorteplaats;
+	private String geslacht;
+	private Boolean rijbewijs;
+	private String nationaliteit;
+	private Set<Identiteitsbewijs> identiteitsbewijzen = new HashSet<Identiteitsbewijs>(0);
+	private Set<Adres> adressen = new HashSet<Adres>(0);
+	private Set<AdresDigitaal> digitaleAdressen = new HashSet<AdresDigitaal>(0);
+	private Set<Persoonsrol> persoonsrollen = new HashSet<Persoonsrol>(0);
 
 	public Persoon() {
-		this.rollen = new ArrayList<PersoonsRol>();
 	}
 
-	// @Column(nullable = false)
-	@NotNull
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
+	public Integer getId() {
+		return this.id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	@Column(name = "voornaam", nullable = false, length = 45)
 	public String getVoornaam() {
-		return voornaam;
+		return this.voornaam;
 	}
 
 	public void setVoornaam(String voornaam) {
 		this.voornaam = voornaam;
 	}
 
-	// @Column(nullable = false)
-	@NotNull
+	@Column(name = "achternaam", nullable = false, length = 45)
 	public String getAchternaam() {
-		return achternaam;
+		return this.achternaam;
 	}
 
 	public void setAchternaam(String achternaam) {
 		this.achternaam = achternaam;
 	}
 
-	// @Column(nullable = false)
-	@NotNull
-	public String getTussenvoegsels() {
-		return tussenvoegsels;
+	@Column(name = "tussenvoegsel", length = 45)
+	public String getTussenvoegsel() {
+		return this.tussenvoegsel;
 	}
 
-	public void setTussenvoegsels(String tussenvoegsels) {
-		this.tussenvoegsels = tussenvoegsels;
+	public void setTussenvoegsel(String tussenvoegsel) {
+		this.tussenvoegsel = tussenvoegsel;
 	}
 
 	@Temporal(TemporalType.DATE)
-	// @NotNull
-	public Calendar getGeboortedatum() {
-		return geboortedatum;
+	@Column(name = "geboortedatum", length = 10)
+	public Date getGeboortedatum() {
+		return this.geboortedatum;
 	}
 
-	public void setGeboortedatum(Calendar geboortedatum2) {
-		this.geboortedatum = geboortedatum2;
+	public void setGeboortedatum(Date geboortedatum) {
+		this.geboortedatum = geboortedatum;
 	}
 
-	/*
-	 * org.hibernate.annotations.CascadeType.SAVE_UPDATE Hibernate navigates the
-	 * association when the Session is flushed and when an object is passed to
-	 * save() or update(), and saves newly instantiated transient instances and
-	 * persist changes to detached instances.
-	 * 
-	 * org.hibernate.annotations.CascadeType.DELETE Hibernate navigates the
-	 * association and deletes associated persistent instances when an object is
-	 * passed to delete() or remove().
-	 */
-
-	@OneToMany(cascade = CascadeType.ALL)
-	// TODO moet nog @NotNull worden
-	// @org.hibernate.annotations.Cascade({
-	// org.hibernate.annotations.CascadeType.ALL,
-	//
-	// })
-	public List<PersoonsRol> getRollen() {
-		return rollen;
+	@Column(name = "geboorteplaats", length = 45)
+	public String getGeboorteplaats() {
+		return this.geboorteplaats;
 	}
 
-	/**
-	 * In het geval de lijst null is wordt niks toegekend.
-	 *
-	 * @param List
-	 *            <PersoonsRol> rollenlijst
-	 */
-	@SuppressWarnings("unused")
-	// methode nodig voor setten van rollen door Hibernate
-	private void setRollen(List<PersoonsRol> rollenlijst) {
-		if (rollenlijst != null) {
-			this.rollen = rollenlijst;
-		}
+	public void setGeboorteplaats(String geboorteplaats) {
+		this.geboorteplaats = geboorteplaats;
 	}
 
-	/**
-	 * Voegt een persoonsrol toe.
-	 * 
-	 * Kijkt eerst of er al rollen zijn. Zoniet dan wordt een meegegeven rol
-	 * meteen toegekend. Als deze rol een kandidaat is dan wordt de persoon van
-	 * CVgenerator toegevoegd aan deze kandidaat.
-	 * 
-	 * Als er wel rollen zijn dan wordt geckeckt of deze specifieke rol al in de
-	 * lijst voorkomt. Als dat zo is gebeurt er niets.
-	 * 
-	 * @param PersoonsRol
-	 *            rol
-	 */
-	// TODO het toevoegen van een kandidaatrol met aanbiedingen is gevaarlijk
-	// voor bidirectionele relatie!
-	// Toevoegen van lege rollen lost dit probleem op.
-	// Deze methode private maken en maakKandidaat() maakWerknemer() etc als
-	// publieke methoden
-	// TODO via getRollen is het nog steeds publiek toegankelijk
-	// getRollen().add(kandidaatrol)...
-	public synchronized boolean addRol(PersoonsRol rol) {
-		boolean toegevoegd = false;
-		// controleer of deze persoon dit type rol al heeft
-		if (rol != null && !heeftRol(rol.getClass())) {
-			toegevoegd = this.rollen.add(rol);
-			if (rol instanceof Kandidaat) {
-				((Kandidaat) rol).getCvGenerator().setPersoonReference(this);
-			}
-			if (rol instanceof Werknemer) {
-			}
-		}
-		return toegevoegd;
+	@Column(name = "geslacht", nullable = false, length = 1)
+	public String getGeslacht() {
+		return this.geslacht;
 	}
 
-	/**
-	 * Controleer of de collectie daadwerkelijk een rol bevat van het type
-	 * PersoonsRol
-	 * 
-	 * @param: class literal van het gewenste type PersoonsRol
-	 * 
-	 * @return: true wanneer de collectie een PersoonsRol van het juiste type
-	 *          bevat
-	 */
-	public <T extends PersoonsRol> boolean heeftRol(Class<T> clstype) {
-		return this.getRolByType(clstype) != null;
+	public void setGeslacht(String geslacht) {
+		this.geslacht = geslacht;
 	}
 
-	/**
-	 * Generieke hulpmethode voor de getMethoden per Rol
-	 * 
-	 * @param persoonsrol
-	 *            Geef een subklasse van Persoonsrol waarop gezocht moet worden
-	 * @return geeft de instantie van het opgegeven type terug Als dit type niet
-	 *         in de lijst voorkomt, wordt null terug gegeven.
-	 */
-	private <T extends PersoonsRol> PersoonsRol getRolByType(
-			Class<T> persoonsrolType) {
-		PersoonsRol returnRol = null;
-		if (rollen != null && !rollen.isEmpty()) {
-			for (PersoonsRol r : rollen) {
-				if (r.getClass().equals(persoonsrolType)) {
-					returnRol = r;
-				}
-			}
-		}
-		return returnRol;
+	@Column(name = "rijbewijs")
+	public Boolean getRijbewijs() {
+		return this.rijbewijs;
 	}
 
-	/**
-	 * Vraag de aanmelderrol op van deze klasse
-	 * 
-	 * @return instantie van Aanmelder indien de persoon deze rol vervult,
-	 *         anders null
-	 */
-	// @Transient
-	// public Aanmelder getAanmelder() {
-	// return (Aanmelder) getRolByType(Aanmelder.class);
-	// }
-
-	/**
-	 * Vraag de contactpersoonrol op van deze klasse
-	 * 
-	 * @return instantie van Contactpersoon indien de persoon deze rol vervult,
-	 *         anders null
-	 */
-	@Transient
-	public Contactpersoon getContactpersoon() {
-		return (Contactpersoon) getRolByType(Contactpersoon.class);
+	public void setRijbewijs(Boolean rijbewijs) {
+		this.rijbewijs = rijbewijs;
 	}
 
-	/**
-	 * Vraag de cursistrol op van deze klasse
-	 * 
-	 * @return instantie van Cursist indien de persoon deze rol vervult, anders
-	 *         null
-	 */
-	// @Transient
-	// public Cursist getCursist() {
-	// return (Cursist) getRolByType(Cursist.class);
-	// }
-
-	/**
-	 * Vraag de kandidaat(rol) op van deze klasse
-	 * 
-	 * @return instantie van Kandidaat indien de persoon deze rol vervult,
-	 *         anders null
-	 */
-	@Transient
-	public Kandidaat getKandidaat() {
-		return (Kandidaat) getRolByType(Kandidaat.class);
+	@Column(name = "nationaliteit", length = 45)
+	public String getNationaliteit() {
+		return this.nationaliteit;
 	}
 
-	/**
-	 * Vraag de kandidaatrol op van deze klasse
-	 * 
-	 * @return instantie van Kandidaat indien de persoon deze rol vervult,
-	 *         anders null
-	 */
-	@Transient
-	public Werknemer getWerknemer() {
-		return (Werknemer) getRolByType(Werknemer.class);
+	public void setNationaliteit(String nationaliteit) {
+		this.nationaliteit = nationaliteit;
 	}
 
-	/*
-	 * Utils
-	 */
-
-	@Override
-	public int hashCode() {
-		final int prime = 41;
-		int hash = 1;
-		if (getVoornaam() != null)
-			hash = hash * prime + this.getVoornaam().hashCode();
-		if (getTussenvoegsels() != null)
-			hash = hash * prime + this.getTussenvoegsels().hashCode();
-		if (getAchternaam() != null)
-			hash = hash * prime + this.getAchternaam().hashCode();
-		return hash;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon")
+	public Set<Identiteitsbewijs> getIdentiteitsbewijses() {
+		return this.identiteitsbewijzen;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		} else if (obj == null || !(obj instanceof Persoon)) {
-			return false;
-		} else {
-			Persoon other = (Persoon) obj;
-			if (!this.getVoornaam().equals(other.getVoornaam())) {
-				return false;
-			}
-			if (!this.getTussenvoegsels().equals(other.getTussenvoegsels())) {
-				return false;
-			}
-			if (!this.getAchternaam().equals(other.getAchternaam())) {
-				return false;
-			}
-			// Voorkom nullpointerexception, TODO: Mag Geboortedatum wel null
-			// zijn?
-			if (this.getGeboortedatum() != null
-					&& !this.getGeboortedatum()
-							.equals(other.getGeboortedatum())) {
-				return false;
-			}
-		}
-		return true;
+	public void setIdentiteitsbewijses(Set<Identiteitsbewijs> identiteitsbewijzen) {
+		this.identiteitsbewijzen = identiteitsbewijzen;
 	}
 
-	@Transient
-	public String getVolledigeNaam() {
-		return this.getVoornaam() + " " + this.getTussenvoegsels()
-				+ (this.getTussenvoegsels() != "" ? " " : "")
-				+ this.getAchternaam();
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon")
+	public Set<Adres> getAdreses() {
+		return this.adressen;
 	}
 
-	@Override
-	public String toString() {
-		return this.getVolledigeNaam();
+	public void setAdreses(Set<Adres> adressen) {
+		this.adressen = adressen;
 	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon")
+	public Set<AdresDigitaal> getAdresDigitaals() {
+		return this.digitaleAdressen;
+	}
+
+	public void setAdresDigitaals(Set<AdresDigitaal> digitaleAdressen) {
+		this.digitaleAdressen = digitaleAdressen;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon")
+	public Set<Persoonsrol> getPersoonsrols() {
+		return this.persoonsrollen;
+	}
+
+	public void setPersoonsrols(Set<Persoonsrol> persoonsrollen) {
+		this.persoonsrollen = persoonsrollen;
+	}
+
 }

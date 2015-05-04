@@ -16,26 +16,26 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import nl.rsvier.icaras.core.arbeidsmarkt.Aanbieding;
-import nl.rsvier.icaras.core.relatiebeheer.Adres;
-import nl.rsvier.icaras.core.relatiebeheer.Bedrijf;
-import nl.rsvier.icaras.core.relatiebeheer.Contactpersoon;
-import nl.rsvier.icaras.core.relatiebeheer.Email;
-import nl.rsvier.icaras.core.relatiebeheer.Facebook;
-import nl.rsvier.icaras.core.relatiebeheer.Fax;
-import nl.rsvier.icaras.core.relatiebeheer.Kandidaat;
-import nl.rsvier.icaras.core.relatiebeheer.LinkedIn;
-import nl.rsvier.icaras.core.relatiebeheer.Nfa;
-import nl.rsvier.icaras.core.relatiebeheer.Organisatie;
-import nl.rsvier.icaras.core.relatiebeheer.Persoon;
-import nl.rsvier.icaras.core.relatiebeheer.TelefoonNummer;
-import nl.rsvier.icaras.core.relatiebeheer.Twitter;
-import nl.rsvier.icaras.core.relatiebeheer.Website;
-import nl.rsvier.icaras.core.relatiebeheer.Werknemer;
-import nl.rsvier.icaras.service.relatiebeheer.IOrganisatieService;
-import nl.rsvier.icaras.service.relatiebeheer.IPersoonService;
-import nl.rsvier.icaras.service.relatiebeheer.OrganisatieService;
-import nl.rsvier.icaras.service.relatiebeheer.PersoonService;
+import nl.rsvier.icaras.refactor.core.Aanbieding;
+import nl.rsvier.icaras.refactor.core.Adres;
+import nl.rsvier.icaras.refactor.core.Bedrijf;
+import nl.rsvier.icaras.refactor.core.Contactpersoon;
+import nl.rsvier.icaras.refactor.core.Email;
+import nl.rsvier.icaras.refactor.core.Facebook;
+import nl.rsvier.icaras.refactor.core.Fax;
+import nl.rsvier.icaras.refactor.core.Kandidaat;
+import nl.rsvier.icaras.refactor.core.LinkedIn;
+import nl.rsvier.icaras.refactor.core.Nfa;
+import nl.rsvier.icaras.refactor.core.Organisatie;
+import nl.rsvier.icaras.refactor.core.Persoon;
+import nl.rsvier.icaras.refactor.core.TelefoonNummer;
+import nl.rsvier.icaras.refactor.core.Twitter;
+import nl.rsvier.icaras.refactor.core.Website;
+import nl.rsvier.icaras.refactor.core.Werknemer;
+import nl.rsvier.icaras.refactor.service.IOrganisatieService;
+import nl.rsvier.icaras.refactor.service.IPersoonService;
+import nl.rsvier.icaras.refactor.service.OrganisatieService;
+import nl.rsvier.icaras.refactor.service.PersoonService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:icarastestdb-context.xml"})

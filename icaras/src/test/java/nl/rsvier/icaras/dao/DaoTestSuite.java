@@ -1,14 +1,14 @@
 package nl.rsvier.icaras.dao;
 
-import nl.rsvier.icaras.dao.arbeidsmarkt.AanbiedingDaoHibernateTest;
-import nl.rsvier.icaras.dao.arbeidsmarkt.VacatureDaoHibernateTest;
-import nl.rsvier.icaras.dao.relatiebeheer.AdresDaoHibernateTest;
-import nl.rsvier.icaras.dao.relatiebeheer.NfaDaoHibernateTest;
-import nl.rsvier.icaras.dao.relatiebeheer.OrganisatieDaoHibernateTest;
-import nl.rsvier.icaras.dao.relatiebeheer.OrganisatieRolDaoHibernateTest;
-import nl.rsvier.icaras.dao.relatiebeheer.PersoonsRolDaoHibernateTest;
-import nl.rsvier.icaras.dao.relatiebeheer.RelatieDaoHibernateTest;
-import nl.rsvier.icaras.dao.relatiebeheer.TestDaoAdapterTest;
+import nl.rsvier.icaras.refactor.dao.AanbiedingDaoHibernateTest;
+import nl.rsvier.icaras.refactor.dao.AdresDaoHibernateTest;
+import nl.rsvier.icaras.refactor.dao.NfaDaoHibernateTest;
+import nl.rsvier.icaras.refactor.dao.OrganisatieDaoHibernateTest;
+import nl.rsvier.icaras.refactor.dao.OrganisatieRolDaoHibernateTest;
+import nl.rsvier.icaras.refactor.dao.PersoonsRolDaoHibernateTest;
+import nl.rsvier.icaras.refactor.dao.RelatieDaoHibernateTest;
+import nl.rsvier.icaras.refactor.dao.TestDaoAdapterTest;
+import nl.rsvier.icaras.refactor.dao.VacatureDaoHibernateTest;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
