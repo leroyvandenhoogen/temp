@@ -6,9 +6,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import nl.rsvier.icaras.core.IEntity;
-import nl.rsvier.icaras.core.InvalidBusinessKeyException;
-
 /**
  * Deze klasse representeert een arbeidsovereenkomst tussen een werknemer en een
  * bedrijf. Elke arbeidsovereenkomst wordt bidirectioneel vastgelegd; bij het

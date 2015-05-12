@@ -13,8 +13,6 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
-import nl.rsvier.icaras.core.IEntity;
-
 // TODO: Auto-generated Javadoc
 
 /**

@@ -13,8 +13,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
-import nl.rsvier.icaras.core.IEntity;
-
 /**
  * Abstracte klasse die het beheer van de adressen en Nfa's (niet fysieke
  * adressen) regelt voor de subklassen Persoon en Organisatie. Zorgt samen met

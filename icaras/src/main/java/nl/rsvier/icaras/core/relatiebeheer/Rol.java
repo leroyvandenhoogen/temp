@@ -2,11 +2,14 @@ package nl.rsvier.icaras.core.relatiebeheer;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -17,7 +20,8 @@ public class Rol implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Integer id;
-	private Set<Persoonsrol> persoonsrollen = new HashSet<Persoonsrol>(0);
+	private String type;
+//	private Set<Persoonsrol> persoonsrollen = new HashSet<Persoonsrol>(0);
 
 	public Rol() {
 	}
@@ -32,14 +36,46 @@ public class Rol implements java.io.Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "rol")
-	public Set<Persoonsrol> getPersoonsrols() {
-		return this.persoonsrollen;
+	
+	@Column(name = "type", nullable = false, length = 45)
+	public String getType() {
+		return this.type;
 	}
 
-	public void setPersoonsrols(Set<Persoonsrol> persoonsrollen) {
-		this.persoonsrollen = persoonsrollen;
+	public void setType(String type) {
+		this.type = type;
 	}
 
+//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "rol")
+//	public Set<Persoonsrol> getPersoonsrollen() {
+//		return this.persoonsrollen;
+//	}
+//
+//	public void setPersoonsrollen(Set<Persoonsrol> persoonsrollen) {
+//		this.persoonsrollen = persoonsrollen;
+//	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((getType() == null) ? 0 : getType().hashCode());
+		
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		} else if (obj == null || !(obj instanceof Rol)) {
+			return false;
+		} else {
+			Rol other = (Rol) obj;
+			if (this.getType() != null && !this.getType().equals(other.getType())) {
+				return false;
+			}
+		}
+		return true;
+	}
 }

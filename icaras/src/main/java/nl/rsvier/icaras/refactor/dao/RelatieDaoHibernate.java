@@ -5,11 +5,11 @@ import java.util.ListIterator;
 
 import org.springframework.stereotype.Repository;
 
-import nl.rsvier.icaras.dao.GenericDaoHibernate;
+import nl.rsvier.icaras.dao.GenericDaoImpl;
 import nl.rsvier.icaras.refactor.core.Relatie;
 
 @Repository("IRelatieDao")
-public class RelatieDaoHibernate extends GenericDaoHibernate<Relatie> implements
+public class RelatieDaoHibernate extends GenericDaoImpl<Relatie> implements
 		IRelatieDao {
 
 	public RelatieDaoHibernate() {

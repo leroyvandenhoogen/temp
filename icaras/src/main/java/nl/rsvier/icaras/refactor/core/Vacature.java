@@ -16,9 +16,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
-import nl.rsvier.icaras.core.IEntity;
-import nl.rsvier.icaras.core.InvalidBusinessKeyException;
-
 /**
  * Een vacature is een opname van een moment waarin een Organisatie op zoek is
  * naar kennis en/of expertise. De verantwoordelijkheid van een Vacature is het

@@ -1,6 +1,7 @@
 package nl.rsvier.icaras.core.relatiebeheer;
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -65,4 +66,42 @@ public class Identiteitsbewijs implements java.io.Serializable {
 		this.vervaldatum = vervaldatum;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((getIdentiteitsbewijsType() == null) ? 0 : getIdentiteitsbewijsType().hashCode());
+		result = prime * result + ((getNummer() == null) ? 0 : getNummer().hashCode());
+		result = prime * result + ((getPersoon() == null) ? 0 : getPersoon().hashCode());
+		result = prime * result	+ ((getVervaldatum() == null) ? 0 : getVervaldatum().hashCode());
+		
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		} else if (obj == null || !(obj instanceof Identiteitsbewijs)) {
+			return false;
+		} else {
+			Identiteitsbewijs other = (Identiteitsbewijs) obj;
+			if (this.getIdentiteitsbewijsType() != null && !this.getIdentiteitsbewijsType().equals(other.getIdentiteitsbewijsType())) {
+				return false;
+			}
+			
+			if (this.getNummer() != null && !this.getNummer().equals(other.getNummer())) {
+				return false;
+			}
+		
+			if (this.getPersoon() != null && !this.getPersoon().equals(other.getPersoon())) {
+				return false;
+			}
+	
+			if (this.getVervaldatum() != null && !this.getVervaldatum().equals(other.getVervaldatum())) {
+				return false;
+			}
+		}
+		return true;
+	}
 }

@@ -1,10 +1,9 @@
 package nl.rsvier.icaras.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
-import nl.rsvier.icaras.core.IEntity;
-
-public interface IGenericDao<T extends IEntity> {
+public interface IGenericDao<T extends Serializable> {
 	
 	public void save(T entity);
 	

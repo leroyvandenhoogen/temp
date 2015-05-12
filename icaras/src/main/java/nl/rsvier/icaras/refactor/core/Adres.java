@@ -5,8 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
-import nl.rsvier.icaras.core.IEntity;
-
 /**
  * 
  * Klasse voor fysieke adressen. Dit kan een postbus of een adres met een

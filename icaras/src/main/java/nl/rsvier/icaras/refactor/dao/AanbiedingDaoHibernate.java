@@ -1,6 +1,6 @@
 package nl.rsvier.icaras.refactor.dao;
 
-import nl.rsvier.icaras.dao.GenericDaoHibernate;
+import nl.rsvier.icaras.dao.GenericDaoImpl;
 import nl.rsvier.icaras.refactor.core.Aanbieding;
 
 import org.springframework.stereotype.Repository;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
  * exceptions naar Spring
  */
 @Repository("IAanbiedingDao")
-public class AanbiedingDaoHibernate extends GenericDaoHibernate<Aanbieding>
+public class AanbiedingDaoHibernate extends GenericDaoImpl<Aanbieding>
 		implements IAanbiedingDao {
 
 	public AanbiedingDaoHibernate() {

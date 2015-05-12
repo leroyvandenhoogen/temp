@@ -9,7 +9,6 @@ import java.net.MalformedURLException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import nl.rsvier.icaras.core.InvalidBusinessKeyException;
 import nl.rsvier.icaras.refactor.core.Bedrijf;
 import nl.rsvier.icaras.refactor.core.Kandidaat;
 import nl.rsvier.icaras.refactor.core.Organisatie;

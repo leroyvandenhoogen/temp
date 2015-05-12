@@ -1,4 +1,4 @@
-package nl.rsvier.icaras.core;
+package nl.rsvier.icaras.refactor.core;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -16,22 +16,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import nl.rsvier.icaras.refactor.core.Aanbieding;
-import nl.rsvier.icaras.refactor.core.Adres;
-import nl.rsvier.icaras.refactor.core.Bedrijf;
-import nl.rsvier.icaras.refactor.core.Contactpersoon;
-import nl.rsvier.icaras.refactor.core.Email;
-import nl.rsvier.icaras.refactor.core.Facebook;
-import nl.rsvier.icaras.refactor.core.Fax;
-import nl.rsvier.icaras.refactor.core.Kandidaat;
-import nl.rsvier.icaras.refactor.core.LinkedIn;
-import nl.rsvier.icaras.refactor.core.Nfa;
-import nl.rsvier.icaras.refactor.core.Organisatie;
-import nl.rsvier.icaras.refactor.core.Persoon;
-import nl.rsvier.icaras.refactor.core.TelefoonNummer;
-import nl.rsvier.icaras.refactor.core.Twitter;
-import nl.rsvier.icaras.refactor.core.Website;
-import nl.rsvier.icaras.refactor.core.Werknemer;
 import nl.rsvier.icaras.refactor.service.IOrganisatieService;
 import nl.rsvier.icaras.refactor.service.IPersoonService;
 import nl.rsvier.icaras.refactor.service.OrganisatieService;

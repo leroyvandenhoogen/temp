@@ -11,7 +11,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import nl.rsvier.icaras.core.InvalidBusinessKeyException;
+import nl.rsvier.icaras.refactor.core.InvalidBusinessKeyException;
 import nl.rsvier.icaras.refactor.core.Organisatie;
 import nl.rsvier.icaras.refactor.dao.OrganisatieDaoHibernate;
 

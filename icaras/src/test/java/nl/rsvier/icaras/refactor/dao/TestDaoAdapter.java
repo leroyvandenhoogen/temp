@@ -2,15 +2,15 @@ package nl.rsvier.icaras.refactor.dao;
 
 import java.util.List;
 
-import nl.rsvier.icaras.core.IEntity;
-import nl.rsvier.icaras.dao.GenericDaoHibernate;
+import nl.rsvier.icaras.dao.GenericDaoImpl;
+import nl.rsvier.icaras.refactor.core.IEntity;
 
 public class TestDaoAdapter<T extends IEntity> {
 
 	Class<T> type;
 	
-	GenericDaoHibernate<?> dao;
-	public TestDaoAdapter(Class<T> type, GenericDaoHibernate<?> dao) {
+	GenericDaoImpl<?> dao;
+	public TestDaoAdapter(Class<T> type, GenericDaoImpl<?> dao) {
 		this.type = type;
 		this.dao = dao;
 	}

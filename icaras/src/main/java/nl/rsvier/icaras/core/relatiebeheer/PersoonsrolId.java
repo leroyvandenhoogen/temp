@@ -64,10 +64,8 @@ public class PersoonsrolId implements java.io.Serializable {
 
 		result = 37 * result + this.getPersoonId();
 		result = 37 * result + this.getRolId();
-		result = 37
-				* result
-				+ (getBegindatum() == null ? 0 : this.getBegindatum()
-						.hashCode());
+		result = 37	* result + (getBegindatum() == null ? 0 : this.getBegindatum().hashCode());
+		
 		return result;
 	}
 

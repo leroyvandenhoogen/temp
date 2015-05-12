@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import nl.rsvier.icaras.core.InvalidBusinessKeyException;
 import nl.rsvier.icaras.refactor.core.Leverancier;
 import nl.rsvier.icaras.refactor.core.Organisatie;
 

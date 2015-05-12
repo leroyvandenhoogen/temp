@@ -11,8 +11,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Transient;
 
-import nl.rsvier.icaras.core.InvalidBusinessKeyException;
-
 /**
  * Core klasse: Organisatie. Entiteit die een zakelijke relatie vertegenwoordigt
  * 

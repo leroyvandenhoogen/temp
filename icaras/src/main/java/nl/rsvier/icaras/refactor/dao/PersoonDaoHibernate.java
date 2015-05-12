@@ -5,14 +5,14 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import nl.rsvier.icaras.dao.GenericDaoHibernate;
+import nl.rsvier.icaras.dao.GenericDaoImpl;
 import nl.rsvier.icaras.refactor.core.Contactpersoon;
 import nl.rsvier.icaras.refactor.core.Kandidaat;
 import nl.rsvier.icaras.refactor.core.Persoon;
 import nl.rsvier.icaras.refactor.core.Werknemer;
 
 @Repository("IPersoonDao")
-public class PersoonDaoHibernate extends GenericDaoHibernate<Persoon> implements
+public class PersoonDaoHibernate extends GenericDaoImpl<Persoon> implements
 		IPersoonDao {
 
 	public PersoonDaoHibernate() {

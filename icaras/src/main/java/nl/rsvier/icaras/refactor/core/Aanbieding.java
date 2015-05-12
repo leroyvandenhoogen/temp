@@ -8,9 +8,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
-import nl.rsvier.icaras.core.IEntity;
-import nl.rsvier.icaras.core.InvalidBusinessKeyException;
-
 /**
  * Deze klasse representeert een aanbieding van een kandidaat aan een bedrijf.
  * Elke aanbieding wordt bidirectioneel vastgelegd; bij het instantiëren van een

@@ -9,8 +9,8 @@ import java.util.Arrays;
 
 import javax.transaction.Transactional;
 
-import nl.rsvier.icaras.core.InvalidBusinessKeyException;
 import nl.rsvier.icaras.refactor.core.Bedrijf;
+import nl.rsvier.icaras.refactor.core.InvalidBusinessKeyException;
 import nl.rsvier.icaras.refactor.core.Kandidaat;
 import nl.rsvier.icaras.refactor.core.Organisatie;
 import nl.rsvier.icaras.refactor.core.Persoon;

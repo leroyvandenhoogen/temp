@@ -11,8 +11,6 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.validation.constraints.NotNull;
 
-import nl.rsvier.icaras.core.IEntity;
-
 /**
  * 
  * Klasse voor alle niet fysieke adresvormen (waaronder telefoonnummers en

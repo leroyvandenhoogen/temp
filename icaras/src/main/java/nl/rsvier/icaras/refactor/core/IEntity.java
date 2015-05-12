@@ -1,4 +1,4 @@
-package nl.rsvier.icaras.core;
+package nl.rsvier.icaras.refactor.core;
 
 import java.io.Serializable;
 

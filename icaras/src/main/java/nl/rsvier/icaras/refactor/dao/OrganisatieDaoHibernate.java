@@ -3,7 +3,7 @@ package nl.rsvier.icaras.refactor.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import nl.rsvier.icaras.dao.GenericDaoHibernate;
+import nl.rsvier.icaras.dao.GenericDaoImpl;
 import nl.rsvier.icaras.refactor.core.Bedrijf;
 import nl.rsvier.icaras.refactor.core.Leverancier;
 import nl.rsvier.icaras.refactor.core.Organisatie;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
  * exceptions naar Spring
  */
 @Repository("IOrganisatieDao")
-public class OrganisatieDaoHibernate extends GenericDaoHibernate<Organisatie>
+public class OrganisatieDaoHibernate extends GenericDaoImpl<Organisatie>
 		implements IOrganisatieDao {
 
 	public OrganisatieDaoHibernate() {

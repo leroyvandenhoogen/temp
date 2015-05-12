@@ -1,11 +1,14 @@
 package nl.rsvier.icaras.core.relatiebeheer;
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -65,8 +68,9 @@ public class Adres implements java.io.Serializable {
 		this.persoon = persoon;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "adres_type_id", nullable = false)
+//	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "adres_type_id", nullable = false/*, updatable=false, insertable=false*/)
 	public AdresType getAdresType() {
 		return this.adresType;
 	}
@@ -149,4 +153,89 @@ public class Adres implements java.io.Serializable {
 		this.einddatum = einddatum;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((getAdresType() == null) ? 0 : getAdresType().hashCode());
+		result = prime * result + ((getBedrijf() == null) ? 0 : getBedrijf().hashCode());
+		result = prime * result	+ ((getBegindatum() == null) ? 0 : getBegindatum().hashCode());
+		result = prime * result	+ ((getEinddatum() == null) ? 0 : getEinddatum().hashCode());
+		result = prime * result + ((getLand() == null) ? 0 : getLand().hashCode());
+		result = prime * result + nummer;
+		result = prime * result + ((getPersoon() == null) ? 0 : getPersoon().hashCode());
+		result = prime * result + ((getPlaats() == null) ? 0 : getPlaats().hashCode());
+		result = prime * result	+ ((getPostcode() == null) ? 0 : getPostcode().hashCode());
+		result = prime * result + ((getStraat() == null) ? 0 : getStraat().hashCode());
+		result = prime * result	+ ((getToevoegsel() == null) ? 0 : getToevoegsel().hashCode());
+		
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		} else if (obj == null || !(obj instanceof Adres)) {
+			return false;
+		} else {
+			Adres other = (Adres) obj;
+			if (this.getAdresType() != null && !this.getAdresType().equals(other.getAdresType())) {
+				return false;
+			}
+			
+			if (this.getBedrijf() != null && !this.getBedrijf().equals(other.getBedrijf())) {
+				return false;
+			}
+			
+			if (this.getAdresType() != null && !this.getAdresType().equals(other.getAdresType())) {
+				return false;
+			}
+			
+			if (this.getBegindatum() != null && !this.getBegindatum().equals(other.getBegindatum())) {
+				return false;
+			}
+			
+			if (this.getEinddatum() != null && !this.getEinddatum().equals(other.getEinddatum())) {
+				return false;
+			}
+			
+			if (this.getAdresType() != null && !this.getAdresType().equals(other.getAdresType())) {
+				return false;
+			}
+
+			if (this.getLand() != null && !this.getLand().equals(other.getLand())) {
+				return false;
+			}
+			
+			if (this.getNummer() != other.nummer) {
+				return false;
+			}
+			
+			if (this.getAdresType() != null && !this.getAdresType().equals(other.getAdresType())) {
+				return false;
+			}
+			
+			if (this.getPersoon() != null && !this.getPersoon().equals(other.getPersoon())) {
+				return false;
+			}
+			
+			if (this.getPlaats() != null && !this.getPlaats().equals(other.getPlaats())) {
+				return false;
+			}
+			
+			if (this.getPostcode() != null && !this.getPostcode().equals(other.getPostcode())) {
+				return false;
+			}
+	
+			if (this.getStraat() != null && !this.getStraat().equals(other.getStraat())) {
+				return false;
+			}
+	
+			if (this.getToevoegsel() != null && !this.getToevoegsel().equals(other.getToevoegsel())) {
+				return false;
+			}
+		}
+		return true;
+	}
 }

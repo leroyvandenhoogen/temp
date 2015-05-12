@@ -3,8 +3,6 @@ package nl.rsvier.icaras.refactor.core;
 
 import javax.persistence.Entity;
 
-import nl.rsvier.icaras.core.IEntity;
-
 @Entity
 //@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 //@DiscriminatorColumn(name = "organisatierol_type", discriminatorType = DiscriminatorType.STRING)

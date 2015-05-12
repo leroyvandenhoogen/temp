@@ -4,7 +4,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-import nl.rsvier.icaras.core.InvalidBusinessKeyException;
 import nl.rsvier.icaras.refactor.core.Adres;
 import nl.rsvier.icaras.refactor.core.Organisatie;
 import nl.rsvier.icaras.refactor.core.Persoon;

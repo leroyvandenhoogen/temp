@@ -1,6 +1,7 @@
 package nl.rsvier.icaras.core.relatiebeheer;
 
 import java.util.Date;
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
@@ -80,4 +81,47 @@ public class Persoonsrol implements java.io.Serializable {
 		this.einddatum = einddatum;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((getBedrijf() == null) ? 0 : getBedrijf().hashCode());
+		result = prime * result	+ ((getEinddatum() == null) ? 0 : getEinddatum().hashCode());
+		result = prime * result + ((getPersoon() == null) ? 0 : getPersoon().hashCode());
+		result = prime * result + ((getRol() == null) ? 0 : getRol().hashCode());
+		//Composite key Id
+		result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+		
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		} else if (obj == null || !(obj instanceof Persoonsrol)) {
+			return false;
+		} else {
+			Persoonsrol other = (Persoonsrol) obj;
+			if (this.getBedrijf() != null && !this.getBedrijf().equals(other.getBedrijf())) {
+				return false;
+			}
+			
+			if (this.getEinddatum() != null && !this.getEinddatum().equals(other.getEinddatum())) {
+				return false;
+			}
+			
+			if (this.getPersoon() != null && !this.getPersoon().equals(other.getPersoon())) {
+				return false;
+			}
+			
+			if (this.getRol() != null && !this.getRol().equals(other.getRol())) {
+				return false;
+			}
+			if (this.getId() != null && !this.getId().equals(other.getRol())) {
+				return false;
+			}
+		}
+		return true;
+	}
 }

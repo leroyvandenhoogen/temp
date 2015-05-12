@@ -1,6 +1,6 @@
 package nl.rsvier.icaras.refactor.dao;
 
-import nl.rsvier.icaras.dao.GenericDaoHibernate;
+import nl.rsvier.icaras.dao.GenericDaoImpl;
 import nl.rsvier.icaras.refactor.core.Vacature;
 
 import org.springframework.stereotype.Repository;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
  * exceptions naar Spring
  */
 @Repository("IVacatureDao")
-public class VacatureDaoHibernate extends GenericDaoHibernate<Vacature>
+public class VacatureDaoHibernate extends GenericDaoImpl<Vacature>
 		implements IVacatureDao {
 
 	public VacatureDaoHibernate() {
