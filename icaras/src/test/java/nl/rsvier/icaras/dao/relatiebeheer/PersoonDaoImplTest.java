@@ -14,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
@@ -107,6 +108,7 @@ public class PersoonDaoImplTest {
 	/*
 	 * Voorafgaand deze test moet de tabel leeg zijn, anders faalt de assertTrue().
 	 */
+	@Rollback(false)
 	@Test
 	@Transactional
 	public void testGetAllPersonen() {
@@ -116,6 +118,7 @@ public class PersoonDaoImplTest {
 		
 		Persoon testPersoon1 = persoonDao.getById(persoon1.getId());
 		Persoon testPersoon2 = persoonDao.getById(persoon2.getId());
+		persoonDao.flushAndClear();
 		List<Persoon> testlijst = new ArrayList<Persoon>();
 		testlijst.add(testPersoon1);
 		testlijst.add(testPersoon2);

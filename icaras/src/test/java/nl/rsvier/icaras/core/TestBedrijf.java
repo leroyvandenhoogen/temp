@@ -8,6 +8,7 @@ public class TestBedrijf {
 		Bedrijf bedrijf = new Bedrijf();
 		bedrijf.setNaam("Best bedrijf BV");
 		bedrijf.setOpmerking("Het beste bedrijf");
+		bedrijf.setKvkNummer("123456789012");
 		
 		return bedrijf;
 	}

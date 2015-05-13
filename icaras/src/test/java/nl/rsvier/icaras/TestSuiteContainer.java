@@ -1,7 +1,7 @@
 package nl.rsvier.icaras;
 
-import nl.rsvier.icaras.core.CoreTestSuite;
-import nl.rsvier.icaras.dao.DaoTestSuite;
+import nl.rsvier.icaras.core.relatiebeheer.CoreTestSuite;
+import nl.rsvier.icaras.dao.relatiebeheer.DaoTestSuite;
 import nl.rsvier.icaras.service.ServiceTestSuite;
 
 import org.junit.runner.RunWith;

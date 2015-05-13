@@ -88,7 +88,7 @@ public class Adres implements java.io.Serializable {
 		this.straat = straat;
 	}
 
-	@Column(name = "nummer", nullable = false)
+	@Column(name = "nummer", nullable = false, length = 5)
 	public int getNummer() {
 		return this.nummer;
 	}
@@ -158,12 +158,10 @@ public class Adres implements java.io.Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((getAdresType() == null) ? 0 : getAdresType().hashCode());
-		result = prime * result + ((getBedrijf() == null) ? 0 : getBedrijf().hashCode());
 		result = prime * result	+ ((getBegindatum() == null) ? 0 : getBegindatum().hashCode());
 		result = prime * result	+ ((getEinddatum() == null) ? 0 : getEinddatum().hashCode());
 		result = prime * result + ((getLand() == null) ? 0 : getLand().hashCode());
-		result = prime * result + nummer;
-		result = prime * result + ((getPersoon() == null) ? 0 : getPersoon().hashCode());
+		result = prime * result + getNummer();
 		result = prime * result + ((getPlaats() == null) ? 0 : getPlaats().hashCode());
 		result = prime * result	+ ((getPostcode() == null) ? 0 : getPostcode().hashCode());
 		result = prime * result + ((getStraat() == null) ? 0 : getStraat().hashCode());
@@ -184,23 +182,11 @@ public class Adres implements java.io.Serializable {
 				return false;
 			}
 			
-			if (this.getBedrijf() != null && !this.getBedrijf().equals(other.getBedrijf())) {
-				return false;
-			}
-			
-			if (this.getAdresType() != null && !this.getAdresType().equals(other.getAdresType())) {
-				return false;
-			}
-			
 			if (this.getBegindatum() != null && !this.getBegindatum().equals(other.getBegindatum())) {
 				return false;
 			}
 			
 			if (this.getEinddatum() != null && !this.getEinddatum().equals(other.getEinddatum())) {
-				return false;
-			}
-			
-			if (this.getAdresType() != null && !this.getAdresType().equals(other.getAdresType())) {
 				return false;
 			}
 
@@ -209,14 +195,6 @@ public class Adres implements java.io.Serializable {
 			}
 			
 			if (this.getNummer() != other.nummer) {
-				return false;
-			}
-			
-			if (this.getAdresType() != null && !this.getAdresType().equals(other.getAdresType())) {
-				return false;
-			}
-			
-			if (this.getPersoon() != null && !this.getPersoon().equals(other.getPersoon())) {
 				return false;
 			}
 			

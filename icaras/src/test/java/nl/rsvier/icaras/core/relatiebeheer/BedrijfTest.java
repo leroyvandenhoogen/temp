@@ -25,6 +25,7 @@ public class BedrijfTest {
 		bedrijf1b = new Bedrijf();
 		bedrijf1b.setNaam(bedrijf1a.getNaam());
 		bedrijf1b.setOpmerking(bedrijf1a.getOpmerking());
+		bedrijf1b.setKvkNummer(bedrijf1a.getKvkNummer());
 		
 		bedrijf1b.setAdressen(bedrijf1a.getAdressen());
 		bedrijf1b.setDigitaleAdressen(bedrijf1a.getDigitaleAdressen());
@@ -35,6 +36,7 @@ public class BedrijfTest {
 		bedrijf2b = new Bedrijf();
 		bedrijf2b.setNaam(bedrijf2a.getNaam());
 		bedrijf2b.setOpmerking(bedrijf2a.getOpmerking());
+		bedrijf2b.setKvkNummer(bedrijf2a.getKvkNummer());
 
 		bedrijf2b.setAdressen(bedrijf2a.getAdressen());
 		bedrijf2b.setDigitaleAdressen(bedrijf2a.getDigitaleAdressen());

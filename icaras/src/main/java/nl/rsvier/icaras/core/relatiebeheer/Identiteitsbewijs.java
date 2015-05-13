@@ -35,7 +35,7 @@ public class Identiteitsbewijs implements java.io.Serializable {
 		this.nummer = nummer;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "identiteitsbewijs_type_id", nullable = false)
 	public IdentiteitsbewijsType getIdentiteitsbewijsType() {
 		return this.identiteitsbewijsType;
@@ -46,7 +46,7 @@ public class Identiteitsbewijs implements java.io.Serializable {
 		this.identiteitsbewijsType = identiteitsbewijsType;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "persoon_id", nullable = false)
 	public Persoon getPersoon() {
 		return this.persoon;
@@ -72,7 +72,6 @@ public class Identiteitsbewijs implements java.io.Serializable {
 		int result = 1;
 		result = prime * result + ((getIdentiteitsbewijsType() == null) ? 0 : getIdentiteitsbewijsType().hashCode());
 		result = prime * result + ((getNummer() == null) ? 0 : getNummer().hashCode());
-		result = prime * result + ((getPersoon() == null) ? 0 : getPersoon().hashCode());
 		result = prime * result	+ ((getVervaldatum() == null) ? 0 : getVervaldatum().hashCode());
 		
 		return result;
@@ -91,10 +90,6 @@ public class Identiteitsbewijs implements java.io.Serializable {
 			}
 			
 			if (this.getNummer() != null && !this.getNummer().equals(other.getNummer())) {
-				return false;
-			}
-		
-			if (this.getPersoon() != null && !this.getPersoon().equals(other.getPersoon())) {
 				return false;
 			}
 	

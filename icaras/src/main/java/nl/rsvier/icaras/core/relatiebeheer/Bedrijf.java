@@ -21,6 +21,7 @@ public class Bedrijf implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String naam;
+	private String kvkNummer;
 	private String opmerking;
 	private Set<DigitaalAdres> digitaleAdressen = new HashSet<DigitaalAdres>(0);
 	private Set<Adres> adressen = new HashSet<Adres>(0);
@@ -49,6 +50,15 @@ public class Bedrijf implements java.io.Serializable {
 		this.naam = naam;
 	}
 	
+	@Column(name = "kvknummer", length = 12)
+	public String getKvkNummer() {
+		return kvkNummer;
+	}
+
+	public void setKvkNummer(String kvkNummer) {
+		this.kvkNummer = kvkNummer;
+	}
+
 	@Column(name = "opmerking", length = 250)
 	public String getOpmerking() {
 		return opmerking;
@@ -90,11 +100,8 @@ public class Bedrijf implements java.io.Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result	+ ((getAdressen() == null) ? 0 : getAdressen().hashCode());
-		result = prime * result + ((getDigitaleAdressen() == null) ? 0 : getDigitaleAdressen().hashCode());
 		result = prime * result + ((getNaam() == null) ? 0 : getNaam().hashCode());
-		result = prime * result	+ ((getPersoonsrollen() == null) ? 0 : getPersoonsrollen().hashCode());
-		
+		result = prime * result + ((getKvkNummer() == null) ? 0 : getKvkNummer().hashCode());
 		return result;
 	}
 
@@ -106,20 +113,12 @@ public class Bedrijf implements java.io.Serializable {
 		} else if (obj == null || !(obj instanceof Bedrijf)) {
 			return false;
 		} else {
-			Bedrijf other = (Bedrijf) obj;
-			if (this.getAdressen() != null && !this.getAdressen().equals(other.getAdressen())) {
-				return false;
-			}
-			
-			if (this.getDigitaleAdressen() != null && !this.getDigitaleAdressen().equals(other.getDigitaleAdressen())) {
+			Bedrijf other = (Bedrijf) obj;	
+			if (this.getKvkNummer() != null && !this.getKvkNummer().equals(other.getKvkNummer())) {
 				return false;
 			}
 			
 			if (this.getNaam() != null && !this.getNaam().equals(other.getNaam())) {
-				return false;
-			}
-			
-			if (this.getPersoonsrollen() != null && !this.getPersoonsrollen().equals(other.getPersoonsrollen())) {
 				return false;
 			}
 		}

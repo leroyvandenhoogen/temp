@@ -38,7 +38,7 @@ public class DigitaalAdres implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "digitaal_adres_type_id", nullable = false)
 	public DigitaalAdresType getDigitaalAdresType() {
 		return this.digitaalAdresType;
@@ -90,11 +90,9 @@ public class DigitaalAdres implements java.io.Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((getBedrijf() == null) ? 0 : getBedrijf().hashCode());
 		result = prime * result + (isContactvoorkeur() ? 1231 : 1237);
 		result = prime * result	+ ((getDigitaalAdresType() == null) ? 0 : getDigitaalAdresType().hashCode());
 		result = prime * result	+ ((getOmschrijving() == null) ? 0 : getOmschrijving().hashCode());
-		result = prime * result + ((getPersoon() == null) ? 0 : getPersoon().hashCode());
 		
 		return result;
 	}
@@ -107,9 +105,6 @@ public class DigitaalAdres implements java.io.Serializable {
 			return false;
 		} else {
 			DigitaalAdres other = (DigitaalAdres) obj;
-			if (this.getBedrijf() != null && !this.getBedrijf().equals(other.getBedrijf())) {
-				return false;
-			}
 			
 			if (this.isContactvoorkeur() != other.isContactvoorkeur()) {
 				return false;
@@ -120,10 +115,6 @@ public class DigitaalAdres implements java.io.Serializable {
 			}
 			
 			if (this.getOmschrijving() != null && !this.getOmschrijving().equals(other.getOmschrijving())) {
-				return false;
-			}
-		
-			if (this.getPersoon() != null && !this.getPersoon().equals(other.getPersoon())) {
 				return false;
 			}
 		}

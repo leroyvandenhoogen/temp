@@ -42,16 +42,15 @@ public class AdresDaoImplTest {
 		adres1 = TestAdres.maakTestAdres1();
 		adres2 = TestAdres.maakTestAdres2();
 		
+		adresTypeDao.addAdresType("post", adres1);
+		adresTypeDao.addAdresType("huis", adres2);
+		
 	}
 	
 	
 	@Test
 	@Transactional
 	public void testSaveEnGetAdres() {
-		adresTypeDao.addAdresType("post", adres1);
-		adresTypeDao.addAdresType("huis", adres2);
-		adresTypeDao.flushAndClear();
-		
 		adresDao.save(adres1);
 		adresDao.save(adres2);
 		
@@ -81,8 +80,6 @@ public class AdresDaoImplTest {
 	@Test
 	@Transactional
 	public void testUpdateAdres() {
-		adresTypeDao.addAdresType("post", adres1);
-		adresTypeDao.flushAndClear();
 		adresDao.save(adres1);
 		adresDao.flushAndClear();
 		
@@ -109,14 +106,14 @@ public class AdresDaoImplTest {
 	@Test
 	@Transactional
 	public void testDeleteAdres() {
-		adresTypeDao.addAdresType("post", adres1);
-		adresTypeDao.flushAndClear();
 		adresDao.save(adres1);
 		adresDao.flushAndClear();
 		
 		assertNotNull(adresDao.getById(adres1.getId()));
+		adresDao.clear();
 		
-		adresDao.delete(adresDao.getById(adres1.getId()));
+//		adresDao.delete(adresDao.getById(adres1.getId()));
+		adresDao.delete(adres1);
 		
 		assertNull(adresDao.getById(adres1.getId()));
 	}
@@ -124,10 +121,6 @@ public class AdresDaoImplTest {
 	@Test
 	@Transactional
 	public void testGetAllAdressen() {
-		adresTypeDao.addAdresType("post", adres1);
-		adresTypeDao.addAdresType("huis", adres2);
-		adresTypeDao.flushAndClear();
-		
 		adresDao.save(adres1);
 		adresDao.save(adres2);
 		

@@ -176,15 +176,10 @@ public class Persoon implements java.io.Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result	+ ((getAchternaam() == null) ? 0 : getAchternaam().hashCode());
-		result = prime * result	+ ((getAdressen() == null) ? 0 : getAdressen().hashCode());
-		result = prime * result	+ ((getDigitaleAdressen() == null) ? 0 : getDigitaleAdressen().hashCode());
 		result = prime * result	+ ((getGeboortedatum() == null) ? 0 : getGeboortedatum().hashCode());
 		result = prime * result	+ ((getGeboorteplaats() == null) ? 0 : getGeboorteplaats().hashCode());
 		result = prime * result	+ ((getGeslacht() == null) ? 0 : getGeslacht().hashCode());
-		result = prime * result	+ ((getIdentiteitsbewijzen() == null) ? 0 : getIdentiteitsbewijzen().hashCode());
 		result = prime * result	+ ((getNationaliteit() == null) ? 0 : getNationaliteit().hashCode());
-		result = prime * result	+ ((getPersoonsrollen() == null) ? 0 : getPersoonsrollen().hashCode());
-		result = prime * result	+ ((getRijbewijs() == null) ? 0 : getRijbewijs().hashCode());
 		result = prime * result	+ ((getTussenvoegsel() == null) ? 0 : getTussenvoegsel().hashCode());
 		result = prime * result	+ ((getVoornaam() == null) ? 0 : getVoornaam().hashCode());
 		
@@ -203,14 +198,6 @@ public class Persoon implements java.io.Serializable {
 			if (this.getAchternaam() != null && !this.getAchternaam().equals(other.getAchternaam())) {
 				return false;
 			}
-			
-			if (this.getAdressen() != null && !this.getAdressen().equals(other.getAdressen())) {
-				return false;
-			}
-			
-			if (this.getDigitaleAdressen() != null && !this.getDigitaleAdressen().equals(other.getDigitaleAdressen())) {
-				return false;
-			}
 	
 			if (this.getGeboortedatum() != null && !this.getGeboortedatum().equals(other.getGeboortedatum())) {
 				return false;
@@ -224,15 +211,7 @@ public class Persoon implements java.io.Serializable {
 				return false;
 			}
 	
-			if (this.getIdentiteitsbewijzen() != null && !this.getIdentiteitsbewijzen().equals(other.getIdentiteitsbewijzen())) {
-				return false;
-			}
-	
 			if (this.getNationaliteit() != null && !this.getNationaliteit().equals(other.getNationaliteit())) {
-				return false;
-			}
-			
-			if (this.getPersoonsrollen() != null && !this.getPersoonsrollen().equals(other.getPersoonsrollen())) {
 				return false;
 			}
 	

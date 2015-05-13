@@ -41,7 +41,7 @@ public class Persoonsrol implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "rol_id", nullable = false, insertable = false, updatable = false)
 	public Rol getRol() {
 		return this.rol;
@@ -85,9 +85,7 @@ public class Persoonsrol implements java.io.Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((getBedrijf() == null) ? 0 : getBedrijf().hashCode());
 		result = prime * result	+ ((getEinddatum() == null) ? 0 : getEinddatum().hashCode());
-		result = prime * result + ((getPersoon() == null) ? 0 : getPersoon().hashCode());
 		result = prime * result + ((getRol() == null) ? 0 : getRol().hashCode());
 		//Composite key Id
 		result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
@@ -102,22 +100,15 @@ public class Persoonsrol implements java.io.Serializable {
 		} else if (obj == null || !(obj instanceof Persoonsrol)) {
 			return false;
 		} else {
-			Persoonsrol other = (Persoonsrol) obj;
-			if (this.getBedrijf() != null && !this.getBedrijf().equals(other.getBedrijf())) {
-				return false;
-			}
-			
+			Persoonsrol other = (Persoonsrol) obj;	
 			if (this.getEinddatum() != null && !this.getEinddatum().equals(other.getEinddatum())) {
-				return false;
-			}
-			
-			if (this.getPersoon() != null && !this.getPersoon().equals(other.getPersoon())) {
 				return false;
 			}
 			
 			if (this.getRol() != null && !this.getRol().equals(other.getRol())) {
 				return false;
 			}
+			
 			if (this.getId() != null && !this.getId().equals(other.getRol())) {
 				return false;
 			}

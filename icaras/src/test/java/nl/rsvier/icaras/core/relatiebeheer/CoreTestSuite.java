@@ -1,11 +1,5 @@
-package nl.rsvier.icaras.core;
+package nl.rsvier.icaras.core.relatiebeheer;
 
-import nl.rsvier.icaras.core.relatiebeheer.DigitaalAdresTest;
-import nl.rsvier.icaras.core.relatiebeheer.IdentiteitsbewijsTest;
-import nl.rsvier.icaras.core.relatiebeheer.PersoonTest;
-import nl.rsvier.icaras.core.relatiebeheer.PersoonsrolTest;
-import nl.rsvier.icaras.refactor.core.AdresTest;
-import nl.rsvier.icaras.refactor.core.BedrijfTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
