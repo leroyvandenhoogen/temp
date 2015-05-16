@@ -1,0 +1,16 @@
+#Eclipse gerelateerde files
+.settings/
+.classpath
+.project
+.springBeans
+.metadata
+
+# target folder van modules bevat .class bestanden die door compiler worden gemaakt op basis van files in src folder
+*/target/
+
+##### .settings etc van de subfolders moet ook nog in de gitignore terecht komen:
+*/.settings/
+*/.properties
+*/.classpath
+*/.project
+*/.springbeans
