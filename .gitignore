@@ -10,7 +10,6 @@
 
 ##### .settings etc van de subfolders moet ook nog in de gitignore terecht komen:
 .settings/
-.properties
 .classpath
 .project
 .springbeans
