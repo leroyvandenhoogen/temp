@@ -12,7 +12,7 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({AdresDaoImplTest.class, BedrijfDaoImplTest.class, DigitaalAdresDaoImplTest.class, 
-					IdentiteitsbewijsDaoImplTest.class, PersoonDaoImplTest.class})
+					IdentiteitsbewijsDaoImplTest.class, PersoonDaoImplTest.class, PersoonsrolDaoImplTest.class})
 public class DaoTestSuite {
 
 }
