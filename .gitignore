@@ -15,7 +15,7 @@
 .springbeans
 
 **/hibernate.cfg.xml
-**/.properties
+**/*.properties
 **/target/**
 
 ### NetBeans ###
