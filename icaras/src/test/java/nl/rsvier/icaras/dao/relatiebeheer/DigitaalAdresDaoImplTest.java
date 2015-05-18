@@ -97,6 +97,7 @@ public class DigitaalAdresDaoImplTest {
 	@Transactional
 	public void testDeleteBedrijf() {
 		digitaalAdresDao.save(digitaalAdres1);
+		digitaalAdresDao.flushAndClear();
 		
 		assertNotNull(digitaalAdresDao.getById(digitaalAdres1.getId()));
 		digitaalAdresDao.clear();

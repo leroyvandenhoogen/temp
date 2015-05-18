@@ -68,26 +68,29 @@ public class PersoonDaoImplTest {
 	public void testUpdatePersoon() {
 		persoonDao.save(persoon1);
 		persoonDao.save(persoon2);
-		persoonDao.flush();
+		persoonDao.flushAndClear();
 		
 		assertFalse(persoonDao.getById(persoon1.getId()).equals(persoonDao.getById(persoon2.getId())));
 		assertFalse(persoonDao.getById(persoon1.getId()).hashCode() == persoonDao.getById(persoon2.getId()).hashCode());
 		
-		persoonDao.getById(persoon2.getId()).setAchternaam(persoonDao.getById(persoon1.getId()).getAchternaam());
-		persoonDao.getById(persoon2.getId()).setTussenvoegsel(persoonDao.getById(persoon1.getId()).getTussenvoegsel());
-		persoonDao.getById(persoon2.getId()).setVoornaam(persoonDao.getById(persoon1.getId()).getVoornaam());
-		persoonDao.getById(persoon2.getId()).setGeboortedatum(persoonDao.getById(persoon1.getId()).getGeboortedatum());
-		persoonDao.getById(persoon2.getId()).setGeboorteplaats(persoonDao.getById(persoon1.getId()).getGeboorteplaats());
-		persoonDao.getById(persoon2.getId()).setGeslacht(persoonDao.getById(persoon1.getId()).getGeslacht());
-		persoonDao.getById(persoon2.getId()).setRijbewijs(persoonDao.getById(persoon1.getId()).getRijbewijs());
-		persoonDao.getById(persoon2.getId()).setNationaliteit(persoonDao.getById(persoon1.getId()).getNationaliteit());
+		persoonDao.flushAndClear();
+		
+		persoon2.setAchternaam(persoon1.getAchternaam());
+		persoon2.setTussenvoegsel(persoon1.getTussenvoegsel());
+		persoon2.setVoornaam(persoon1.getVoornaam());
+		persoon2.setGeboortedatum(persoon1.getGeboortedatum());
+		persoon2.setGeboorteplaats(persoon1.getGeboorteplaats());
+		persoon2.setGeslacht(persoon1.getGeslacht());
+		persoon2.setRijbewijs(persoon1.getRijbewijs());
+		persoon2.setNationaliteit(persoon1.getNationaliteit());
+		
+		persoonDao.flushAndClear();
 		
 		persoonDao.update(persoon1);
 		persoonDao.update(persoon2);
 		persoonDao.flushAndClear();
 		
-		assertTrue("attributen geupdate achternaam is gelijk aan attributen ingeladen persoon met dezelfde id",
-				persoonDao.getById(persoon1.getId()).equals(persoonDao.getById(persoon2.getId())));
+		assertTrue(persoonDao.getById(persoon1.getId()).equals(persoonDao.getById(persoon2.getId())));
 		assertTrue(persoonDao.getById(persoon1.getId()).hashCode() == persoonDao.getById(persoon2.getId()).hashCode());
 	}
 	
@@ -108,7 +111,6 @@ public class PersoonDaoImplTest {
 	/*
 	 * Voorafgaand deze test moet de tabel leeg zijn, anders faalt de assertTrue().
 	 */
-	@Rollback(false)
 	@Test
 	@Transactional
 	public void testGetAllPersonen() {

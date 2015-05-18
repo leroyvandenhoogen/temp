@@ -182,6 +182,7 @@ public class Persoon implements java.io.Serializable {
 		result = prime * result	+ ((getNationaliteit() == null) ? 0 : getNationaliteit().hashCode());
 		result = prime * result	+ ((getTussenvoegsel() == null) ? 0 : getTussenvoegsel().hashCode());
 		result = prime * result	+ ((getVoornaam() == null) ? 0 : getVoornaam().hashCode());
+		result = prime * result + ((getRijbewijs() == null) ? 0 : getRijbewijs().toString().hashCode());
 		
 		return result;
 	}
@@ -215,7 +216,7 @@ public class Persoon implements java.io.Serializable {
 				return false;
 			}
 	
-			if (this.getRijbewijs() != other.getRijbewijs()) {
+			if (this.getRijbewijs() !=  null && !this.getRijbewijs().equals(other.getRijbewijs())) {
 				return false;
 			}
 		
