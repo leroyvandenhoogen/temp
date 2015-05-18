@@ -15,6 +15,10 @@
 .project
 .springbeans
 
+**/hibernate.cfg.xml
+**/.properties
+**/target/**
+
 ### NetBeans ###
 nbproject/private/
 build/
