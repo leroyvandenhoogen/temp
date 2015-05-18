@@ -9,8 +9,42 @@
 */target/
 
 ##### .settings etc van de subfolders moet ook nog in de gitignore terecht komen:
-*/.settings/
-*/.properties
-*/.classpath
-*/.project
-*/.springbeans
+.settings/
+.properties
+.classpath
+.project
+.springbeans
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+.nb-gradle/
+
+
+### Intellij ###
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
+*.iml
+## Directory-based project format:
+.idea/
+## File-based project format:
+*.ipr
+*.iws
+
+### Eclipse ###
+*.pydevproject
+.metadata
+.gradle
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
