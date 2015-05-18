@@ -52,11 +52,9 @@ public class PersoonsrolId implements java.io.Serializable {
 		PersoonsrolId castOther = (PersoonsrolId) other;
 
 		return (this.getPersoonId() == castOther.getPersoonId())
-				&& (this.getRolId() == castOther.getRolId())
-				&& ((this.getBegindatum() == castOther.getBegindatum()) || (this
-						.getBegindatum() != null
-						&& castOther.getBegindatum() != null && this
-						.getBegindatum().equals(castOther.getBegindatum())));
+                && (this.getRolId() == castOther.getRolId())
+                && ((this.getBegindatum().equals(castOther.getBegindatum())) || (this.getBegindatum() != null && castOther.getBegindatum() != null && this.getBegindatum().equals(castOther.getBegindatum())));
+    
 	}
 
 	public int hashCode() {

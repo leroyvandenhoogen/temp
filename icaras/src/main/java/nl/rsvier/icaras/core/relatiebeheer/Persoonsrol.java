@@ -109,9 +109,18 @@ public class Persoonsrol implements java.io.Serializable {
 				return false;
 			}
 			
-			if (this.getId() != null && !this.getId().equals(other.getRol())) {
+			if (this.getId().getPersoonId() !=(other.getId().getPersoonId())) {
 				return false;
 			}
+			
+			if (this.getId().getRolId() !=(other.getId().getRolId())) {
+				return false;
+			}
+			
+			if (this.getId().getBegindatum() !=(other.getId().getBegindatum())) {
+				return false;
+			}
+			
 		}
 		return true;
 	}
