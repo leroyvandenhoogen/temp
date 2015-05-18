@@ -1,8 +1,13 @@
 package nl.rsvier.icaras.dao.relatiebeheer;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import nl.rsvier.icaras.core.TestPersoon;
 import nl.rsvier.icaras.core.TestPersoonsrol;
@@ -90,23 +95,55 @@ public class PersoonsrolDaoImplTest {
 		dao.flushAndClear();
 		
 		assertFalse(dao.getById(persoonsrol1.getId()).equals(dao.getById(persoonsrol2.getId())));
+		assertFalse(dao.getById(persoonsrol1.getId()).hashCode() == dao.getById(persoonsrol2.getId()).hashCode());
 		
+		Persoonsrol result = (Persoonsrol) dao.getById(persoonsrol1.getId());
+		result.setEinddatum(new GregorianCalendar(2021, 12, 31).getTime());
 		
-//		assertNotNull(dao.getById(persoonsrol1.getId()));
-//		assertNotNull(dao.getById(persoonsrol2.getId()));
-//		
-//		Persoonsrol testPersoonsrol1 = dao.getById(persoonsrol1.getId());
-//		Persoonsrol testPersoonsrol2 = dao.getById(persoonsrol2.getId());
-//		
-//		assertTrue("attributen vanuit database zijn gelijk aan die van persoonsrol voor save",
-//				testPersoonsrol1.equals(persoonsrol1));
-//		
-//		assertTrue("attributen vanuit database zijn gelijk aan die van persoonsrol voor save",
-//				testPersoonsrol2.equals(persoonsrol2));
-//		assertFalse(testPersoonsrol1.equals(testPersoonsrol2));
+		dao.save(result);
+		dao.flushAndClear();
 		
+		Persoonsrol testPersoonsrol1 = dao.getById(result.getId());
 		
-		
+		assertNotNull(dao.getById(persoonsrol1.getId()));
+		assertTrue("Nieuw einddatum moet 2021-12-31 zijn", testPersoonsrol1.getEinddatum().equals(new GregorianCalendar(2021, 12, 31).getTime()));
 		
 	}
+	
+	@Test
+	@Transactional
+	public void testDelete() {
+		dao.save(persoonsrol1);
+		PersoonsrolId id = persoonsrol1.getId();
+		
+		dao.flushAndClear();
+		
+		assertNotNull(dao.getById(id));
+		
+		dao.delete(dao.getById(persoonsrol1.getId()));
+		
+		dao.flushAndClear();
+		
+		assertNull(dao.getById(id));
+		
+	}
+	
+	@Test
+	@Transactional
+	public void testGetAll() {
+		dao.save(persoonsrol1);
+		dao.save(persoonsrol2);
+		dao.flushAndClear();
+		
+		Persoonsrol testPersoonsrol1 = dao.getById(persoonsrol1.getId());
+		Persoonsrol testPersoonsrol2 = dao.getById(persoonsrol2.getId());
+		dao.flushAndClear();
+		List<Persoonsrol> testlijst = new ArrayList<Persoonsrol>();
+		testlijst.add(testPersoonsrol1);
+		testlijst.add(testPersoonsrol2);
+		System.out.println("/////" + dao.getAll());
+		assertTrue(dao.getAll().contains(testlijst));
+		
+	}
+	
 }
