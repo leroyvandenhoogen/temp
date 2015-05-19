@@ -37,7 +37,15 @@ public class Persoonsrol implements java.io.Serializable {
 		return this.id;
 	}
 
-	public void setId(PersoonsrolId id) {
+	public void createId(Date begindatum) {
+		PersoonsrolId temp = new PersoonsrolId();
+		temp.setPersoonId(this.getPersoon().getId());
+		temp.setRolId(this.getRol().getId());
+		temp.setBegindatum(begindatum);
+		this.setId(temp);
+	}
+	
+	private void setId(PersoonsrolId id) {
 		this.id = id;
 	}
 

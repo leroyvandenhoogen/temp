@@ -52,16 +52,18 @@ public class PersoonsrolDaoImplTest {
 		persoonsrol2.setPersoon(persoon2);
 		rolDao.addRol("Cursist", persoonsrol1);
 		rolDao.addRol("Cursist", persoonsrol2);
-		PersoonsrolId id = new PersoonsrolId();
-		id.setPersoonId(persoon1.getId());
-		id.setRolId(persoonsrol1.getRol().getId());
-		id.setBegindatum(new GregorianCalendar(2015, 0, 1).getTime());
-		PersoonsrolId id2 = new PersoonsrolId();
-		id2.setPersoonId(persoon2.getId());
-		id2.setRolId(persoonsrol2.getRol().getId());
-		id2.setBegindatum(new GregorianCalendar(2015, 11, 11).getTime());
-		persoonsrol1.setId(id);
-		persoonsrol2.setId(id2);
+//		PersoonsrolId id = new PersoonsrolId();
+//		id.setPersoonId(persoon1.getId());
+//		id.setRolId(persoonsrol1.getRol().getId());
+//		id.setBegindatum(new GregorianCalendar(2015, 0, 1).getTime());
+//		PersoonsrolId id2 = new PersoonsrolId();
+//		id2.setPersoonId(persoon2.getId());
+//		id2.setRolId(persoonsrol2.getRol().getId());
+//		id2.setBegindatum(new GregorianCalendar(2015, 11, 11).getTime());
+//		persoonsrol1.setId(id);
+//		persoonsrol2.setId(id2);
+		persoonsrol1.createId(new GregorianCalendar(2015, 0, 1).getTime());
+		persoonsrol2.createId(new GregorianCalendar(2015, 11, 11).getTime());
 	}
 	
 	@Test

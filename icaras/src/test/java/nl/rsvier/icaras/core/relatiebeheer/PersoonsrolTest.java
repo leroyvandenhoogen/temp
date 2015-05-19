@@ -32,7 +32,7 @@ public class PersoonsrolTest {
 		persoonsrol1b.setEinddatum(persoonsrol1a.getEinddatum());
 		persoonsrol1b.setPersoon(persoonsrol1a.getPersoon());
 		persoonsrol1b.setRol(persoonsrol1a.getRol());
-		persoonsrol1b.setId(persoonsrol1a.getId());
+		//persoonsrol1b.setId(persoonsrol1a.getId());
 		persoonsrol1c = persoonsrol1b;
 		
 		persoonsrol2a = TestPersoonsrol.maakPersoonsrol2();
@@ -41,7 +41,7 @@ public class PersoonsrolTest {
 		persoonsrol2b.setEinddatum(persoonsrol2a.getEinddatum());
 		persoonsrol2b.setPersoon(persoonsrol2a.getPersoon());
 		persoonsrol2b.setRol(persoonsrol2a.getRol());
-		persoonsrol2b.setId(persoonsrol2a.getId());
+		//persoonsrol2b.setId(persoonsrol2a.getId());
 
 	}
 	
