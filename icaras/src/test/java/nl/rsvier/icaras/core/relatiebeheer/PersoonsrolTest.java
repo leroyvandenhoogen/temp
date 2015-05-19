@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 
+import nl.rsvier.icaras.core.TestBedrijf;
 import nl.rsvier.icaras.core.TestPersoon;
 import nl.rsvier.icaras.core.TestPersoonsrol;
 
@@ -119,6 +120,35 @@ public class PersoonsrolTest {
 		//Een verwijzing naar persoon heeft kan je die niet overschrijden
 		Persoon persoon2 = TestPersoon.maakTestPersoon2();
 		boolean toegevoegd2 = persoonsrol1a.setPersoon(persoon2);
+		assertFalse(toegevoegd2);
+	}
+	
+	@Test
+	public void testSetBedrijf() {
+		Bedrijf bedrijf = TestBedrijf.maakTestBedrijf1();
+		Bedrijf bedrijfNull = null;
+		
+		assertTrue(persoonsrol1a.getBedrijf() == null);
+		persoonsrol1a.setBedrijf(bedrijfNull);
+		assertTrue(persoonsrol1a.getBedrijf() == null);
+		
+		boolean toegevoegd = persoonsrol1a.setBedrijf(bedrijf);
+		assertTrue(toegevoegd);
+		assertFalse(persoonsrol1a.getBedrijf() == null);
+		assertTrue(bedrijf.getPersoonsrollen().contains(persoonsrol1a));
+		
+		Bedrijf testBedrijf = null;
+		for (Iterator<Persoonsrol> it = bedrijf.getPersoonsrollen().iterator(); it.hasNext();) {
+			Persoonsrol itPersoonsrol = it.next();
+			if (itPersoonsrol.equals(persoonsrol1a)) {
+				testBedrijf = itPersoonsrol.getBedrijf();
+			}
+		}
+		assertTrue(bedrijf.equals(testBedrijf));
+		
+		//Een verwijzing naar persoon heeft kan je die niet overschrijden
+		Bedrijf bedrijf2 = TestBedrijf.maakTestBedrijf2();
+		boolean toegevoegd2 = persoonsrol1a.setBedrijf(bedrijf2);
 		assertFalse(toegevoegd2);
 	}
 }

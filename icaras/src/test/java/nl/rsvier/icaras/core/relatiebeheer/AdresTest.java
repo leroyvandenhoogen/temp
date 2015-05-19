@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.Iterator;
 
 import nl.rsvier.icaras.core.TestAdres;
+import nl.rsvier.icaras.core.TestBedrijf;
 import nl.rsvier.icaras.core.TestPersoon;
 
 import org.junit.Before;
@@ -134,6 +135,34 @@ public class AdresTest {
 		//Een verwijzing naar persoon heeft kan je die niet overschrijden
 		Persoon persoon2 = TestPersoon.maakTestPersoon2();
 		boolean toegevoegd2 = adres1a.setPersoon(persoon2);
+		assertFalse(toegevoegd2);
+	}
+	@Test
+	public void testSetBedrijf() {
+		Bedrijf bedrijf = TestBedrijf.maakTestBedrijf1();
+		Bedrijf bedrijfNull = null;
+		
+		assertTrue(adres1a.getBedrijf() == null);
+		adres1a.setBedrijf(bedrijfNull);
+		assertTrue(adres1a.getBedrijf() == null);
+		
+		boolean toegevoegd = adres1a.setBedrijf(bedrijf);
+		assertTrue(toegevoegd);
+		assertFalse(adres1a.getBedrijf() == null);
+		assertTrue(bedrijf.getAdressen().contains(adres1a));
+		
+		Bedrijf testBedrijf = null;
+		for (Iterator<Adres> it = bedrijf.getAdressen().iterator(); it.hasNext();) {
+			Adres itAdres = it.next();
+			if (itAdres.equals(adres1a)) {
+				testBedrijf = itAdres.getBedrijf();
+			}
+		}
+		assertTrue(bedrijf.equals(testBedrijf));
+		
+		//Een verwijzing naar persoon heeft kan je die niet overschrijden
+		Bedrijf bedrijf2 = TestBedrijf.maakTestBedrijf2();
+		boolean toegevoegd2 = adres1a.setBedrijf(bedrijf2);
 		assertFalse(toegevoegd2);
 	}
 }

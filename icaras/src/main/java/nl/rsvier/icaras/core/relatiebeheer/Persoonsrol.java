@@ -65,8 +65,16 @@ public class Persoonsrol implements java.io.Serializable {
 		return this.bedrijf;
 	}
 
-	public void setBedrijf(Bedrijf bedrijf) {
-		this.bedrijf = bedrijf;
+	public synchronized boolean setBedrijf(Bedrijf bedrijf) {
+		boolean isSet = false;
+		if(bedrijf != null && this.getBedrijf() == null) {
+			this.bedrijf = bedrijf;
+			isSet = true;
+			if(!(this.getBedrijf().getDigitaleAdressen().contains(this))) {
+				bedrijf.addPersoonsrol(this);
+			}
+		}
+		return isSet;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
