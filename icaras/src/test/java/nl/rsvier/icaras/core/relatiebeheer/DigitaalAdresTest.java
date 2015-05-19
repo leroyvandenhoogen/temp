@@ -3,7 +3,11 @@ package nl.rsvier.icaras.core.relatiebeheer;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+
+import java.util.Iterator;
+
 import nl.rsvier.icaras.core.TestDigitaalAdres;
+import nl.rsvier.icaras.core.TestPersoon;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -85,5 +89,34 @@ public class DigitaalAdresTest {
 		assertFalse(digitaalAdres1a.equals(digitaalAdres1b));
 		assertFalse(digitaalAdres1a.hashCode() == digitaalAdres2a.hashCode());
 		
+	}
+	
+	@Test
+	public void testSetPersoon() {
+		Persoon persoon = TestPersoon.maakTestPersoon1();
+		Persoon persoonNull = null;
+		
+		assertTrue(digitaalAdres1a.getPersoon() == null);
+		digitaalAdres1a.setPersoon(persoonNull);
+		assertTrue(digitaalAdres1a.getPersoon() == null);
+		
+		boolean toegevoegd = digitaalAdres1a.setPersoon(persoon);
+		assertTrue(toegevoegd);
+		assertFalse(digitaalAdres1a.getPersoon() == null);
+		assertTrue(persoon.getDigitaleAdressen().contains(digitaalAdres1a));
+		
+		Persoon testPersoon = null;
+		for (Iterator<DigitaalAdres> it = persoon.getDigitaleAdressen().iterator(); it.hasNext();) {
+			DigitaalAdres itDigitaalAdres = it.next();
+			if (itDigitaalAdres.equals(digitaalAdres1a)) {
+				testPersoon = itDigitaalAdres.getPersoon();
+			}
+		}
+		assertTrue(persoon.equals(testPersoon));
+		
+		//Een verwijzing naar persoon heeft kan je die niet overschrijden
+		Persoon persoon2 = TestPersoon.maakTestPersoon2();
+		boolean toegevoegd2 = digitaalAdres1a.setPersoon(persoon2);
+		assertFalse(toegevoegd2);
 	}
 }

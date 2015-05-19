@@ -2,9 +2,16 @@ package nl.rsvier.icaras.core.relatiebeheer;
 
 import static org.junit.Assert.*;
 
+import java.util.Iterator;
+
 import org.junit.Before;
 import org.junit.Test;
+
+import nl.rsvier.icaras.core.TestAdres;
+import nl.rsvier.icaras.core.TestDigitaalAdres;
+import nl.rsvier.icaras.core.TestIdentiteitsbewijs;
 import nl.rsvier.icaras.core.TestPersoon;
+import nl.rsvier.icaras.core.TestPersoonsrol;
 
 public class PersoonTest {
 
@@ -101,5 +108,101 @@ public class PersoonTest {
 		assertFalse(persoon1a.equals(persoon1b));
 		assertFalse(persoon1a.hashCode() == persoon2a.hashCode());
 		
+	}
+	
+	@Test
+	public void testAddIdentiteitsbewijs() {
+		Identiteitsbewijs id = TestIdentiteitsbewijs.maakIdentiteitsbewijs1();
+		Identiteitsbewijs idNull = null;
+		
+		assertTrue(persoon1a.getIdentiteitsbewijzen().isEmpty());
+		persoon1a.addIdentiteitsbewijs(idNull);
+		assertTrue(persoon1a.getIdentiteitsbewijzen().isEmpty());
+		
+		boolean toegevoegd = persoon1a.addIdentiteitsbewijs(id);
+		assertTrue(toegevoegd);
+		assertFalse(persoon1a.getIdentiteitsbewijzen().isEmpty());
+		assertTrue(persoon1a.getIdentiteitsbewijzen().contains(id));
+		
+		Persoon testPersoon = null;
+		for (Iterator<Identiteitsbewijs> it = persoon1a.getIdentiteitsbewijzen().iterator(); it.hasNext();) {
+			Identiteitsbewijs itId = it.next();
+			if (itId.equals(id)) {
+				testPersoon = itId.getPersoon();
+			}
+		}
+		assertTrue(persoon1a.equals(testPersoon));
+	}
+	
+	@Test
+	public void testAddAdress() {
+		Adres adres = TestAdres.maakTestAdres1();
+		Adres adresNull = null;
+		
+		assertTrue(persoon1a.getAdressen().isEmpty());
+		persoon1a.addAdres(adresNull);
+		assertTrue(persoon1a.getAdressen().isEmpty());
+
+		boolean toegevoegd = persoon1a.addAdres(adres);
+		assertTrue(toegevoegd);
+		assertFalse(persoon1a.getAdressen().isEmpty());
+		assertTrue(persoon1a.getAdressen().contains(adres));
+		
+		Persoon testPersoon = null;
+		for (Iterator<Adres> it = persoon1a.getAdressen().iterator(); it.hasNext();) {
+			Adres itAdres = it.next();
+			if (itAdres.equals(adres)) {
+				testPersoon = itAdres.getPersoon();
+			}
+		}
+		assertTrue(persoon1a.equals(testPersoon));
+	}
+	
+	@Test
+	public void testAddDigitaalAdres() {
+		DigitaalAdres digitaalAdres = TestDigitaalAdres.maakDigitaalAdres1();
+		DigitaalAdres digitaalAdresNull = null;
+		
+		assertTrue(persoon1a.getDigitaleAdressen().isEmpty());
+		persoon1a.addDigitaalAdres(digitaalAdresNull);
+		assertTrue(persoon1a.getDigitaleAdressen().isEmpty());
+		
+		boolean toegevoegd = persoon1a.addDigitaalAdres(digitaalAdres);
+		assertTrue(toegevoegd);
+		assertFalse(persoon1a.getDigitaleAdressen().isEmpty());
+		assertTrue(persoon1a.getDigitaleAdressen().contains(digitaalAdres));
+		
+		Persoon testPersoon = null;
+		for (Iterator<DigitaalAdres> it = persoon1a.getDigitaleAdressen().iterator(); it.hasNext();) {
+			DigitaalAdres itDigitaalAdres = it.next();
+			if (itDigitaalAdres.equals(digitaalAdres)) {
+				testPersoon = itDigitaalAdres.getPersoon();
+			}
+		}
+		assertTrue(persoon1a.equals(testPersoon));
+	}
+	
+	@Test
+	public void testAddPersoonsrol() {
+		Persoonsrol persoonsrol = TestPersoonsrol.maakPersoonsrol1();
+		Persoonsrol persoonrolNull = null;
+		
+		assertTrue(persoon1a.getPersoonsrollen().isEmpty());
+		persoon1a.addPersoonsrol(persoonrolNull);
+		assertTrue(persoon1a.getPersoonsrollen().isEmpty());
+		
+		boolean toegevoegd = persoon1a.addPersoonsrol(persoonsrol);
+		assertTrue(toegevoegd);
+		assertFalse(persoon1a.getPersoonsrollen().isEmpty());
+		assertTrue(persoon1a.getPersoonsrollen().contains(persoonsrol));
+		
+		Persoon testPersoon = null;
+		for (Iterator<Persoonsrol> it = persoon1a.getPersoonsrollen().iterator(); it.hasNext();) {
+			Persoonsrol itPersoonsrol = it.next();
+			if (itPersoonsrol.equals(persoonsrol)) {
+				testPersoon = itPersoonsrol.getPersoon();
+			}
+		}
+		assertTrue(persoon1a.equals(testPersoon));
 	}
 }

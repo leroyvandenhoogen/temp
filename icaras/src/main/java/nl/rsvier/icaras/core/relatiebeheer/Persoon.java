@@ -142,6 +142,15 @@ public class Persoon implements java.io.Serializable {
 	public void setIdentiteitsbewijzen(Set<Identiteitsbewijs> identiteitsbewijzen) {
 		this.identiteitsbewijzen = identiteitsbewijzen;
 	}
+	
+	public synchronized boolean addIdentiteitsbewijs(Identiteitsbewijs identiteitsbewijs) {
+		boolean toegevoegd = false;
+		if(identiteitsbewijs != null) {
+			toegevoegd = this.getIdentiteitsbewijzen().add(identiteitsbewijs);
+			identiteitsbewijs.setPersoon(this);
+		}
+		return toegevoegd;
+	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon")
 	public Set<Adres> getAdressen() {
@@ -150,6 +159,15 @@ public class Persoon implements java.io.Serializable {
 
 	public void setAdressen(Set<Adres> adressen) {
 		this.adressen = adressen;
+	}
+	
+	public synchronized boolean addAdres(Adres adres) {
+		boolean toegevoegd = false;
+		if (adres != null) {
+			toegevoegd = this.getAdressen().add(adres);
+			adres.setPersoon(this);
+		}
+		return toegevoegd;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon")
@@ -160,6 +178,15 @@ public class Persoon implements java.io.Serializable {
 	public void setDigitaleAdressen(Set<DigitaalAdres> digitaleAdressen) {
 		this.digitaleAdressen = digitaleAdressen;
 	}
+	
+	public synchronized boolean addDigitaalAdres(DigitaalAdres digitaalAdres) {
+		boolean toegevoegd = false;
+		if (digitaalAdres != null) {
+			toegevoegd = this.getDigitaleAdressen().add(digitaalAdres);
+			digitaalAdres.setPersoon(this);
+		}
+		return toegevoegd;
+	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon")
 	public Set<Persoonsrol> getPersoonsrollen() {
@@ -167,8 +194,36 @@ public class Persoon implements java.io.Serializable {
 	}
 
 	public void setPersoonsrollen(Set<Persoonsrol> persoonsrollen) {
-		this.persoonsrollen = persoonsrollen;
+		if(persoonsrollen != null) { 
+			this.persoonsrollen = persoonsrollen;
+		}
 	}
+	
+	public synchronized boolean addPersoonsrol(Persoonsrol persoonsrol) {
+		boolean toegevoegd = false;
+		if (persoonsrol != null) {
+			toegevoegd = this.getPersoonsrollen().add(persoonsrol);
+			persoonsrol.setPersoon(this);			
+		}
+		return toegevoegd;
+	}
+	
+	public boolean hasRol(String rol) {
+		return this.getRolByType(rol) != null;
+	}
+	
+	public Rol getRolByType(String rol) {
+		Rol returnRol = null;
+		if(this.persoonsrollen != null && !this.persoonsrollen.isEmpty()) {
+			for(Persoonsrol r : persoonsrollen) {
+				if(r.getRol() != null && r.getRol().getType().equalsIgnoreCase(rol)) {
+					returnRol = r.getRol();
+				}
+			}
+		}
+		return returnRol;
+	}
+	
 		
 	//Opmerking wordt niet meegenomen in de hashcode of equals methode
 	@Override

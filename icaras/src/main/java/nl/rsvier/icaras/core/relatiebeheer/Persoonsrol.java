@@ -67,8 +67,16 @@ public class Persoonsrol implements java.io.Serializable {
 		return this.persoon;
 	}
 
-	public void setPersoon(Persoon persoon) {
-		this.persoon = persoon;
+	public synchronized boolean setPersoon(Persoon persoon) {
+		boolean isSet = false;
+		if(persoon != null && this.getPersoon() == null) {
+			this.persoon = persoon;
+			isSet = true;
+			if(!(this.getPersoon().getPersoonsrollen().contains(this))) {
+				persoon.addPersoonsrol(this);
+			}
+		}
+		return isSet;
 	}
 
 	@Temporal(TemporalType.DATE)

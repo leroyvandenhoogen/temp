@@ -3,7 +3,12 @@ package nl.rsvier.icaras.core.relatiebeheer;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+
+import java.util.Iterator;
+
 import nl.rsvier.icaras.core.TestIdentiteitsbewijs;
+import nl.rsvier.icaras.core.TestPersoon;
+import nl.rsvier.icaras.core.TestPersoonsrol;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -86,6 +91,35 @@ public class IdentiteitsbewijsTest {
 		assertFalse(identiteitsbewijs1a.equals(identiteitsbewijs1b));
 		assertFalse(identiteitsbewijs1a.hashCode() == identiteitsbewijs2a.hashCode());
 		
+	}
+	
+	@Test
+	public void testSetPersoon() {
+		Persoon persoon = TestPersoon.maakTestPersoon1();
+		Persoon persoonNull = null;
+		
+		assertTrue(identiteitsbewijs1a.getPersoon() == null);
+		identiteitsbewijs1a.setPersoon(persoonNull);
+		assertTrue(identiteitsbewijs1a.getPersoon() == null);
+		
+		boolean toegevoegd = identiteitsbewijs1a.setPersoon(persoon);
+		assertTrue(toegevoegd);
+		assertFalse(identiteitsbewijs1a.getPersoon() == null);
+		assertTrue(persoon.getIdentiteitsbewijzen().contains(identiteitsbewijs1a));
+		
+		Persoon testPersoon = null;
+		for (Iterator<Identiteitsbewijs> it = persoon.getIdentiteitsbewijzen().iterator(); it.hasNext();) {
+			Identiteitsbewijs itId = it.next();
+			if (itId.equals(identiteitsbewijs1a)) {
+				testPersoon = itId.getPersoon();
+			}
+		}
+		assertTrue(persoon.equals(testPersoon));
+		
+		//Een verwijzing naar persoon heeft kan je die niet overschrijden
+		Persoon persoon2 = TestPersoon.maakTestPersoon2();
+		boolean toegevoegd2 = identiteitsbewijs1a.setPersoon(persoon2);
+		assertFalse(toegevoegd2);
 	}
 }
 

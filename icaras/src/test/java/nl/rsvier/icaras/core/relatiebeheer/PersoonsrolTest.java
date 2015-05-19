@@ -5,7 +5,9 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 
+import nl.rsvier.icaras.core.TestPersoon;
 import nl.rsvier.icaras.core.TestPersoonsrol;
 
 import org.junit.Before;
@@ -89,5 +91,34 @@ public class PersoonsrolTest {
 		assertFalse(persoonsrol1a.equals(persoonsrol1b));
 		assertFalse(persoonsrol1a.hashCode() == persoonsrol2a.hashCode());
 		
+	}
+	
+	@Test
+	public void testSetPersoon() {
+		Persoon persoon = TestPersoon.maakTestPersoon1();
+		Persoon persoonNull = null;
+		
+		assertTrue(persoonsrol1a.getPersoon() == null);
+		persoonsrol1a.setPersoon(persoonNull);
+		assertTrue(persoonsrol1a.getPersoon() == null);
+		
+		boolean toegevoegd = persoonsrol1a.setPersoon(persoon);
+		assertTrue(toegevoegd);
+		assertFalse(persoonsrol1a.getPersoon() == null);
+		assertTrue(persoon.getPersoonsrollen().contains(persoonsrol1a));
+		
+		Persoon testPersoon = null;
+		for (Iterator<Persoonsrol> it = persoon.getPersoonsrollen().iterator(); it.hasNext();) {
+			Persoonsrol itPersoonsrol = it.next();
+			if (itPersoonsrol.equals(persoonsrol1a)) {
+				testPersoon = itPersoonsrol.getPersoon();
+			}
+		}
+		assertTrue(persoon.equals(testPersoon));
+		
+		//Een verwijzing naar persoon heeft kan je die niet overschrijden
+		Persoon persoon2 = TestPersoon.maakTestPersoon2();
+		boolean toegevoegd2 = persoonsrol1a.setPersoon(persoon2);
+		assertFalse(toegevoegd2);
 	}
 }

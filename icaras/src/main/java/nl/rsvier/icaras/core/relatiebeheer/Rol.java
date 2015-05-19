@@ -21,7 +21,6 @@ public class Rol implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String type;
-//	private Set<Persoonsrol> persoonsrollen = new HashSet<Persoonsrol>(0);
 
 	public Rol() {
 	}
@@ -45,15 +44,6 @@ public class Rol implements java.io.Serializable {
 	public void setType(String type) {
 		this.type = type;
 	}
-
-//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "rol")
-//	public Set<Persoonsrol> getPersoonsrollen() {
-//		return this.persoonsrollen;
-//	}
-//
-//	public void setPersoonsrollen(Set<Persoonsrol> persoonsrollen) {
-//		this.persoonsrollen = persoonsrollen;
-//	}
 
 	@Override
 	public int hashCode() {

@@ -21,7 +21,6 @@ public class IdentiteitsbewijsType implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String type;
-//	private Set<Identiteitsbewijs> identiteitsbewijzen = new HashSet<Identiteitsbewijs>(0);
 
 	public IdentiteitsbewijsType() {
 	}
@@ -33,7 +32,8 @@ public class IdentiteitsbewijsType implements java.io.Serializable {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
+	@SuppressWarnings("unused")
+	private void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -45,15 +45,6 @@ public class IdentiteitsbewijsType implements java.io.Serializable {
 	public void setType(String type) {
 		this.type = type;
 	}
-
-//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "identiteitsbewijsType")
-//	public Set<Identiteitsbewijs> getIdentiteitsbewijzen() {
-//		return this.identiteitsbewijzen;
-//	}
-//
-//	public void setIdentiteitsbewijzen(Set<Identiteitsbewijs> identiteitsbewijzen) {
-//		this.identiteitsbewijzen = identiteitsbewijzen;
-//	}
 
 	@Override
 	public int hashCode() {

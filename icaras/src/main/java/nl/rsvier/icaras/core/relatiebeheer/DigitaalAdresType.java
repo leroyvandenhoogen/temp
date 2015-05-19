@@ -21,7 +21,6 @@ public class DigitaalAdresType implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String type;
-//	private Set<DigitaalAdres> digitaleAdressen = new HashSet<DigitaalAdres>(0);
 
 	public DigitaalAdresType() {
 	}
@@ -45,15 +44,6 @@ public class DigitaalAdresType implements java.io.Serializable {
 	public void setType(String type) {
 		this.type = type;
 	}
-
-//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "digitaalAdresType")
-//	public Set<DigitaalAdres> getDigitaleAdressen() {
-//		return this.digitaleAdressen;
-//	}
-//
-//	public void setDigitaleAdressen(Set<DigitaalAdres> digitaleAdressen) {
-//		this.digitaleAdressen = digitaleAdressen;
-//	}
 
 	@Override
 	public int hashCode() {

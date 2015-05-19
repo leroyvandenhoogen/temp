@@ -4,7 +4,10 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Iterator;
+
 import nl.rsvier.icaras.core.TestAdres;
+import nl.rsvier.icaras.core.TestPersoon;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -103,6 +106,35 @@ public class AdresTest {
 		assertFalse(adres1a.equals(adres1b));
 		assertFalse(adres1a.hashCode() == adres2a.hashCode());
 		
+	}
+	
+	@Test
+	public void testSetPersoon() {
+		Persoon persoon = TestPersoon.maakTestPersoon1();
+		Persoon persoonNull = null;
+		
+		assertTrue(adres1a.getPersoon() == null);
+		adres1a.setPersoon(persoonNull);
+		assertTrue(adres1a.getPersoon() == null);
+		
+		boolean toegevoegd = adres1a.setPersoon(persoon);
+		assertTrue(toegevoegd);
+		assertFalse(adres1a.getPersoon() == null);
+		assertTrue(persoon.getAdressen().contains(adres1a));
+		
+		Persoon testPersoon = null;
+		for (Iterator<Adres> it = persoon.getAdressen().iterator(); it.hasNext();) {
+			Adres itAdres = it.next();
+			if (itAdres.equals(adres1a)) {
+				testPersoon = itAdres.getPersoon();
+			}
+		}
+		assertTrue(persoon.equals(testPersoon));
+		
+		//Een verwijzing naar persoon heeft kan je die niet overschrijden
+		Persoon persoon2 = TestPersoon.maakTestPersoon2();
+		boolean toegevoegd2 = adres1a.setPersoon(persoon2);
+		assertFalse(toegevoegd2);
 	}
 }
 

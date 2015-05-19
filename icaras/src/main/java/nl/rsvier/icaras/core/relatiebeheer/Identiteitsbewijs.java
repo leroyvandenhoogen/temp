@@ -46,14 +46,22 @@ public class Identiteitsbewijs implements java.io.Serializable {
 		this.identiteitsbewijsType = identiteitsbewijsType;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "persoon_id", nullable = false)
 	public Persoon getPersoon() {
 		return this.persoon;
 	}
 
-	public void setPersoon(Persoon persoon) {
-		this.persoon = persoon;
+	public synchronized boolean setPersoon(Persoon persoon) {
+		boolean isSet = false;
+		if(persoon != null && this.getPersoon() == null) {
+			this.persoon = persoon;
+			isSet = true;
+			if(!(this.getPersoon().getIdentiteitsbewijzen().contains(this))) {
+				persoon.addIdentiteitsbewijs(this);
+			}
+		}
+		return isSet;
 	}
 
 	@Temporal(TemporalType.DATE)

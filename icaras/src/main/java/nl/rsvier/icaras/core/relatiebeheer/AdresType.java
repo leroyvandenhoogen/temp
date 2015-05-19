@@ -21,7 +21,6 @@ public class AdresType implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String type;
-//	private Set<Adres> adressen = new HashSet<Adres>(0);
 
 	public AdresType() {
 	}
@@ -45,15 +44,6 @@ public class AdresType implements java.io.Serializable {
 	public void setType(String type) {
 		this.type = type;
 	}
-
-//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "adresType")
-//	public Set<Adres> getAdressen() {
-//		return this.adressen;
-//	}
-//
-//	public void setAdressen(Set<Adres> adressen) {
-//		this.adressen = adressen;
-//	}
 
 	@Override
 	public int hashCode() {
