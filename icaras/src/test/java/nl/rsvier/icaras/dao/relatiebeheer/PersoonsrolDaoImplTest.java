@@ -78,10 +78,13 @@ public class PersoonsrolDaoImplTest {
 		Persoonsrol testPersoonsrol1 = dao.getById(persoonsrol1.getId());
 		Persoonsrol testPersoonsrol2 = dao.getById(persoonsrol2.getId());
 		
-		assertTrue("attributen vanuit database zijn gelijk aan die van persoonsrol voor save",
+		System.out.println("/////" + persoonsrol1.getId().getBegindatum());
+		System.out.println("/////" + testPersoonsrol1.getId().getBegindatum());
+
+		assertTrue("attributen vanuit database zijn gelijk aan die van persoonsrol1 voor save",
 				testPersoonsrol1.equals(persoonsrol1));
-		
-		assertTrue("attributen vanuit database zijn gelijk aan die van persoonsrol voor save",
+
+		assertTrue("attributen vanuit database zijn gelijk aan die van persoonsrol2 voor save",
 				testPersoonsrol2.equals(persoonsrol2));
 		assertFalse(testPersoonsrol1.equals(testPersoonsrol2));
 	}
@@ -141,8 +144,11 @@ public class PersoonsrolDaoImplTest {
 		List<Persoonsrol> testlijst = new ArrayList<Persoonsrol>();
 		testlijst.add(testPersoonsrol1);
 		testlijst.add(testPersoonsrol2);
-		System.out.println("/////" + dao.getAll());
-		assertTrue(dao.getAll().contains(testlijst));
+		
+		assertTrue(dao.getAll().hashCode()==(testlijst).hashCode());
+		//assertTrue(dao.getAll().equals(testlijst));
+		assertTrue(dao.getAll().contains(testPersoonsrol1));
+		assertTrue(dao.getAll().contains(testPersoonsrol2));
 		
 	}
 	

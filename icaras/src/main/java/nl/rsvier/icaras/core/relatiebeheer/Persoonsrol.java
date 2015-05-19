@@ -109,6 +109,9 @@ public class Persoonsrol implements java.io.Serializable {
 				return false;
 			}
 			
+//			if (this.getId() != null && !this.getId().equals(other.getId())) {
+//				return false;
+//			}
 			if (this.getId() != null && (this.getId().getPersoonId() != (other.getId().getPersoonId()))) {
 				return false;
 			}
@@ -117,7 +120,7 @@ public class Persoonsrol implements java.io.Serializable {
 				return false;
 			}
 			
-			if (this.getId() != null && (this.getId().getBegindatum() !=(other.getId().getBegindatum()))) {
+			if (this.getId() != null && (!(this.getId().getBegindatum().equals((other.getId().getBegindatum()))))) {
 				return false;
 			}
 			
