@@ -3,7 +3,14 @@ package nl.rsvier.icaras.core.relatiebeheer;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+
+import java.util.Iterator;
+
+import nl.rsvier.icaras.core.TestAdres;
 import nl.rsvier.icaras.core.TestBedrijf;
+import nl.rsvier.icaras.core.TestDigitaalAdres;
+import nl.rsvier.icaras.core.TestIdentiteitsbewijs;
+import nl.rsvier.icaras.core.TestPersoonsrol;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -89,5 +96,77 @@ public class BedrijfTest {
 		assertFalse(bedrijf1a.equals(bedrijf1b));
 		assertFalse(bedrijf1a.hashCode() == bedrijf2a.hashCode());
 		
+	}
+	
+	@Test
+	public void testAddAdress() {
+		Adres adres = TestAdres.maakTestAdres1();
+		Adres adresNull = null;
+		
+		assertTrue(bedrijf1a.getAdressen().isEmpty());
+		bedrijf1a.addAdres(adresNull);
+		assertTrue(bedrijf1a.getAdressen().isEmpty());
+
+		boolean toegevoegd = bedrijf1a.addAdres(adres);
+		assertTrue(toegevoegd);
+		assertFalse(bedrijf1a.getAdressen().isEmpty());
+		assertTrue(bedrijf1a.getAdressen().contains(adres));
+		
+		Bedrijf testBedrijf = null;
+		for (Iterator<Adres> it = bedrijf1a.getAdressen().iterator(); it.hasNext();) {
+			Adres itAdres = it.next();
+			if (itAdres.equals(adres)) {
+				testBedrijf = itAdres.getBedrijf();
+			}
+		}
+		assertTrue(bedrijf1a.equals(testBedrijf));
+	}
+	
+	@Test
+	public void testAddDigitaalAdres() {
+		DigitaalAdres digitaalAdres = TestDigitaalAdres.maakDigitaalAdres1();
+		DigitaalAdres digitaalAdresNull = null;
+		
+		assertTrue(bedrijf1a.getDigitaleAdressen().isEmpty());
+		bedrijf1a.addDigitaalAdres(digitaalAdresNull);
+		assertTrue(bedrijf1a.getDigitaleAdressen().isEmpty());
+		
+		boolean toegevoegd = bedrijf1a.addDigitaalAdres(digitaalAdres);
+		assertTrue(toegevoegd);
+		assertFalse(bedrijf1a.getDigitaleAdressen().isEmpty());
+		assertTrue(bedrijf1a.getDigitaleAdressen().contains(digitaalAdres));
+		
+		Bedrijf testBedrijf = null;
+		for (Iterator<DigitaalAdres> it = bedrijf1a.getDigitaleAdressen().iterator(); it.hasNext();) {
+			DigitaalAdres itDigitaalAdres = it.next();
+			if (itDigitaalAdres.equals(digitaalAdres)) {
+				testBedrijf = itDigitaalAdres.getBedrijf();
+			}
+		}
+		assertTrue(bedrijf1a.equals(testBedrijf));
+	}
+	
+	@Test
+	public void testAddPersoonsrol() {
+		Persoonsrol persoonsrol = TestPersoonsrol.maakPersoonsrol1();
+		Persoonsrol persoonrolNull = null;
+		
+		assertTrue(bedrijf1a.getPersoonsrollen().isEmpty());
+		bedrijf1a.addPersoonsrol(persoonrolNull);
+		assertTrue(bedrijf1a.getPersoonsrollen().isEmpty());
+		
+		boolean toegevoegd = bedrijf1a.addPersoonsrol(persoonsrol);
+		assertTrue(toegevoegd);
+		assertFalse(bedrijf1a.getPersoonsrollen().isEmpty());
+		assertTrue(bedrijf1a.getPersoonsrollen().contains(persoonsrol));
+		
+		Bedrijf testBedrijf = null;
+		for (Iterator<Persoonsrol> it = bedrijf1a.getPersoonsrollen().iterator(); it.hasNext();) {
+			Persoonsrol itPersoonsrol = it.next();
+			if (itPersoonsrol.equals(persoonsrol)) {
+				testBedrijf = itPersoonsrol.getBedrijf();
+			}
+		}
+		assertTrue(bedrijf1a.equals(testBedrijf));
 	}
 }

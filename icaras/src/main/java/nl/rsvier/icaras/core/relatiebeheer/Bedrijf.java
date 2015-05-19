@@ -77,6 +77,15 @@ public class Bedrijf implements java.io.Serializable {
 		this.digitaleAdressen = digitaleAdressen;
 	}
 
+	public synchronized boolean addDigitaalAdres(DigitaalAdres digitaalAdres) {
+		boolean toegevoegd = false;
+		if (digitaalAdres != null) {
+			toegevoegd = this.getDigitaleAdressen().add(digitaalAdres);
+			digitaalAdres.setBedrijf(this);
+		}
+		return toegevoegd;
+	}
+	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bedrijf")
 	public Set<Adres> getAdressen() {
 		return this.adressen;
@@ -84,6 +93,15 @@ public class Bedrijf implements java.io.Serializable {
 
 	public void setAdressen(Set<Adres> adressen) {
 		this.adressen = adressen;
+	}
+	
+	public synchronized boolean addAdres(Adres adres) {
+		boolean toegevoegd = false;
+		if (adres != null) {
+			toegevoegd = this.getAdressen().add(adres);
+			adres.setBedrijf(this);
+		}
+		return toegevoegd;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bedrijf")
@@ -93,6 +111,15 @@ public class Bedrijf implements java.io.Serializable {
 
 	public void setPersoonsrollen(Set<Persoonsrol> persoonsrollen) {
 		this.persoonsrollen = persoonsrollen;
+	}
+	
+	public synchronized boolean addPersoonsrol(Persoonsrol persoonsrol) {
+		boolean toegevoegd = false;
+		if (persoonsrol != null) {
+			toegevoegd = this.getPersoonsrollen().add(persoonsrol);
+			persoonsrol.setBedrijf(this);			
+		}
+		return toegevoegd;
 	}
 	
 	//Opmerking wordt niet meegenomen in de hashcode of equals methode
