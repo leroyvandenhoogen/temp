@@ -124,7 +124,7 @@ public class PersoonDaoImplTest {
 		testlijst.add(testPersoon1);
 		testlijst.add(testPersoon2);
 		
-		assertTrue(persoonDao.getAll().equals(testlijst));
+		assertTrue(persoonDao.getAll().containsAll(testlijst));
 	}
 }
 

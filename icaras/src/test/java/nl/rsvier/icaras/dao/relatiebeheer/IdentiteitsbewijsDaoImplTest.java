@@ -146,8 +146,7 @@ public class IdentiteitsbewijsDaoImplTest {
 		
 		ArrayList<Identiteitsbewijs> identiteitsbewijsLijst = (ArrayList<Identiteitsbewijs>)identiteitsbewijsDao.getAll();
 		
-		assertTrue(identiteitsbewijsLijst.contains(identiteitsbewijs1));
-		assertTrue(identiteitsbewijsLijst.contains(identiteitsbewijs2));
+		assertTrue(identiteitsbewijsLijst.containsAll(identiteitsbewijsLijst));
 	}
 	
 }

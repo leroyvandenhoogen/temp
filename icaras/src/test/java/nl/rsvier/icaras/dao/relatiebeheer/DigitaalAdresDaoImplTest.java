@@ -124,7 +124,7 @@ public class DigitaalAdresDaoImplTest {
 		digitaalAdresList.add(testDigitaalAdres1);
 		digitaalAdresList.add(testDigitaalAdres2);
 		
-		assertTrue(digitaalAdresDao.getAll().equals(digitaalAdresList));
+		assertTrue(digitaalAdresDao.getAll().containsAll(digitaalAdresList));
 	}
 }
 

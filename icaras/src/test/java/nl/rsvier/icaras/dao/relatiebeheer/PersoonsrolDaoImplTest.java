@@ -146,9 +146,7 @@ public class PersoonsrolDaoImplTest {
 		testlijst.add(testPersoonsrol2);
 		
 		assertTrue(dao.getAll().hashCode()==(testlijst).hashCode());
-		//assertTrue(dao.getAll().equals(testlijst));
-		assertTrue(dao.getAll().contains(testPersoonsrol1));
-		assertTrue(dao.getAll().contains(testPersoonsrol2));
+		assertTrue(dao.getAll().containsAll(testlijst));
 		
 	}
 	

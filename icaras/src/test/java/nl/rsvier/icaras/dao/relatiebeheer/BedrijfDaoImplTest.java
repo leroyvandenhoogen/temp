@@ -109,7 +109,7 @@ public class BedrijfDaoImplTest {
 		bedrijfList.add(testBedrijf1);
 		bedrijfList.add(testBedrijf2);
 		
-		assertTrue(bedrijfDao.getAll().equals(bedrijfList));
+		assertTrue(bedrijfDao.getAll().containsAll(bedrijfList));
 	}
 	
 }

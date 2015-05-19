@@ -136,7 +136,7 @@ public class AdresDaoImplTest {
 		adresList.add(testAdres1);
 		adresList.add(testAdres2);
 		
-		assertTrue(adresDao.getAll().equals(adresList));
+		assertTrue(adresDao.getAll().containsAll(adresList));
 	}
 	
 
