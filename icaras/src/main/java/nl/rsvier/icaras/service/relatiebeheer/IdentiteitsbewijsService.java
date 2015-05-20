@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import nl.rsvier.icaras.core.relatiebeheer.Adres;
 import nl.rsvier.icaras.core.relatiebeheer.Identiteitsbewijs;
 import nl.rsvier.icaras.dao.relatiebeheer.IdentiteitsbewijsDaoImpl;
 import nl.rsvier.icaras.dao.relatiebeheer.IdentiteitsbewijsTypeDaoImpl;
@@ -36,11 +35,11 @@ public class IdentiteitsbewijsService {
 		idDao.delete(idBewijs);
 	}
 	
-	public Identiteitsbewijs getById(String id) {
+	public Identiteitsbewijs get(String id) {
 		return idDao.getById(id);
 	}
 	
-	public Identiteitsbewijs getByIdEager(String id) {
+	public Identiteitsbewijs getEager(String id) {
 		return idDao.getByIdEager(id);
 	}
 	

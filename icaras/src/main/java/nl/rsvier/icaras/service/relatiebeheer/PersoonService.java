@@ -32,7 +32,7 @@ public class PersoonService {
 		persoonDao.delete(p);
 	}
 	
-	public Persoon getById(int id) {
+	public Persoon get(int id) {
 		return persoonDao.getById(id);
 	}
 	

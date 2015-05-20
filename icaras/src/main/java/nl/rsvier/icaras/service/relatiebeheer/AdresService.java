@@ -35,7 +35,7 @@ public class AdresService {
 		adresDao.delete(a);
 	}
 	
-	public Adres getById(int id) {
+	public Adres get(int id) {
 		return adresDao.getById(id);
 	}
 	

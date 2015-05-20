@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import nl.rsvier.icaras.core.relatiebeheer.Adres;
 import nl.rsvier.icaras.core.relatiebeheer.DigitaalAdres;
 import nl.rsvier.icaras.dao.relatiebeheer.DigitaalAdresDaoImpl;
 import nl.rsvier.icaras.dao.relatiebeheer.DigitaalAdresTypeDaoImpl;
@@ -36,7 +35,7 @@ public class DigitaalAdresService {
 		digitaalAdresDao.delete(da);
 	}
 	
-	public DigitaalAdres getById(int id) {
+	public DigitaalAdres get(int id) {
 		return digitaalAdresDao.getById(id);
 	}
 	
