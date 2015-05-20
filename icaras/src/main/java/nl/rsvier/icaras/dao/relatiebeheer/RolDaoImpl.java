@@ -2,8 +2,6 @@ package nl.rsvier.icaras.dao.relatiebeheer;
 
 import java.util.List;
 
-import nl.rsvier.icaras.core.relatiebeheer.DigitaalAdres;
-import nl.rsvier.icaras.core.relatiebeheer.DigitaalAdresType;
 import nl.rsvier.icaras.core.relatiebeheer.Persoonsrol;
 import nl.rsvier.icaras.core.relatiebeheer.Rol;
 import nl.rsvier.icaras.dao.GenericDaoImpl;

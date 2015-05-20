@@ -30,15 +30,15 @@ public class IdentiteitsbewijsDaoImpl extends GenericDaoImpl<Identiteitsbewijs> 
 		return identiteitsbewijs;
 	}
 	
-	@Override
-	public List<Identiteitsbewijs> getAllEager() {
-		List<Identiteitsbewijs> identiteitsbewijsList = getAll();
-		for(Identiteitsbewijs identiteitsbewijs: identiteitsbewijsList) {
-			if(identiteitsbewijs != null) {
-				getHibernateTemplate().initialize(((Persoon)identiteitsbewijs.getPersoon()));
-			}
-		}
-		return identiteitsbewijsList;
-	}
+//	@Override
+//	public List<Identiteitsbewijs> getAllEager() {
+//		List<Identiteitsbewijs> identiteitsbewijsList = getAll();
+//		for(Identiteitsbewijs identiteitsbewijs: identiteitsbewijsList) {
+//			if(identiteitsbewijs != null) {
+//				getHibernateTemplate().initialize(((Persoon)identiteitsbewijs.getPersoon()));
+//			}
+//		}
+//		return identiteitsbewijsList;
+//	}
 }
 

@@ -11,7 +11,7 @@ public interface IIdentiteitsbewijsDao {
 
 	Identiteitsbewijs getByIdEager(String id);
 
-	List<Identiteitsbewijs> getAllEager();
+//	List<Identiteitsbewijs> getAllEager();
 
 }
 
