@@ -12,11 +12,7 @@ import org.junit.runners.Suite;
  */
 
 @RunWith(Suite.class)
-//@Suite.SuiteClasses({ 
-//	RelatieAdresNfaTest.class, 
-//	RelatieServiceTest.class,
-//	PersoonOrganisatieServiceTest.class
-//})
+@Suite.SuiteClasses({})
 public class ServiceTestSuite {
 
 }

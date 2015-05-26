@@ -1,5 +1,5 @@
 <%@ page
-	import="java.io.*, java.util.*, java.sql.*, javax.servlet.http.*, javax.servlet.*,nl.rsvier.icaras.refactor.core.Adres,nl.rsvier.icaras.refactor.core.Relatie"%>
+	import="java.io.*, java.util.*, java.sql.*, javax.servlet.http.*, javax.servlet.*,"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>

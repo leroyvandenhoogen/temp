@@ -12,7 +12,7 @@
 </head>
 
 <body>
-
+	<!--
 	<div id="menu">
 		<ul id="menubar">
 			<li class="menubar_item active"><a href="/Icaras/">welkom</a></li>
@@ -29,6 +29,7 @@
 		test personen en organisaties.
 	</p>
 	</fieldset></div>
-	
+	-->
+	Test
 </body>
 </html>
