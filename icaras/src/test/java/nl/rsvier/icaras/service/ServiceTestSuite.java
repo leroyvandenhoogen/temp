@@ -1,9 +1,5 @@
 package nl.rsvier.icaras.service;
 
-import nl.rsvier.icaras.refactor.service.PersoonOrganisatieServiceTest;
-import nl.rsvier.icaras.refactor.service.RelatieAdresNfaTest;
-import nl.rsvier.icaras.refactor.service.RelatieServiceTest;
-
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -16,11 +12,11 @@ import org.junit.runners.Suite;
  */
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ 
-	RelatieAdresNfaTest.class, 
-	RelatieServiceTest.class,
-	PersoonOrganisatieServiceTest.class
-})
+//@Suite.SuiteClasses({ 
+//	RelatieAdresNfaTest.class, 
+//	RelatieServiceTest.class,
+//	PersoonOrganisatieServiceTest.class
+//})
 public class ServiceTestSuite {
 
 }

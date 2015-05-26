@@ -1,8 +1,0 @@
- <?link rel="stylesheet" type="text/css" href="/style.css"?>
-<grid hflex="1" vflex="1" sclass="sidebar" id="sidebarList" apply="nl.rsvier.icaras.controller.relatiebeheer.SidebarController">
-	<columns>
-		<column width="45px" />
-		<column label="Navigatie"/>
-	</columns>
-	<rows/>	
-</grid>

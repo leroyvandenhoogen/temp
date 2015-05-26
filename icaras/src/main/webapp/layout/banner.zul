@@ -1,7 +1,0 @@
-<div hflex="1" vflex="1" sclass="banner">
-	<hbox hflex="1" vflex="1" align="center">
-		<a href="http://www.rsvier.nl">
-			<image src="/resources/rs4/images/rsv.png" align="center" width="80px" height="80px" />
-		</a>
-	</hbox>
-</div>

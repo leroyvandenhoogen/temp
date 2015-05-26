@@ -1,5 +1,0 @@
-<?link rel="stylesheet" type="text/css" href="/resources/rs4/css/icaras.css"?>
-<?init class="org.zkoss.zk.ui.util.Composition" arg0="/index.zul"?>
-<zk>
-	<include self="@define(content)" src="/persoonlijst.zul"/>
-</zk>
