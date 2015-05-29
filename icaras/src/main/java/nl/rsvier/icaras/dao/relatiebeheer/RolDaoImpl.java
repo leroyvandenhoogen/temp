@@ -15,7 +15,6 @@ public class RolDaoImpl extends GenericDaoImpl<Rol> implements IRolDao {
 		super(Rol.class);
 	}
 
-	@Override
 	public boolean addRol(String rol, Persoonsrol persoonsrol) {
 		List<Rol> rollen = getAll();
 		for(Rol r : rollen) {

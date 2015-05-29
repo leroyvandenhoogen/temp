@@ -1,0 +1,10 @@
+<ul>
+<li>Personen</li>
+<li>Cursisten</li>
+<li>Kandidaten</li>
+<li>Stagaires</li>
+<li>Werknemers</li>
+<li>Contactpersonen</li>
+<li>Prive</li>
+<li>Organisaties</li>
+</ul>

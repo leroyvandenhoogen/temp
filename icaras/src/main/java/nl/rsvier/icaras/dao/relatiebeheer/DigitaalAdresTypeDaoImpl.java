@@ -15,7 +15,6 @@ public class DigitaalAdresTypeDaoImpl extends GenericDaoImpl<DigitaalAdresType> 
 		super(DigitaalAdresType.class);
 	}
 
-	@Override
 	public boolean addDigitaalAdresType(String digitaalAdresType, DigitaalAdres digitaalAdres) {
 		List<DigitaalAdresType> digitaalAdresTypes = getAll();
 		for(DigitaalAdresType dat : digitaalAdresTypes) {

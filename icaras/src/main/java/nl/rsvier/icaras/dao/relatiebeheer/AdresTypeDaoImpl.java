@@ -15,7 +15,6 @@ public class AdresTypeDaoImpl extends GenericDaoImpl<AdresType> implements IAdre
 		super(AdresType.class);
 	}
 
-	@Override
 	public boolean addAdresType(String adresType, Adres adres) {
 		List<AdresType> adresTypes = getAll();
 		for(AdresType at : adresTypes) {
