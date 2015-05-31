@@ -9,7 +9,7 @@
 		<table>
 			<tr>
 				<td><label for="voornaam">Voornaam: </label></td>
-				<td><form:input path="voornaam" id="voornaam" /></td>
+				<td><form:input path="voornaam" id="voornaam"/></td>
 				<td><form:errors path="voornaam" cssClass="error" /></td>
 			</tr>
 
@@ -54,17 +54,10 @@
 				<td><form:input path="nationaliteit" id="nationaliteit" /></td>
 				<td><form:errors path="nationaliteit" cssClass="nationaliteit" /></td>
 			</tr>
+			</table>
 			
-			<c:forEach items="${persoon.identiteitsbewijzen}"
-				var="identiteitsbewijs">
-				<tr class="element">
-					<td>${identiteitsbewijs.nummer}</td>
-					<td>${identiteitsbewijs.vervaldatum}</td>
-					<td>${identiteitsbewijs.identiteitsbewijsType}</td>
-				</tr>
-			</c:forEach>
-
-			<c:forEach items="${persoon.adressen}" var="adres">
+			<table>
+			<c:forEach items="${adressen}" var="adres">
 				<tr class="element">
 					<td>${adres.adresType}</td>
 					<td>${adres.straat}</td>
@@ -77,6 +70,18 @@
 					<td>${adres.einddatum}</td>
 				</tr>
 			</c:forEach>
+			</table>
+			<table>
+			<c:forEach items="${persoon.identiteitsbewijzen}"
+				var="identiteitsbewijs">
+				<tr class="element">
+					<td>${identiteitsbewijs.nummer}</td>
+					<td>${identiteitsbewijs.vervaldatum}</td>
+					<td>${identiteitsbewijs.identiteitsbewijsType}</td>
+				</tr>
+			</c:forEach>
+</table>
+<table>
 
 			<c:forEach items="${persoon.digitaleAdressen}" var="digitaleadres">
 				<tr class="element">
