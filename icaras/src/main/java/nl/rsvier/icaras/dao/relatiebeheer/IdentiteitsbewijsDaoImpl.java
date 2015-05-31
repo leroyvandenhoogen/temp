@@ -15,12 +15,10 @@ public class IdentiteitsbewijsDaoImpl extends GenericDaoImpl<Identiteitsbewijs> 
 		super(Identiteitsbewijs.class);
 	}
 	
-	@Override
 	public Identiteitsbewijs getById(String id) {
 		return getHibernateTemplate().get(Identiteitsbewijs.class, id);
 	}
 	
-	@Override
 	public Identiteitsbewijs getByIdEager(String id) {
 		Identiteitsbewijs identiteitsbewijs = getById(id);
 		//TODO exception hier?

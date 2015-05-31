@@ -224,6 +224,16 @@ public class Persoon implements java.io.Serializable {
 		return returnRol;
 	}
 	
+	public String printRollen() {
+		String returnRollen = null;
+		if(this.persoonsrollen != null && !this.persoonsrollen.isEmpty()) {
+			for(Persoonsrol r : persoonsrollen) {
+				returnRollen += " " + r.getRol().getType();
+			}
+		}
+		return returnRollen;
+	}
+	
 		
 	//Opmerking wordt niet meegenomen in de hashcode of equals methode
 	@Override

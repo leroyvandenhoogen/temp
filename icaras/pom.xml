@@ -5,25 +5,24 @@
 	<packaging>war</packaging>
 	<name>Icaras</name>
 	<url>http://www.rsvier.nl/icaras</url>
-	
 
 	<dependencies>
-   		<dependency>
-      		<groupId>commons-logging</groupId>
-      		<artifactId>commons-logging</artifactId>
-      		<version>1.1.1</version>
-    	</dependency>
-    	<dependency>
-      		<groupId>commons-io</groupId>
-      		<artifactId>commons-io</artifactId>
-      		<version>1.3.1</version>
-    	</dependency>
-    	<dependency>
-      		<groupId>commons-lang</groupId>
-      		<artifactId>commons-lang</artifactId>
-      		<version>2.4</version>
-    	</dependency>
-	
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>1.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.4</version>
+		</dependency>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -37,8 +36,6 @@
 			<artifactId>agendabeheer</artifactId> <version>1.0-SNAPSHOT</version> </dependency> 
 			<dependency> <groupId>nl.rsvier.icaras</groupId> <artifactId>financieleadminstratie</artifactId> 
 			<version>1.0-SNAPSHOT</version> </dependency> -->
-
-
 
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -145,14 +142,14 @@
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java						</artifactId>
+			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>asm</groupId>
 			<artifactId>asm-attrs</artifactId>
 		</dependency>
 
-<!-- JSP -->
+		<!-- JSP -->
 
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -160,7 +157,7 @@
 			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>javax.servlet.jsp.jstl</groupId>
 			<artifactId>jstl-api</artifactId>
@@ -176,17 +173,25 @@
 			<artifactId>el-api</artifactId>
 			<version>2.2</version>
 		</dependency>
-			<dependency>
+		<dependency>
 			<groupId>org.glassfish.web</groupId>
 			<artifactId>javax.servlet.jsp.jstl</artifactId>
 			<version>1.2.4</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 		</dependency>
-	
+
+		<!-- Apache Tiles dependencies -->
+
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-extras</artifactId>
+			<version>3.0.5</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

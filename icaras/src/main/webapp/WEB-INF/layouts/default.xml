@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<definition name="home.base" template="/WEB-INF/templates/default.jsp">
+		<put-attribute name="title" value="RSVIER Relatiebeheer" />
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
+		<put-attribute name="content" value="/WEB-INF/tiles/content.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+	</definition>
+
+	<definition name="home" extends="home.base">
+	</definition>
+
+	<definition name="personen" extends="home.base">
+		<put-attribute name="title" value="RSVIER Personen" />
+		<put-attribute name="content" value="/WEB-INF/tiles/personenlijst.jsp" />
+	</definition>
+	
+	<definition name="persoondetails" extends="home.base">
+		<put-attribute name="title" value="RSVIER Persoondetails" />
+		<put-attribute name="content" value="/WEB-INF/tiles/persoondetails.jsp" />
+	</definition>
+
+	<definition name="cursisten" extends="home.base">
+		<put-attribute name="title" value="RSVIER Cursisten" />
+		<put-attribute name="content" value="/WEB-INF/tiles/cursistenlijst.jsp" />
+	</definition>
+
+	<definition name="kandidaten" extends="home.base">
+		<put-attribute name="title" value="RSVIER Kandidaten" />
+		<put-attribute name="content" value="/WEB-INF/tiles/kandidatenlijst.jsp" />
+	</definition>
+
+	<definition name="stagiairs" extends="home.base">
+		<put-attribute name="title" value="RSVIER Stagiairs" />
+		<put-attribute name="content" value="/WEB-INF/tiles/stagiairslijst.jsp" />
+	</definition>
+
+	<definition name="werknemers" extends="home.base">
+		<put-attribute name="title" value="RSVIER Werknemers" />
+		<put-attribute name="content" value="/WEB-INF/tiles/werknemerslijst.jsp" />
+	</definition>
+
+	<definition name="contactpersonen" extends="home.base">
+		<put-attribute name="title" value="RSVIER Contactpersonen" />
+		<put-attribute name="content"
+			value="/WEB-INF/tiles/contactpersonenlijst.jsp" />
+	</definition>
+
+	<definition name="prive" extends="home.base">
+		<put-attribute name="title" value="RSVIER Prive" />
+		<put-attribute name="content" value="/WEB-INF/tiles/privelijst.jsp" />
+	</definition>
+
+	<definition name="organisaties" extends="home.base">
+		<put-attribute name="title" value="RSVIER Organisaties" />
+		<put-attribute name="content"
+			value="/WEB-INF/tiles/organisatielijst.jsp" />
+	</definition>
+	
+	<definition name="projectinfo" extends="home.base">
+		<put-attribute name="title" value="RSVIER Project info" />
+		<put-attribute name="content" value="/WEB-INF/tiles/projectinfo.jsp" />
+	</definition>
+
+</tiles-definitions>

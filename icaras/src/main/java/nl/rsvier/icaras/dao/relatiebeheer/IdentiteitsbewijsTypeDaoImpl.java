@@ -17,7 +17,6 @@ public class IdentiteitsbewijsTypeDaoImpl extends GenericDaoImpl<Identiteitsbewi
 		super(IdentiteitsbewijsType.class);
 	}
 
-	@Override
 	public boolean addIdentiteitsbewijsType(String identiteitsBewijsType, Identiteitsbewijs identiteitsbewijs) {
 		List<IdentiteitsbewijsType> identiteitsbewijsTypes = getAll();
 		for(IdentiteitsbewijsType idtype : identiteitsbewijsTypes) {
