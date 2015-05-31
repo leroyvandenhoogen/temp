@@ -19,6 +19,4 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<br />
-	<a href="http://www.w3schools.com/html/">Visit our HTML tutorial</a>
 </body>

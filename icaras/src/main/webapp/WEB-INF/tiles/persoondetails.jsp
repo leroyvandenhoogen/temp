@@ -100,19 +100,6 @@
 					<td><label for="einddatum">Eind datum: </label></td>
 					<td><form:input path="${einddatum}" id="einddatum" value="${adres.einddatum}"/></td>
 				</tr>
-				<!-- 
-				<tr class="element">
-					<td>${adres.adresType.type}</td>
-					<td>${adres.straat}</td>
-					<td>${adres.nummer}</td>
-					<td>${adres.toevoegsel}</td>
-					<td>${adres.postcode}</td>
-					<td>${adres.plaats}</td>
-					<td>${adres.land}</td>
-					<td>${adres.begindatum}</td>
-					<td>${adres.einddatum}</td>
-				</tr>
-			 -->
 			</c:forEach>
 		</table>
 		<table>
