@@ -35,3 +35,7 @@ div.footer {
 	bottom: 0;
 	width: 100%;
 }
+
+a.footer {
+	color: white;
+}

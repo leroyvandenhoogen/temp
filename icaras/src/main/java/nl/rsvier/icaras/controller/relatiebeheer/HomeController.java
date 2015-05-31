@@ -49,6 +49,11 @@ public class HomeController {
 	public String showOrganisatieLijst() {
 		return "organisaties";
 	}
+	
+	@RequestMapping("/projectinfo")
+	public String showProjectInfo() {
+		return"projectinfo";
+	}
 	  
 }
 
