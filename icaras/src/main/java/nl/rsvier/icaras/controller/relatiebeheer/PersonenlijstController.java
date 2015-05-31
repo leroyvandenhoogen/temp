@@ -31,13 +31,13 @@ public class PersonenlijstController {
 	@RequestMapping(value = "/update-{id}-persoon", method = RequestMethod.GET)
 	public String updatePersoon(@PathVariable int id, ModelMap model) {
 		Persoon persoon = service.get(id);
-		Set<Adres> adressen = persoon.getAdressen();
+//		Set<Adres> adressen = persoon.getAdressen();
 //		persoon.setIdentiteitsbewijzen(service.get(id).getIdentiteitsbewijzen());
 //		persoon.setAdressen(service.get(id).getAdressen());
 //		persoon.setDigitaleAdressen(service.get(id).getDigitaleAdressen());
 //		persoon.setPersoonsrollen(service.get(id).getPersoonsrollen());
 		model.addAttribute("persoon", persoon);
-		model.addAttribute("adressen", adressen);
+		//model.addAttribute("adressen", adressen);
 		return "persoondetails";
 	}
 }

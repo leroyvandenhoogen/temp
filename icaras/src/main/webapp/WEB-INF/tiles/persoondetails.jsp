@@ -9,7 +9,7 @@
 		<table>
 			<tr>
 				<td><label for="voornaam">Voornaam: </label></td>
-				<td><form:input path="voornaam" id="voornaam"/></td>
+				<td><form:input path="voornaam" id="voornaam" /></td>
 				<td><form:errors path="voornaam" cssClass="error" /></td>
 			</tr>
 
@@ -54,12 +54,55 @@
 				<td><form:input path="nationaliteit" id="nationaliteit" /></td>
 				<td><form:errors path="nationaliteit" cssClass="nationaliteit" /></td>
 			</tr>
-			</table>
-			
-			<table>
-			<c:forEach items="${adressen}" var="adres">
+		</table>
+
+		<table>
+			<c:forEach items="${persoon.adressen}" var="adres">
+				<tr>
+					<td><label for="adrestype">Adres type: </label></td>
+					<td><select name="type">
+							<option value="huis">Huis</option>
+							<option value="post">Post</option>
+							<option value="postbus">Postbus</option>
+							<option value="woonboot">Woonboot</option>
+							<option value="${adres.adresType.type}" selected>${adres.adresType.type}</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td><label for="straat">Straat: </label></td>
+					<td><form:input path="${straat}" id="straat" value="${adres.straat}"/></td>
+				</tr>
+				<tr>
+					<td><label for="nummer">Nummer: </label></td>
+					<td><form:input path="${nummer}" id="nummer" value="${adres.nummer}"/></td>
+				</tr>
+				<tr>
+					<td><label for="toevoegsel">Toevoegsel: </label></td>
+					<td><form:input path="${toevoegsel}" id="toevoegsel" value="${adres.toevoegsel}"/></td>
+				</tr>
+				<tr>
+					<td><label for="postcode">Postcode: </label></td>
+					<td><form:input path="${postcode}" id="postcode" value="${adres.postcode}"/></td>
+				</tr>
+				<tr>
+					<td><label for="plaats">Plaats: </label></td>
+					<td><form:input path="${plaats}" id="plaats" value="${adres.plaats}"/></td>
+				</tr>
+				<tr>
+					<td><label for="land">Land: </label></td>
+					<td><form:input path="${land}" id="land" value="${adres.land}"/></td>
+				</tr>
+				<tr>
+					<td><label for="begindatum">Begin datum: </label></td>
+					<td><form:input path="${begindatum}" id="begindatum" value="${adres.begindatum}"/></td>
+				</tr>
+				<tr>
+					<td><label for="einddatum">Eind datum: </label></td>
+					<td><form:input path="${einddatum}" id="einddatum" value="${adres.einddatum}"/></td>
+				</tr>
+				<!-- 
 				<tr class="element">
-					<td>${adres.adresType}</td>
+					<td>${adres.adresType.type}</td>
 					<td>${adres.straat}</td>
 					<td>${adres.nummer}</td>
 					<td>${adres.toevoegsel}</td>
@@ -69,9 +112,10 @@
 					<td>${adres.begindatum}</td>
 					<td>${adres.einddatum}</td>
 				</tr>
+			 -->
 			</c:forEach>
-			</table>
-			<table>
+		</table>
+		<table>
 			<c:forEach items="${persoon.identiteitsbewijzen}"
 				var="identiteitsbewijs">
 				<tr class="element">
@@ -80,8 +124,8 @@
 					<td>${identiteitsbewijs.identiteitsbewijsType}</td>
 				</tr>
 			</c:forEach>
-</table>
-<table>
+		</table>
+		<table>
 
 			<c:forEach items="${persoon.digitaleAdressen}" var="digitaleadres">
 				<tr class="element">

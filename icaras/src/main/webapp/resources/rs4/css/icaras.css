@@ -6,7 +6,7 @@ div.header {
 	text-align: center;
 	width: 100%;
 	height: 40px;
-	background-color: red;
+	background-color: #db000b;
 }
 
 a.title {
@@ -28,7 +28,7 @@ div.content {
 div.footer {
 	clear: both;
 	font-size: small;
-	background-color: red;
+	background-color: #db000b;
 	color: white;
 	text-align: center;
 	position: absolute;
