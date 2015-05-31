@@ -8,6 +8,7 @@ import nl.rsvier.icaras.service.relatiebeheer.PersoonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -25,4 +26,13 @@ public class PersonenlijstController {
 		return "personen";
 	}
 
+	@RequestMapping(value = "/update-{id}-persoon", method = RequestMethod.GET)
+	public String updatePersoon(@PathVariable int id, Persoon persoon, ModelMap model) {
+		persoon.setIdentiteitsbewijzen(service.get(id).getIdentiteitsbewijzen());
+		persoon.setAdressen(service.get(id).getAdressen());
+		persoon.setDigitaleAdressen(service.get(id).getDigitaleAdressen());
+		persoon.setPersoonsrollen(service.get(id).getPersoonsrollen());
+		model.addAttribute("persoon", persoon);
+		return "persoondetails";
+	}
 }
