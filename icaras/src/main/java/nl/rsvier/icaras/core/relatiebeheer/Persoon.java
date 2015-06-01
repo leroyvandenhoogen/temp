@@ -11,12 +11,17 @@ import javax.persistence.GeneratedValue;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+
+import org.hibernate.annotations.Cascade;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 @Table(name = "persoon", catalog = "icaras")
@@ -80,6 +85,7 @@ public class Persoon implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(iso = ISO.DATE, pattern="yyyy-MM-dd")
 	@Column(name = "geboortedatum", length = 10)
 	public Date getGeboortedatum() {
 		return this.geboortedatum;
@@ -134,7 +140,7 @@ public class Persoon implements java.io.Serializable {
 		this.opmerking = opmerking;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon", cascade = CascadeType.ALL)
 	public Set<Identiteitsbewijs> getIdentiteitsbewijzen() {
 		return this.identiteitsbewijzen;
 	}
@@ -152,7 +158,7 @@ public class Persoon implements java.io.Serializable {
 		return toegevoegd;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon", cascade = CascadeType.ALL)
 	public Set<Adres> getAdressen() {
 		return this.adressen;
 	}
@@ -171,7 +177,7 @@ public class Persoon implements java.io.Serializable {
 		return toegevoegd;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon", cascade = CascadeType.ALL)
 	public Set<DigitaalAdres> getDigitaleAdressen() {
 		return this.digitaleAdressen;
 	}
@@ -190,7 +196,7 @@ public class Persoon implements java.io.Serializable {
 		return toegevoegd;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon", cascade = CascadeType.ALL)
 	public Set<Persoonsrol> getPersoonsrollen() {
 		return this.persoonsrollen;
 	}
