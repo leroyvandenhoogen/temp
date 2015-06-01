@@ -13,7 +13,6 @@
 				<td><form:input path="voornaam" id="voornaam" /></td>
 				<td><form:errors path="voornaam" cssClass="error" /></td>
 			</tr>
-
 			<tr>
 				<td><label for="achternaam">Achternaam: </label></td>
 				<td><form:input path="achternaam" id="achternaam" /></td>
@@ -134,8 +133,6 @@
 				</tr>
 			</c:forEach>
 			<tr></tr>
-
-			
 		</table>
 		
 				<table class="details">
@@ -152,8 +149,8 @@
 				<td colspan="3"><input type="submit" value="Register" /></td>
 			</tr>
 		</table>
-		
 	</form:form>
+	
 	<br />
 	<br /> Go back to
 	<a href="<c:url value='/list' />">List of All Employees</a>
