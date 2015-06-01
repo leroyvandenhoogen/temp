@@ -30,6 +30,26 @@ div.details {
 	padding: 40px;
 }
 
+table.details {
+
+}
+
+table.details label{
+
+}
+
+table.details tr {
+
+}
+table.details th {
+	text-align: left;
+	width: 125px;
+}
+table.details td {
+	text-align: left;
+	width: 125px;
+}
+
 div.footer {
 	clear: both;
 	font-size: small;
