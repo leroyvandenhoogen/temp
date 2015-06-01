@@ -20,6 +20,8 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.Cascade;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 @Table(name = "persoon", catalog = "icaras")
@@ -83,6 +85,7 @@ public class Persoon implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(iso = ISO.DATE, pattern="yyyy-MM-dd")
 	@Column(name = "geboortedatum", length = 10)
 	public Date getGeboortedatum() {
 		return this.geboortedatum;

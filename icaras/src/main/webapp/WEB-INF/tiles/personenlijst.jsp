@@ -18,5 +18,9 @@
 				<td><a href="<c:url value='/personen/update-${persoon.id}-persoon' />">${persoon.id}</a></td>
 			</tr>
 		</c:forEach>
+		
 	</table>
+	<br></br>
+	<a href="<c:url value='/personen/nieuw' />">Voeg nieuw persoon toe</a>
+	
 </body>
