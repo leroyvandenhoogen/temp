@@ -1,8 +1,11 @@
 package nl.rsvier.icaras.core.relatiebeheer;
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Embeddable
 public class PersoonsrolId implements java.io.Serializable {
@@ -33,6 +36,7 @@ public class PersoonsrolId implements java.io.Serializable {
 		this.rolId = rolId;
 	}
 
+	@Temporal(TemporalType.DATE)
 	@Column(name = "begindatum", nullable = false, length = 10)
 	public Date getBegindatum() {
 		return this.begindatum;

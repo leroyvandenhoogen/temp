@@ -6,7 +6,8 @@
 <body>
 
 	<form:form method="POST" modelAttribute="persoon">
-		<table>
+		<table class="details">
+		<th>Persoonsgegevens </th>
 			<tr>
 				<td><label for="voornaam">Voornaam: </label></td>
 				<td><form:input path="voornaam" id="voornaam" /></td>
@@ -54,9 +55,11 @@
 				<td><form:input path="nationaliteit" id="nationaliteit" /></td>
 				<td><form:errors path="nationaliteit" cssClass="nationaliteit" /></td>
 			</tr>
+			<tr></tr>
 		</table>
 
-		<table>
+		<table class="details">
+		<th>Adresgegevens </th>
 			<c:forEach items="${persoon.adressen}" var="adres">
 				<tr>
 					<td><label for="adrestype">Adres type: </label></td>
@@ -100,9 +103,42 @@
 					<td><label for="einddatum">Eind datum: </label></td>
 					<td><form:input path="${einddatum}" id="einddatum" value="${adres.einddatum}"/></td>
 				</tr>
+				<tr></tr>
 			</c:forEach>
 		</table>
-		<table>
+		
+		<table class="details">
+		<th>Digitaal Adres</th>
+			<c:forEach items="${persoon.digitaleAdressen}" var="digitaleadres">
+				<c:if test="${digitaleadres.digitaalAdresType.type == 'email' || digitaleadres.digitaalAdresType.type == 'telefoonnummer' }">
+					<tr class="element">
+						<td><label>${digitaleadres.digitaalAdresType.type} </label></td>
+						<td><form:input path="${omschrijving}" id="omschrijving" value="${digitaleadres.omschrijving}" size="30"/></td>
+						<td><label>voorkeur </label></td>
+						<td><form:input path="${contactvoorkeur}" id="contactvoorkeur" value="${digitaleadres.contactvoorkeur}" size="2"/></td>
+					</tr>
+				</c:if>
+					
+			</c:forEach>
+					<tr></tr>
+		</table>
+		<table class="details">
+		<th>Persoonsrollen</th>
+			<c:forEach items="${persoon.persoonsrollen}" var="persoonsrol">
+				<tr class="element">
+					<td><label>${persoonsrol.rol.type} </label></td>
+					<td><label>begindatum</label></td>
+					<td><form:input path="${begindatum}" id="begindatum" value="${persoonsrol.id.begindatum}" size="10"/></td>
+					<td><label>einddatum </label></td>
+					<td><form:input path="${einddatum}" id="einddatum" value="${persoonsrol.einddatum}" size="10"/></td>
+				</tr>
+			</c:forEach>
+			<tr></tr>
+
+			
+		</table>
+		
+				<table class="details">
 			<c:forEach items="${persoon.identiteitsbewijzen}"
 				var="identiteitsbewijs">
 				<tr class="element">
@@ -111,28 +147,12 @@
 					<td>${identiteitsbewijs.identiteitsbewijsType}</td>
 				</tr>
 			</c:forEach>
-		</table>
-		<table>
-
-			<c:forEach items="${persoon.digitaleAdressen}" var="digitaleadres">
-				<tr class="element">
-					<td>${digitaleadres.digitaalAdresType.type}</td>
-					<td>${digitaleadres.omschrijving}</td>
-					<td>${digitaleadres.contactvoorkeur}</td>
-				</tr>
-			</c:forEach>
-
-			<c:forEach items="${persoon.persoonsrollen}" var="persoonsrol">
-				<tr class="element">
-					<td>${persoonsrol.rol}</td>
-					<td>${persoonsrol.einddatum}</td>
-				</tr>
-			</c:forEach>
-
-			<tr>
+			<tr></tr>
+						<tr>
 				<td colspan="3"><input type="submit" value="Register" /></td>
 			</tr>
 		</table>
+		
 	</form:form>
 	<br />
 	<br /> Go back to
