@@ -51,6 +51,11 @@
 		<put-attribute name="content"
 			value="/WEB-INF/tiles/contactpersonenlijst.jsp" />
 	</definition>
+	
+	<definition name="contactpersoondetails" extends="contactpersonen">
+		<put-attribute name="title" value="RSVIER Contactpersoondetails" />
+		<put-attribute name="details" value="/WEB-INF/tiles/contactpersoondetails.jsp" />
+	</definition>
 
 	<definition name="prive" extends="home.base">
 		<put-attribute name="title" value="RSVIER Prive" />
@@ -60,7 +65,7 @@
 	<definition name="organisaties" extends="home.base">
 		<put-attribute name="title" value="RSVIER Organisaties" />
 		<put-attribute name="content"
-			value="/WEB-INF/tiles/organisatielijst.jsp" />
+			value="/WEB-INF/tiles/organisatieslijst.jsp" />
 	</definition>
 	
 	<definition name="projectinfo" extends="home.base">
