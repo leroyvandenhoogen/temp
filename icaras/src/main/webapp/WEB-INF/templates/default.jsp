@@ -31,6 +31,10 @@
 		<tiles:insertAttribute name="content"></tiles:insertAttribute>
 	</div>
 	
+	<div class="details">
+		<tiles:insertAttribute name="details"></tiles:insertAttribute>
+	</div>
+	
 	<div class="footer">
 		<tiles:insertAttribute name="footer"></tiles:insertAttribute>
 	</div>

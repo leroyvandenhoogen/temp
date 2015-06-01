@@ -116,7 +116,7 @@
 
 			<c:forEach items="${persoon.digitaleAdressen}" var="digitaleadres">
 				<tr class="element">
-					<td>${digitaleadres.digitaaladresType}</td>
+					<td>${digitaleadres.digitaalAdresType.type}</td>
 					<td>${digitaleadres.omschrijving}</td>
 					<td>${digitaleadres.contactvoorkeur}</td>
 				</tr>
