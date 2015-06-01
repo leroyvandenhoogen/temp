@@ -14,7 +14,7 @@
 				<td>${contactpersoon.voornaam}</td>
 				<td>${contactpersoon.achternaam}</td>
 				<td>${contactpersoon.tussenvoegsel}</td>
-				<td><a href="<c:url value='/contactpersonen/update-${contactpersoon.id}-persoon' />">${contactpersoon.id}</a></td>
+				<td><a href="<c:url value='/personen/update-${persoon.id}-persoon' />">${persoon.id}</a></td>
 			</tr>
 		</c:forEach>
 	</table>
