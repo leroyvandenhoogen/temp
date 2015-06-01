@@ -25,6 +25,11 @@ div.content {
 	padding: 40px;
 }
 
+div.details {
+	float: left;
+	padding: 40px;
+}
+
 div.footer {
 	clear: both;
 	font-size: small;
