@@ -9,6 +9,7 @@ import nl.rsvier.icaras.service.relatiebeheer.PersoonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -29,5 +30,20 @@ public class ContactpersonenlijstController {
 		}
 		model.addAttribute("contactpersonen", contactpersonen);
 		return "contactpersonen";
+	}
+	
+	@RequestMapping(value = "/update-{id}-persoon", method = RequestMethod.GET)
+	public String updatePersoon(@PathVariable int id, ModelMap model) {
+		Persoon persoon = service.get(id);
+		model.addAttribute("persoon", persoon);
+		List<Persoon> personen = service.getAll();
+		List<Persoon> contactpersonen = new ArrayList<>();
+		for (Persoon persoon : personen) {
+			if (persoon.hasRol("contactpersoon"))
+				contactpersonen.add(persoon);		
+		}
+		model.addAttribute("contactpersonen", contactpersonen);
+		model.addAttribute("personen", personen);
+		return "persoondetails";
 	}
 }
