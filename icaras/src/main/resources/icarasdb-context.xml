@@ -36,7 +36,6 @@
 				<prop key="hibernate.enable_lazy_load_no_trans">${hibernate.lazy_load}</prop>
 				<!-- moet verwijderd worden voor de transactionManager <prop key="hibernate.current_session_context_class">thread</prop> -->
 				<!-- onduidelijk of dit nodig is <prop key="hibernate.cache.provider_class">org.hibernate.cache.internal.NoCachingRegionFactory</prop> -->
-				
 			</props>
 		</property>
 

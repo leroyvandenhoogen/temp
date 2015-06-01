@@ -158,6 +158,7 @@ public class Persoon implements java.io.Serializable {
 	}
 
 	public void setAdressen(Set<Adres> adressen) {
+		if(adressen != null && !(this.adressen.contains(adressen)))
 		this.adressen = adressen;
 	}
 	
@@ -176,6 +177,7 @@ public class Persoon implements java.io.Serializable {
 	}
 
 	public void setDigitaleAdressen(Set<DigitaalAdres> digitaleAdressen) {
+		if(digitaleAdressen != null && !(this.digitaleAdressen.contains(digitaleAdressen)))
 		this.digitaleAdressen = digitaleAdressen;
 	}
 	
@@ -194,7 +196,7 @@ public class Persoon implements java.io.Serializable {
 	}
 
 	public void setPersoonsrollen(Set<Persoonsrol> persoonsrollen) {
-		if(persoonsrollen != null) { 
+		if(persoonsrollen != null && !(this.persoonsrollen.contains(persoonsrollen))) { 
 			this.persoonsrollen = persoonsrollen;
 		}
 	}
