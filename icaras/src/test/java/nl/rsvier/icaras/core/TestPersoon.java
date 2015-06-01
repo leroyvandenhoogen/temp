@@ -1,9 +1,10 @@
 package nl.rsvier.icaras.core;
 
 import java.util.GregorianCalendar;
-import java.util.HashSet;
-import nl.rsvier.icaras.core.relatiebeheer.Identiteitsbewijs;
+
 import nl.rsvier.icaras.core.relatiebeheer.Persoon;
+import nl.rsvier.icaras.core.relatiebeheer.Persoonsrol;
+import nl.rsvier.icaras.core.relatiebeheer.Rol;
 
 public class TestPersoon {
 	
@@ -28,6 +29,22 @@ public class TestPersoon {
 		persoon.setVoornaam("Koos");
 		persoon.setAchternaam("Kansloos");
 		persoon.setGeslacht("M");
+		return persoon;
+	}
+	
+	public static Persoon maakTestContactpersoon() {
+		Persoon persoon = new Persoon();
+		
+		persoon.setVoornaam("Remi");
+		persoon.setAchternaam("Boer");
+		persoon.setTussenvoegsel("de");
+		persoon.setGeboortedatum(new GregorianCalendar(1970, 0, 1).getTime());
+		persoon.setGeboorteplaats("Amsterdam");
+		persoon.setGeslacht("M");
+		persoon.setRijbewijs(true);
+		persoon.setNationaliteit("Nederland");
+		persoon.setOpmerking("Remi de Boer maakt schuine moppen");
+		
 		return persoon;
 	}
 }

@@ -35,10 +35,10 @@ public class HomeController {
 		return "werknemers";
 	}
 	
-	@RequestMapping("/contactpersonen")
-	public String showContactPersonenLijst() {
-		return "contactpersonen";
-	}
+//	@RequestMapping("/contactpersonen")
+//	public String showContactPersonenLijst() {
+//		return "contactpersonen";
+//	}
 	
 	@RequestMapping("/prive")
 	public String showPriveLijst() {
