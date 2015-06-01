@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<ul>
+<ul class="menu">
 <li><a href="<c:url value='/personen'/>">Personen</a></li>
 <li><a href="<c:url value='/cursisten'/>">Cursisten</a></li>
 <li><a href="<c:url value='/kandidaten'/>">Kandidaten</a></li>

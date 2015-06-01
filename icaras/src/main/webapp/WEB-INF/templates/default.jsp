@@ -18,7 +18,8 @@
 	href="${pageContext.request.contextPath}/resources/rs4/css/icaras.css"/>
 </head>
 <body>
-
+	<div class="wrapper">
+	
 	<div class="header">
 		<tiles:insertAttribute name="header"></tiles:insertAttribute>
 	</div>
@@ -35,8 +36,11 @@
 		<tiles:insertAttribute name="details"></tiles:insertAttribute>
 	</div>
 	
+	</div>
+	
 	<div class="footer">
 		<tiles:insertAttribute name="footer"></tiles:insertAttribute>
 	</div>
+	
 </body>
 </html>
