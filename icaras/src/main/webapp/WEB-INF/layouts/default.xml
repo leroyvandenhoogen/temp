@@ -21,9 +21,9 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/personenlijst.jsp" />
 	</definition>
 	
-	<definition name="persoondetails" extends="home.base">
+	<definition name="persoondetails" extends="personen">
 		<put-attribute name="title" value="RSVIER Persoondetails" />
-		<put-attribute name="content" value="/WEB-INF/tiles/persoondetails.jsp" />
+		<put-attribute name="details" value="/WEB-INF/tiles/persoondetails.jsp" />
 	</definition>
 
 	<definition name="cursisten" extends="home.base">
