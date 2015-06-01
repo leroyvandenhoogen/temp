@@ -31,14 +31,9 @@ public class PersonenlijstController {
 	@RequestMapping(value = "/update-{id}-persoon", method = RequestMethod.GET)
 	public String updatePersoon(@PathVariable int id, ModelMap model) {
 		Persoon persoon = service.get(id);
-		System.out.println("//////" + persoon.getAdressen().size());
-//		Set<Adres> adressen = persoon.getAdressen();
-//		persoon.setIdentiteitsbewijzen(service.get(id).getIdentiteitsbewijzen());
-//		persoon.setAdressen(service.get(id).getAdressen());
-//		persoon.setDigitaleAdressen(service.get(id).getDigitaleAdressen());
-//		persoon.setPersoonsrollen(service.get(id).getPersoonsrollen());
 		model.addAttribute("persoon", persoon);
-		//model.addAttribute("adressen", adressen);
+		List<Persoon> personen = service.getAll();
+		model.addAttribute("personen", personen);
 		return "persoondetails";
 	}
 }
