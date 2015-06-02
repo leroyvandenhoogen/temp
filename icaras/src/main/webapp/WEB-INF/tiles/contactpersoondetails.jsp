@@ -13,7 +13,6 @@
 				<td><form:input path="voornaam" id="voornaam" /></td>
 				<td><form:errors path="voornaam" cssClass="error" /></td>
 			</tr>
-
 			<tr>
 				<td><label for="achternaam">Achternaam: </label></td>
 				<td><form:input path="achternaam" id="achternaam" /></td>
@@ -25,12 +24,44 @@
 				<td><form:input path="tussenvoegsel" id="tussenvoegsel" /></td>
 				<td><form:errors path="tussenvoegsel" cssClass="error" /></td>
 			</tr>
+
+			<tr>
+				<td><label for="geslacht">Geslacht: </label></td>
+				<td><form:input path="geslacht" id="geslacht" /></td>
+				<td><form:errors path="geslacht" cssClass="error" /></td>
+			</tr>
+			
+			<tr>
+				<td><label for="opmerking">Bijzonderheden: </label></td>
+				<td><form:textarea rows="5" cols="20" path="opmerking" id="opmerking"/>
+				<td><form:errors path="opmerking" cssClass="error" /></td>
+			</tr>
 			<tr></tr>
 		</table>
+		
+		<table class="details">
+		<th>Contact Gegevens</th>
+			<c:forEach items="${persoon.digitaleAdressen}" var="digitaleadres">
+				<c:if test="${digitaleadres.digitaalAdresType.type == 'email' || digitaleadres.digitaalAdresType.type == 'telefoonnummer' }">
+					<tr class="element">
+						<td><label>${digitaleadres.digitaalAdresType.type} </label></td>
+						<td><form:input path="${omschrijving}" id="omschrijving" value="${digitaleadres.omschrijving}" size="30"/></td>
+						<td><label>voorkeur </label></td>
+						<td><form:input path="${contactvoorkeur}" id="contactvoorkeur" value="${digitaleadres.contactvoorkeur}" size="2"/></td>
+					</tr>
+				</c:if>
+					
+			</c:forEach>
+					<tr></tr>
 
+			<tr></tr>
+						<tr>
+				<td colspan="3"><input type="submit" value="Update" /></td>
+			</tr>
+<!-- 	
 		<table class="details">
 		<th>Adresgegevens </th>
-			<c:forEach items="${persoon.adressen}" var="adres">
+			<c:forEach items="${persoonsrol.persoon.adressen}" var="adres">
 				<tr>
 					<td><label for="adrestype">Adres type: </label></td>
 					<td><select name="type">
@@ -76,51 +107,9 @@
 				<tr></tr>
 			</c:forEach>
 		</table>
-		
-		<table class="details">
-		<th>Digitaal Adres</th>
-			<c:forEach items="${persoon.digitaleAdressen}" var="digitaleadres">
-				<c:if test="${digitaleadres.digitaalAdresType.type == 'email' || digitaleadres.digitaalAdresType.type == 'telefoonnummer' }">
-					<tr class="element">
-						<td><label>${digitaleadres.digitaalAdresType.type} </label></td>
-						<td><form:input path="${omschrijving}" id="omschrijving" value="${digitaleadres.omschrijving}" size="30"/></td>
-						<td><label>voorkeur </label></td>
-						<td><form:input path="${contactvoorkeur}" id="contactvoorkeur" value="${digitaleadres.contactvoorkeur}" size="2"/></td>
-					</tr>
-				</c:if>
-					
-			</c:forEach>
-					<tr></tr>
-		</table>
-		<table class="details">
-		<th>Persoonsrollen</th>
-			<c:forEach items="${persoon.persoonsrollen}" var="persoonsrol">
-				<tr class="element">
-					<td><label>${persoonsrol.rol.type} </label></td>
-					<td><label>begindatum</label></td>
-					<td><form:input path="${begindatum}" id="begindatum" value="${persoonsrol.id.begindatum}" size="10"/></td>
-					<td><label>einddatum </label></td>
-					<td><form:input path="${einddatum}" id="einddatum" value="${persoonsrol.einddatum}" size="10"/></td>
-				</tr>
-			</c:forEach>
-			<tr></tr>
+	
 
-			
-		</table>
-		
-				<table class="details">
-			<c:forEach items="${persoon.identiteitsbewijzen}"
-				var="identiteitsbewijs">
-				<tr class="element">
-					<td>${identiteitsbewijs.nummer}</td>
-					<td>${identiteitsbewijs.vervaldatum}</td>
-					<td>${identiteitsbewijs.identiteitsbewijsType}</td>
-				</tr>
-			</c:forEach>
-			<tr></tr>
-						<tr>
-				<td colspan="3"><input type="submit" value="Register" /></td>
-			</tr>
+			  -->
 		</table>
 		
 	</form:form>

@@ -28,8 +28,8 @@ public class PersoonsrolService {
 		rolDao.addRol(rol, persoonsrol);
 	}
 	
-	public void get(PersoonsrolId id) {
-		dao.getById(id);
+	public Persoonsrol get(PersoonsrolId id) {
+		return dao.getById(id);
 	}
 	
 	public void update(Persoonsrol persoonsrol) {
