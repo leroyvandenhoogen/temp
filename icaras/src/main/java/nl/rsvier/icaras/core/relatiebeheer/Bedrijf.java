@@ -74,6 +74,7 @@ public class Bedrijf implements java.io.Serializable {
 	}
 
 	public void setDigitaleAdressen(Set<DigitaalAdres> digitaleAdressen) {
+		if(digitaleAdressen != null && !(this.digitaleAdressen.contains(digitaleAdressen)))
 		this.digitaleAdressen = digitaleAdressen;
 	}
 
@@ -92,6 +93,7 @@ public class Bedrijf implements java.io.Serializable {
 	}
 
 	public void setAdressen(Set<Adres> adressen) {
+		if(adressen != null && !(this.adressen.contains(adressen)))
 		this.adressen = adressen;
 	}
 	
@@ -106,10 +108,12 @@ public class Bedrijf implements java.io.Serializable {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bedrijf")
 	public Set<Persoonsrol> getPersoonsrollen() {
+		
 		return this.persoonsrollen;
 	}
 
 	public void setPersoonsrollen(Set<Persoonsrol> persoonsrollen) {
+		if(persoonsrollen != null && !(this.persoonsrollen.contains(persoonsrollen))) 
 		this.persoonsrollen = persoonsrollen;
 	}
 	

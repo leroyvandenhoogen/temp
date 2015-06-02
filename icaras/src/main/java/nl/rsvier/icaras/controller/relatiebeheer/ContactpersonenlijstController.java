@@ -52,9 +52,10 @@ public class ContactpersonenlijstController {
 					persoonsrol = rol;
 			}
 		}
-		Bedrijf bedrijf = persoonsrol.getBedrijf();
-		model.addAttribute("bedrijf", bedrijf);
-		model.addAttribute("persoon", persoon);
+//		Bedrijf bedrijf = persoonsrol.getBedrijf();
+//		model.addAttribute("bedrijf", bedrijf);
+//		model.addAttribute("persoon", persoon);
+		model.addAttribute("persoonsrol", persoonsrol);
 		model.addAttribute("contactpersonen", contactpersonen);
 		return "contactpersoondetails";
 	}
