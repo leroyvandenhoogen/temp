@@ -1,5 +1,7 @@
 package nl.rsvier.icaras.service.relatiebeheer;
 
+import java.util.List;
+
 import nl.rsvier.icaras.core.relatiebeheer.Persoonsrol;
 import nl.rsvier.icaras.core.relatiebeheer.PersoonsrolId;
 import nl.rsvier.icaras.dao.relatiebeheer.PersoonsrolDaoImpl;
@@ -26,8 +28,8 @@ public class PersoonsrolService {
 		rolDao.addRol(rol, persoonsrol);
 	}
 	
-	public void get(PersoonsrolId id) {
-		dao.getById(id);
+	public Persoonsrol get(PersoonsrolId id) {
+		return dao.getById(id);
 	}
 	
 	public void update(Persoonsrol persoonsrol) {
@@ -36,6 +38,10 @@ public class PersoonsrolService {
 	
 	public void delete(Persoonsrol persoonsrol) {
 		dao.delete(persoonsrol);
+	}
+	
+	public List<Persoonsrol> getAll() {
+		return dao.getAll();
 	}
 	
 }
