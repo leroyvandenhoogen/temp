@@ -3,6 +3,8 @@ package nl.rsvier.icaras.controller.relatiebeheer;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import nl.rsvier.icaras.core.relatiebeheer.Adres;
 import nl.rsvier.icaras.core.relatiebeheer.Bedrijf;
 import nl.rsvier.icaras.core.relatiebeheer.Persoon;
@@ -13,6 +15,7 @@ import nl.rsvier.icaras.service.relatiebeheer.PersoonsrolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -52,11 +55,21 @@ public class ContactpersonenlijstController {
 					persoonsrol = rol;
 			}
 		}
-//		Bedrijf bedrijf = persoonsrol.getBedrijf();
-//		model.addAttribute("bedrijf", bedrijf);
-//		model.addAttribute("persoon", persoon);
 		model.addAttribute("persoonsrol", persoonsrol);
 		model.addAttribute("contactpersonen", contactpersonen);
 		return "contactpersoondetails";
 	}
+	
+    @RequestMapping(value = {"update-{id}-persoon"}, method = RequestMethod.POST)
+    public String updatePersoon(@PathVariable int id, @Valid Persoonsrol persoonsrol, BindingResult result, ModelMap model) {
+        if (result.hasErrors()) {
+            return "contactpersoondetails";
+        } else {
+        	service.save(persoonsrol);
+
+            model.addAttribute("succes", persoonsrol.getPersoon().getVoornaam() + " "
+                    + persoonsrol.getPersoon().getAchternaam() + " is gewijzigd");
+            return "contactpersonen";
+        }
+    }
 }
