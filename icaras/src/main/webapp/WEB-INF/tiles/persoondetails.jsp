@@ -56,7 +56,63 @@
 			</tr>
 			<tr></tr>
 		</table>
-
+		
+		<table class="details">
+			<th>Adresgegevens</th>
+			 <c:forEach items="${persoon.adressen}" var="adres" varStatus="current" begin="0">
+				<tr>
+					<td><label>Straat: </label></td>
+					<td><form:input path="adressen[${current.index}].straat"
+							value="${straat}" /></td>
+				</tr>
+				<tr>
+					<td><label>Nummer: </label></td>
+					<td><form:input path="adressen[${current.index}].nummer"
+							value="${nummer}"/></td>
+				</tr>
+				<tr>
+					<td><label>Toevoegsel: </label></td>
+					<td><form:input path="adressen[${current.index}].toevoegsel"
+							value="${toevoegsel}" /></td>
+				</tr>
+				<tr>
+					<td><label>Postcode: </label></td>
+					<td><form:input path="adressen[${current.index}].postcode"
+							value="${postcode}" /></td>
+				</tr>
+				<tr>
+					<td><label>Plaats: </label></td>
+					<td><form:input path="adressen[${current.index}].plaats"
+							value="${plaats}" /></td>
+				</tr>
+				<tr>
+					<td><label>Land: </label></td>
+					<td><form:input path="adressen[${current.index}].land" value="${land}" /></td>
+				</tr>
+				<tr>
+					<td><label>Begin datum: </label></td>
+					<td><form:input type="date" path="adressen[${current.index}].begindatum"
+							value="${begindatum}" /></td>
+				</tr>
+				<tr>
+					<td><label>Eind datum: </label></td>
+					<td><form:input type="date" path="adressen[${current.index}].einddatum"
+							value="${einddatum}" /></td>
+				</tr>
+				<tr></tr>
+					<tr>
+					<td><label for="adresType">Adres type: </label></td>
+					<td><select name="type">
+					<c:forEach items="${adresTypes}" var="adresType">
+							<option id="adresType" value="${adresType.type}">"${adresType.type}"</option>
+					</c:forEach>
+						<option value="${adres.adresType.type}" selected>${adres.adresType.type} (huidig)</option>
+					</select></td>
+				</tr>
+			</c:forEach>
+		</table>
+		
+		<!--
 		<table class="details">
 		<th>Adresgegevens </th>
 			<c:forEach items="${persoon.adressen}" var="adres">
@@ -105,6 +161,7 @@
 				<tr></tr>
 			</c:forEach>
 		</table>
+		-->
 		
 		<table class="details">
 		<th>Digitaal Adres</th>
@@ -152,6 +209,6 @@
 	</form:form>
 	
 	<br />
-	<br /> Go back to
-	<a href="<c:url value='/list' />">List of All Employees</a>
+	<br /> Ga terug naar
+	<a href="<c:url value='/personen' />">Lijst van alle Personen</a>
 </body>

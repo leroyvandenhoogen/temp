@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import nl.rsvier.icaras.core.relatiebeheer.Adres;
+import nl.rsvier.icaras.core.relatiebeheer.AdresType;
 import nl.rsvier.icaras.dao.relatiebeheer.AdresDaoImpl;
 import nl.rsvier.icaras.dao.relatiebeheer.AdresTypeDaoImpl;
 
@@ -41,6 +42,10 @@ public class AdresService {
 	
 	public List<Adres> getAll() {
 		return adresDao.getAll();
+	}
+	
+	public List<AdresType> getAllTypes() {
+		return typeDao.getAll();
 	}
 	
 	public boolean addAdresType(String adresType, Adres adres) {
