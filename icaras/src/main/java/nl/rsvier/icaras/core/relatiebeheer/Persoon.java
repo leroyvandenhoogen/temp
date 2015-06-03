@@ -1,7 +1,10 @@
 package nl.rsvier.icaras.core.relatiebeheer;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -11,7 +14,6 @@ import javax.persistence.GeneratedValue;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -20,6 +22,7 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
@@ -39,7 +42,8 @@ public class Persoon implements java.io.Serializable {
 	private String nationaliteit;
 	private String opmerking;
 	private Set<Identiteitsbewijs> identiteitsbewijzen = new HashSet<Identiteitsbewijs>(0);
-	private Set<Adres> adressen = new HashSet<Adres>(0);
+//	private Set<Adres> adressen = new HashSet<Adres>(0);
+	private List<Adres> adressen = new ArrayList<Adres>(0);
 	private Set<DigitaalAdres> digitaleAdressen = new HashSet<DigitaalAdres>(0);
 	private Set<Persoonsrol> persoonsrollen = new HashSet<Persoonsrol>(0);
 
@@ -140,7 +144,7 @@ public class Persoon implements java.io.Serializable {
 		this.opmerking = opmerking;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon")
 	public Set<Identiteitsbewijs> getIdentiteitsbewijzen() {
 		return this.identiteitsbewijzen;
 	}
@@ -158,12 +162,24 @@ public class Persoon implements java.io.Serializable {
 		return toegevoegd;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon", cascade = CascadeType.ALL)
-	public Set<Adres> getAdressen() {
+//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "persoon")
+//	@Cascade({CascadeType.ALL})
+//	public Set<Adres> getAdressen() {
+//		return this.adressen;
+//	}
+//
+//	public void setAdressen(Set<Adres> adressen) {
+//		if(adressen != null && !(this.adressen.contains(adressen)))
+//		this.adressen = adressen;
+//	}
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "persoon")
+	@Cascade({CascadeType.ALL})
+	public List<Adres> getAdressen() {
 		return this.adressen;
 	}
 
-	public void setAdressen(Set<Adres> adressen) {
+	public void setAdressen(List<Adres> adressen) {
 		if(adressen != null && !(this.adressen.contains(adressen)))
 		this.adressen = adressen;
 	}
@@ -177,7 +193,7 @@ public class Persoon implements java.io.Serializable {
 		return toegevoegd;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon")
 	public Set<DigitaalAdres> getDigitaleAdressen() {
 		return this.digitaleAdressen;
 	}
@@ -196,7 +212,7 @@ public class Persoon implements java.io.Serializable {
 		return toegevoegd;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon")
 	public Set<Persoonsrol> getPersoonsrollen() {
 		return this.persoonsrollen;
 	}

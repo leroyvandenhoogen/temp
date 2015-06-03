@@ -16,6 +16,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 @Entity
 @Table(name = "adres", catalog = "icaras")
 public class Adres implements java.io.Serializable {
@@ -74,12 +77,15 @@ public class Adres implements java.io.Serializable {
 
 	public synchronized boolean setPersoon(Persoon persoon) {
 		boolean isSet = false;
+		
 		if(persoon != null && this.getPersoon() == null) {
 			this.persoon = persoon;
 			isSet = true;
-			if(!(this.getPersoon().getAdressen().contains(this))) {
-				persoon.addAdres(this);
-			}
+//			if(!(this.getPersoon().getAdressen().contains(this))) {
+//				System.out.println("3. PERSOON HEEFT DIT ADRES NIET");
+//				persoon.addAdres(this);
+//				System.out.println("4. ADRES TOEGEVOEGD AAN PERSOON");
+//			}
 		}
 		return isSet;
 	}
@@ -150,6 +156,7 @@ public class Adres implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(iso = ISO.DATE, pattern="yyyy-MM-dd")
 	@Column(name = "begindatum", nullable = false, length = 10)
 	public Date getBegindatum() {
 		return this.begindatum;
@@ -160,6 +167,7 @@ public class Adres implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(iso = ISO.DATE, pattern="yyyy-MM-dd")
 	@Column(name = "einddatum", length = 10)
 	public Date getEinddatum() {
 		return this.einddatum;
