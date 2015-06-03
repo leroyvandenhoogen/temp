@@ -13,7 +13,7 @@ import nl.rsvier.icaras.core.TestPersoon;
 import nl.rsvier.icaras.core.TestPersoonsrol;
 import nl.rsvier.icaras.core.relatiebeheer.Persoon;
 import nl.rsvier.icaras.core.relatiebeheer.Persoonsrol;
-import nl.rsvier.icaras.core.relatiebeheer.PersoonsrolId;
+import nl.rsvier.icaras.core.relatiebeheer.Rol;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -41,17 +41,21 @@ public class PersoonsrolDaoImplTest {
 	private Persoonsrol persoonsrol2;
 	
 	@Before
-	public void setUp() {
+	public void setUp() {		
 		persoonsrol1 = TestPersoonsrol.maakPersoonsrol1();
 		persoonsrol2 = TestPersoonsrol.maakPersoonsrol2();
 		Persoon persoon1 = TestPersoon.maakTestPersoon1();
 		Persoon persoon2 = TestPersoon.maakTestPersoon2();
 		persoonDao.save(persoon1);
 		persoonDao.save(persoon2);
-		persoonsrol1.setPersoon(persoon1);
-		persoonsrol2.setPersoon(persoon2);
 		rolDao.addRol("Cursist", persoonsrol1);
 		rolDao.addRol("Cursist", persoonsrol2);
+		persoonsrol1.setPersoon(persoon1);
+		persoonsrol2.setPersoon(persoon2);
+
+		
+		
+		
 //		PersoonsrolId id = new PersoonsrolId();
 //		id.setPersoonId(persoon1.getId());
 //		id.setRolId(persoonsrol1.getRol().getId());
@@ -62,8 +66,6 @@ public class PersoonsrolDaoImplTest {
 //		id2.setBegindatum(new GregorianCalendar(2015, 11, 11).getTime());
 //		persoonsrol1.setId(id);
 //		persoonsrol2.setId(id2);
-		persoonsrol1.createId(new GregorianCalendar(2015, 0, 1).getTime());
-		persoonsrol2.createId(new GregorianCalendar(2015, 11, 11).getTime());
 	}
 	
 	@Test
@@ -79,9 +81,6 @@ public class PersoonsrolDaoImplTest {
 		
 		Persoonsrol testPersoonsrol1 = dao.getById(persoonsrol1.getId());
 		Persoonsrol testPersoonsrol2 = dao.getById(persoonsrol2.getId());
-		
-		System.out.println("/////" + persoonsrol1.getId().getBegindatum());
-		System.out.println("/////" + testPersoonsrol1.getId().getBegindatum());
 
 		assertTrue("attributen vanuit database zijn gelijk aan die van persoonsrol1 voor save",
 				testPersoonsrol1.equals(persoonsrol1));
@@ -119,13 +118,9 @@ public class PersoonsrolDaoImplTest {
 	@Transactional
 	public void testDelete() {
 		dao.save(persoonsrol1);
-		PersoonsrolId id = persoonsrol1.getId();
+		Integer id = persoonsrol1.getId();
 		
-		dao.flushAndClear();
-		
-		assertNotNull(dao.getById(id));
-		
-		dao.delete(dao.getById(persoonsrol1.getId()));
+		dao.delete(persoonsrol1);
 		
 		dao.flushAndClear();
 		

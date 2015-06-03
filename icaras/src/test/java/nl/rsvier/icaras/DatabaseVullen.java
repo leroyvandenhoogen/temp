@@ -68,9 +68,6 @@ public class DatabaseVullen {
 		digitaalAdresService.save(digitaalAdres1);
 		digitaalAdresService.save(digitaalAdres2);
 
-		
-		persoonsrol1.createId(new GregorianCalendar(2015, 0, 1).getTime());
-		persoonsrol2.createId(new GregorianCalendar(2015, 11, 11).getTime());
 		persoonsrolService.save(persoonsrol1);
 		persoonsrolService.save(persoonsrol2);
 		

@@ -1,5 +1,7 @@
 package nl.rsvier.icaras.core.relatiebeheer;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.Date;
 
 import javax.persistence.AttributeOverride;
@@ -8,6 +10,8 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -19,38 +23,29 @@ import javax.persistence.TemporalType;
 public class Persoonsrol implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private PersoonsrolId id;
+	private int id;
 	private Rol rol;
 	private Bedrijf bedrijf;
 	private Persoon persoon;
+	private Date begindatum;
 	private Date einddatum;
 
 	public Persoonsrol() {
 	}
 
-	@EmbeddedId
-	@AttributeOverrides({
-			@AttributeOverride(name = "persoonId", column = @Column(name = "persoon_id", nullable = false)),
-			@AttributeOverride(name = "rolId", column = @Column(name = "rol_id", nullable = false)),
-			@AttributeOverride(name = "begindatum", column = @Column(name = "begindatum", nullable = false, length = 10)) })
-	public PersoonsrolId getId() {
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
+	public Integer getId() {
 		return this.id;
 	}
-
-	public void createId(Date begindatum) {
-		PersoonsrolId temp = new PersoonsrolId();
-		temp.setPersoonId(this.getPersoon().getId());
-		temp.setRolId(this.getRol().getId());
-		temp.setBegindatum(begindatum);
-		this.setId(temp);
-	}
 	
-	private void setId(PersoonsrolId id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "rol_id", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "rol_id", nullable = false  /*, insertable = false*/ , updatable = false)
 	public Rol getRol() {
 		return this.rol;
 	}
@@ -78,7 +73,7 @@ public class Persoonsrol implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "persoon_id", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "persoon_id", nullable = false /*, insertable = false, updatable = false*/)
 	public Persoon getPersoon() {
 		return this.persoon;
 	}
@@ -93,6 +88,15 @@ public class Persoonsrol implements java.io.Serializable {
 			}
 		}
 		return isSet;
+	}
+	@Temporal(TemporalType.DATE)
+	@Column(name = "begindatum", nullable = false, length = 10)
+	public Date getBegindatum() {
+		return this.begindatum;
+	}
+	
+	public void setBegindatum(Date begindatum) {
+		this.begindatum = begindatum;
 	}
 
 	@Temporal(TemporalType.DATE)
@@ -109,6 +113,7 @@ public class Persoonsrol implements java.io.Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result	+ ((getBegindatum() == null) ? 0 : getBegindatum().hashCode());
 		result = prime * result	+ ((getEinddatum() == null) ? 0 : getEinddatum().hashCode());
 		result = prime * result + ((getRol() == null) ? 0 : getRol().hashCode());
 		//Composite key Id
@@ -125,6 +130,10 @@ public class Persoonsrol implements java.io.Serializable {
 			return false;
 		} else {
 			Persoonsrol other = (Persoonsrol) obj;	
+			if (this.getBegindatum() != null && !this.getBegindatum().equals(other.getBegindatum())) {
+				return false;
+			}
+
 			if (this.getEinddatum() != null && !this.getEinddatum().equals(other.getEinddatum())) {
 				return false;
 			}
@@ -133,18 +142,11 @@ public class Persoonsrol implements java.io.Serializable {
 				return false;
 			}
 			
-//			if (this.getId() != null && !this.getId().equals(other.getId())) {
-//				return false;
-//			}
-			if (this.getId() != null && (this.getId().getPersoonId() != (other.getId().getPersoonId()))) {
+			if (this.getId() != null && !this.getId().equals(other.getId())) {
 				return false;
 			}
 			
-			if (this.getId() != null && (this.getId().getRolId() !=(other.getId().getRolId()))) {
-				return false;
-			}
-			
-			if (this.getId() != null && (!(this.getId().getBegindatum().equals((other.getId().getBegindatum()))))) {
+			if (this.getId() != null && (!(this.getBegindatum().equals((other.getBegindatum()))))) {
 				return false;
 			}
 			
