@@ -41,11 +41,10 @@ public class Persoon implements java.io.Serializable {
 	private Boolean rijbewijs;
 	private String nationaliteit;
 	private String opmerking;
-	private Set<Identiteitsbewijs> identiteitsbewijzen = new HashSet<Identiteitsbewijs>(0);
-//	private Set<Adres> adressen = new HashSet<Adres>(0);
+	private List<Identiteitsbewijs> identiteitsbewijzen = new ArrayList<Identiteitsbewijs>(0);
 	private List<Adres> adressen = new ArrayList<Adres>(0);
-	private Set<DigitaalAdres> digitaleAdressen = new HashSet<DigitaalAdres>(0);
-	private Set<Persoonsrol> persoonsrollen = new HashSet<Persoonsrol>(0);
+	private List<DigitaalAdres> digitaleAdressen = new ArrayList<DigitaalAdres>(0);
+	private List<Persoonsrol> persoonsrollen = new ArrayList<Persoonsrol>(0);
 
 	public Persoon() {
 	}
@@ -145,11 +144,11 @@ public class Persoon implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon")
-	public Set<Identiteitsbewijs> getIdentiteitsbewijzen() {
+	public List<Identiteitsbewijs> getIdentiteitsbewijzen() {
 		return this.identiteitsbewijzen;
 	}
 
-	public void setIdentiteitsbewijzen(Set<Identiteitsbewijs> identiteitsbewijzen) {
+	public void setIdentiteitsbewijzen(List<Identiteitsbewijs> identiteitsbewijzen) {
 		this.identiteitsbewijzen = identiteitsbewijzen;
 	}
 	
@@ -162,17 +161,6 @@ public class Persoon implements java.io.Serializable {
 		return toegevoegd;
 	}
 
-//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "persoon")
-//	@Cascade({CascadeType.ALL})
-//	public Set<Adres> getAdressen() {
-//		return this.adressen;
-//	}
-//
-//	public void setAdressen(Set<Adres> adressen) {
-//		if(adressen != null && !(this.adressen.contains(adressen)))
-//		this.adressen = adressen;
-//	}
-	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "persoon")
 	@Cascade({CascadeType.ALL})
 	public List<Adres> getAdressen() {
@@ -194,11 +182,11 @@ public class Persoon implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon")
-	public Set<DigitaalAdres> getDigitaleAdressen() {
+	public List<DigitaalAdres> getDigitaleAdressen() {
 		return this.digitaleAdressen;
 	}
 
-	public void setDigitaleAdressen(Set<DigitaalAdres> digitaleAdressen) {
+	public void setDigitaleAdressen(List<DigitaalAdres> digitaleAdressen) {
 		if(digitaleAdressen != null && !(this.digitaleAdressen.contains(digitaleAdressen)))
 		this.digitaleAdressen = digitaleAdressen;
 	}
@@ -213,11 +201,11 @@ public class Persoon implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon")
-	public Set<Persoonsrol> getPersoonsrollen() {
+	public List<Persoonsrol> getPersoonsrollen() {
 		return this.persoonsrollen;
 	}
 
-	public void setPersoonsrollen(Set<Persoonsrol> persoonsrollen) {
+	public void setPersoonsrollen(List<Persoonsrol> persoonsrollen) {
 		if(persoonsrollen != null && !(this.persoonsrollen.contains(persoonsrollen))) { 
 			this.persoonsrollen = persoonsrollen;
 		}

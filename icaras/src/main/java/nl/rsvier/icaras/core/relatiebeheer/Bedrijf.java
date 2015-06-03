@@ -1,6 +1,8 @@
 package nl.rsvier.icaras.core.relatiebeheer;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -23,9 +25,9 @@ public class Bedrijf implements java.io.Serializable {
 	private String naam;
 	private String kvkNummer;
 	private String opmerking;
-	private Set<DigitaalAdres> digitaleAdressen = new HashSet<DigitaalAdres>(0);
-	private Set<Adres> adressen = new HashSet<Adres>(0);
-	private Set<Persoonsrol> persoonsrollen = new HashSet<Persoonsrol>(0);
+	private List<DigitaalAdres> digitaleAdressen = new ArrayList<DigitaalAdres>(0);
+	private List<Adres> adressen = new ArrayList<Adres>(0);
+	private List<Persoonsrol> persoonsrollen = new ArrayList<Persoonsrol>(0);
 
 	public Bedrijf() {
 	}
@@ -69,11 +71,11 @@ public class Bedrijf implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bedrijf")
-	public Set<DigitaalAdres> getDigitaleAdressen() {
+	public List<DigitaalAdres> getDigitaleAdressen() {
 		return this.digitaleAdressen;
 	}
 
-	public void setDigitaleAdressen(Set<DigitaalAdres> digitaleAdressen) {
+	public void setDigitaleAdressen(List<DigitaalAdres> digitaleAdressen) {
 		if(digitaleAdressen != null && !(this.digitaleAdressen.contains(digitaleAdressen)))
 		this.digitaleAdressen = digitaleAdressen;
 	}
@@ -88,11 +90,11 @@ public class Bedrijf implements java.io.Serializable {
 	}
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bedrijf")
-	public Set<Adres> getAdressen() {
+	public List<Adres> getAdressen() {
 		return this.adressen;
 	}
 
-	public void setAdressen(Set<Adres> adressen) {
+	public void setAdressen(List<Adres> adressen) {
 		if(adressen != null && !(this.adressen.contains(adressen)))
 		this.adressen = adressen;
 	}
@@ -107,12 +109,12 @@ public class Bedrijf implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bedrijf")
-	public Set<Persoonsrol> getPersoonsrollen() {
+	public List<Persoonsrol> getPersoonsrollen() {
 		
 		return this.persoonsrollen;
 	}
 
-	public void setPersoonsrollen(Set<Persoonsrol> persoonsrollen) {
+	public void setPersoonsrollen(List<Persoonsrol> persoonsrollen) {
 		if(persoonsrollen != null && !(this.persoonsrollen.contains(persoonsrollen))) 
 		this.persoonsrollen = persoonsrollen;
 	}
