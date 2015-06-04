@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <body>
+	${succes}
 	<form:form method="POST" modelAttribute="persoon">
 		<table class="details">
 			<th>Persoonsgegevens</th>
@@ -11,22 +12,32 @@
 				<td><form:errors path="voornaam" cssClass="error" /></td>
 			</tr>
 			<tr>
+				<td><label for="tussenvoegsel">Tussenvoegsel: </label></td>
+				<td><form:input path="tussenvoegsel" id="tussenvoegsel" /></td>
+				<td><form:errors path="tussenvoegsel" cssClass="error" /></td>
+			</tr>
+			<tr>
 				<td><label for="achternaam">Achternaam: </label></td>
 				<td><form:input path="achternaam" id="achternaam" /></td>
 				<td><form:errors path="achternaam" cssClass="error" /></td>
 			</tr>
 			<tr>
-				<td><label for="tussenvoegsel">Tussenvoegsel: </label></td>
-				<td><form:input path="tussenvoegsel" id="tussenvoegsel" /></td>
-				<td><form:errors path="tussenvoegsel" cssClass="error" /></td>
+				<td><form:input type="hidden" path="geboortedatum" id="geboortedatum" /></td>
 			</tr>
-
+			<tr>
+				<td><form:input type="hidden" path="geboorteplaats" id="geboorteplaats" /></td>
+			</tr>
 			<tr>
 				<td><label for="geslacht">Geslacht: </label></td>
 				<td><form:input path="geslacht" id="geslacht" /></td>
 				<td><form:errors path="geslacht" cssClass="error" /></td>
 			</tr>
-
+			<tr>
+				<td><form:input type="hidden" path="rijbewijs" id="rijbewijs" /></td>
+			</tr>
+			<tr>
+				<td><form:input type="hidden" path="nationaliteit" id="nationaliteit" /></td>
+			</tr>
 			<tr>
 				<td><label for="opmerking">Bijzonderheden: </label></td>
 				<td><form:textarea rows="5" cols="20" path="opmerking"
@@ -37,26 +48,22 @@
 		</table>
 
 		<table class="details">
-			<th>Contact Gegevens</th>
-			<c:forEach items="${digitaleAdressen}" var="digitaleadres">
-				<c:if
-					test="${digitaleadres.digitaalAdresType.type == 'email' || digitaleadres.digitaalAdresType.type == 'telefoonnummer' }">
+		<th>Digitaal Adres</th>
+			<c:forEach items="${persoon.digitaleAdressen}" var="digitaleadres" varStatus="current" begin="0">
+				<c:if test="digitaleAdressen[${current.index}].digitaalAdresType.type == 'email' || digitaleAdressen[${current.index}].digitaalAdresType.type == 'telefoonnummer' }">
 					<tr class="element">
-						<td><label>${digitaleadres.digitaalAdresType.type} </label></td>
-						<td><form:input path="${omschrijving}" id="omschrijving"
-								value="${digitaleadres.omschrijving}" size="30" /></td>
+						<td><label>${digitaleAdressen[${current.index}].digitaalAdresType.type} </label></td>
+						<td><form:input path="digitaleAdressen[${current.index}].omschrijving" value="digitaleAdressen[${current.index}].omschrijving" size="30"/></td>
 						<td><label>voorkeur </label></td>
-						<td><form:input path="${contactvoorkeur}"
-								id="contactvoorkeur" value="${digitaleadres.contactvoorkeur}"
-								size="2" /></td>
+						<td><form:input path="digitaleAdressen[${current.index}].contactvoorkeur" value="digitaleAdressen[${current.index}].contactvoorkeur" size="2"/></td>
 					</tr>
 				</c:if>
-
+					
 			</c:forEach>
-			<tr></tr>
+					<tr></tr>
 		</table>
-		
-				<table class="details">
+<!--
+		<table class="details">
 			<th>Adresgegevens</th>
 			<c:forEach items="${persoonsrollen}" var="persoonsrol">
 				<c:if test="${persoonsrol.rol.type == 'contactpersoon'}">
@@ -118,12 +125,15 @@
 									value="${adres.einddatum}" /></td>
 						</tr>
 						<tr></tr>
-						<tr>
-							<td colspan="3"><input type="submit" value="Update" /></td>
-						</tr>
+
 					</c:forEach>
 				</c:if>
 			</c:forEach>
 		</table>
+-->		
+		<tr>
+			<td colspan="3"><input type="submit" value="Update" /></td>
+		</tr>
 	</form:form>
+
 </body>

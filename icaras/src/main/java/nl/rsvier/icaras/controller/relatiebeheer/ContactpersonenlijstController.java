@@ -35,9 +35,9 @@ public class ContactpersonenlijstController {
 	public String showPersonenLijst(ModelMap model) {
 		List<Persoon> personen = persoonService.getAll();
 		List<Persoon> contactpersonen = new ArrayList<>();
-		for (Persoon persoon : personen) {
-			if (persoon.hasRol("contactpersoon"))
-				contactpersonen.add(persoon);
+		for (Persoon pers : personen) {
+			if (pers.hasRol("contactpersoon"))
+				contactpersonen.add(pers);
 		}
 		model.addAttribute("contactpersonen", contactpersonen);
 		return "contactpersonen";
@@ -50,7 +50,7 @@ public class ContactpersonenlijstController {
 		List<Persoon> contactpersonen = new ArrayList<>();
 		for (Persoon pers : personen) {
 			if (pers.hasRol("contactpersoon"))
-				contactpersonen.add(persoon);
+				contactpersonen.add(pers);
 		}
 		model.addAttribute("persoon", persoon);
 		model.addAttribute("contactpersonen", contactpersonen);
@@ -64,10 +64,17 @@ public class ContactpersonenlijstController {
         } else {
         	persoonService.update(persoon);
 
-
-            model.addAttribute("succes", persoon.getVoornaam() + " "
+    		List<Persoon> personen = persoonService.getAll();
+    		List<Persoon> contactpersonen = new ArrayList<>();
+    		for (Persoon pers : personen) {
+    			if (pers.hasRol("contactpersoon"))
+    				contactpersonen.add(pers);
+    		}
+    		model.addAttribute("persoon", persoon);
+    		model.addAttribute("contactpersonen", contactpersonen);
+            model.addAttribute("succes", persoon.getVoornaam() + " " + persoon.getTussenvoegsel() + " "
                     + persoon.getAchternaam() + " is gewijzigd");
-            return "contactpersonen";
+            return "contactpersoondetails";
         }
     }
 }

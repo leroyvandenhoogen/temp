@@ -51,7 +51,7 @@ public class TestPersoon {
 		}
 		persoon.setAchternaam(achternamen[((int)(Math.random()*10))]);
 		persoon.setTussenvoegsel(tussenvoegsels[((int)(Math.random()*5))]);
-		persoon.setNationaliteit("Nederland");
+		persoon.setNationaliteit("Nederlands");
 		persoon.setGeboorteplaats(plaatsen[((int)(Math.random()*16))]);
 		persoon.setGeboortedatum(new GregorianCalendar(((int)(Math.random()*50) + 1960), ((int)(Math.random() *12)), ((int)(Math.random()*28))).getTime());
 		boolean rijbewijs = (Math.random() > 0.5) ? true : false;
