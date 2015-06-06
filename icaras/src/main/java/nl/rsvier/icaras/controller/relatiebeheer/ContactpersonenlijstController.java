@@ -14,12 +14,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
 @RequestMapping("/contactpersonen")
+@SessionAttributes("contactpersonen")
 public class ContactpersonenlijstController {
 
 	@Autowired
@@ -46,32 +49,20 @@ public class ContactpersonenlijstController {
 	@RequestMapping(value = "/update-{id}-persoon", method = RequestMethod.GET)
 	public String updatePersoon(@PathVariable int id, ModelMap model) {
 		Persoon persoon = persoonService.get(id);
-		List<Persoon> personen = persoonService.getAll();
-		List<Persoon> contactpersonen = new ArrayList<>();
-		for (Persoon pers : personen) {
-			if (pers.hasRol("contactpersoon"))
-				contactpersonen.add(pers);
-		}
+	
 		model.addAttribute("persoon", persoon);
-		model.addAttribute("contactpersonen", contactpersonen);
 		return "contactpersoondetails";
 	}
 	
     @RequestMapping(value = {"update-{id}-persoon"}, method = RequestMethod.POST)
-    public String updatePersoon(@PathVariable int id, @Valid Persoon persoon, BindingResult result, ModelMap model) {
+    public String updatePersoon(@PathVariable int id, @Valid @ModelAttribute("persoon") Persoon persoon, BindingResult result, ModelMap model) {
         if (result.hasErrors()) {
             return "contactpersoondetails";
         } else {
         	persoonService.update(persoon);
-
-    		List<Persoon> personen = persoonService.getAll();
-    		List<Persoon> contactpersonen = new ArrayList<>();
-    		for (Persoon pers : personen) {
-    			if (pers.hasRol("contactpersoon"))
-    				contactpersonen.add(pers);
-    		}
+    		
     		model.addAttribute("persoon", persoon);
-    		model.addAttribute("contactpersonen", contactpersonen);
+    		
             model.addAttribute("succes", persoon.getVoornaam() + " " + persoon.getTussenvoegsel() + " "
                     + persoon.getAchternaam() + " is gewijzigd");
             return "contactpersoondetails";

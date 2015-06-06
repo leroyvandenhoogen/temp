@@ -49,15 +49,15 @@
 
 		<table class="details">
 		<th>Digitaal Adres</th>
-			<c:forEach items="${persoon.digitaleAdressen}" var="digitaleadres" varStatus="current" begin="0">
-				<c:if test="digitaleAdressen[${current.index}].digitaalAdresType.type == 'email' || digitaleAdressen[${current.index}].digitaalAdresType.type == 'telefoonnummer' }">
+			<c:forEach items="digitaleAdressen" var="digitaleadres" varStatus="current" begin="0">
+<!--				<c:if test="digitaleAdressen[${current.index}].digitaalAdresType.type == 'email' || digitaleAdressen[${current.index}].digitaalAdresType.type == 'telefoonnummer' }"> 	  -->
 					<tr class="element">
-						<td><label>${digitaleAdressen[${current.index}].digitaalAdresType.type} </label></td>
+						<td><label>digitaleAdressen[${current.index}].digitaalAdresType.type </label></td>
 						<td><form:input path="digitaleAdressen[${current.index}].omschrijving" value="digitaleAdressen[${current.index}].omschrijving" size="30"/></td>
 						<td><label>voorkeur </label></td>
 						<td><form:input path="digitaleAdressen[${current.index}].contactvoorkeur" value="digitaleAdressen[${current.index}].contactvoorkeur" size="2"/></td>
 					</tr>
-				</c:if>
+<!-- 				</c:if>	-->
 					
 			</c:forEach>
 					<tr></tr>
