@@ -22,10 +22,12 @@
 				<td><form:errors path="achternaam" cssClass="error" /></td>
 			</tr>
 			<tr>
-				<td><form:input type="hidden" path="geboortedatum" id="geboortedatum" /></td>
+				<td><form:input type="hidden" path="geboortedatum"
+						id="geboortedatum" /></td>
 			</tr>
 			<tr>
-				<td><form:input type="hidden" path="geboorteplaats" id="geboorteplaats" /></td>
+				<td><form:input type="hidden" path="geboorteplaats"
+						id="geboorteplaats" /></td>
 			</tr>
 			<tr>
 				<td><label for="geslacht">Geslacht: </label></td>
@@ -36,7 +38,8 @@
 				<td><form:input type="hidden" path="rijbewijs" id="rijbewijs" /></td>
 			</tr>
 			<tr>
-				<td><form:input type="hidden" path="nationaliteit" id="nationaliteit" /></td>
+				<td><form:input type="hidden" path="nationaliteit"
+						id="nationaliteit" /></td>
 			</tr>
 			<tr>
 				<td><label for="opmerking">Bijzonderheden: </label></td>
@@ -49,20 +52,20 @@
 
 		<table class="details">
 		<th>Digitaal Adres</th>
-			<c:forEach items="digitaleAdressen" var="digitaleadres" varStatus="current" begin="0">
-<!--				<c:if test="digitaleAdressen[${current.index}].digitaalAdresType.type == 'email' || digitaleAdressen[${current.index}].digitaalAdresType.type == 'telefoonnummer' }"> 	  -->
+			<c:forEach items="${persoon.digitaleAdressen}" var="digitaleadres">
+				<c:if test="${digitaleadres.digitaalAdresType.type == 'email' || digitaleadres.digitaalAdresType.type == 'telefoonnummer' }">
 					<tr class="element">
-						<td><label>digitaleAdressen[${current.index}].digitaalAdresType.type </label></td>
-						<td><form:input path="digitaleAdressen[${current.index}].omschrijving" value="digitaleAdressen[${current.index}].omschrijving" size="30"/></td>
+						<td><label>${digitaleadres.digitaalAdresType.type} </label></td>
+						<td><form:input path="${omschrijving}" id="omschrijving" value="${digitaleadres.omschrijving}" size="30"/></td>
 						<td><label>voorkeur </label></td>
-						<td><form:input path="digitaleAdressen[${current.index}].contactvoorkeur" value="digitaleAdressen[${current.index}].contactvoorkeur" size="2"/></td>
+						<td><form:input path="${contactvoorkeur}" id="contactvoorkeur" value="${digitaleadres.contactvoorkeur}" size="2"/></td>
 					</tr>
-<!-- 				</c:if>	-->
+				</c:if>
 					
 			</c:forEach>
 					<tr></tr>
 		</table>
-<!--
+		<!--
 		<table class="details">
 			<th>Adresgegevens</th>
 			<c:forEach items="${persoonsrollen}" var="persoonsrol">
@@ -130,7 +133,7 @@
 				</c:if>
 			</c:forEach>
 		</table>
--->		
+-->
 		<tr>
 			<td colspan="3"><input type="submit" value="Update" /></td>
 		</tr>
