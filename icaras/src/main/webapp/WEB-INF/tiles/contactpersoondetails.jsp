@@ -49,8 +49,52 @@
 			</tr>
 
 		</table>
-
 		<table class="details">
+			<th>Digitaal Adres</th>
+			<c:forEach items="${persoon.digitaleAdressen}" var="digitaleadres">
+				<c:if
+					test="${digitaleadres.digitaalAdresType.type == 'email' || digitaleadres.digitaalAdresType.type == 'telefoonnummer' }">
+					<tr class="element">
+						<td><label>${digitaleadres.digitaalAdresType.type} </label></td>
+						<form:hidden path="${digitaleadres.id}" id="id"/>
+						<td><form:input path="${omschrijving}" id="omschrijving"
+								value="${digitaleadres.omschrijving}" size="30" /></td>
+						<td><label>voorkeur </label></td>
+						<td><form:input path="${contactvoorkeur}"
+								id="contactvoorkeur" value="${digitaleadres.contactvoorkeur}"
+								size="2" /></td>
+
+					</tr>
+				</c:if>
+
+			</c:forEach>
+			<tr></tr>
+		</table>
+
+
+		<c:forEach items="${collegeListCmd.collegeList}" varStatus="vs">
+			<div class="field">
+				<div class="label required">
+					<form:label path="collegeList[${vs.index}].name"
+						cssErrorClass="invalid">College Name</form:label>
+				</div>
+				<div class="input">
+					<form:input path="collegeList[${vs.index}].name"
+						cssErrorClass="invalid " />
+					<form:label path="collegeList[${vs.index}].name"
+						cssErrorClass="icon invalid" />
+					<form:errors path="collegeList[${vs.index}].name"
+						cssClass="inline_invalid" />
+				</div>
+			</div>
+			<form:hidden path="collegeList[${vs.index}].id" />
+			<hr />
+		</c:forEach>
+
+
+
+
+		<!-- 		<table class="details">
 		<th>Digitaal Adres</th>
 			<c:forEach items="${persoon.digitaleAdressen}" var="digitaleadres">
 				<c:if test="${digitaleadres.digitaalAdresType.type == 'email' || digitaleadres.digitaalAdresType.type == 'telefoonnummer' }">
@@ -65,6 +109,7 @@
 			</c:forEach>
 					<tr></tr>
 		</table>
+-->
 		<!--
 		<table class="details">
 			<th>Adresgegevens</th>

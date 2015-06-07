@@ -182,7 +182,7 @@ public class Persoon implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon")
-	@Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
+	@Cascade({CascadeType.ALL})
 	public List<DigitaalAdres> getDigitaleAdressen() {
 		return this.digitaleAdressen;
 	}
