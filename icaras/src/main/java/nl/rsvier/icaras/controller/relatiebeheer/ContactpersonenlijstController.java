@@ -5,10 +5,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import nl.rsvier.icaras.core.relatiebeheer.Adres;
-import nl.rsvier.icaras.core.relatiebeheer.Bedrijf;
 import nl.rsvier.icaras.core.relatiebeheer.Persoon;
-import nl.rsvier.icaras.core.relatiebeheer.Persoonsrol;
+import nl.rsvier.icaras.service.relatiebeheer.BedrijfService;
 import nl.rsvier.icaras.service.relatiebeheer.PersoonService;
 import nl.rsvier.icaras.service.relatiebeheer.PersoonsrolService;
 
@@ -16,12 +14,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
 @RequestMapping("/contactpersonen")
+@SessionAttributes("contactpersonen")
 public class ContactpersonenlijstController {
 
 	@Autowired
@@ -29,14 +30,17 @@ public class ContactpersonenlijstController {
 
 	@Autowired
 	PersoonService persoonService;
+	@Autowired
+	BedrijfService bedrijfService;
+	
 
 	@RequestMapping(value = { "", "lijst" }, method = RequestMethod.GET)
 	public String showPersonenLijst(ModelMap model) {
-		List<Persoonsrol> persoonsrollen = service.getAll();
-		List<Persoonsrol> contactpersonen = new ArrayList<>();
-		for (Persoonsrol persoonsrol : persoonsrollen) {
-			if (persoonsrol.getRol().getType().equals("contactpersoon"))
-				contactpersonen.add(persoonsrol);
+		List<Persoon> personen = persoonService.getAll();
+		List<Persoon> contactpersonen = new ArrayList<>();
+		for (Persoon pers : personen) {
+			if (pers.hasRol("contactpersoon"))
+				contactpersonen.add(pers);
 		}
 		model.addAttribute("contactpersonen", contactpersonen);
 		return "contactpersonen";
@@ -45,31 +49,23 @@ public class ContactpersonenlijstController {
 	@RequestMapping(value = "/update-{id}-persoon", method = RequestMethod.GET)
 	public String updatePersoon(@PathVariable int id, ModelMap model) {
 		Persoon persoon = persoonService.get(id);
-		Persoonsrol persoonsrol = new Persoonsrol();
-		List<Persoonsrol> persoonsrollen = service.getAll();
-		List<Persoonsrol> contactpersonen = new ArrayList<>();
-		for (Persoonsrol rol : persoonsrollen) {
-			if (rol.getRol().getType().equals("contactpersoon")) {
-				contactpersonen.add(rol);
-				if(rol.getPersoon().equals(persoon))
-					persoonsrol = rol;
-			}
-		}
-		model.addAttribute("persoonsrol", persoonsrol);
-		model.addAttribute("contactpersonen", contactpersonen);
+	
+		model.addAttribute("persoon", persoon);
 		return "contactpersoondetails";
 	}
 	
     @RequestMapping(value = {"update-{id}-persoon"}, method = RequestMethod.POST)
-    public String updatePersoon(@PathVariable int id, @Valid Persoonsrol persoonsrol, BindingResult result, ModelMap model) {
+    public String updatePersoon(@PathVariable int id, @Valid @ModelAttribute("persoon") Persoon persoon, BindingResult result, ModelMap model) {
         if (result.hasErrors()) {
             return "contactpersoondetails";
         } else {
-        	service.save(persoonsrol);
-
-            model.addAttribute("succes", persoonsrol.getPersoon().getVoornaam() + " "
-                    + persoonsrol.getPersoon().getAchternaam() + " is gewijzigd");
-            return "contactpersonen";
+        	persoonService.update(persoon);
+    		
+    		model.addAttribute("persoon", persoon);
+    		
+            model.addAttribute("succes", persoon.getVoornaam() + " " + persoon.getTussenvoegsel() + " "
+                    + persoon.getAchternaam() + " is gewijzigd");
+            return "contactpersoondetails";
         }
     }
 }

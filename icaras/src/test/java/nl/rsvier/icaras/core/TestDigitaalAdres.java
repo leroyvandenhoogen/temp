@@ -14,7 +14,7 @@ public class TestDigitaalAdres {
 	
 	public static DigitaalAdres maakDigitaalAdres2() {
 		DigitaalAdres digitaalAdres = new DigitaalAdres();
-		digitaalAdres.setOmschrijving("+31123456");
+		digitaalAdres.setOmschrijving(""+((int)(Math.random()*999999999)));
 		digitaalAdres.setContactvoorkeur(true);
 		
 		return digitaalAdres;

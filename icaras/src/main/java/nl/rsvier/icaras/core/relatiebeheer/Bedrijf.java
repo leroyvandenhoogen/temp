@@ -101,7 +101,7 @@ public class Bedrijf implements java.io.Serializable {
 	
 	public synchronized boolean addAdres(Adres adres) {
 		boolean toegevoegd = false;
-		if (adres != null) {
+		if(adressen != null && !(this.adressen.contains(adres))) {
 			toegevoegd = this.getAdressen().add(adres);
 			adres.setBedrijf(this);
 		}
