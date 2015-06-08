@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import nl.rsvier.icaras.core.relatiebeheer.DigitaalAdres;
 import nl.rsvier.icaras.core.relatiebeheer.Persoon;
 import nl.rsvier.icaras.service.relatiebeheer.BedrijfService;
 import nl.rsvier.icaras.service.relatiebeheer.PersoonService;
@@ -32,7 +33,6 @@ public class ContactpersonenlijstController {
 	PersoonService persoonService;
 	@Autowired
 	BedrijfService bedrijfService;
-	
 
 	@RequestMapping(value = { "", "lijst" }, method = RequestMethod.GET)
 	public String showPersonenLijst(ModelMap model) {
@@ -49,23 +49,39 @@ public class ContactpersonenlijstController {
 	@RequestMapping(value = "/update-{id}-persoon", method = RequestMethod.GET)
 	public String updatePersoon(@PathVariable int id, ModelMap model) {
 		Persoon persoon = persoonService.get(id);
-	
+
 		model.addAttribute("persoon", persoon);
 		return "contactpersoondetails";
 	}
-	
-    @RequestMapping(value = {"update-{id}-persoon"}, method = RequestMethod.POST)
-    public String updatePersoon(@PathVariable int id, @Valid @ModelAttribute("persoon") Persoon persoon, BindingResult result, ModelMap model) {
-        if (result.hasErrors()) {
-            return "contactpersoondetails";
-        } else {
-        	persoonService.update(persoon);
-    		
-    		model.addAttribute("persoon", persoon);
-    		
-            model.addAttribute("succes", persoon.getVoornaam() + " " + persoon.getTussenvoegsel() + " "
-                    + persoon.getAchternaam() + " is gewijzigd");
-            return "contactpersoondetails";
-        }
-    }
+
+	@RequestMapping(value = { "update-{id}-persoon" }, method = RequestMethod.POST)
+	public String updatePersoon(@PathVariable int id,
+			@Valid @ModelAttribute("persoon") Persoon persoon,
+			BindingResult result, ModelMap model) {
+		if (result.hasErrors()) {
+			return "contactpersoondetails";
+		} else {
+			List<DigitaalAdres> dAdressen = new ArrayList<>();
+			for (DigitaalAdres dAdres : persoon.getDigitaleAdressen()) {
+				dAdressen.add(dAdres);
+			}
+			persoon.setDigitaleAdressen(dAdressen);
+			persoonService.update(persoon);
+			List<Persoon> personen = persoonService.getAll();
+			List<Persoon> contactpersonen = new ArrayList<>();
+			for (Persoon pers : personen) {
+				if (pers.hasRol("contactpersoon"))
+					contactpersonen.add(pers);
+			}
+
+			model.addAttribute("contactpersonen", contactpersonen);
+			Persoon persoon1 = persoonService.get(id);
+			model.addAttribute("persoon", persoon1);
+
+			model.addAttribute("succes",
+					persoon.getVoornaam() + " " + persoon.getTussenvoegsel()
+							+ " " + persoon.getAchternaam() + " is gewijzigd");
+			return "contactpersoondetails";
+		}
+	}
 }
