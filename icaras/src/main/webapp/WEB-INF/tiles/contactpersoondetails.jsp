@@ -3,7 +3,9 @@
 
 <body>
 	${succes}
+
 	<form:form method="POST" modelAttribute="persoon">
+
 		<table class="details">
 			<th>Persoonsgegevens</th>
 			<tr>
