@@ -16,6 +16,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 @Entity
 @Table(name = "bedrijf", catalog = "icaras")
 public class Bedrijf implements java.io.Serializable {
@@ -71,6 +74,7 @@ public class Bedrijf implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bedrijf")
+	@Cascade(CascadeType.ALL)
 	public List<DigitaalAdres> getDigitaleAdressen() {
 		return this.digitaleAdressen;
 	}
@@ -90,6 +94,7 @@ public class Bedrijf implements java.io.Serializable {
 	}
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bedrijf")
+	@Cascade(CascadeType.ALL)
 	public List<Adres> getAdressen() {
 		return this.adressen;
 	}
@@ -109,6 +114,7 @@ public class Bedrijf implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bedrijf")
+
 	public List<Persoonsrol> getPersoonsrollen() {
 		
 		return this.persoonsrollen;

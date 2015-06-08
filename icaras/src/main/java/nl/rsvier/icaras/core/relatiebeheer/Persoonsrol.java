@@ -18,6 +18,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 @Entity
 @Table(name = "persoonsrol", catalog = "icaras")
 public class Persoonsrol implements java.io.Serializable {
@@ -56,6 +59,7 @@ public class Persoonsrol implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "bedrijf_id")
+	@Cascade(CascadeType.ALL)
 	public Bedrijf getBedrijf() {
 		return this.bedrijf;
 	}

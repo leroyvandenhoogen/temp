@@ -1,11 +1,14 @@
 package nl.rsvier.icaras.controller.relatiebeheer;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
 
+import nl.rsvier.icaras.core.relatiebeheer.DigitaalAdres;
 import nl.rsvier.icaras.core.relatiebeheer.Persoon;
+import nl.rsvier.icaras.core.relatiebeheer.Persoonsrol;
 import nl.rsvier.icaras.service.relatiebeheer.BedrijfService;
 import nl.rsvier.icaras.service.relatiebeheer.PersoonService;
 import nl.rsvier.icaras.service.relatiebeheer.PersoonsrolService;
@@ -26,13 +29,13 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 public class ContactpersonenlijstController {
 
 	@Autowired
-	PersoonsrolService service;
+	PersoonsrolService persoonsrolservice;
 
 	@Autowired
 	PersoonService persoonService;
 	@Autowired
 	BedrijfService bedrijfService;
-	
+
 
 	@RequestMapping(value = { "", "lijst" }, method = RequestMethod.GET)
 	public String showPersonenLijst(ModelMap model) {
@@ -49,23 +52,75 @@ public class ContactpersonenlijstController {
 	@RequestMapping(value = "/update-{id}-persoon", method = RequestMethod.GET)
 	public String updatePersoon(@PathVariable int id, ModelMap model) {
 		Persoon persoon = persoonService.get(id);
-	
+
 		model.addAttribute("persoon", persoon);
 		return "contactpersoondetails";
 	}
+
+	@RequestMapping(value = { "update-{id}-persoon" }, method = RequestMethod.POST)
+	public String updatePersoon(@PathVariable int id,
+			@Valid @ModelAttribute("persoon") Persoon persoon,
+			BindingResult result, ModelMap model) {
+		if (result.hasErrors()) {
+			return "contactpersoondetails";
+		} else {
+			List<DigitaalAdres> dAdressen = new ArrayList<>();
+			for (DigitaalAdres dAdres : persoon.getDigitaleAdressen()) {
+				dAdressen.add(dAdres);
+			}
+			persoon.setDigitaleAdressen(dAdressen);
+			persoonService.update(persoon);
+			List<Persoon> personen = persoonService.getAll();
+			List<Persoon> contactpersonen = new ArrayList<>();
+			for (Persoon pers : personen) {
+				if (pers.hasRol("contactpersoon"))
+					contactpersonen.add(pers);
+			}
+
+			model.addAttribute("contactpersonen", contactpersonen);
+			Persoon persoon1 = persoonService.get(id);
+			model.addAttribute("persoon", persoon1);
+
+			model.addAttribute("succes",
+					persoon.getVoornaam() + " " + persoon.getTussenvoegsel()
+							+ " " + persoon.getAchternaam() + " is gewijzigd");
+			return "contactpersoondetails";
+		}
+	}
 	
-    @RequestMapping(value = {"update-{id}-persoon"}, method = RequestMethod.POST)
-    public String updatePersoon(@PathVariable int id, @Valid @ModelAttribute("persoon") Persoon persoon, BindingResult result, ModelMap model) {
-        if (result.hasErrors()) {
-            return "contactpersoondetails";
-        } else {
-        	persoonService.update(persoon);
-    		
-    		model.addAttribute("persoon", persoon);
-    		
-            model.addAttribute("succes", persoon.getVoornaam() + " " + persoon.getTussenvoegsel() + " "
-                    + persoon.getAchternaam() + " is gewijzigd");
-            return "contactpersoondetails";
-        }
-    }
+	@RequestMapping(value = "/nieuwcontactpersoon", method = RequestMethod.GET)
+	public String newPersoon(ModelMap model){
+		
+		Persoon persoon = new Persoon();
+		
+		model.addAttribute("persoon", persoon);
+
+		return "nieuwcontactpersoon";
+	}
+	
+	@RequestMapping(value = "/nieuwcontactpersoon", method = RequestMethod.POST)
+	public String savePersoon(@ModelAttribute("persoon")@Valid Persoon persoon, BindingResult result, ModelMap model) {
+		Persoonsrol persoonsrol = new Persoonsrol();
+		persoonsrol.setBegindatum(new Date());
+		persoonsrol.setPersoon(persoon);
+		persoonsrolservice.addRol("contactpersoon", persoonsrol);
+		persoon.addPersoonsrol(persoonsrol);
+		persoonService.save(persoon);
+		
+		List<Persoon> personen = persoonService.getAll();
+		List<Persoon> contactpersonen = new ArrayList<>();
+		for (Persoon pers : personen) {
+			if (pers.hasRol("contactpersoon"))
+				contactpersonen.add(pers);
+		}
+
+		model.addAttribute("contactpersonen", contactpersonen);
+		
+		
+		model.addAttribute("succes", persoon.getVoornaam() + " "
+                + persoon.getAchternaam() + " staat geregistreerd");
+//		return "bevestiging";
+		return "contactpersonen";
+	}
+	
 }
