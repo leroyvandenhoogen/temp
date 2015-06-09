@@ -202,7 +202,6 @@ public class Persoon implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon")
-	@Cascade(CascadeType.ALL)
 	public List<Persoonsrol> getPersoonsrollen() {
 		return this.persoonsrollen;
 	}
