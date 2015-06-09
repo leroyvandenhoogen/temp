@@ -81,7 +81,6 @@
 		<table class="details">
 			<th>Adresgegevens</th>
 			<c:forEach items="${persoon.persoonsrollen}" var="persoonsrol" varStatus="loop">
-				<c:if test="${persoonsrol.rol.type == 'contactpersoon'}">
 					<tr class="element">
 						<form:input path="persoonsrollen[${loop.index}].id" value="${persoonsrol.id}"/>
 						<td><label>Bedrijfsnaam:</label></td>
@@ -100,7 +99,7 @@
 						</tr>
 						<tr>
 							<td><label for="straat">Straat: </label></td>
-							<td><form:input path="${straat}" id="straat"
+							<td><form:input path="adressen[${innerloop.index}].straat"
 									value="${adres.straat}" /></td>
 						</tr>
 						<tr>
@@ -141,7 +140,6 @@
 						<tr></tr>
 
 					</c:forEach>
-				</c:if>
 			</c:forEach>
 		</table>
 		<tr>
