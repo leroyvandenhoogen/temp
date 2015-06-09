@@ -62,9 +62,13 @@
 						<td><form:input path="digitaleAdressen[${loop.index}].omschrijving" id="omschrijving"
 								value="${digitaleadres.omschrijving}" size="30" /></td>
 						<td><label>voorkeur </label></td>
-						<td><form:input path="digitaleAdressen[${loop.index}].contactvoorkeur"
+<!-- 					<td><form:input path="digitaleAdressen[${loop.index}].contactvoorkeur"
 								id="contactvoorkeur" value="${digitaleadres.contactvoorkeur}"
 								size="2" /></td>
+ -->	
+						<td><form:radiobutton path="digitaleAdressen[${loop.index}].contactvoorkeur" value="true"/>Yes
+							<form:radiobutton path="digitaleAdressen[${loop.index}].contactvoorkeur" value="false"/>No
+							</td>
 						<form:input type="hidden" path="digitaleAdressen[${loop.index}].digitaalAdresType.id" value="${digitaleadres.digitaalAdresType.id}"/>
 					</tr>
 				</c:if>
