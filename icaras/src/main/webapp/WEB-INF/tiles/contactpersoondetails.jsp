@@ -52,17 +52,20 @@
 		</table>
 		<table class="details">
 			<th>Digitaal Adres</th>
-			<c:forEach items="${persoon.digitaleAdressen}" var="digitaleadres">
+			<c:forEach items="${persoon.digitaleAdressen}" var="digitaleadres" varStatus="loop">
+					
 				<c:if
 					test="${digitaleadres.digitaalAdresType.type == 'email' || digitaleadres.digitaalAdresType.type == 'telefoonnummer' }">
 					<tr class="element">
+						<td><form:input path="digitaleAdressen[${loop.index}].id" value="${digitaleadres.id}"/></td>
 						<td><label>${digitaleadres.digitaalAdresType.type} </label></td>
-						<td><form:input path="${omschrijving}" id="omschrijving"
+						<td><form:input path="digitaleAdressen[${loop.index}].omschrijving" id="omschrijving"
 								value="${digitaleadres.omschrijving}" size="30" /></td>
 						<td><label>voorkeur </label></td>
 						<td><form:input path="${contactvoorkeur}"
 								id="contactvoorkeur" value="${digitaleadres.contactvoorkeur}"
 								size="2" /></td>
+						<td><form:input path="digitaleAdressen[${loop.index}].digitaalAdresType.id" value="${digitaleadres.digitaalAdresType.id}"/></td>
 					</tr>
 				</c:if>
 

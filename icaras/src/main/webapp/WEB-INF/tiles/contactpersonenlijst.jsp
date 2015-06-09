@@ -27,8 +27,7 @@
 		</c:forEach>
 		<tr>
 			<td colspan="10"><a
-				href="<c:url value='/contactpersonen/nieuwcontactpersoon' />">Voeg
-					nieuw persoon toe</a></td>
+				href="<c:url value='/contactpersonen/nieuwcontactpersoon' />">Voeg nieuw persoon toe</a></td>
 		</tr>
 	</table>
 </body>

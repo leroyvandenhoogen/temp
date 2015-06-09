@@ -10,6 +10,7 @@ import nl.rsvier.icaras.core.relatiebeheer.DigitaalAdres;
 import nl.rsvier.icaras.core.relatiebeheer.Persoon;
 import nl.rsvier.icaras.core.relatiebeheer.Persoonsrol;
 import nl.rsvier.icaras.service.relatiebeheer.BedrijfService;
+import nl.rsvier.icaras.service.relatiebeheer.DigitaalAdresService;
 import nl.rsvier.icaras.service.relatiebeheer.PersoonService;
 import nl.rsvier.icaras.service.relatiebeheer.PersoonsrolService;
 
@@ -35,6 +36,8 @@ public class ContactpersonenlijstController {
 	PersoonService persoonService;
 	@Autowired
 	BedrijfService bedrijfService;
+	@Autowired
+	DigitaalAdresService digitaaladresService;
 
 
 	@RequestMapping(value = { "", "lijst" }, method = RequestMethod.GET)
@@ -64,11 +67,13 @@ public class ContactpersonenlijstController {
 		if (result.hasErrors()) {
 			return "contactpersoondetails";
 		} else {
-			List<DigitaalAdres> dAdressen = new ArrayList<>();
-			for (DigitaalAdres dAdres : persoon.getDigitaleAdressen()) {
-				dAdressen.add(dAdres);
+			System.out.println("///////////" + persoon.getDigitaleAdressen().size());
+			System.out.println("///////////" + persoon.getDigitaleAdressen().get(0).getId());
+			System.out.println("///////////" + persoon.getDigitaleAdressen().get(1).getId());
+			for(DigitaalAdres dAdres: persoon.getDigitaleAdressen()) {
+				dAdres.setPersoon(persoon);
+				digitaaladresService.update(dAdres);
 			}
-			persoon.setDigitaleAdressen(dAdressen);
 			persoonService.update(persoon);
 			List<Persoon> personen = persoonService.getAll();
 			List<Persoon> contactpersonen = new ArrayList<>();
