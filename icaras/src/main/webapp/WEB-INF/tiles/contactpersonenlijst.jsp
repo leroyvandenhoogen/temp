@@ -16,11 +16,11 @@
 				<td>${contactpersoon.achternaam}</td>
 				<td>${contactpersoon.tussenvoegsel}</td>
 				<td><c:forEach items="${contactpersoon.persoonsrollen}"	var="persoonsrol">
-					<c:if test="{persoonsrol.rol.type =='contactpersoon'}">
+					<c:if test="${persoonsrol.rol.type =='contactpersoon'}">
 						${persoonsrol.bedrijf.naam}
 					</c:if>
-				</c:forEach></td>
-	
+					</c:forEach></td>
+
 				<td><a
 					href="<c:url value='/contactpersonen/update-${contactpersoon.id}-persoon' />">Details</a></td>
 			</tr>
