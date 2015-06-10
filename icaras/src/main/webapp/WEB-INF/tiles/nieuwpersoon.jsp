@@ -4,7 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <body>
-
 	<form:form method="POST" modelAttribute="persoon">
 		<table class="details">
 			<th>Persoonsgegevens</th>
@@ -55,6 +54,12 @@
 				<td><form:input path="nationaliteit" id="nationaliteit" value="testerino"/></td>
 				<td><form:errors path="nationaliteit" cssClass="nationaliteit" /></td>
 			</tr>
+			<tr>
+				<td><label for="opmerking">Bijzonderheden: </label></td>
+				<td><form:textarea rows="5" cols="20" path="opmerking"
+						id="opmerking" />
+				<td><form:errors path="opmerking" cssClass="error" /></td>
+			</tr>
 			<tr></tr>
 		</table>
 		
@@ -104,7 +109,7 @@
 					<tr>
 					<td><label for="adresType">Adres type: </label></td>
 					<td><select name="type">
-					<c:forEach items="${adresTypes}" var="adresType">
+					<c:forEach items="${adresTypes}" var="adresType" varStatus="current" begin="0">
 							<option id="adresType" value="${adresType.type}">"${adresType.type}"</option>
 					</c:forEach>
 					</select></td>

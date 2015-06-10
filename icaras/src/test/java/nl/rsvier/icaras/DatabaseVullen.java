@@ -82,17 +82,29 @@ public class DatabaseVullen {
 	
 	@Test
 	@Transactional
-	public void savePersoon2() {
+	public void savePersonen() {
+		for(int i = 0; i < 20; i++){
+			savePersoon2();
+		}
+		
+	}
+
+	@Transactional
+	public synchronized void savePersoon2() {
 		Persoon persoon = TestPersoon.maakTestContactpersoon();
 		DigitaalAdres digitaalAdres1 = TestDigitaalAdres.maakDigitaalAdres1();
 		DigitaalAdres digitaalAdres2 = TestDigitaalAdres.maakDigitaalAdres2();
+		DigitaalAdres digitaalAdres3 = TestDigitaalAdres.maakDigitaalAdres3();
 		digitaalAdresService.addAdresType("email", digitaalAdres1);
 		digitaalAdresService.addAdresType("telefoonnummer", digitaalAdres2);
+		digitaalAdresService.addAdresType("website", digitaalAdres3);
 		persoon.addDigitaalAdres(digitaalAdres1);
 		persoon.addDigitaalAdres(digitaalAdres2);
+		persoon.addDigitaalAdres(digitaalAdres3);
 		persoonService.save(persoon);
 		digitaalAdresService.save(digitaalAdres1);
 		digitaalAdresService.save(digitaalAdres2);
+		digitaalAdresService.save(digitaalAdres3);
 		Persoonsrol persoonsrol = TestPersoonsrol.maakPersoonsrol3();
 		persoonsrol.setPersoon(persoon);
 		int i = ((int)(Math.random()*10));
