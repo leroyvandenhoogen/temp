@@ -76,10 +76,9 @@ public class ContactpersonenlijstController {
 				digitaaladresService.update(dAdres);
 			}
 			for(Persoonsrol pRol: persoon.getPersoonsrollen()) {
-				System.out.println("////////" + pRol.getBedrijf().getAdressen().get(0).getAdresType());
 				bedrijfService.update(pRol.getBedrijf());
 				for(Adres adres: pRol.getBedrijf().getAdressen()) {
-					System.out.println("///////////"  + adres.getAdresType());
+					System.out.println("///////" + adres.getAdresType().getType());
 					adres.setBedrijf(pRol.getBedrijf());
 					adresService.update(adres);
 				}
