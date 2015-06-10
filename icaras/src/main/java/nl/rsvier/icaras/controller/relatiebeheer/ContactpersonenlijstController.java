@@ -7,6 +7,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import nl.rsvier.icaras.core.relatiebeheer.Adres;
+import nl.rsvier.icaras.core.relatiebeheer.AdresType;
 import nl.rsvier.icaras.core.relatiebeheer.DigitaalAdres;
 import nl.rsvier.icaras.core.relatiebeheer.Persoon;
 import nl.rsvier.icaras.core.relatiebeheer.Persoonsrol;
@@ -59,6 +60,8 @@ public class ContactpersonenlijstController {
 	@RequestMapping(value = "/update-{id}-persoon", method = RequestMethod.GET)
 	public String updatePersoon(@PathVariable int id, ModelMap model) {
 		Persoon persoon = persoonService.get(id);
+		ArrayList<AdresType> adresTypes = (ArrayList<AdresType>)adresService.getAllTypes();
+		model.addAttribute("adresTypes", adresTypes);
 
 		model.addAttribute("persoon", persoon);
 		return "contactpersoondetails";
@@ -78,7 +81,6 @@ public class ContactpersonenlijstController {
 			for(Persoonsrol pRol: persoon.getPersoonsrollen()) {
 				bedrijfService.update(pRol.getBedrijf());
 				for(Adres adres: pRol.getBedrijf().getAdressen()) {
-					System.out.println("///////" + adres.getAdresType().getType());
 					adres.setBedrijf(pRol.getBedrijf());
 					adresService.update(adres);
 				}
@@ -90,7 +92,8 @@ public class ContactpersonenlijstController {
 				if (pers.hasRol("contactpersoon"))
 					contactpersonen.add(pers);
 			}
-
+			ArrayList<AdresType> adresTypes = (ArrayList<AdresType>)adresService.getAllTypes();
+			model.addAttribute("adresTypes", adresTypes);
 			model.addAttribute("contactpersonen", contactpersonen);
 			Persoon persoon1 = persoonService.get(id);
 			model.addAttribute("persoon", persoon1);
@@ -103,12 +106,9 @@ public class ContactpersonenlijstController {
 	}
 	
 	@RequestMapping(value = "/nieuwcontactpersoon", method = RequestMethod.GET)
-	public String newPersoon(ModelMap model){
-		
+	public String newPersoon(ModelMap model){		
 		Persoon persoon = new Persoon();
-		
 		model.addAttribute("persoon", persoon);
-
 		return "nieuwcontactpersoon";
 	}
 	
@@ -127,13 +127,9 @@ public class ContactpersonenlijstController {
 			if (pers.hasRol("contactpersoon"))
 				contactpersonen.add(pers);
 		}
-
 		model.addAttribute("contactpersonen", contactpersonen);
-		
-		
 		model.addAttribute("succes", persoon.getVoornaam() + " "
                 + persoon.getAchternaam() + " staat geregistreerd");
-//		return "bevestiging";
 		return "contactpersonen";
 	}
 	

@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <body>
-	${succes}
+	<h1>${succes}</h1>
 
 	<form:form method="POST" modelAttribute="persoon">
 
@@ -86,15 +86,14 @@
 			<tr></tr>
 		</table>
 		</br>
-		</br>
 		<table class="details">
 			<th>Adresgegevens</th>
 
 			<c:forEach items="${persoon.persoonsrollen}" var="persoonsrol"
 				varStatus="loop">
 				<tr>
-					<td><form:input type="hidden" path="persoonsrollen[${loop.index}].id"
-							value="${persoonsrol.id}" /></td>
+					<td><form:input type="hidden"
+							path="persoonsrollen[${loop.index}].id" value="${persoonsrol.id}" /></td>
 				</tr>
 				<tr class="element">
 					<td><label>Bedrijfsnaam:</label></td>
@@ -119,16 +118,15 @@
 						<td><label>Adres type: </label></td>
 						<td><form:select
 								path="persoonsrollen[${loop.index}].bedrijf.adressen[${innerloop.index}].adresType.id">
-								<option value='3'>Huis</option>
-								<option value='1'>Post</option>
-								<option value='2'>Postbus</option>
-								<option value='4'>Woonboot</option>
-								<option
-									value='${adres.adresType.id}'
-									selected>${adres.adresType.type}</option>
+								<option value="${adres.adresType.id}" selected>${adres.adresType.type}
+									(huidig)</option>
+								<c:forEach items="${adresTypes}" var="lookupType"
+									varStatus="current" begin="0">
+									<option value="${lookupType.id}">${lookupType.type}</option>
+								</c:forEach>
 							</form:select></td>
-						<td><form:input type="hidden"
-								path="persoonsrollen[${loop.index}].bedrijf.adressen[${innerloop.index}].adresType.id" /></td>
+<!--  					<td><form:input type="hidden"
+								path="persoonsrollen[${loop.index}].bedrijf.adressen[${innerloop.index}].adresType.id" /></td> -->	
 					</tr>
 					<tr>
 						<td><label for="straat">Straat: </label></td>
