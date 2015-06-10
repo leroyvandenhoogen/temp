@@ -1,11 +1,13 @@
 package nl.rsvier.icaras.service.relatiebeheer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
 import nl.rsvier.icaras.core.relatiebeheer.Adres;
 import nl.rsvier.icaras.core.relatiebeheer.AdresType;
+import nl.rsvier.icaras.core.relatiebeheer.Persoon;
 import nl.rsvier.icaras.dao.relatiebeheer.AdresDaoImpl;
 import nl.rsvier.icaras.dao.relatiebeheer.AdresTypeDaoImpl;
 
@@ -28,6 +30,12 @@ public class AdresService {
 		adresDao.save(a);
 	}
 	
+	public void save(String adresType, Adres a) {
+		if(addAdresType(adresType, a)) {
+			adresDao.save(a);
+		}
+	}
+	
 	public void update(Adres a) {
 		adresDao.update(a);
 	}
@@ -42,6 +50,18 @@ public class AdresService {
 	
 	public List<Adres> getAll() {
 		return adresDao.getAll();
+	}
+	
+	public List<Adres> getAll(Persoon persoon) {
+		List<Adres> temp = persoon.getAdressen();
+		List<Adres> adressen = new ArrayList<Adres>();
+		for(Adres a: temp) {
+			if(a.getId() != null) {
+			get(a.getId());
+			adressen.add(a);
+			}
+		}
+		return adressen;
 	}
 	
 	public List<AdresType> getAllTypes() {

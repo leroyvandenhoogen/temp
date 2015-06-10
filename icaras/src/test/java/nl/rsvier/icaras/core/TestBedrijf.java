@@ -5,7 +5,7 @@ import nl.rsvier.icaras.core.relatiebeheer.Bedrijf;
 public class TestBedrijf {
 	private static String[] bedrijven = {"Google", "Facebook", "Adobe", "Salesforce", "Qualcomm"};
 	private static String[] opmerkingen = {"Heeft potentie", "In het verleden zaken met gedaan", 
-			"Slechte ervaringen mee", "Nog te benaderen" , ""};
+			"Slechte ervaringen mee", "Nog te benaderen", ""};
 	public static Bedrijf maakTestBedrijf1() {
 		Bedrijf bedrijf = new Bedrijf();
 		bedrijf.setNaam("Best bedrijf BV");

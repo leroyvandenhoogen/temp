@@ -19,4 +19,12 @@ public class TestDigitaalAdres {
 		
 		return digitaalAdres;
 	}
+	
+	public static DigitaalAdres maakDigitaalAdres3() {
+		DigitaalAdres digitaalAdres = new DigitaalAdres();
+		digitaalAdres.setOmschrijving("www.website.com");
+		digitaalAdres.setContactvoorkeur(false);
+		
+		return digitaalAdres;
+	}
 }

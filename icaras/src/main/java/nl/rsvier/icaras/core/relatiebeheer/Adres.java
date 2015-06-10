@@ -16,6 +16,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
@@ -62,7 +64,7 @@ public class Adres implements java.io.Serializable {
 		if(bedrijf != null && this.getBedrijf() == null) {
 			this.bedrijf = bedrijf;
 			isSet = true;
-			if(!(this.getBedrijf().getDigitaleAdressen().contains(this))) {
+			if(/*this.getBedrijf().getDigitaleAdressen() != null && */!(this.getBedrijf().getDigitaleAdressen().contains(this))) {
 				bedrijf.addAdres(this);
 			}
 		}

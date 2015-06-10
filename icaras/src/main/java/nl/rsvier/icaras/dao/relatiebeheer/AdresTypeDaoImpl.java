@@ -25,5 +25,4 @@ public class AdresTypeDaoImpl extends GenericDaoImpl<AdresType> implements IAdre
 			}
 		return false;
 	}
-
 }

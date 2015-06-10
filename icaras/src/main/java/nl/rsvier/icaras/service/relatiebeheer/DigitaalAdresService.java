@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import nl.rsvier.icaras.core.relatiebeheer.AdresType;
 import nl.rsvier.icaras.core.relatiebeheer.DigitaalAdres;
+import nl.rsvier.icaras.core.relatiebeheer.DigitaalAdresType;
 import nl.rsvier.icaras.dao.relatiebeheer.DigitaalAdresDaoImpl;
 import nl.rsvier.icaras.dao.relatiebeheer.DigitaalAdresTypeDaoImpl;
 
@@ -41,6 +43,10 @@ public class DigitaalAdresService {
 	
 	public List<DigitaalAdres> getAll() {
 		return digitaalAdresDao.getAll();
+	}
+	
+	public List<DigitaalAdresType> getAllTypes() {
+		return digitaalAdresTypeDao.getAll();
 	}
 	
 	public boolean addAdresType(String adresType, DigitaalAdres digitaalAdres) {

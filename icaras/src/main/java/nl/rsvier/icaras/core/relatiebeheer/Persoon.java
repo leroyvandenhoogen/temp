@@ -162,7 +162,7 @@ public class Persoon implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "persoon")
-	@Cascade({CascadeType.ALL})
+//	@Cascade(CascadeType.ALL)
 	public List<Adres> getAdressen() {
 		return this.adressen;
 	}
