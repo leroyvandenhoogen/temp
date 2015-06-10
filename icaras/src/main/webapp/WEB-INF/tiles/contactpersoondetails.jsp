@@ -118,53 +118,54 @@
 						<td><form:input path="persoonsrollen[${loop.index}].bedrijf.adressen[${innerloop.index}].id"/></td>
 					</tr>
 					<tr>
-						<td><label for="adrestype">Adres type: </label></td>
-						<td><select name="type">
-								<option value="huis">Huis</option>
-								<option value="post">Post</option>
-								<option value="postbus">Postbus</option>
-								<option value="woonboot">Woonboot</option>
-								<option value="${adres.adresType.type}" selected>${adres.adresType.type}</option>
-						</select></td>
+						<td><label>Adres type: </label></td>
+						<td><form:select path="persoonsrollen[${loop.index}].bedrijf.adressen[${innerloop.index}].adresType.id">
+								<option value='3'>Huis</option>
+								<option value='1'>Post</option>
+								<option value='2'>Postbus</option>
+								<option value='4'>Woonboot</option>
+								<option value='persoonsrollen[${loop.index}].bedrijf.adressen[${innerloop.index}].adresType.id' selected>${adres.adresType.type}</option>
+						</form:select></td>
+						<td><form:input path="persoonsrollen[${loop.index}].bedrijf.adressen[${innerloop.index}].adresType.id"/></td>
 					</tr>
 					<tr>
 						<td><label for="straat">Straat: </label></td>
-						<td><form:input path="adressen[${innerloop.index}].straat"
+						<td><form:input path="persoonsrollen[${loop.index}].bedrijf.adressen[${innerloop.index}].straat"
 								value="${adres.straat}" /></td>
 					</tr>
 					<tr>
 						<td><label for="nummer">Nummer: </label></td>
-						<td><form:input path="${nummer}" id="nummer"
+						<td><form:input path="persoonsrollen[${loop.index}].bedrijf.adressen[${innerloop.index}].nummer" id="nummer"
 								value="${adres.nummer}" /></td>
 					</tr>
 					<tr>
 						<td><label for="toevoegsel">Toevoegsel: </label></td>
-						<td><form:input path="${toevoegsel}" id="toevoegsel"
+						<td><form:input path="persoonsrollen[${loop.index}].bedrijf.adressen[${innerloop.index}].toevoegsel" id="toevoegsel"
 								value="${adres.toevoegsel}" /></td>
 					</tr>
 					<tr>
 						<td><label for="postcode">Postcode: </label></td>
-						<td><form:input path="${postcode}" id="postcode"
+						<td><form:input path="persoonsrollen[${loop.index}].bedrijf.adressen[${innerloop.index}].postcode" id="postcode"
 								value="${adres.postcode}" /></td>
 					</tr>
 					<tr>
 						<td><label for="plaats">Plaats: </label></td>
-						<td><form:input path="${plaats}" id="plaats"
+						<td><form:input path="persoonsrollen[${loop.index}].bedrijf.adressen[${innerloop.index}].plaats" id="plaats"
 								value="${adres.plaats}" /></td>
 					</tr>
 					<tr>
 						<td><label for="land">Land: </label></td>
-						<td><form:input path="${land}" id="land"
+						<td><form:input path="persoonsrollen[${loop.index}].bedrijf.adressen[${innerloop.index}].land" id="land"
 								value="${adres.land}" /></td>
 					</tr>
 					<tr>
 						<td><label for="begindatum">Begin datum: </label></td>
-						<td><form:input path="${begindatum}" id="begindatum"
+						<td><form:input path="persoonsrollen[${loop.index}].bedrijf.adressen[${innerloop.index}].begindatum" id="begindatum"
 								value="${adres.begindatum}" /></td>
 					</tr>
 					<tr>
 						<td><label for="einddatum">Eind datum: </label></td>
-						<td><form:input path="${einddatum}" id="einddatum"
+						<td><form:input path="persoonsrollen[${loop.index}].bedrijf.adressen[${innerloop.index}].einddatum" id="einddatum"
 								value="${adres.einddatum}" /></td>
 					</tr>
 					<tr></tr>
