@@ -55,7 +55,7 @@ public class ContactpersonenlijstController {
 	@RequestMapping(value = "/update-{id}-persoon", method = RequestMethod.GET)
 	public String updatePersoon(@PathVariable int id, ModelMap model) {
 		Persoon persoon = persoonService.get(id);
-
+		System.out.println("///////" + persoon.getAdressen().size());
 		model.addAttribute("persoon", persoon);
 		return "contactpersoondetails";
 	}
@@ -67,13 +67,11 @@ public class ContactpersonenlijstController {
 		if (result.hasErrors()) {
 			return "contactpersoondetails";
 		} else {
-			System.out.println("///////////" + persoon.getDigitaleAdressen().size());
-			System.out.println("///////////" + persoon.getDigitaleAdressen().get(0).getId());
-			System.out.println("///////////" + persoon.getDigitaleAdressen().get(1).getId());
 			for(DigitaalAdres dAdres: persoon.getDigitaleAdressen()) {
 				dAdres.setPersoon(persoon);
 				digitaaladresService.update(dAdres);
 			}
+			System.out.println("/////" + persoon.getAdressen().size());
 			persoonService.update(persoon);
 			List<Persoon> personen = persoonService.getAll();
 			List<Persoon> contactpersonen = new ArrayList<>();
