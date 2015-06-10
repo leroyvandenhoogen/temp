@@ -52,24 +52,33 @@
 		</table>
 		<table class="details">
 			<th>Digitaal Adres</th>
-			<c:forEach items="${persoon.digitaleAdressen}" var="digitaleadres" varStatus="loop">
-					
+			<c:forEach items="${persoon.digitaleAdressen}" var="digitaleadres"
+				varStatus="loop">
+
 				<c:if
 					test="${digitaleadres.digitaalAdresType.type == 'email' || digitaleadres.digitaalAdresType.type == 'telefoonnummer' }">
 					<tr class="element">
-						<form:input type="hidden" path="digitaleAdressen[${loop.index}].id" value="${digitaleadres.id}"/>
+						<form:input type="hidden"
+							path="digitaleAdressen[${loop.index}].id"
+							value="${digitaleadres.id}" />
 						<td><label>${digitaleadres.digitaalAdresType.type} </label></td>
-						<td><form:input path="digitaleAdressen[${loop.index}].omschrijving" id="omschrijving"
-								value="${digitaleadres.omschrijving}" size="30" /></td>
+						<td><form:input
+								path="digitaleAdressen[${loop.index}].omschrijving"
+								id="omschrijving" value="${digitaleadres.omschrijving}"
+								size="30" /></td>
 						<td><label>voorkeur </label></td>
-<!-- 					<td><form:input path="digitaleAdressen[${loop.index}].contactvoorkeur"
+						<!-- 					<td><form:input path="digitaleAdressen[${loop.index}].contactvoorkeur"
 								id="contactvoorkeur" value="${digitaleadres.contactvoorkeur}"
 								size="2" /></td>
- -->	
-						<td><form:radiobutton path="digitaleAdressen[${loop.index}].contactvoorkeur" value="true"/>Yes
-							<form:radiobutton path="digitaleAdressen[${loop.index}].contactvoorkeur" value="false"/>No
-							</td>
-						<form:input type="hidden" path="digitaleAdressen[${loop.index}].digitaalAdresType.id" value="${digitaleadres.digitaalAdresType.id}"/>
+ -->
+						<td><form:radiobutton
+								path="digitaleAdressen[${loop.index}].contactvoorkeur"
+								value="true" />Yes <form:radiobutton
+								path="digitaleAdressen[${loop.index}].contactvoorkeur"
+								value="false" />No</td>
+						<form:input type="hidden"
+							path="digitaleAdressen[${loop.index}].digitaalAdresType.id"
+							value="${digitaleadres.digitaalAdresType.id}" />
 					</tr>
 				</c:if>
 
@@ -80,66 +89,88 @@
 		</br>
 		<table class="details">
 			<th>Adresgegevens</th>
-			<c:forEach items="${persoon.persoonsrollen}" var="persoonsrol" varStatus="loop">
-					<tr class="element">
-						<form:input path="persoonsrollen[${loop.index}].id" value="${persoonsrol.id}"/>
-						<td><label>Bedrijfsnaam:</label></td>
-						<td><form:input path="persoonsrollen[${loop.index}].bedrijf.naam" value="${persoonsrol.bedrijf.naam}" /></td>
-					</tr>
-					<c:forEach items="${persoonsrol.bedrijf.adressen}" var="adres" varStatus="innerloop">
-						<tr>
-							<td><label for="adrestype">Adres type: </label></td>
-							<td><select name="type">
-									<option value="huis">Huis</option>
-									<option value="post">Post</option>
-									<option value="postbus">Postbus</option>
-									<option value="woonboot">Woonboot</option>
-									<option value="${adres.adresType.type}" selected>${adres.adresType.type}</option>
-							</select></td>
-						</tr>
-						<tr>
-							<td><label for="straat">Straat: </label></td>
-							<td><form:input path="adressen[${innerloop.index}].straat"
-									value="${adres.straat}" /></td>
-						</tr>
-						<tr>
-							<td><label for="nummer">Nummer: </label></td>
-							<td><form:input path="${nummer}" id="nummer"
-									value="${adres.nummer}" /></td>
-						</tr>
-						<tr>
-							<td><label for="toevoegsel">Toevoegsel: </label></td>
-							<td><form:input path="${toevoegsel}" id="toevoegsel"
-									value="${adres.toevoegsel}" /></td>
-						</tr>
-						<tr>
-							<td><label for="postcode">Postcode: </label></td>
-							<td><form:input path="${postcode}" id="postcode"
-									value="${adres.postcode}" /></td>
-						</tr>
-						<tr>
-							<td><label for="plaats">Plaats: </label></td>
-							<td><form:input path="${plaats}" id="plaats"
-									value="${adres.plaats}" /></td>
-						</tr>
-						<tr>
-							<td><label for="land">Land: </label></td>
-							<td><form:input path="${land}" id="land"
-									value="${adres.land}" /></td>
-						</tr>
-						<tr>
-							<td><label for="begindatum">Begin datum: </label></td>
-							<td><form:input path="${begindatum}" id="begindatum"
-									value="${adres.begindatum}" /></td>
-						</tr>
-						<tr>
-							<td><label for="einddatum">Eind datum: </label></td>
-							<td><form:input path="${einddatum}" id="einddatum"
-									value="${adres.einddatum}" /></td>
-						</tr>
-						<tr></tr>
 
-					</c:forEach>
+			<c:forEach items="${persoon.persoonsrollen}" var="persoonsrol"
+				varStatus="loop">
+				<tr>
+					<td><label>placeholder persoonsrolid</label></td>
+					<td><form:input path="persoonsrollen[${loop.index}].id"
+							value="${persoonsrol.id}" /></td>
+				</tr>
+				<tr class="element">
+					<td><label>Bedrijfsnaam:</label></td>
+
+					<td><form:input
+							path="persoonsrollen[${loop.index}].bedrijf.naam"
+							value="${persoonsrol.bedrijf.naam}" /></td>
+				</tr>
+				<tr>
+					<td><label>placeholder bedrijfid</label></td>
+					<td><form:input
+							path="persoonsrollen[${loop.index}].bedrijf.id"
+							value="${persoonsrol.bedrijf.id}" /></td>
+				</tr>
+
+				<c:forEach items="${persoonsrol.bedrijf.adressen}" var="adres"
+					varStatus="innerloop">
+					<tr>
+						<td><label>placeholder adresid</label></td>
+						<td><form:input path="persoonsrollen[${loop.index}].bedrijf.adressen[${innerloop.index}].id"/></td>
+					</tr>
+					<tr>
+						<td><label>Adres type: </label></td>
+						<td><form:select path="persoonsrollen[${loop.index}].bedrijf.adressen[${innerloop.index}].adresType.id">
+								<option value='3'>Huis</option>
+								<option value='1'>Post</option>
+								<option value='2'>Postbus</option>
+								<option value='4'>Woonboot</option>
+								<option value='persoonsrollen[${loop.index}].bedrijf.adressen[${innerloop.index}].adresType.id' selected>${adres.adresType.type}</option>
+						</form:select></td>
+						<td><form:input path="persoonsrollen[${loop.index}].bedrijf.adressen[${innerloop.index}].adresType.id"/></td>
+					</tr>
+					<tr>
+						<td><label for="straat">Straat: </label></td>
+						<td><form:input path="persoonsrollen[${loop.index}].bedrijf.adressen[${innerloop.index}].straat"
+								value="${adres.straat}" /></td>
+					</tr>
+					<tr>
+						<td><label for="nummer">Nummer: </label></td>
+						<td><form:input path="persoonsrollen[${loop.index}].bedrijf.adressen[${innerloop.index}].nummer" id="nummer"
+								value="${adres.nummer}" /></td>
+					</tr>
+					<tr>
+						<td><label for="toevoegsel">Toevoegsel: </label></td>
+						<td><form:input path="persoonsrollen[${loop.index}].bedrijf.adressen[${innerloop.index}].toevoegsel" id="toevoegsel"
+								value="${adres.toevoegsel}" /></td>
+					</tr>
+					<tr>
+						<td><label for="postcode">Postcode: </label></td>
+						<td><form:input path="persoonsrollen[${loop.index}].bedrijf.adressen[${innerloop.index}].postcode" id="postcode"
+								value="${adres.postcode}" /></td>
+					</tr>
+					<tr>
+						<td><label for="plaats">Plaats: </label></td>
+						<td><form:input path="persoonsrollen[${loop.index}].bedrijf.adressen[${innerloop.index}].plaats" id="plaats"
+								value="${adres.plaats}" /></td>
+					</tr>
+					<tr>
+						<td><label for="land">Land: </label></td>
+						<td><form:input path="persoonsrollen[${loop.index}].bedrijf.adressen[${innerloop.index}].land" id="land"
+								value="${adres.land}" /></td>
+					</tr>
+					<tr>
+						<td><label for="begindatum">Begin datum: </label></td>
+						<td><form:input path="persoonsrollen[${loop.index}].bedrijf.adressen[${innerloop.index}].begindatum" id="begindatum"
+								value="${adres.begindatum}" /></td>
+					</tr>
+					<tr>
+						<td><label for="einddatum">Eind datum: </label></td>
+						<td><form:input path="persoonsrollen[${loop.index}].bedrijf.adressen[${innerloop.index}].einddatum" id="einddatum"
+								value="${adres.einddatum}" /></td>
+					</tr>
+					<tr></tr>
+
+				</c:forEach>
 			</c:forEach>
 		</table>
 		<tr>

@@ -6,9 +6,11 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import nl.rsvier.icaras.core.relatiebeheer.Adres;
 import nl.rsvier.icaras.core.relatiebeheer.DigitaalAdres;
 import nl.rsvier.icaras.core.relatiebeheer.Persoon;
 import nl.rsvier.icaras.core.relatiebeheer.Persoonsrol;
+import nl.rsvier.icaras.service.relatiebeheer.AdresService;
 import nl.rsvier.icaras.service.relatiebeheer.BedrijfService;
 import nl.rsvier.icaras.service.relatiebeheer.DigitaalAdresService;
 import nl.rsvier.icaras.service.relatiebeheer.PersoonService;
@@ -38,6 +40,8 @@ public class ContactpersonenlijstController {
 	BedrijfService bedrijfService;
 	@Autowired
 	DigitaalAdresService digitaaladresService;
+	@Autowired
+	AdresService adresService;
 
 
 	@RequestMapping(value = { "", "lijst" }, method = RequestMethod.GET)
@@ -67,12 +71,18 @@ public class ContactpersonenlijstController {
 		if (result.hasErrors()) {
 			return "contactpersoondetails";
 		} else {
-			System.out.println("///////////" + persoon.getDigitaleAdressen().size());
-			System.out.println("///////////" + persoon.getDigitaleAdressen().get(0).getId());
-			System.out.println("///////////" + persoon.getDigitaleAdressen().get(1).getId());
 			for(DigitaalAdres dAdres: persoon.getDigitaleAdressen()) {
 				dAdres.setPersoon(persoon);
 				digitaaladresService.update(dAdres);
+			}
+			for(Persoonsrol pRol: persoon.getPersoonsrollen()) {
+				System.out.println("////////" + pRol.getBedrijf().getAdressen().get(0).getAdresType());
+				bedrijfService.update(pRol.getBedrijf());
+				for(Adres adres: pRol.getBedrijf().getAdressen()) {
+					System.out.println("///////////"  + adres.getAdresType());
+					adres.setBedrijf(pRol.getBedrijf());
+					adresService.update(adres);
+				}
 			}
 			persoonService.update(persoon);
 			List<Persoon> personen = persoonService.getAll();
