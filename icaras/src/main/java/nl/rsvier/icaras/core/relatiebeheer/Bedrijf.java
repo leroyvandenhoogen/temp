@@ -54,7 +54,7 @@ public class Bedrijf implements java.io.Serializable {
 	public void setNaam(String naam) {
 		this.naam = naam;
 	}
-	
+
 	@Column(name = "kvknummer", length = 12)
 	public String getKvkNummer() {
 		return kvkNummer;
@@ -80,8 +80,9 @@ public class Bedrijf implements java.io.Serializable {
 	}
 
 	public void setDigitaleAdressen(List<DigitaalAdres> digitaleAdressen) {
-		if(digitaleAdressen != null && !(this.digitaleAdressen.contains(digitaleAdressen)))
-		this.digitaleAdressen = digitaleAdressen;
+		if (digitaleAdressen != null
+				&& !(this.digitaleAdressen.contains(digitaleAdressen)))
+			this.digitaleAdressen = digitaleAdressen;
 	}
 
 	public synchronized boolean addDigitaalAdres(DigitaalAdres digitaalAdres) {
@@ -92,7 +93,7 @@ public class Bedrijf implements java.io.Serializable {
 		}
 		return toegevoegd;
 	}
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bedrijf")
 	@Cascade(CascadeType.ALL)
 	public List<Adres> getAdressen() {
@@ -100,13 +101,13 @@ public class Bedrijf implements java.io.Serializable {
 	}
 
 	public void setAdressen(List<Adres> adressen) {
-		if(adressen != null && !(this.adressen.contains(adressen)))
-		this.adressen = adressen;
+		if (adressen != null && !(this.adressen.contains(adressen)))
+			this.adressen = adressen;
 	}
-	
+
 	public synchronized boolean addAdres(Adres adres) {
 		boolean toegevoegd = false;
-		if(adressen != null && !(this.adressen.contains(adres))) {
+		if (adressen != null && !(this.adressen.contains(adres))) {
 			toegevoegd = this.getAdressen().add(adres);
 			adres.setBedrijf(this);
 		}
@@ -114,37 +115,39 @@ public class Bedrijf implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bedrijf")
-
 	public List<Persoonsrol> getPersoonsrollen() {
-		
 		return this.persoonsrollen;
 	}
 
 	public void setPersoonsrollen(List<Persoonsrol> persoonsrollen) {
-		if(persoonsrollen != null && !(this.persoonsrollen.contains(persoonsrollen))) 
-		this.persoonsrollen = persoonsrollen;
+		if (persoonsrollen != null
+				&& !(this.persoonsrollen.contains(persoonsrollen)))
+			this.persoonsrollen = persoonsrollen;
+
 	}
-	
+
 	public synchronized boolean addPersoonsrol(Persoonsrol persoonsrol) {
 		boolean toegevoegd = false;
 		if (persoonsrol != null) {
 			toegevoegd = this.getPersoonsrollen().add(persoonsrol);
-			persoonsrol.setBedrijf(this);			
+			persoonsrol.setBedrijf(this);
 		}
 		return toegevoegd;
 	}
-	
-	//Opmerking wordt niet meegenomen in de hashcode of equals methode
+
+	// Opmerking wordt niet meegenomen in de hashcode of equals methode
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((getNaam() == null) ? 0 : getNaam().hashCode());
-		result = prime * result + ((getKvkNummer() == null) ? 0 : getKvkNummer().hashCode());
+		result = prime * result
+				+ ((getNaam() == null) ? 0 : getNaam().hashCode());
+		result = prime * result
+				+ ((getKvkNummer() == null) ? 0 : getKvkNummer().hashCode());
 		return result;
 	}
 
-	//Opmerking wordt niet meegenomen in de hashcode of equals methode
+	// Opmerking wordt niet meegenomen in de hashcode of equals methode
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -152,12 +155,14 @@ public class Bedrijf implements java.io.Serializable {
 		} else if (obj == null || !(obj instanceof Bedrijf)) {
 			return false;
 		} else {
-			Bedrijf other = (Bedrijf) obj;	
-			if (this.getKvkNummer() != null && !this.getKvkNummer().equals(other.getKvkNummer())) {
+			Bedrijf other = (Bedrijf) obj;
+			if (this.getKvkNummer() != null
+					&& !this.getKvkNummer().equals(other.getKvkNummer())) {
 				return false;
 			}
-			
-			if (this.getNaam() != null && !this.getNaam().equals(other.getNaam())) {
+
+			if (this.getNaam() != null
+					&& !this.getNaam().equals(other.getNaam())) {
 				return false;
 			}
 		}

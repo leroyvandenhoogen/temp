@@ -34,7 +34,6 @@ public class ContactpersonenlijstController {
 
 	@Autowired
 	PersoonsrolService persoonsrolservice;
-
 	@Autowired
 	PersoonService persoonService;
 	@Autowired
@@ -43,7 +42,6 @@ public class ContactpersonenlijstController {
 	DigitaalAdresService digitaaladresService;
 	@Autowired
 	AdresService adresService;
-
 
 	@RequestMapping(value = { "", "lijst" }, method = RequestMethod.GET)
 	public String showPersonenLijst(ModelMap model) {
@@ -60,7 +58,8 @@ public class ContactpersonenlijstController {
 	@RequestMapping(value = "/update-{id}-persoon", method = RequestMethod.GET)
 	public String updatePersoon(@PathVariable int id, ModelMap model) {
 		Persoon persoon = persoonService.get(id);
-		ArrayList<AdresType> adresTypes = (ArrayList<AdresType>)adresService.getAllTypes();
+		ArrayList<AdresType> adresTypes = (ArrayList<AdresType>) adresService
+				.getAllTypes();
 		model.addAttribute("adresTypes", adresTypes);
 
 		model.addAttribute("persoon", persoon);
@@ -74,13 +73,13 @@ public class ContactpersonenlijstController {
 		if (result.hasErrors()) {
 			return "contactpersoondetails";
 		} else {
-			for(DigitaalAdres dAdres: persoon.getDigitaleAdressen()) {
+			for (DigitaalAdres dAdres : persoon.getDigitaleAdressen()) {
 				dAdres.setPersoon(persoon);
 				digitaaladresService.update(dAdres);
 			}
-			for(Persoonsrol pRol: persoon.getPersoonsrollen()) {
+			for (Persoonsrol pRol : persoon.getPersoonsrollen()) {
 				bedrijfService.update(pRol.getBedrijf());
-				for(Adres adres: pRol.getBedrijf().getAdressen()) {
+				for (Adres adres : pRol.getBedrijf().getAdressen()) {
 					adres.setBedrijf(pRol.getBedrijf());
 					adresService.update(adres);
 				}
@@ -92,7 +91,8 @@ public class ContactpersonenlijstController {
 				if (pers.hasRol("contactpersoon"))
 					contactpersonen.add(pers);
 			}
-			ArrayList<AdresType> adresTypes = (ArrayList<AdresType>)adresService.getAllTypes();
+			ArrayList<AdresType> adresTypes = (ArrayList<AdresType>) adresService
+					.getAllTypes();
 			model.addAttribute("adresTypes", adresTypes);
 			model.addAttribute("contactpersonen", contactpersonen);
 			Persoon persoon1 = persoonService.get(id);
@@ -104,23 +104,25 @@ public class ContactpersonenlijstController {
 			return "contactpersoondetails";
 		}
 	}
-	
+
 	@RequestMapping(value = "/nieuwcontactpersoon", method = RequestMethod.GET)
-	public String newPersoon(ModelMap model){		
+	public String newPersoon(ModelMap model) {
 		Persoon persoon = new Persoon();
 		model.addAttribute("persoon", persoon);
 		return "nieuwcontactpersoon";
 	}
-	
+
 	@RequestMapping(value = "/nieuwcontactpersoon", method = RequestMethod.POST)
-	public String savePersoon(@ModelAttribute("persoon")@Valid Persoon persoon, BindingResult result, ModelMap model) {
+	public String savePersoon(
+			@ModelAttribute("persoon") @Valid Persoon persoon,
+			BindingResult result, ModelMap model) {
 		Persoonsrol persoonsrol = new Persoonsrol();
 		persoonsrol.setBegindatum(new Date());
 		persoonsrol.setPersoon(persoon);
 		persoonsrolservice.addRol("contactpersoon", persoonsrol);
 		persoon.addPersoonsrol(persoonsrol);
 		persoonService.save(persoon);
-		
+
 		List<Persoon> personen = persoonService.getAll();
 		List<Persoon> contactpersonen = new ArrayList<>();
 		for (Persoon pers : personen) {
@@ -128,9 +130,10 @@ public class ContactpersonenlijstController {
 				contactpersonen.add(pers);
 		}
 		model.addAttribute("contactpersonen", contactpersonen);
-		model.addAttribute("succes", persoon.getVoornaam() + " "
-                + persoon.getAchternaam() + " staat geregistreerd");
+		model.addAttribute("succes",
+				persoon.getVoornaam() + " " + persoon.getAchternaam()
+						+ " staat geregistreerd");
 		return "contactpersonen";
 	}
-	
+
 }

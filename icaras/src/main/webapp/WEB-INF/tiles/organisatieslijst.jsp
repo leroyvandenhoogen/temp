@@ -14,7 +14,7 @@
 				<td>${organisatie.naam}</td>
 				<td>${organisatie.kvkNummer}</td>
 				<td>${organisatie.opmerking}</td>
-				<td><a href="<c:url value='/organisaties/update-${organisatie.id}-organisatie' />">${organisatie.id}</a></td>
+				<td><a href="<c:url value='/organisaties/update-${organisatie.id}-organisatie' />">Details</a></td>
 			</tr>
 		</c:forEach>
 	</table>

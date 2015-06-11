@@ -117,11 +117,11 @@ public class Persoonsrol implements java.io.Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result= prime * result + ((getId() == null) ? 0 : getId().hashCode());
 		result = prime * result	+ ((getBegindatum() == null) ? 0 : getBegindatum().hashCode());
 		result = prime * result	+ ((getEinddatum() == null) ? 0 : getEinddatum().hashCode());
 		result = prime * result + ((getRol() == null) ? 0 : getRol().hashCode());
-		//Composite key Id
-		result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+
 		
 		return result;
 	}
@@ -149,11 +149,7 @@ public class Persoonsrol implements java.io.Serializable {
 			if (this.getId() != null && !this.getId().equals(other.getId())) {
 				return false;
 			}
-			
-			if (this.getId() != null && (!(this.getBegindatum().equals((other.getBegindatum()))))) {
-				return false;
-			}
-			
+					
 		}
 		return true;
 	}

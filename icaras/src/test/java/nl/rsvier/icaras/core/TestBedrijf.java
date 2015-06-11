@@ -3,8 +3,8 @@ package nl.rsvier.icaras.core;
 import nl.rsvier.icaras.core.relatiebeheer.Bedrijf;
 
 public class TestBedrijf {
-	private static String[] bedrijven = {"Google", "Facebook", "Adobe", "Salesforce", "Qualcomm"};
-	private static String[] opmerkingen = {"Heeft potentie", "In het verleden zaken met gedaan", 
+	private static String[] bedrijven = {"Google", "Facebook", "Adobe", "Salesforce", "Qualcomm", "Microsoft", "Apple", "IBM", "Capgemini", "Cisco"};
+	private static String[] opmerkingen = {"Heeft potentie", "In het verleden zaken mee gedaan", 
 			"Slechte ervaringen mee", "Nog te benaderen", ""};
 	public static Bedrijf maakTestBedrijf1() {
 		Bedrijf bedrijf = new Bedrijf();
@@ -24,7 +24,7 @@ public class TestBedrijf {
 	
 	public static Bedrijf maakTestBedrijf3() {
 		Bedrijf bedrijf = new Bedrijf();
-		bedrijf.setNaam(bedrijven[(int)(Math.random()*5)]);
+		bedrijf.setNaam(bedrijven[(int)(Math.random()*10)]);
 		bedrijf.setKvkNummer("" + ((int)(Math.random()*999999999)));
 		bedrijf.setOpmerking(opmerkingen[((int)(Math.random()*5))]);
 		return bedrijf;
