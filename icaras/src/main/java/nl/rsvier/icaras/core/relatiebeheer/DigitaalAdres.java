@@ -83,6 +83,10 @@ public class DigitaalAdres implements java.io.Serializable {
 		}
 		return isSet;
 	}
+	
+	public synchronized void removePersoon() {
+		this.persoon = null;
+	}
 
 	@Column(name = "omschrijving", nullable = false, length = 100)
 	public String getOmschrijving() {

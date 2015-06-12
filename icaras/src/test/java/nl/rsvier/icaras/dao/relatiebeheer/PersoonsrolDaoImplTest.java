@@ -119,6 +119,8 @@ public class PersoonsrolDaoImplTest {
 	public void testDelete() {
 		dao.save(persoonsrol1);
 		Integer id = persoonsrol1.getId();
+		persoonsrol1.removePersoon();
+		persoonsrol1.removeBedrijf();
 		
 		dao.delete(persoonsrol1);
 		

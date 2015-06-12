@@ -20,6 +20,8 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 @Table(name = "persoonsrol", catalog = "icaras")
@@ -48,7 +50,7 @@ public class Persoonsrol implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "rol_id", nullable = false  /*, insertable = false*/ , updatable = false)
+	@JoinColumn(name = "rol_id", nullable = false  /*, insertable = false , updatable = false */)
 	public Rol getRol() {
 		return this.rol;
 	}
@@ -75,6 +77,10 @@ public class Persoonsrol implements java.io.Serializable {
 		}
 		return isSet;
 	}
+	
+	public synchronized void removeBedrijf() {
+		this.bedrijf = null;
+	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "persoon_id", nullable = false /*, insertable = false, updatable = false*/)
@@ -93,7 +99,13 @@ public class Persoonsrol implements java.io.Serializable {
 		}
 		return isSet;
 	}
+	
+	public synchronized void removePersoon() {
+		this.persoon = null;
+	}
+	
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(iso = ISO.DATE, pattern="yyyy-MM-dd")
 	@Column(name = "begindatum", nullable = false, length = 10)
 	public Date getBegindatum() {
 		return this.begindatum;
@@ -156,5 +168,10 @@ public class Persoonsrol implements java.io.Serializable {
 			
 		}
 		return true;
+	}
+	
+	@Override
+	public String toString(){
+		return this.getRol().getType();
 	}
 }

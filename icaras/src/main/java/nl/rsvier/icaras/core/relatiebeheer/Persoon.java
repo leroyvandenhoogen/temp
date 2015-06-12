@@ -144,6 +144,7 @@ public class Persoon implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon")
+	@Cascade({CascadeType.ALL})
 	public List<Identiteitsbewijs> getIdentiteitsbewijzen() {
 		return this.identiteitsbewijzen;
 	}
@@ -160,9 +161,18 @@ public class Persoon implements java.io.Serializable {
 		}
 		return toegevoegd;
 	}
+	
+	public synchronized boolean removeIdentiteitsbewijs(Identiteitsbewijs identiteitsbewijs) {
+		boolean verwijderd = false;
+		if(identiteitsbewijs != null) {
+			verwijderd = this.getIdentiteitsbewijzen().remove(identiteitsbewijs);
+			identiteitsbewijs.removePersoon();
+		}
+		return verwijderd;
+	}
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "persoon")
-//	@Cascade(CascadeType.ALL)
+	@Cascade(CascadeType.ALL)
 	public List<Adres> getAdressen() {
 		return this.adressen;
 	}
@@ -179,6 +189,15 @@ public class Persoon implements java.io.Serializable {
 			adres.setPersoon(this);
 		}
 		return toegevoegd;
+	}
+	
+	public synchronized boolean removeAdres(Adres adres) {
+		boolean verwijderd = false;
+		if(adres != null) {
+			verwijderd = this.getAdressen().remove(adres);
+			adres.removePersoon();
+		}
+		return verwijderd;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon")
@@ -200,8 +219,18 @@ public class Persoon implements java.io.Serializable {
 		}
 		return toegevoegd;
 	}
+	
+	public synchronized boolean removeDigitaalAdres(DigitaalAdres digitaalAdres) {
+		boolean verwijderd = false;
+		if(digitaalAdres != null) {
+			verwijderd = this.getDigitaleAdressen().remove(digitaalAdres);
+			digitaalAdres.removePersoon();
+		}
+		return verwijderd;
+	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon")
+	@Cascade({CascadeType.DELETE})
 	public List<Persoonsrol> getPersoonsrollen() {
 		return this.persoonsrollen;
 	}
@@ -219,6 +248,15 @@ public class Persoon implements java.io.Serializable {
 			persoonsrol.setPersoon(this);			
 		}
 		return toegevoegd;
+	}
+	
+	public synchronized boolean removePersoonsrol(Persoonsrol persoonsrol) {
+		boolean verwijderd = false;
+		if(persoonsrol != null) {
+			verwijderd = this.getPersoonsrollen().remove(persoonsrol);
+			persoonsrol.removePersoon();
+		}
+		return verwijderd;
 	}
 	
 	public boolean hasRol(String rol) {

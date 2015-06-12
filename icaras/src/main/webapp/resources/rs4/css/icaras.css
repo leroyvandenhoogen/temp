@@ -33,7 +33,7 @@ div.menu {
 	background-color:#c0c0c0;
 	float:left;
 	text-align:left;
-	width: 150px;
+	width: 140px;
 	min-height:840px;
 	clear:left;
 	padding-left:10px;
@@ -45,15 +45,17 @@ ul.menu {
 }
 
 div.content {
+	background-color:#e0e0e0;
 	float: left;
-	padding: 40px;
-	height: 400px;
+	padding: 20px;
+	height: 750px;
 	overflow-y:auto;
 }
 
 div.details {
+	background-color:#e0e0e0;
 	float: left;
-	padding: 40px;
+	padding: 20px;
 }
 
 table.details {

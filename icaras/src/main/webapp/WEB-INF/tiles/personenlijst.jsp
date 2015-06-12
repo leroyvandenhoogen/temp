@@ -8,14 +8,15 @@
 			<td>Achternaam</td>
 			<td>Tussenvoegsel</td>
 			<td>Rollen</td>
+			<td></td>
 		</tr>
 		<c:forEach items="${personen}" var="persoon">
 			<tr class="element">
-
 				<td>${persoon.voornaam}</td>
 				<td>${persoon.achternaam}</td>
 				<td>${persoon.tussenvoegsel}</td>
-				<td><a href="<c:url value='/personen/update-${persoon.id}-persoon' />">${persoon.id}</a></td>
+				<td>${persoon.persoonsrollen}</td>
+				<td><a href="<c:url value='/personen/update-${persoon.id}-persoon' />">Details</a></td>
 			</tr>
 		</c:forEach>
 		
