@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <body>
-
+	<h1 style="color:red">${gewijzigd}</h1>
 	<form:form method="POST" modelAttribute="persoon">
 		<table class="details">
 		<th>Persoonsgegevens </th>
@@ -108,84 +108,67 @@
 					<td><form:input type="date" path="adressen[${current.index}].einddatum"
 							value="${einddatum}" /></td>
 				</tr>
-			<!--
-				<tr>
-					<td><label>Adres type: </label>
-					<td><form:input type="hidden" path="adressen[${current.index}].adresType.type" value="${type}"></form:input>
-					<td><form:input type="hidden" path="adressen[${current.index}].adresType.id" value="${adresType.id}"></form:input>
-				</tr>
-				  -->
 					
 					<td><label>Adres type: </label></td>
 					<td><form:select path="adressen[${current.index}].adresType.id">
 						<option value="${adres.adresType.id}" selected>${adres.adresType.type} (huidig)</option>
 					<c:forEach items="${adresTypes}" var="lookupType" varStatus="current" begin="0">
-						<option value="${lookupType.id}">${lookupType.id}${lookupType.type}</option>
+						<option value="${lookupType.id}">${lookupType.type}</option>
 					</c:forEach>
 					</form:select></td>
-						
-				
-				
 				<tr></tr>	
-				<td colspan="3"><input type="submit" value="Wijzig Persoon" /></td>	
+
 				<tr>		
 			</c:forEach>
 		</table>
 		
-		<!--  
 		<table class="details">
 			<th>Digitaal Adres</th>
-			<c:forEach items="${persoon.digitaleAdressen}" var="digitaleadres" varStatus="loop">
-					<tr class="element"> 
-						<form:input type="hidden" path="digitaleAdressen[${loop.index}].id" value="${digitaleadres.id}"/>
+			<c:forEach items="${persoon.digitaleAdressen}" var="digitaleadres"
+				varStatus="current">
+					<tr class="element">
+						<form:input type="hidden"
+							path="digitaleAdressen[${current.index}].id"
+							value="${digitaleadres.id}" />
 						<td><label>${digitaleadres.digitaalAdresType.type} </label></td>
-						<td><form:input path="digitaleAdressen[${loop.index}].omschrijving" id="omschrijving"
-								value="${digitaleadres.omschrijving}" size="30" /></td>
+						<td><form:input
+								path="digitaleAdressen[${current.index}].omschrijving"
+								id="omschrijving" value="${digitaleadres.omschrijving}"
+								size="30" /></td>
 						<td><label>voorkeur </label></td>
-						<td><form:radiobutton path="digitaleAdressen[${loop.index}].contactvoorkeur" value="true"/>Yes
-							<form:radiobutton path="digitaleAdressen[${loop.index}].contactvoorkeur" value="false"/>No
-						</td>
-						<form:input type="hidden" path="digitaleAdressen[${loop.index}].digitaalAdresType.id" value="${digitaleadres.digitaalAdresType.id}"/>
+						<td><form:radiobutton
+								path="digitaleAdressen[${current.index}].contactvoorkeur"
+								value="true" />Yes <form:radiobutton
+								path="digitaleAdressen[${current.index}].contactvoorkeur"
+								value="false" />No</td>
+						<form:input type="hidden"
+							path="digitaleAdressen[${current.index}].digitaalAdresType.id"
+							value="${digitaleadres.digitaalAdresType.id}" />
 					</tr>
 			</c:forEach>
 			<tr></tr>
 		</table>
-		-->
-		
-		<!--  
-		<table class="details">
-		<th>Digitaal Adres</th>
-			<c:forEach items="${persoon.digitaleAdressen}" var="digitaleadres">
-				<c:if test="${digitaleadres.digitaalAdresType.type == 'email' || digitaleadres.digitaalAdresType.type == 'telefoonnummer' || digitaleadres.digitaalAdresType.type == 'website'}">
-					<tr class="element">
-						<td><label>${digitaleadres.digitaalAdresType.type} </label></td>
-						<td><form:input path="${omschrijving}" id="omschrijving" value="${digitaleadres.omschrijving}" size="30"/></td>
-						<td><label>voorkeur </label></td>
-						<td><form:input path="${contactvoorkeur}" id="contactvoorkeur" value="${digitaleadres.contactvoorkeur}" size="2"/></td>
-					</tr>
-				</c:if>
-					
-			</c:forEach>
-					<tr></tr>
-		</table>
-		
-		
-		
+
 		<table class="details">
 		<th>Persoonsrollen</th>
-			<c:forEach items="${persoon.persoonsrollen}" var="persoonsrol">
+			<c:forEach items="${persoon.persoonsrollen}" var="persoonsrol" varStatus="current">
 				<tr class="element">
-					<td><label>${persoonsrol.rol.type} </label></td>
+					<form:input type="hidden" path="persoonsrollen[${current.index}].id" value="${persoonsrol.id}" />
+					<form:input type="hidden" path="persoonsrollen[${current.index}].rol.id" value="${persoonsrol.rol.id}" />
+					<td><form:input path="persoonsrollen[${current.index}].rol.type" id="type" value="${persoonsrol.rol.type}"/></td>
 					<td><label>begindatum</label></td>
-					<td><form:input path="${begindatum}" id="begindatum" value="${persoonsrol.begindatum}" size="10"/></td>
+					<td><form:input type="date" path="persoonsrollen[${current.index}].begindatum" id="begindatum" value="${persoonsrol.begindatum}" size="10"/></td>
 					<td><label>einddatum </label></td>
-					<td><form:input path="${einddatum}" id="einddatum" value="${persoonsrol.einddatum}" size="10"/></td>
+					<td><form:input type="date" path="persoonsrollen[${current.index}].einddatum" id="einddatum" value="${persoonsrol.einddatum}" size="10"/></td>
 				</tr>
 			</c:forEach>
 			<tr></tr>
+			<td colspan="3"><input type="submit" value="Wijzig Persoon" name="wijzig" /></td>
+			<tr></tr>
+			<td colspan="3"><input type="submit" value="Verwijder Persoon" name="verwijder"/></td>	
 		</table>
-		
-				<table class="details">
+		<!--
+			<table class="details">
 			<c:forEach items="${persoon.identiteitsbewijzen}"
 				var="identiteitsbewijs">
 				<tr class="element">
@@ -201,7 +184,6 @@
 		</table>
 		-->
 	</form:form>
-	
 	<br />
 	<br /> Ga terug naar
 	<a href="<c:url value='/personen' />">Lijst van alle Personen</a>

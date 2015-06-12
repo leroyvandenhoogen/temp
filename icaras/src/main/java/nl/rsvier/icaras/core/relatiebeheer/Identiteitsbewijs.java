@@ -63,6 +63,10 @@ public class Identiteitsbewijs implements java.io.Serializable {
 		}
 		return isSet;
 	}
+	
+	public synchronized void removePersoon() {
+		this.persoon = null;
+	}
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "vervaldatum", nullable = false, length = 10)

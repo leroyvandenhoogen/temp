@@ -70,6 +70,10 @@ public class Adres implements java.io.Serializable {
 		}
 		return isSet;
 	}
+	
+	public synchronized void removeBedrijf() {
+		this.persoon = null;
+	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "persoon_id")
@@ -83,15 +87,14 @@ public class Adres implements java.io.Serializable {
 		if(persoon != null && this.getPersoon() == null) {
 			this.persoon = persoon;
 			isSet = true;
-//			if(!(this.getPersoon().getAdressen().contains(this))) {
-//				System.out.println("3. PERSOON HEEFT DIT ADRES NIET");
-//				persoon.addAdres(this);
-//				System.out.println("4. ADRES TOEGEVOEGD AAN PERSOON");
-//			}
 		}
 		return isSet;
 	}
 
+	public synchronized void removePersoon() {
+		this.persoon = null;
+	}
+	
 //	@ManyToOne(fetch = FetchType.LAZY)
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "adres_type_id", nullable = false/*, updatable=false, insertable=false*/)
