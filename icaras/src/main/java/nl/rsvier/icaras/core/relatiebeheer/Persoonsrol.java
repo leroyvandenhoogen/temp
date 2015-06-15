@@ -71,9 +71,9 @@ public class Persoonsrol implements java.io.Serializable {
 		if(bedrijf != null && this.getBedrijf() == null) {
 			this.bedrijf = bedrijf;
 			isSet = true;
-			if(!(this.getBedrijf().getDigitaleAdressen().contains(this))) {
-				bedrijf.addPersoonsrol(this);
-			}
+//			if(!(this.getBedrijf().getDigitaleAdressen().contains(this))) {
+//				bedrijf.addPersoonsrol(this);
+//			}
 		}
 		return isSet;
 	}

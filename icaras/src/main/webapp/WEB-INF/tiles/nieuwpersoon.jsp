@@ -106,6 +106,17 @@
 							value="2010-02-02" /></td>
 				</tr>
 				<tr></tr>
+				
+					<td><label>Adres type: </label></td>
+					<td><form:select path="adressen[${current.index}].adresType.id">
+						<option value="${adres.adresType.id}" selected>${adres.adresType.type}</option>
+					<c:forEach items="${adresTypes}" var="lookupType" varStatus="current" begin="0">
+						<option value="${lookupType.id}">${lookupType.type}</option>
+					</c:forEach>
+					</form:select></td>
+				
+				
+				<!-- 
 					<tr>
 					<td><label for="adresType">Adres type: </label></td>
 					<td><select name="type">
@@ -113,6 +124,7 @@
 							<option id="adresType" value="${adresType.type}">"${adresType.type}"</option>
 					</c:forEach>
 					</select></td>
+					-->
 				</tr>
 				<tr>
 					<td colspan="2"><input type="submit" value="Voeg persoon toe" /></td>
