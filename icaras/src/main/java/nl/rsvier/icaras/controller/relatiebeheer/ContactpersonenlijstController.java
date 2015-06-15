@@ -2,6 +2,7 @@ package nl.rsvier.icaras.controller.relatiebeheer;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -33,13 +34,13 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 public class ContactpersonenlijstController {
 
 	@Autowired
-	PersoonsrolService persoonsrolservice;
+	PersoonsrolService persoonsrolService;
 	@Autowired
 	PersoonService persoonService;
 	@Autowired
 	BedrijfService bedrijfService;
 	@Autowired
-	DigitaalAdresService digitaaladresService;
+	DigitaalAdresService digitaalAdresService;
 	@Autowired
 	AdresService adresService;
 
@@ -66,7 +67,7 @@ public class ContactpersonenlijstController {
 		return "contactpersoondetails";
 	}
 
-	@RequestMapping(value = { "update-{id}-persoon" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "update-{id}-persoon" }, method = RequestMethod.POST, params="wijzig")
 	public String updatePersoon(@PathVariable int id,
 			@Valid @ModelAttribute("persoon") Persoon persoon,
 			BindingResult result, ModelMap model) {
@@ -75,7 +76,7 @@ public class ContactpersonenlijstController {
 		} else {
 			for (DigitaalAdres dAdres : persoon.getDigitaleAdressen()) {
 				dAdres.setPersoon(persoon);
-				digitaaladresService.update(dAdres);
+				digitaalAdresService.update(dAdres);
 			}
 			for (Persoonsrol pRol : persoon.getPersoonsrollen()) {
 				bedrijfService.update(pRol.getBedrijf());
@@ -104,6 +105,47 @@ public class ContactpersonenlijstController {
 			return "contactpersoondetails";
 		}
 	}
+	
+	@RequestMapping(value = "/update-{id}-persoon", method = RequestMethod.POST, params="verwijder")
+	public String deleteContactPersoon(@PathVariable int id, @Valid @ModelAttribute("persoon") Persoon persoon,
+			BindingResult result, ModelMap model) {
+		Iterator<DigitaalAdres> dAdresIterator = persoon.getDigitaleAdressen().iterator();
+		while(dAdresIterator.hasNext()) {
+			DigitaalAdres dAdres = dAdresIterator.next();
+			dAdres.removePersoon();
+			digitaalAdresService.delete(dAdres);
+			dAdresIterator.remove();
+		}
+		
+		Iterator<Adres> adresIterator = persoon.getAdressen().iterator();
+		while(adresIterator.hasNext()) {
+			Adres adres = adresIterator.next();
+			adres.removePersoon();
+			if(adres.getBedrijf() == null) {
+				adresService.delete(adres);
+			} else {
+				adresService.update(adres);
+			}
+			adresIterator.remove();
+		}
+		
+		Iterator<Persoonsrol> persoonsrolIterator= persoon.getPersoonsrollen().iterator();
+		while(persoonsrolIterator.hasNext()) {
+			Persoonsrol persoonsrol = persoonsrolIterator.next();
+			persoonsrol.removePersoon();
+			persoonsrol.removeBedrijf();
+			persoonsrolService.delete(persoonsrol);
+			persoonsrolIterator.remove();
+		}
+		
+		persoonService.delete(persoon);
+		
+		model.remove("persoon", persoon);
+		model.addAttribute("verwijderd", persoon.getVoornaam() + " "
+                + persoon.getAchternaam() + " is verwijderd");
+		
+		return "redirect:";
+	}
 
 	@RequestMapping(value = "/nieuwcontactpersoon", method = RequestMethod.GET)
 	public String newPersoon(ModelMap model) {
@@ -119,7 +161,7 @@ public class ContactpersonenlijstController {
 		Persoonsrol persoonsrol = new Persoonsrol();
 		persoonsrol.setBegindatum(new Date());
 		persoonsrol.setPersoon(persoon);
-		persoonsrolservice.addRol("contactpersoon", persoonsrol);
+		persoonsrolService.addRol("contactpersoon", persoonsrol);
 		persoon.addPersoonsrol(persoonsrol);
 		persoonService.save(persoon);
 

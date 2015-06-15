@@ -91,7 +91,7 @@
 						<tr class="element">
 							<form:input type="hidden"
 								path="persoonsrollen[${loop.index}].persoon.digitaleAdressen[${innerloop.index}].id" />
-							<td><label>${digitaleadres.digitaalAdresType.type} </label></td>
+							<td><label>${digitaalAdres.digitaalAdresType.type}: </label></td>
 							<td><form:input
 									path="persoonsrollen[${loop.index}].persoon.digitaleAdressen[${innerloop.index}].omschrijving"
 									size="30" /></td>

@@ -125,8 +125,8 @@
 									<option value="${lookupType.id}">${lookupType.type}</option>
 								</c:forEach>
 							</form:select></td>
-<!--  					<td><form:input type="hidden"
-								path="persoonsrollen[${loop.index}].bedrijf.adressen[${innerloop.index}].adresType.id" /></td> -->	
+						<!--  					<td><form:input type="hidden"
+								path="persoonsrollen[${loop.index}].bedrijf.adressen[${innerloop.index}].adresType.id" /></td> -->
 					</tr>
 					<tr>
 						<td><label for="straat">Straat: </label></td>
@@ -182,7 +182,12 @@
 			</c:forEach>
 		</table>
 		<tr>
-			<td colspan="3"><input type="submit" value="Update" /></td>
+			<td colspan="3"><input type="submit" value="Wijzig Persoon"
+				name="wijzig" /></td>
+		</tr>
+		<tr>
+			<td colspan="3"><input type="submit" value="Verwijder Persoon"
+				name="verwijder" /></td>
 		</tr>
 	</form:form>
 </body>
