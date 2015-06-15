@@ -36,6 +36,7 @@
 				varStatus="loop">
 
 				<form:input type="hidden" path="persoonsrollen[${loop.index}].id" />
+				<form:input type="hidden" path="persoonsrollen[${loop.index}].rol.id"/>
 				<form:input type="hidden"
 					path="persoonsrollen[${loop.index}].begindatum"
 					value="${persoonsrol.begindatum}" />

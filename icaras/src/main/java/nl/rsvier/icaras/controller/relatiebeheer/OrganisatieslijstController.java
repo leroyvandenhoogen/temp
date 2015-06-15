@@ -8,9 +8,12 @@ import javax.validation.Valid;
 import nl.rsvier.icaras.core.relatiebeheer.Adres;
 import nl.rsvier.icaras.core.relatiebeheer.AdresType;
 import nl.rsvier.icaras.core.relatiebeheer.Bedrijf;
+import nl.rsvier.icaras.core.relatiebeheer.DigitaalAdres;
+import nl.rsvier.icaras.core.relatiebeheer.Persoon;
 import nl.rsvier.icaras.core.relatiebeheer.Persoonsrol;
 import nl.rsvier.icaras.service.relatiebeheer.AdresService;
 import nl.rsvier.icaras.service.relatiebeheer.BedrijfService;
+import nl.rsvier.icaras.service.relatiebeheer.DigitaalAdresService;
 import nl.rsvier.icaras.service.relatiebeheer.PersoonService;
 import nl.rsvier.icaras.service.relatiebeheer.PersoonsrolService;
 
@@ -37,6 +40,8 @@ public class OrganisatieslijstController {
 	PersoonsrolService persoonsrolService;
 	@Autowired
 	PersoonService persoonService;
+	@Autowired
+	DigitaalAdresService digitaalAdresService;
 
 	@RequestMapping(value = { "", "lijst" }, method = RequestMethod.GET)
 	public String showOrganisatiesLijst(ModelMap model) {
@@ -59,32 +64,33 @@ public class OrganisatieslijstController {
 	public String updateOrganisatie(@PathVariable int id,
 			@Valid @ModelAttribute("organisatie") Bedrijf organisatie,
 			BindingResult result, ModelMap model) {
-			System.out.println("////////" + organisatie.getPersoonsrollen().get(0).getId());
-			System.out.println("////////" + organisatie.getPersoonsrollen().get(0).getBegindatum());
-			System.out.println("////////" + organisatie.getPersoonsrollen().get(0).getPersoon().getAchternaam());
-			for (Adres adres : organisatie.getAdressen()) {
-				adres.setBedrijf(organisatie);
-				adresService.update(adres);
+		for (Adres adres : organisatie.getAdressen()) {
+			adres.setBedrijf(organisatie);
+			adresService.update(adres);
+		}
+		for (Persoonsrol pRol : organisatie.getPersoonsrollen()) {
+			
+			pRol.setBedrijf(organisatie);
+			for (DigitaalAdres dAdres : pRol.getPersoon().getDigitaleAdressen()) {
+				dAdres.setPersoon(pRol.getPersoon());
+				digitaalAdresService.update(dAdres);
 			}
-//			for (Persoonsrol pRol: organisatie.getPersoonsrollen()) {
-//				persoonService.update(pRol.getPersoon());
-//				pRol.setBedrijf(organisatie);
-//				persoonsrolService.update(pRol);
-//			}
-			bedrijfService.update(organisatie);
+			persoonService.update(pRol.getPersoon());
+			persoonsrolService.update(pRol);
+		}
+		bedrijfService.update(organisatie);
 
-			List<Bedrijf> organisaties = bedrijfService.getAll();
-			model.addAttribute("organisaties", organisaties);
+		List<Bedrijf> organisaties = bedrijfService.getAll();
+		model.addAttribute("organisaties", organisaties);
 
-			ArrayList<AdresType> adresTypes = (ArrayList<AdresType>) adresService
-					.getAllTypes();
-			model.addAttribute("adresTypes", adresTypes);
+		ArrayList<AdresType> adresTypes = (ArrayList<AdresType>) adresService
+				.getAllTypes();
+		model.addAttribute("adresTypes", adresTypes);
 
-			Bedrijf organisatie1 = bedrijfService.get(id);
-			model.addAttribute("organisatie", organisatie1);
+		Bedrijf organisatie1 = bedrijfService.get(id);
+		model.addAttribute("organisatie", organisatie1);
 
-			return "organisatiedetails";
-		
+		return "organisatiedetails";
 
 	}
 }
