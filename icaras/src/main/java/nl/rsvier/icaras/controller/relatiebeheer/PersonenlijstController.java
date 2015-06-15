@@ -96,6 +96,8 @@ public class PersonenlijstController {
 			model.addAttribute("persoon", persoon1);
 			ArrayList<AdresType> adresTypes = (ArrayList<AdresType>)adresService.getAllTypes();
 			model.addAttribute("adresTypes", adresTypes);
+			List<Persoon> personen = service.getAll();
+			model.addAttribute("personen", personen);
 			model.addAttribute("gewijzigd", persoon.getVoornaam() + " "
 	                + persoon.getAchternaam() + " is gewijzigd");
 			return "persoondetails";
@@ -176,7 +178,7 @@ public class PersonenlijstController {
 		adresService.save(adresType.getType(), adres);
 		
 		model.addAttribute("succes", persoon.getVoornaam() + " "
-                + persoon.getAchternaam() + " is toegevoegd aan de database");
+                + persoon.getAchternaam() + " is toegevoegd");
 		return "redirect:";
 		}
 	}
