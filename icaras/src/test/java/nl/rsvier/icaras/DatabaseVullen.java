@@ -110,12 +110,18 @@ public class DatabaseVullen {
 		int i = ((int)(Math.random()*10));
 
 		Adres adres = TestAdres.maakTestAdres3();
+		Adres adres2 = TestAdres.maakTestAdres3();
+		
 		if (i < 5) {
 			persoonsrolService.addRol(rollen[i], persoonsrol);
 			adresService.addAdresType("huis", adres);
+			adresService.addAdresType("post", adres2);
 			persoon.addAdres(adres);
+			persoon.addAdres(adres2);
 			adres.setPersoon(persoon);
+			adres2.setPersoon(persoon);
 			adresService.save(adres);
+			adresService.save(adres2);
 		}
 		else {
 			persoonsrolService.addRol(rollen[5], persoonsrol);
@@ -124,7 +130,6 @@ public class DatabaseVullen {
 			bedrijf.addAdres(adres);
 			adres.setBedrijf(bedrijf);
 			persoonsrol.setBedrijf(bedrijf);
-
 			adresService.save(adres);
 			bedrijfService.save(bedrijf);
 		}

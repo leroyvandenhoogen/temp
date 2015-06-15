@@ -69,6 +69,14 @@
 			 	<tr>
 			 		<td><form:input type="hidden" path="adressen[${current.index}].id" value="${adres.id}"></form:input>
 			 	</tr>
+			 <c:if test="${current.index > 0}">
+			 		<tr>
+			 			<td><label><strong>Adres ${current.index+1}</strong></label>
+			 		</tr>
+			 </c:if>
+			 	<tr>
+			 		<td><label></label>
+			 	</tr>
 				<tr>
 					<td><label>Straat: </label></td>
 					<td><form:input path="adressen[${current.index}].straat"
@@ -155,7 +163,8 @@
 				<tr class="element">
 					<form:input type="hidden" path="persoonsrollen[${current.index}].id" value="${persoonsrol.id}" />
 					<form:input type="hidden" path="persoonsrollen[${current.index}].rol.id" value="${persoonsrol.rol.id}" />
-					<td><form:input path="persoonsrollen[${current.index}].rol.type" id="type" value="${persoonsrol.rol.type}"/></td>
+					<form:input type="hidden" path="persoonsrollen[${current.index}].rol.type" id="type" value="${persoonsrol.rol.type}"/>
+					<td><label>${persoonsrol.rol.type}</label>
 					<td><label>begindatum</label></td>
 					<td><form:input type="date" path="persoonsrollen[${current.index}].begindatum" id="begindatum" value="${persoonsrol.begindatum}" size="10"/></td>
 					<td><label>einddatum </label></td>
