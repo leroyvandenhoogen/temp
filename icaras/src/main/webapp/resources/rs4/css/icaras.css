@@ -1,27 +1,63 @@
 * {
 	margin: 0;
-	padding:0;
+	padding: 0;
 }
 
 html, body {
-	height:100%;
-	
+	height: 100%;
 }
 
-.wrapper{
-	min-height:100%;
+.wrapper {
+	min-height: 100%;
 	height: auto !important;
 	height: 100%;
-	margin:0 auto -20px;
-	background-color:#e0e0e0;
+	margin: 0 auto -20px;
+	background-color: #e0e0e0;
 }
 
 div.header {
 	position: relative;
 	text-align: center;
 	width: 100%;
-	height: 40px;
+	height: 80px;
 	background-color: #db000b;
+}
+
+ul {
+	padding: 0;
+	list-style: none;
+}
+
+ul li {
+	width: 120px;
+	display: inline-block;
+	position: relative;
+	text-align: center;
+	line-height: 21px;
+}
+
+ul li a {
+	display: block;
+	padding: 5px 10px;
+	color: #333;
+	background: #f2f2f2;
+	text-decoration: none;
+}
+
+ul li a:hover {
+	color: #fff;
+	background: #939393;
+}
+
+ul li ul {
+	display: none;
+	position: absolute;
+	z-index: 999;
+	left: 0;
+}
+
+ul li:hover ul {
+	display: block; /* display the dropdown */
 }
 
 a.title {
@@ -31,49 +67,45 @@ a.title {
 
 div.menu {
 	border-color: black;
-	background-color:#c0c0c0;
-	float:left;
-	text-align:left;
-	width: 140px;
-	min-height:840px;
-	clear:left;
-	padding-left:10px;
-	padding-top:5px;
-}
-
-ul.menu {
-	list-style-type: none;
+	background-color: #c0c0c0;
+	/*float: left;*/
+	text-align: center;
+	width: 100%;
+	min-height: 20px;
+	/*clear: left;*/
 }
 
 div.content {
-	background-color:#e0e0e0;
+	background-color: #e0e0e0;
 	float: left;
 	padding: 20px;
 	height: 750px;
-	overflow-y:auto;
+	overflow-y: auto;
 }
 
 div.details {
-	background-color:#e0e0e0;
+	background-color: #e0e0e0;
 	float: left;
 	padding: 20px;
 }
 
 table.details {
-
+	
 }
 
-table.details label{
-
+table.details label {
+	
 }
 
 table.details tr {
-
+	
 }
+
 table.details th {
 	text-align: left;
 	width: 125px;
 }
+
 table.details td {
 	text-align: left;
 	width: 125px;
@@ -86,7 +118,6 @@ table.details td {
 	background-color:#ff0000;
 }
 */
-
 div.footer {
 	clear: both;
 	font-size: small;

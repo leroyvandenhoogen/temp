@@ -3,4 +3,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 
-<a class="title" href="<c:url value='/'/>">RSVIER Relatiebeheer</a>
+<a class="title" href="<c:url value='/'/>">RSVIER Icaras</a>
+    <ul>
+    	<li><a href="#">Intakemodule</a></li>
+    	<li><a href="#">Cursistbeheer</a></li>
+        <li><a href="#">Arbeidsmarkt</a></li>
+        <li><a href="/Icaras/relatiebeheer">Relatiebeheer</a></li>
+        <li><a href="#">Agendabeheer</a></li>
+        <li><a href="#">Systeem</a></li>
+    </ul>
+

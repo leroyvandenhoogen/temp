@@ -136,7 +136,7 @@ public class PersonenlijstController {
 			persoonsrolService.delete(persoonsrol);
 			persoonsrolIterator.remove();
 		}
-		
+
 		service.delete(persoon);
 		
 		model.remove("persoon", persoon);

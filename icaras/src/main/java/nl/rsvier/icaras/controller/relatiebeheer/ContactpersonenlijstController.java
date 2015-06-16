@@ -129,6 +129,15 @@ public class ContactpersonenlijstController {
 			adresIterator.remove();
 		}
 		
+//		Iterator<Persoonsrol> persoonsrolBedrijfIterator= bedrijf.getPersoonsrollen().iterator();
+//		while(persoonsrolBedrijfIterator.hasNext()) {
+//			Persoonsrol persoonsrol = persoonsrolBedrijfIterator.next();
+//			persoonsrol.removePersoon();
+//			persoonsrol.removeBedrijf();
+//			persoonsrolService.delete(persoonsrol);
+//			persoonsrolIterator.remove();
+//		}
+		
 		Iterator<Persoonsrol> persoonsrolIterator= persoon.getPersoonsrollen().iterator();
 		while(persoonsrolIterator.hasNext()) {
 			Persoonsrol persoonsrol = persoonsrolIterator.next();
