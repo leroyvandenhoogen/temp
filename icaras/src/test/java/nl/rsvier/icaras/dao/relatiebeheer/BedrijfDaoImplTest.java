@@ -1,8 +1,12 @@
 package nl.rsvier.icaras.dao.relatiebeheer;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -35,6 +39,15 @@ public class BedrijfDaoImplTest {
 		bedrijf1 = TestBedrijf.maakTestBedrijf1();
 		bedrijf2 = TestBedrijf.maakTestBedrijf2();
 		
+	}
+	
+	@Test
+	@Transactional
+	public void testSearch() {
+		bedrijfDao.save(bedrijf1);
+		List<Bedrijf> lijst = bedrijfDao.search("Best");
+		assertNotNull(lijst.size());
+		assertTrue(lijst.get(0).equals(bedrijf1));
 	}
 	
 	@Test

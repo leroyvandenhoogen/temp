@@ -11,6 +11,4 @@ public class AdresDaoImpl extends GenericDaoImpl<Adres> implements IAdresDao {
 	public AdresDaoImpl() {
 		super(Adres.class);
 	}
-
-	
 }
