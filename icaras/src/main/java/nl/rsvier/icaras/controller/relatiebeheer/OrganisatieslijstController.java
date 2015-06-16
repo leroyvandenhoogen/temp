@@ -1,16 +1,9 @@
 package nl.rsvier.icaras.controller.relatiebeheer;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.Valid;
-
-import nl.rsvier.icaras.core.relatiebeheer.Adres;
-import nl.rsvier.icaras.core.relatiebeheer.AdresType;
 import nl.rsvier.icaras.core.relatiebeheer.Bedrijf;
-import nl.rsvier.icaras.core.relatiebeheer.DigitaalAdres;
-import nl.rsvier.icaras.core.relatiebeheer.Persoon;
-import nl.rsvier.icaras.core.relatiebeheer.Persoonsrol;
+import nl.rsvier.icaras.core.relatiebeheer.Zoekinput;
 import nl.rsvier.icaras.service.relatiebeheer.AdresService;
 import nl.rsvier.icaras.service.relatiebeheer.BedrijfService;
 import nl.rsvier.icaras.service.relatiebeheer.DigitaalAdresService;
@@ -22,10 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
 @RequestMapping("/relatiebeheer/organisaties")
@@ -44,10 +35,19 @@ public class OrganisatieslijstController {
 	DigitaalAdresService digitaalAdresService;
 	
 	@RequestMapping(value= {"/zoeken"}, method= RequestMethod.GET)
-	public String zoekOrganisatie(ModelMap model) {
+	public String zoekOrganisatie(@ModelAttribute("zoekinput") Zoekinput zoekinput, BindingResult result, ModelMap model) {
+		Zoekinput zi = new Zoekinput("test");
+		model.addAttribute("zoekinput", zi);
 		return "relatiebeheer/organisaties/zoeken";
 	}
 	
+	@RequestMapping(value={"/zoeken"}, method = RequestMethod.POST)
+	public String zoekOrganisatieLijst(@ModelAttribute("zoekinput") Zoekinput zoekinput, BindingResult result, ModelMap model) {
+		List<Bedrijf> organisaties = bedrijfService.search(zoekinput.getInput());
+		model.addAttribute("organisaties", organisaties);
+		model.addAttribute("zoekinput", zoekinput);
+		return "relatiebeheer/organisaties/zoeken";
+	}
 	@RequestMapping(value= {"/nieuw"}, method= RequestMethod.GET)
 	public String organisatieToevoegen(ModelMap model) {
 		return "relatiebeheer/organisaties/nieuw";
