@@ -28,8 +28,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
-@RequestMapping("/organisaties")
-@SessionAttributes("organisaties")
+@RequestMapping("/relatiebeheer/organisaties")
+//@SessionAttributes("organisaties")
 public class OrganisatieslijstController {
 
 	@Autowired
@@ -42,55 +42,65 @@ public class OrganisatieslijstController {
 	PersoonService persoonService;
 	@Autowired
 	DigitaalAdresService digitaalAdresService;
-
-	@RequestMapping(value = { "", "lijst" }, method = RequestMethod.GET)
-	public String showOrganisatiesLijst(ModelMap model) {
-		List<Bedrijf> organisaties = bedrijfService.getAll();
-		model.addAttribute("organisaties", organisaties);
-		return "organisaties";
+	
+	@RequestMapping(value= {"/zoeken"}, method= RequestMethod.GET)
+	public String zoekOrganisatie(ModelMap model) {
+		return "relatiebeheer/organisaties/zoeken";
+	}
+	
+	@RequestMapping(value= {"/nieuw"}, method= RequestMethod.GET)
+	public String organisatieToevoegen(ModelMap model) {
+		return "relatiebeheer/organisaties/nieuw";
 	}
 
-	@RequestMapping(value = "/update-{id}-organisatie", method = RequestMethod.GET)
-	public String updateOrganisatie(@PathVariable int id, ModelMap model) {
-		ArrayList<AdresType> adresTypes = (ArrayList<AdresType>) adresService
-				.getAllTypes();
-		model.addAttribute("adresTypes", adresTypes);
-		Bedrijf organisatie = bedrijfService.get(id);
-		model.addAttribute("organisatie", organisatie);
-		return "organisatiedetails";
-	}
-
-	@RequestMapping(value = "/update-{id}-organisatie", method = RequestMethod.POST)
-	public String updateOrganisatie(@PathVariable int id,
-			@Valid @ModelAttribute("organisatie") Bedrijf organisatie,
-			BindingResult result, ModelMap model) {
-		for (Adres adres : organisatie.getAdressen()) {
-			adres.setBedrijf(organisatie);
-			adresService.update(adres);
-		}
-		for (Persoonsrol pRol : organisatie.getPersoonsrollen()) {
-			
-			pRol.setBedrijf(organisatie);
-			for (DigitaalAdres dAdres : pRol.getPersoon().getDigitaleAdressen()) {
-				dAdres.setPersoon(pRol.getPersoon());
-				digitaalAdresService.update(dAdres);
-			}
-			persoonService.update(pRol.getPersoon());
-			persoonsrolService.update(pRol);
-		}
-		bedrijfService.update(organisatie);
-
-		List<Bedrijf> organisaties = bedrijfService.getAll();
-		model.addAttribute("organisaties", organisaties);
-
-		ArrayList<AdresType> adresTypes = (ArrayList<AdresType>) adresService
-				.getAllTypes();
-		model.addAttribute("adresTypes", adresTypes);
-
-		Bedrijf organisatie1 = bedrijfService.get(id);
-		model.addAttribute("organisatie", organisatie1);
-
-		return "organisatiedetails";
-
-	}
+//	@RequestMapping(value = { "", "lijst" }, method = RequestMethod.GET)
+//	public String showOrganisatiesLijst(ModelMap model) {
+//		List<Bedrijf> organisaties = bedrijfService.getAll();
+//		model.addAttribute("organisaties", organisaties);
+//		return "organisaties";
+//	}
+//
+//	@RequestMapping(value = "/update-{id}-organisatie", method = RequestMethod.GET)
+//	public String updateOrganisatie(@PathVariable int id, ModelMap model) {
+//		ArrayList<AdresType> adresTypes = (ArrayList<AdresType>) adresService
+//				.getAllTypes();
+//		model.addAttribute("adresTypes", adresTypes);
+//		Bedrijf organisatie = bedrijfService.get(id);
+//		model.addAttribute("organisatie", organisatie);
+//		return "organisatiedetails";
+//	}
+//
+//	@RequestMapping(value = "/update-{id}-organisatie", method = RequestMethod.POST)
+//	public String updateOrganisatie(@PathVariable int id,
+//			@Valid @ModelAttribute("organisatie") Bedrijf organisatie,
+//			BindingResult result, ModelMap model) {
+//		for (Adres adres : organisatie.getAdressen()) {
+//			adres.setBedrijf(organisatie);
+//			adresService.update(adres);
+//		}
+//		for (Persoonsrol pRol : organisatie.getPersoonsrollen()) {
+//			
+//			pRol.setBedrijf(organisatie);
+//			for (DigitaalAdres dAdres : pRol.getPersoon().getDigitaleAdressen()) {
+//				dAdres.setPersoon(pRol.getPersoon());
+//				digitaalAdresService.update(dAdres);
+//			}
+//			persoonService.update(pRol.getPersoon());
+//			persoonsrolService.update(pRol);
+//		}
+//		bedrijfService.update(organisatie);
+//
+//		List<Bedrijf> organisaties = bedrijfService.getAll();
+//		model.addAttribute("organisaties", organisaties);
+//
+//		ArrayList<AdresType> adresTypes = (ArrayList<AdresType>) adresService
+//				.getAllTypes();
+//		model.addAttribute("adresTypes", adresTypes);
+//
+//		Bedrijf organisatie1 = bedrijfService.get(id);
+//		model.addAttribute("organisatie", organisatie1);
+//
+//		return "organisatiedetails";
+//
+//	}
 }

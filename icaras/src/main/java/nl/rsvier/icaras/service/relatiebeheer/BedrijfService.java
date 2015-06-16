@@ -39,4 +39,8 @@ public class BedrijfService {
 	public List<Bedrijf> getAll() {
 		return bedrijfDao.getAll();
 	}
+	
+	public List<Bedrijf> search(String naam) {
+		return bedrijfDao.search(naam);
+	}
 }

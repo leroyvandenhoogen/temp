@@ -4,17 +4,17 @@
 
 <ul>
 	<li>
-		<a href="<c:url value='/personen'/>">Personen &#9662;</a>
+		<a href="#">Personen &#9662;</a>
 		<ul>
-			<li><a href="#">Zoek</a></li>
-			<li><a href="#">Nieuw</a></li>
+			<li><a href="<c:url value='/relatiebeheer/personen/zoeken'/>">Zoek</a></li>
+			<li><a href="<c:url value='/relatiebeheer/personen/nieuw'/>">Nieuw</a></li>
 		</ul>
 
 	<li>
-		<a href="<c:url value='/organisaties'/>">Organisaties &#9662;</a>
+		<a href="#">Organisaties &#9662;</a>
 		<ul>
-			<li><a href="#">Zoek</a></li>
-			<li><a href="#">Nieuw</a></li>
+			<li><a href="<c:url value='/relatiebeheer/organisaties/zoeken'/>">Zoek</a></li>
+			<li><a href="<c:url value='/relatiebeheer/organisaties/nieuw'/>">Nieuw</a></li>
 		</ul>
 
 	<li>
