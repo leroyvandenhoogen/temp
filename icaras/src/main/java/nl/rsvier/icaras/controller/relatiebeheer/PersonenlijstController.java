@@ -12,6 +12,7 @@ import nl.rsvier.icaras.core.relatiebeheer.DigitaalAdres;
 import nl.rsvier.icaras.core.relatiebeheer.Identiteitsbewijs;
 import nl.rsvier.icaras.core.relatiebeheer.Persoon;
 import nl.rsvier.icaras.core.relatiebeheer.Persoonsrol;
+import nl.rsvier.icaras.core.relatiebeheer.Zoekinput;
 import nl.rsvier.icaras.service.relatiebeheer.AdresService;
 import nl.rsvier.icaras.service.relatiebeheer.DigitaalAdresService;
 import nl.rsvier.icaras.service.relatiebeheer.IdentiteitsbewijsService;
@@ -47,9 +48,25 @@ public class PersonenlijstController {
 	IdentiteitsbewijsService identiteitsbewijsService;
 	
 	@RequestMapping(value= {"/zoeken"}, method= RequestMethod.GET)
-	public String zoekPersoon(ModelMap model) {
+	public String zoekPersoon(@ModelAttribute("zoekinput")Zoekinput zoekinput, BindingResult result, ModelMap model) {
+		Zoekinput zi = new Zoekinput("test");
+		model.addAttribute("zoekinput", zi);
 		return "relatiebeheer/personen/zoeken";
 	}
+	
+	@RequestMapping(value = {"/zoeken"}, method = RequestMethod.POST)
+	public String zoekPersoonLijst(@ModelAttribute("zoekinput")Zoekinput zoekinput, BindingResult result, ModelMap model) {
+		List<Persoon> personen = service.searchFull(zoekinput.getInput());
+		model.addAttribute("personen", personen);
+		model.addAttribute("zoekinput", zoekinput);
+		return "relatiebeheer/personen/zoeken";
+	}
+	
+//	@RequestMapping(value= {"/zoekresultaat"}, method = RequestMethod.GET)
+//	public String zoekResultaat(@ModelAttribute("zoekinput")StringBuilder zoekinput, ModelMap model) {
+//		service.searchFull(zoekinput.toString());
+//		return "relatiebeheer/personen/zoeken/zoekresultaat";
+//	}
 	
 	@RequestMapping(value= {"/nieuw"}, method= RequestMethod.GET)
 	public String persoonToevoegen(ModelMap model) {

@@ -103,4 +103,9 @@ public class PersoonService {
 		}
 		return persoonsrollen;
 	}
+	
+	public List<Persoon> searchFull(String voornaamAchternaam) {
+		List<Persoon> returnList = persoonDao.searchFull(voornaamAchternaam);
+		return returnList;
+	}
 }
