@@ -57,8 +57,10 @@ public class PersonenlijstController {
 	@RequestMapping(value = {"/zoeken"}, method = RequestMethod.POST)
 	public String zoekPersoonLijst(@ModelAttribute("zoekinput")Zoekinput zoekinput, BindingResult result, ModelMap model) {
 //		List<Persoon> personen = service.searchFull(zoekinput.getInput());
+		zoekinput.startTimer();
 		List<Persoon> personen = service.searchFullDeluxe(zoekinput.getInput());
 		model.addAttribute("personen", personen);
+		zoekinput.stopTimer();
 //		model.addAttribute("zoekinput", zoekinput);
 		return "relatiebeheer/personen/zoeken";
 	}
