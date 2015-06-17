@@ -83,7 +83,7 @@ public class DatabaseVullen {
 	@Test
 	@Transactional
 	public void savePersonen() {
-		for(int i = 0; i < 20; i++){
+		for(int i = 0; i < 1000; i++){
 			savePersoon2();
 		}
 		
@@ -125,7 +125,7 @@ public class DatabaseVullen {
 		}
 		else {
 			persoonsrolService.addRol(rollen[5], persoonsrol);
-			adresService.addAdresType("post", adres);
+			adresService.addAdresType("bezoek", adres);
 			Bedrijf bedrijf = TestBedrijf.maakTestBedrijf3();
 			bedrijf.addAdres(adres);
 			adres.setBedrijf(bedrijf);

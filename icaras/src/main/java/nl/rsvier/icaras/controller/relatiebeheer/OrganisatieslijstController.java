@@ -36,7 +36,7 @@ public class OrganisatieslijstController {
 	
 	@RequestMapping(value= {"/zoeken"}, method= RequestMethod.GET)
 	public String zoekOrganisatie(@ModelAttribute("zoekinput") Zoekinput zoekinput, BindingResult result, ModelMap model) {
-		Zoekinput zi = new Zoekinput("test");
+		Zoekinput zi = new Zoekinput("");
 		model.addAttribute("zoekinput", zi);
 		return "relatiebeheer/organisaties/zoeken";
 	}
