@@ -42,5 +42,8 @@
 
 			</table>
 		</c:when>
+		<c:otherwise>
+			<h2>Er zijn geen resultaten gevonden</h2>
+		</c:otherwise>
 	</c:choose>
 </body>

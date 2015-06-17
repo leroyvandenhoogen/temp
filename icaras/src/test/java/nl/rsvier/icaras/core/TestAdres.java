@@ -5,9 +5,10 @@ import java.util.GregorianCalendar;
 import nl.rsvier.icaras.core.relatiebeheer.Adres;
 
 public class TestAdres {
-	private static String[] plaatsen = {"Groningen", "Amsterdam", "Utrecht", "Den Haag", "Hilversum"};
-	private static String[] postcodes = {"1234AB", "3500KA", "2367BE", "9768ZK", "2333KL"};
-	private static String[] straten = {"Kerkplein", "Stationsweg", "Dorpstraat", "Hoofdstraat", "Molenweg"};
+	private static String[] plaatsen = {"Amsterdam", "Rotterdam", "Den Haag", "Utrecht", "Eindhoven", "Tilburg", "Groningen", "Almere", "Breda", "Nijmegen", 
+			"Enschede", "Apeldoorn", "Haarlem", "Amersfoort", "Arnhem", "Zaanstad", "'s Hertogenbosch", "Haarlemmermeer", "Zoetermeer", "Zwolle"};
+	private static String[] straten = {"Kerkstraat", "Schoolstraat", "Molenstraat", "Dorpsstraat", "Molenweg", "Julianastraat", "Parallelweg", "Nieuwstraat",
+			"Wilhelminastraat", "Sportlaan", "Industrieweg", "Beatrixstraat", "Kastanjelaan", "Stationsweg", "Eikenlaan", "Markt", "Prins Bernhardstraat", "Emmastraat", "Beukenlaan", "'s Gravelandseweg"};
 	public static Adres maakTestAdres1() {
 		Adres adres = new Adres();
 		
@@ -38,10 +39,10 @@ public class TestAdres {
 	public static Adres maakTestAdres3() {
 		Adres adres = new Adres();
 		adres.setLand("Nederland");
-		adres.setPlaats(plaatsen[((int)(Math.random()*5))]);
+		adres.setPlaats(plaatsen[((int)(Math.random()*20))]);
 		adres.setNummer(((int)(Math.random()*100)));
-		adres.setPostcode(postcodes[((int)(Math.random()*5))]);
-		adres.setStraat(straten[((int)(Math.random()*5))]);
+		adres.setPostcode(""+((int)(Math.random()*9000 + 1000) + ""+ ((char)(Math.random()*26 + 'A'))) + "" + ((char)(Math.random()*26 + 'A')));
+		adres.setStraat(straten[((int)(Math.random()*20))]);
 		adres.setBegindatum(new GregorianCalendar(2013, 0, 1).getTime());
 		
 		
