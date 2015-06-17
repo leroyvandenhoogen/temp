@@ -49,16 +49,17 @@ public class PersonenlijstController {
 	
 	@RequestMapping(value= {"/zoeken"}, method= RequestMethod.GET)
 	public String zoekPersoon(@ModelAttribute("zoekinput")Zoekinput zoekinput, BindingResult result, ModelMap model) {
-		Zoekinput zi = new Zoekinput("test");
+		Zoekinput zi = new Zoekinput();
 		model.addAttribute("zoekinput", zi);
 		return "relatiebeheer/personen/zoeken";
 	}
 	
 	@RequestMapping(value = {"/zoeken"}, method = RequestMethod.POST)
 	public String zoekPersoonLijst(@ModelAttribute("zoekinput")Zoekinput zoekinput, BindingResult result, ModelMap model) {
-		List<Persoon> personen = service.searchFull(zoekinput.getInput());
+//		List<Persoon> personen = service.searchFull(zoekinput.getInput());
+		List<Persoon> personen = service.searchFullDeluxe(zoekinput.getInput());
 		model.addAttribute("personen", personen);
-		model.addAttribute("zoekinput", zoekinput);
+//		model.addAttribute("zoekinput", zoekinput);
 		return "relatiebeheer/personen/zoeken";
 	}
 	
