@@ -375,6 +375,23 @@ public class PersoonDaoImpl extends GenericDaoImpl<Persoon> implements
 			}
 		}
 		
+		if (parts != null && parts.length == 6) {
+			String sql = "SELECT p FROM Persoon p WHERE p.voornaam like :voornaam AND p.tussenvoegsel like :tussenvoegsel AND p.achternaam like :achternaam";
+			
+			Query query = getSessionFactory().getCurrentSession()
+					.createQuery(sql)
+					.setParameter("voornaam", parts[0].trim().concat(" ").concat(parts[1].trim()) + "%")
+					.setParameter("tussenvoegsel", parts[2].trim().concat(" ").concat(parts[3].trim()) + "%")
+					.setParameter("achternaam", parts[4].trim().concat(" ").concat(parts[5].trim()) + "%");
+			
+			if (!(query.list().isEmpty())) {
+				return query.list();
+			}
+			
+			if (query.list().isEmpty()) {
+				return null;
+			}
+		}	
 		return null;
 	}
 }

@@ -14,7 +14,7 @@
 	<h2>Zoekcriteria: ${zoekinput.input}</h2>
 	<c:choose>
 		<c:when test="${fn:length(personen) > 0}">
-			<h2>Zoekresultaten</h2>
+			<h2>Zoekresultaten (${zoekinput.total} Seconden)</h2>
 			<table class="list">
 				<tr class="tabelheader">
 					<td>Voornaam</td>
