@@ -42,14 +42,30 @@ public class TestPersoon {
 	public static Persoon maakTestContactpersoon() {
 		Persoon persoon = new Persoon();
 		if (Math.random() > 0.5) {
+			if(Math.random() < 0.7) { 
 			persoon.setVoornaam(jongensnamen[((int)(Math.random()*10))]);
+			}
+			else { 
+				persoon.setVoornaam(jongensnamen[((int)(Math.random()*10))] + " " + jongensnamen[((int)(Math.random()*10))]);
+			}
 			persoon.setGeslacht("M");
 		}
 		else {
+			if(Math.random() < 0.7) { 
+				persoon.setVoornaam(meisjesnamen[((int)(Math.random()*10))]);
+			}
+			else {
+				persoon.setVoornaam(meisjesnamen[((int)(Math.random()*10))] + " " + meisjesnamen[((int)(Math.random()*10))]);
+			}
 			persoon.setVoornaam(meisjesnamen[((int)(Math.random()*10))]);
 			persoon.setGeslacht("V");
 		}
+		if(Math.random() < 0.7) {
 		persoon.setAchternaam(achternamen[((int)(Math.random()*10))]);
+		}
+		else {
+			persoon.setAchternaam(achternamen[((int)(Math.random()*10))]  + " " + achternamen[((int)(Math.random()*10))]);
+		}
 		persoon.setTussenvoegsel(tussenvoegsels[((int)(Math.random()*5))]);
 		persoon.setNationaliteit("Nederlands");
 		persoon.setGeboorteplaats(plaatsen[((int)(Math.random()*16))]);
