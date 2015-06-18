@@ -41,10 +41,12 @@ public class BedrijfDaoImpl extends GenericDaoImpl<Bedrijf> implements
 
 		parts = split(string);
 
-		if (parts.length == 2)
+		if (parts.length == 2) { 
 			mergeLijst1 = queryNaamPlaats(parts[0], parts[1]);
 			mergeLijst2 = queryNaamPlaats(parts[1], parts[0]);
 			return mergeLists(mergeLijst1, mergeLijst2);
+		}
+		return null;
 	}
 
 	private List<Bedrijf> mergeLists(List<Bedrijf> lijst1, List<Bedrijf> lijst2) {

@@ -6,7 +6,9 @@ public class TestBedrijf {
 	private static String[] bedrijven = { "Google", "Facebook", "Adobe",
 			"Salesforce", "Qualcomm", "Microsoft", "Apple", "IBM", "Capgemini",
 			"Cisco", "Afas", "Chipsoft", "Woodwing", "Accenture", "Oracle",
-			"Ziggo", "Avanade", "ASP4all", "Sogeti", "Tele2" };
+			"Ziggo", "Avanade", "ASP4all", "Sogeti", "Tele2", "SG Automatisering",
+			"CA Software", "Tata Consultancy Services", "AT&T", "Total Specific Solutions", 
+			"Pink Elephant", "Simac ICT", "Harvey Nash", "Schuberg Philis", "T-Mobile"};
 	private static String[] opmerkingen = { "Heeft potentie",
 			"In het verleden zaken mee gedaan", "Slechte ervaringen mee",
 			"Nog te benaderen", "Bellen!", "Nieuw", "Goede ervaringen mee",
@@ -30,7 +32,7 @@ public class TestBedrijf {
 
 	public static Bedrijf maakTestBedrijf3() {
 		Bedrijf bedrijf = new Bedrijf();
-		bedrijf.setNaam(bedrijven[(int) (Math.random() * 20)]);
+		bedrijf.setNaam(bedrijven[(int) (Math.random() * 30)]);
 		bedrijf.setKvkNummer("" + ((int) (Math.random() * 999999999)));
 		int i = (int) (Math.random() * 30);
 		if (i < 9)
