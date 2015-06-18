@@ -20,6 +20,7 @@ public class BedrijfDaoImpl extends GenericDaoImpl<Bedrijf> implements
 	List<Bedrijf> lijst3;
 	List<Bedrijf> mergeLijst1;
 	List<Bedrijf> mergeLijst2;
+	List<Bedrijf> mergeLijst3;
 
 	public BedrijfDaoImpl() {
 		super(Bedrijf.class);
@@ -28,10 +29,9 @@ public class BedrijfDaoImpl extends GenericDaoImpl<Bedrijf> implements
 	public List<Bedrijf> search(String string) {
 		lijst1 = queryNaam(string.trim());
 		lijst2 = queryPlaats(string.trim());
-		lijst3 = queryOpmerking(string.trim());
 
-		if (isNotEmpty(lijst1, lijst2, lijst3)) {
-			return merge3Lists(lijst1, lijst2, lijst3);
+		if (isNotEmpty(lijst1, lijst2)) {
+			return merge2Lists(lijst1, lijst2);
 		}
 
 		if (!isSplit(string))
@@ -42,17 +42,48 @@ public class BedrijfDaoImpl extends GenericDaoImpl<Bedrijf> implements
 		if (parts.length == 2) {
 			lijst1 = queryNaamPlaats(parts[0], parts[1]);
 			lijst2 = queryNaamPlaats(parts[1], parts[0]);
-			lijst3 = queryNaamOpmerking(parts[0], parts[1]);
-			if (isNotEmpty(lijst1, lijst2, lijst3))
-				mergeLijst1 = merge3Lists(lijst1, lijst2, lijst3);
-			lijst1 = queryNaamOpmerking(parts[1], parts[0]);
-			lijst2 = queryOpmerkingPlaats(parts[0], parts[1]);
-			lijst2 = queryOpmerkingPlaats(parts[1], parts[0]);
-			if (isNotEmpty(lijst1, lijst2, lijst3))
-				mergeLijst1 = merge3Lists(lijst1, lijst2, lijst3);
-			if (isNotEmpty(mergeLijst1, mergeLijst2))
-				return merge2Lists(mergeLijst1, mergeLijst2);
-			else return null;
+			if(isNotEmpty(lijst1, lijst2))
+				return merge2Lists(lijst1, lijst2);
+			return null;
+		}
+		
+		if (parts.length == 3) {
+			lijst1 = queryNaamPlaats(parts[0].concat(" ").concat(parts[1]), parts[2]);
+			lijst2 = queryNaamPlaats(parts[1].concat(" ").concat(parts[2]), parts[0]);
+			if(isNotEmpty(lijst1, lijst2))
+				mergeLijst1 = merge2Lists(lijst1, lijst2);
+			lijst1 = queryNaamPlaats(parts[0], (parts[1]).concat(" ").concat(parts[2]));
+			lijst2 = queryNaamPlaats(parts[2], (parts[0]).concat(" ").concat(parts[0]));
+			if(isNotEmpty(lijst1, lijst2))
+				mergeLijst2 = merge2Lists(lijst1, lijst2);
+			if(isNotEmpty(mergeLijst1, mergeLijst2))
+				return merge2Lists(mergeLijst1, mergeLijst2);			
+			return null;
+		}
+		
+		if (parts.length == 4) {
+			lijst1 = queryNaamPlaats(parts[0].concat(" ").concat(parts[1]).concat(" ").concat(parts[2]), parts[3]);
+			lijst2 = queryNaamPlaats(parts[1].concat(" ").concat(parts[2]).concat(" ").concat(parts[3]), parts[0]);
+			if(isNotEmpty(lijst1, lijst2))
+				mergeLijst1 = merge2Lists(lijst1, lijst2);
+			lijst1 = queryNaamPlaats(parts[0].concat(" ").concat(parts[1]), parts[2].concat(" ").concat(parts[3]));
+			lijst2 = queryNaamPlaats(parts[2].concat(" ").concat(parts[3]), parts[0].concat(" ").concat(parts[1]));
+			if(isNotEmpty(lijst1, lijst2))
+				mergeLijst2 = merge2Lists(lijst1, lijst2);
+			lijst1 = queryNaamPlaats(parts[0], parts[1].concat(" ").concat(parts[2]).concat(" ").concat(parts[3]));
+			lijst2 = queryNaamPlaats(parts[3], parts[0].concat(" ").concat(parts[1]).concat(" ").concat(parts[2]));
+			if(isNotEmpty(lijst1, lijst2))
+				mergeLijst3 = merge2Lists(lijst1, lijst2);
+			if(isNotEmpty(mergeLijst1, mergeLijst2, mergeLijst3))
+				return merge3Lists(mergeLijst1, mergeLijst2, mergeLijst3);
+			return null;
+		}
+		
+		if (parts.length > 4) {
+			lijst1 = queryNaamPlaats(parts[0].concat(" ").concat(parts[1]), "%"+parts[4]);
+			lijst2 = queryNaamPlaats("%"+parts[4], parts[0].concat(" ").concat(parts[1]));
+			if(isNotEmpty(lijst1, lijst2))
+				mergeLijst1 = merge2Lists(lijst1, lijst2);
 		}
 		return null;
 	}
@@ -103,26 +134,6 @@ public class BedrijfDaoImpl extends GenericDaoImpl<Bedrijf> implements
 			return lijst2;
 	}
 
-	private List<Bedrijf> queryNaamOpmerking(String naam, String opmerking) {
-		String sql = "SELECT p FROM Bedrijf p WHERE p.naam like :string1 AND p.opmerking like :string2";
-		Query query = getSessionFactory().getCurrentSession().createQuery(sql)
-				.setParameter("string1", naam.trim() + "%")
-				.setParameter("string2", opmerking.trim() + "%");
-		if (query.list().isEmpty())
-			return null;
-		return query.list();
-	}
-
-	private List<Bedrijf> queryOpmerkingPlaats(String opmerking, String plaats) {
-		String sql = "select p from Bedrijf p, Adres a WHERE a.bedrijf.id = p.id AND p.opmerking like :string1 AND a.plaats like :string2";
-		Query query = getSessionFactory().getCurrentSession().createQuery(sql)
-				.setParameter("string1", opmerking.trim() + "%")
-				.setParameter("string2", plaats.trim() + "%");
-		if (query.list().isEmpty())
-			return null;
-		return query.list();
-	}
-
 	private List<Bedrijf> queryNaamPlaats(String naam, String plaats) {
 		String sql = "select p from Bedrijf p, Adres a WHERE a.bedrijf.id = p.id AND p.naam like :string1 AND a.plaats like :string2";
 		Query query = getSessionFactory().getCurrentSession().createQuery(sql)
@@ -135,16 +146,6 @@ public class BedrijfDaoImpl extends GenericDaoImpl<Bedrijf> implements
 
 	private List<Bedrijf> queryNaam(String string) {
 		String sql = "SELECT p FROM Bedrijf p WHERE p.naam like :string";
-		Query query = getSessionFactory().getCurrentSession().createQuery(sql)
-				.setParameter("string", string.trim() + "%");
-		if (query.list().isEmpty()) {
-			return null;
-		}
-		return query.list();
-	}
-
-	private List<Bedrijf> queryOpmerking(String string) {
-		String sql = "SELECT p FROM Bedrijf p WHERE p.opmerking like :string";
 		Query query = getSessionFactory().getCurrentSession().createQuery(sql)
 				.setParameter("string", string.trim() + "%");
 		if (query.list().isEmpty()) {
