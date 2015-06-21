@@ -5,8 +5,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <body>
-	<h1>Zoekscherm</h1>
-	<br>
 	<form:form method="POST" modelAttribute="zoekinput">
 		Zoek een organisatie:<br>
 		<form:input type="text" path="input" name="zoekinputarea" value="" />
@@ -36,11 +34,14 @@
 
 						<td>${organisatie.opmerking}</td>
 						<td><a
-							href="<c:url value='/personen/update-${persoon.id}-persoon' />">Details</a></td>
+							href="<c:url value='/organisaties/toon-${organisatie.id}-organisatie' />">Details</a></td>
 					</tr>
 				</c:forEach>
 
 			</table>
 		</c:when>
+		<c:otherwise>
+			<h2>Er zijn geen resultaten gevonden</h2>
+		</c:otherwise>
 	</c:choose>
 </body>
