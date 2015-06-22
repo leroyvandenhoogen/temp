@@ -12,8 +12,9 @@
 		<input type="submit" value="zoek" />
 	</form:form>
 	<h2>Zoekcriteria: ${zoekinput.input}</h2>
+	
 	<c:choose>
-		<c:when test="${fn:length(personen) > 0}">
+		<c:when test="${not empty personen}">
 			<c:if test="${fn:length(personen) > 1}">
 				<h2>Er zijn ${fn:length(personen)} personen gevonden
 					(${zoekinput.total} s)</h2>

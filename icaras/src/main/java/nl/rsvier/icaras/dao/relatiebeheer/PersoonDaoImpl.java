@@ -139,7 +139,6 @@ public class PersoonDaoImpl extends GenericDaoImpl<Persoon> implements
 		if(parts == null) {
 			String sql = "SELECT p FROM Persoon p WHERE p.voornaam like :voornaam";
 			String sql2 = "SELECT p FROM Persoon p WHERE p.achternaam like :achternaam";
-//			String sql3 = "SELECT p FROM Persoon p WHERE p.voornaam like :voornaam";
 			
 			Query query = getSessionFactory().getCurrentSession()
 					.createQuery(sql)
@@ -147,9 +146,6 @@ public class PersoonDaoImpl extends GenericDaoImpl<Persoon> implements
 			Query query2 = getSessionFactory().getCurrentSession()
 					.createQuery(sql2)
 					.setParameter("achternaam", va.trim() + "%");
-//			Query query = getSessionFactory().getCurrentSession()
-//					.createQuery(sql)
-//					.setParameter("voornaam", va.trim() + "%");
 			
 			if(!(query.list().isEmpty() && query2.list().isEmpty())) {
 				returnList = new ArrayList<Persoon>();
@@ -174,7 +170,7 @@ public class PersoonDaoImpl extends GenericDaoImpl<Persoon> implements
 			
 			if (query.list().isEmpty() && query2.list().isEmpty()) {
 				System.out.println("SEARCHFULL BEIDE QUERIES NULL");
-				return null;
+				return returnList;
 			}
 		}
 		
@@ -223,7 +219,7 @@ public class PersoonDaoImpl extends GenericDaoImpl<Persoon> implements
 			
 			if (query.list().isEmpty() && query2.list().isEmpty() && query3.list().isEmpty()) {
 				System.out.println("SEARCHFULL BEIDE QUERIES NULL");
-				return null;
+				return returnList;
 			}
 		}
 		
@@ -272,7 +268,7 @@ public class PersoonDaoImpl extends GenericDaoImpl<Persoon> implements
 
 			if (query.list().isEmpty() && query2.list().isEmpty() && query3.list().isEmpty()) {
 				System.out.println("SEARCHFULL BEIDE QUERIES NULL");
-				return null;
+				return returnList;
 			}
 		}
 		
@@ -333,7 +329,7 @@ public class PersoonDaoImpl extends GenericDaoImpl<Persoon> implements
 			
 			if (query.list().isEmpty() && query2.list().isEmpty() && query3.list().isEmpty()) {
 				System.out.println("SEARCHFULL BEIDE QUERIES NULL");
-				return null;
+				return returnList;
 			}
 		}
 		
@@ -395,7 +391,7 @@ public class PersoonDaoImpl extends GenericDaoImpl<Persoon> implements
 			
 			if (query.list().isEmpty() && query2.list().isEmpty() && query3.list().isEmpty()) {
 				System.out.println("SEARCHFULL BEIDE QUERIES NULL");
-				return null;
+				return returnList;
 			}
 		}
 		
@@ -434,7 +430,7 @@ public class PersoonDaoImpl extends GenericDaoImpl<Persoon> implements
 			}
 			
 			if (query.list().isEmpty()) {
-				return null;
+				return returnList;
 			}
 		}	
 		
@@ -451,6 +447,6 @@ public class PersoonDaoImpl extends GenericDaoImpl<Persoon> implements
 				return query.list();
 			}
 		}
-		return null;
+		return returnList;
 	}
 }
