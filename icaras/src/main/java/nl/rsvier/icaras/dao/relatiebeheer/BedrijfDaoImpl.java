@@ -83,7 +83,7 @@ public class BedrijfDaoImpl extends GenericDaoImpl<Bedrijf> implements
 			lijst1 = queryNaamPlaats(parts[0].concat(" ").concat(parts[1]), "%"+parts[4]);
 			lijst2 = queryNaamPlaats("%"+parts[4], parts[0].concat(" ").concat(parts[1]));
 			if(isNotEmpty(lijst1, lijst2))
-				mergeLijst1 = merge2Lists(lijst1, lijst2);
+				return mergeLijst1 = merge2Lists(lijst1, lijst2);
 		}
 		return null;
 	}
