@@ -83,7 +83,7 @@ public class DatabaseVullen {
 	@Test
 	@Transactional
 	public void savePersonen() {
-		for(int i = 0; i < 1000; i++){
+		for(int i = 0; i < 9000; i++){
 			savePersoon2();
 		}
 		

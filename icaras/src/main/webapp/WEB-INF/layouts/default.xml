@@ -36,7 +36,7 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/relatiebeheer/personen/persoonzoeken.jsp"/>
 	</definition>
 	
-	<definition name="relatiebeheer/personen/zoeken/zoekresultaat" extends="relatiebeheer">
+	<definition name="relatiebeheer/personen/zoekresultaat" extends="relatiebeheer/personen/zoeken" >
 		<put-attribute name="title" value="RSVIER Personen zoeken"/>
 		<put-attribute name="details" value="/WEB-INF/tiles/relatiebeheer/personen/persoonzoekresultaat.jsp"/>
 	</definition>

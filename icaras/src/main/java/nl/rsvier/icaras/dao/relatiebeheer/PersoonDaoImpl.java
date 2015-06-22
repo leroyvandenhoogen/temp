@@ -139,12 +139,17 @@ public class PersoonDaoImpl extends GenericDaoImpl<Persoon> implements
 		if(parts == null) {
 			String sql = "SELECT p FROM Persoon p WHERE p.voornaam like :voornaam";
 			String sql2 = "SELECT p FROM Persoon p WHERE p.achternaam like :achternaam";
+//			String sql3 = "SELECT p FROM Persoon p WHERE p.voornaam like :voornaam";
+			
 			Query query = getSessionFactory().getCurrentSession()
 					.createQuery(sql)
 					.setParameter("voornaam", va.trim() + "%");
 			Query query2 = getSessionFactory().getCurrentSession()
 					.createQuery(sql2)
 					.setParameter("achternaam", va.trim() + "%");
+//			Query query = getSessionFactory().getCurrentSession()
+//					.createQuery(sql)
+//					.setParameter("voornaam", va.trim() + "%");
 			
 			if(!(query.list().isEmpty() && query2.list().isEmpty())) {
 				returnList = new ArrayList<Persoon>();
@@ -275,6 +280,7 @@ public class PersoonDaoImpl extends GenericDaoImpl<Persoon> implements
 			String sql = "SELECT p FROM Persoon p WHERE p.voornaam like :voornaam AND p.tussenvoegsel like :tussenvoegsel AND p.achternaam like :achternaam";
 			String sql2 = "SELECT p FROM Persoon p WHERE p.voornaam like :voornaam AND p.tussenvoegsel like :tussenvoegsel AND p.achternaam like :achternaam";
 			String sql3 = "SELECT p FROM Persoon p WHERE p.voornaam like :voornaam AND p.tussenvoegsel like :tussenvoegsel AND p.achternaam like :achternaam";
+			String sql4 = "SELECT p FROM Persoon p WHERE p.tussenvoegsel like :tussenvoegsel AND p.achternaam like :achternaam";
 			
 			Query query = getSessionFactory().getCurrentSession()
 					.createQuery(sql)
@@ -291,6 +297,10 @@ public class PersoonDaoImpl extends GenericDaoImpl<Persoon> implements
 					.setParameter("voornaam", parts[0].trim() + "%")
 					.setParameter("tussenvoegsel", parts[1].trim() + "%")
 					.setParameter("achternaam", parts[2].trim().concat(" ").concat(parts[3].trim()) + "%");
+			Query query4 = getSessionFactory().getCurrentSession()
+					.createQuery(sql4)
+					.setParameter("tussenvoegsel", parts[0].trim().concat(" ").concat(parts[1].trim()).concat(" ").concat(parts[2].trim()) + "%")
+					.setParameter("achternaam", parts[3].trim() + "%");
 			
 			if(!(query.list().isEmpty() && query2.list().isEmpty())) {
 				
@@ -317,6 +327,10 @@ public class PersoonDaoImpl extends GenericDaoImpl<Persoon> implements
 				return query3.list();
 			}
 			
+			if (!(query4.list().isEmpty())){
+				return query4.list();
+			}
+			
 			if (query.list().isEmpty() && query2.list().isEmpty() && query3.list().isEmpty()) {
 				System.out.println("SEARCHFULL BEIDE QUERIES NULL");
 				return null;
@@ -327,6 +341,7 @@ public class PersoonDaoImpl extends GenericDaoImpl<Persoon> implements
 			String sql = "SELECT p FROM Persoon p WHERE p.voornaam like :voornaam AND p.tussenvoegsel like :tussenvoegsel AND p.achternaam like :achternaam";
 			String sql2 = "SELECT p FROM Persoon p WHERE p.voornaam like :voornaam AND p.tussenvoegsel like :tussenvoegsel AND p.achternaam like :achternaam";
 			String sql3 = "SELECT p FROM Persoon p WHERE p.voornaam like :voornaam AND p.tussenvoegsel like :tussenvoegsel AND p.achternaam like :achternaam";
+			String sql4 = "SELECT p FROM Persoon p WHERE p.voornaam like :voornaam AND p.tussenvoegsel like :tussenvoegsel AND p.achternaam like :achternaam";
 			
 			Query query = getSessionFactory().getCurrentSession()
 					.createQuery(sql)
@@ -343,6 +358,11 @@ public class PersoonDaoImpl extends GenericDaoImpl<Persoon> implements
 					.setParameter("voornaam", parts[0].trim() + "%")
 					.setParameter("tussenvoegsel", parts[1].trim().concat(" ").concat(parts[2].trim()) + "%")
 					.setParameter("achternaam", parts[3].trim().concat(" ").concat(parts[4].trim()) + "%");
+			Query query4 = getSessionFactory().getCurrentSession()
+					.createQuery(sql4)
+					.setParameter("voornaam", parts[0].trim() + "%")
+					.setParameter("tussenvoegsel", parts[1].trim().concat(" ").concat(parts[2].trim()).concat(" ").concat(parts[3].trim()) + "%")
+					.setParameter("achternaam", parts[4].trim() + "%");
 			
 			if(!(query.list().isEmpty() && query2.list().isEmpty())) {
 				
@@ -369,6 +389,10 @@ public class PersoonDaoImpl extends GenericDaoImpl<Persoon> implements
 				return query3.list();
 			}
 			
+			if (!(query4.list().isEmpty())){
+				return query4.list();
+			}
+			
 			if (query.list().isEmpty() && query2.list().isEmpty() && query3.list().isEmpty()) {
 				System.out.println("SEARCHFULL BEIDE QUERIES NULL");
 				return null;
@@ -377,21 +401,56 @@ public class PersoonDaoImpl extends GenericDaoImpl<Persoon> implements
 		
 		if (parts != null && parts.length == 6) {
 			String sql = "SELECT p FROM Persoon p WHERE p.voornaam like :voornaam AND p.tussenvoegsel like :tussenvoegsel AND p.achternaam like :achternaam";
+			String sql2 = "SELECT p FROM Persoon p WHERE p.voornaam like :voornaam AND p.tussenvoegsel like :tussenvoegsel AND p.achternaam like :achternaam";
+			String sql3 = "SELECT p FROM Persoon p WHERE p.voornaam like :voornaam AND p.tussenvoegsel like :tussenvoegsel AND p.achternaam like :achternaam";
 			
 			Query query = getSessionFactory().getCurrentSession()
 					.createQuery(sql)
 					.setParameter("voornaam", parts[0].trim().concat(" ").concat(parts[1].trim()) + "%")
 					.setParameter("tussenvoegsel", parts[2].trim().concat(" ").concat(parts[3].trim()) + "%")
 					.setParameter("achternaam", parts[4].trim().concat(" ").concat(parts[5].trim()) + "%");
+			Query query2 = getSessionFactory().getCurrentSession()
+					.createQuery(sql2)
+					.setParameter("voornaam", parts[0].trim() + "%")
+					.setParameter("tussenvoegsel", parts[1].trim().concat(" ").concat(parts[2].trim()).concat(" ").concat(parts[3].trim()) + "%")
+					.setParameter("achternaam", parts[4].trim().concat(" ").concat(parts[5].trim()) + "%");
+			Query query3 = getSessionFactory().getCurrentSession()
+					.createQuery(sql3)
+					.setParameter("voornaam", parts[0].trim().concat(" ").concat(parts[1].trim()) + "%")
+					.setParameter("tussenvoegsel", parts[2].trim().concat(" ").concat(parts[3].trim()).concat(" ").concat(parts[4].trim()) + "%")
+					.setParameter("achternaam", parts[5].trim() + "%");
+			
 			
 			if (!(query.list().isEmpty())) {
 				return query.list();
+			}
+			
+			if (!(query2.list().isEmpty())) {
+				return query2.list();
+			}
+			
+			if (!(query3.list().isEmpty())) {
+				return query3.list();
 			}
 			
 			if (query.list().isEmpty()) {
 				return null;
 			}
 		}	
+		
+		if (parts != null && parts.length == 7) {
+			String sql = "SELECT p FROM Persoon p WHERE p.voornaam like :voornaam AND p.tussenvoegsel like :tussenvoegsel AND p.achternaam like :achternaam";
+			
+			Query query = getSessionFactory().getCurrentSession()
+					.createQuery(sql)
+					.setParameter("voornaam", parts[0].trim().concat(" ").concat(parts[1].trim()) + "%")
+					.setParameter("tussenvoegsel", parts[2].trim().concat(" ").concat(parts[3].trim()).concat(" ").concat(parts[4].trim()) + "%")
+					.setParameter("achternaam", parts[5].trim().concat(" ").concat(parts[6].trim()) + "%");	
+			
+			if (!(query.list().isEmpty())) {
+				return query.list();
+			}
+		}
 		return null;
 	}
 }

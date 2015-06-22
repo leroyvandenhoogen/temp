@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @Controller
 @RequestMapping("/relatiebeheer/personen")
 //@SessionAttributes({"personen", "adresTypes"})
-//@SessionAttributes("personen")
+@SessionAttributes("personen")
 public class PersonenlijstController {
 	
 	@Autowired
@@ -51,25 +51,34 @@ public class PersonenlijstController {
 	public String zoekPersoon(@ModelAttribute("zoekinput")Zoekinput zoekinput, BindingResult result, ModelMap model) {
 		Zoekinput zi = new Zoekinput();
 		model.addAttribute("zoekinput", zi);
-		return "relatiebeheer/personen/zoeken";
+		return "zoeken";
 	}
 	
 	@RequestMapping(value = {"/zoeken"}, method = RequestMethod.POST)
 	public String zoekPersoonLijst(@ModelAttribute("zoekinput")Zoekinput zoekinput, BindingResult result, ModelMap model) {
-//		List<Persoon> personen = service.searchFull(zoekinput.getInput());
+		
 		zoekinput.startTimer();
 		List<Persoon> personen = service.searchFullDeluxe(zoekinput.getInput());
 		model.addAttribute("personen", personen);
 		zoekinput.stopTimer();
-//		model.addAttribute("zoekinput", zoekinput);
+		model.addAttribute("zoekinput", zoekinput);
 		return "relatiebeheer/personen/zoeken";
 	}
 	
-//	@RequestMapping(value= {"/zoekresultaat"}, method = RequestMethod.GET)
-//	public String zoekResultaat(@ModelAttribute("zoekinput")StringBuilder zoekinput, ModelMap model) {
-//		service.searchFull(zoekinput.toString());
-//		return "relatiebeheer/personen/zoeken/zoekresultaat";
-//	}
+	@RequestMapping(value= {"/zoekresultaat-{id}"}, method = RequestMethod.GET)
+	public String zoekResultaat(@PathVariable int id,
+			@ModelAttribute("zoekinput")Zoekinput zoekinput, BindingResult result,
+			ModelMap model) {
+		
+		Persoon persoon = service.get(id);
+		model.addAttribute("persoon", persoon);
+		
+		ArrayList<AdresType> adresTypes = (ArrayList<AdresType>)adresService.getAllTypes();
+		model.addAttribute("adresTypes", adresTypes);
+		model.addAttribute("zoekinput", zoekinput);
+
+		return "relatiebeheer/personen/zoekresultaat";
+	}
 	
 	@RequestMapping(value= {"/nieuw"}, method= RequestMethod.GET)
 	public String persoonToevoegen(ModelMap model) {

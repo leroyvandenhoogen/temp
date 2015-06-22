@@ -29,8 +29,8 @@ public class Zoekinput {
 	
 	public void stopTimer() {
 		this.stop = System.nanoTime();
-		double totalSeconds = (double)((stop - start) / 1000000000);
-		String totalRounded = new BigDecimal(String.valueOf(totalSeconds)).setScale(5, BigDecimal.ROUND_HALF_EVEN).toString();
+		double totalTemp = (double)((stop - start));
+		String totalRounded = new BigDecimal(String.valueOf(totalTemp  / 1000000000)).setScale(3, BigDecimal.ROUND_HALF_EVEN).toString();
 		this.total = totalRounded;
 	}
 	
