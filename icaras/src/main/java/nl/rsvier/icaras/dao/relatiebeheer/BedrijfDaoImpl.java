@@ -18,15 +18,16 @@ public class BedrijfDaoImpl extends GenericDaoImpl<Bedrijf> implements
 	List<Bedrijf> lijst1;
 	List<Bedrijf> lijst2;
 	List<Bedrijf> lijst3;
-	List<Bedrijf> mergeLijst1;
-	List<Bedrijf> mergeLijst2;
-	List<Bedrijf> mergeLijst3;
+
 
 	public BedrijfDaoImpl() {
 		super(Bedrijf.class);
 	}
 
 	public List<Bedrijf> search(String string) {
+		List<Bedrijf> mergeLijst1 = new ArrayList<Bedrijf>();
+		List<Bedrijf> mergeLijst2 = new ArrayList<Bedrijf>();
+		List<Bedrijf> mergeLijst3 = new ArrayList<Bedrijf>();
 		lijst1 = queryNaam(string.trim());
 		lijst2 = queryPlaats(string.trim());
 
@@ -80,8 +81,8 @@ public class BedrijfDaoImpl extends GenericDaoImpl<Bedrijf> implements
 		}
 		
 		if (parts.length > 4) {
-			lijst1 = queryNaamPlaats(parts[0].concat(" ").concat(parts[1]), "%"+parts[4]);
-			lijst2 = queryNaamPlaats("%"+parts[4], parts[0].concat(" ").concat(parts[1]));
+			lijst1 = queryNaamPlaats(parts[0].concat(" ").concat(parts[1]), "%"+parts[parts.length -1]);
+			lijst2 = queryNaamPlaats("%"+parts[parts.length -1], parts[0].concat(" ").concat(parts[1]));
 			if(isNotEmpty(lijst1, lijst2))
 				return mergeLijst1 = merge2Lists(lijst1, lijst2);
 		}
