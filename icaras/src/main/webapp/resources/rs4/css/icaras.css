@@ -81,6 +81,7 @@ div.content {
 	padding: 20px;
 	height: 750px;
 	overflow-y: auto;
+	width: 100%;
 }
 
 div.details {

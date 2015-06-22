@@ -20,169 +20,103 @@
 		<put-attribute name="title" value="RSVIER Relatiebeheer" />
 		<put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
 	</definition>
-	
-	<definition name="relatiebeheer/organisaties/zoeken" extends="relatiebeheer">
-		<put-attribute name="title" value="RSVIER Organisatie zoeken"/>
-		<put-attribute name="content" value="/WEB-INF/tiles/relatiebeheer/organisaties/organisatiezoeken.jsp"/>
+
+	<definition name="relatiebeheer/organisaties/zoeken"
+		extends="relatiebeheer">
+		<put-attribute name="title" value="RSVIER Organisatie zoeken" />
+		<put-attribute name="content"
+			value="/WEB-INF/tiles/relatiebeheer/organisaties/organisatiezoeken.jsp" />
 	</definition>
-	
+
 	<definition name="relatiebeheer/organisaties/nieuw" extends="relatiebeheer">
-		<put-attribute name="title" value="RSVIER Organisatie toevoegen"/>
-		<put-attribute name="content" value="/WEB-INF/tiles/relatiebeheer/organisaties/nieuworganisatie.jsp"/>
+		<put-attribute name="title" value="RSVIER Organisatie toevoegen" />
+		<put-attribute name="content"
+			value="/WEB-INF/tiles/relatiebeheer/organisaties/nieuworganisatie.jsp" />
 	</definition>
-	
+
 	<definition name="relatiebeheer/personen/zoeken" extends="relatiebeheer">
-		<put-attribute name="title" value="RSVIER Personen zoeken"/>
-		<put-attribute name="content" value="/WEB-INF/tiles/relatiebeheer/personen/persoonzoeken.jsp"/>
+		<put-attribute name="title" value="RSVIER Personen zoeken" />
+		<put-attribute name="content"
+			value="/WEB-INF/tiles/relatiebeheer/personen/persoonzoeken.jsp" />
 	</definition>
-	
-	<definition name="relatiebeheer/personen/zoeken/zoekresultaat" extends="relatiebeheer">
-		<put-attribute name="title" value="RSVIER Personen zoeken"/>
-		<put-attribute name="details" value="/WEB-INF/tiles/relatiebeheer/personen/persoonzoekresultaat.jsp"/>
+
+	<definition name="relatiebeheer/personen/zoekresultaat"
+		extends="relatiebeheer">
+		<put-attribute name="title" value="RSVIER Personen zoeken" />
+		<put-attribute name="content"
+			value="/WEB-INF/tiles/relatiebeheer/personen/persoonzoekresultaat.jsp" />
 	</definition>
-	
+
 	<definition name="relatiebeheer/personen/nieuw" extends="relatiebeheer">
-		<put-attribute name="title" value="RSVIER Persoon toevoegen"/>
-		<put-attribute name="content" value="/WEB-INF/tiles/relatiebeheer/personen/nieuwpersoon.jsp"/>
-	</definition>
-	
-	
-	
-<!-- 
-	<definition name="personen" extends="home.base">
-		<put-attribute name="title" value="RSVIER Personen" />
-		<put-attribute name="content" value="/WEB-INF/tiles/personenlijst.jsp" />
-	</definition>
-
-	<definition name="nieuwpersoon" extends="personen">
-		<put-attribute name="title" value="RSVIER Nieuw persoon" />
-		<put-attribute name="details" value="/WEB-INF/tiles/nieuwpersoon.jsp" />
-	</definition>
-
-	<definition name="persoondetails" extends="personen">
-		<put-attribute name="title" value="RSVIER Persoondetails" />
-		<put-attribute name="details" value="/WEB-INF/tiles/persoondetails.jsp" />
-	</definition>
-
-	<definition name="cursisten" extends="home.base">
-		<put-attribute name="title" value="RSVIER Cursisten" />
-		<put-attribute name="content" value="/WEB-INF/tiles/cursistenlijst.jsp" />
-	</definition>
-
-	<definition name="nieuwcursist" extends="cursisten">
-		<put-attribute name="title" value="RSVIER Nieuw cursist" />
-		<put-attribute name="details" value="/WEB-INF/tiles/nieuwcursist.jsp" />
-	</definition>
-
-	<definition name="cursistdetails" extends="cursisten">
-		<put-attribute name="title" value="RSVIER Cursistdetails" />
-		<put-attribute name="details" value="/WEB-INF/tiles/cursistdetails.jsp" />
-	</definition>
-
-	<definition name="kandidaten" extends="home.base">
-		<put-attribute name="title" value="RSVIER Kandidaten" />
-		<put-attribute name="content" value="/WEB-INF/tiles/kandidatenlijst.jsp" />
-	</definition>
-
-	<definition name="nieuwkandidaat" extends="kandidaten">
-		<put-attribute name="title" value="RSVIER Nieuw kandidaat" />
-		<put-attribute name="details" value="/WEB-INF/tiles/nieuwkandidaat.jsp" />
-	</definition>
-
-	<definition name="kandidaatdetails" extends="kandidaten">
-		<put-attribute name="title" value="RSVIER Kandidaatdetails" />
-		<put-attribute name="details"
-			value="/WEB-INF/tiles/kandidaatdetails.jsp" />
-	</definition>
-
-	<definition name="stagiairs" extends="home.base">
-		<put-attribute name="title" value="RSVIER Stagiairs" />
-		<put-attribute name="content" value="/WEB-INF/tiles/stagiairslijst.jsp" />
-	</definition>
-
-	<definition name="nieuwstagiair" extends="stagiairs">
-		<put-attribute name="title" value="RSVIER Nieuw stagiair" />
-		<put-attribute name="details" value="/WEB-INF/tiles/nieuwstagiair.jsp" />
-	</definition>
-
-	<definition name="stagiairdetails" extends="stagiairs">
-		<put-attribute name="title" value="RSVIER Stagiairdetails" />
-		<put-attribute name="details" value="/WEB-INF/tiles/stagairdetails.jsp" />
-	</definition>
-
-	<definition name="werknemers" extends="home.base">
-		<put-attribute name="title" value="RSVIER Werknemers" />
-		<put-attribute name="content" value="/WEB-INF/tiles/werknemerslijst.jsp" />
-	</definition>
-
-	<definition name="nieuwwerknemer" extends="werknemers">
-		<put-attribute name="title" value="RSVIER Nieuw werknemer" />
-		<put-attribute name="details" value="/WEB-INF/tiles/nieuwwerknemer.jsp" />
-	</definition>
-
-	<definition name="werknemerdetails" extends="werknemers">
-		<put-attribute name="title" value="RSVIER Werknemerdetails" />
-		<put-attribute name="details"
-			value="/WEB-INF/tiles/werknemerdetails.jsp" />
-	</definition>
-
-	<definition name="contactpersonen" extends="home.base">
-		<put-attribute name="title" value="RSVIER Contactpersonen" />
+		<put-attribute name="title" value="RSVIER Persoon toevoegen" />
 		<put-attribute name="content"
-			value="/WEB-INF/tiles/contactpersonenlijst.jsp" />
+			value="/WEB-INF/tiles/relatiebeheer/personen/nieuwpersoon.jsp" />
 	</definition>
 
-	<definition name="nieuwcontactpersoon" extends="contactpersonen">
-		<put-attribute name="title" value="RSVIER Nieuw contactpersoon" />
-		<put-attribute name="details"
-			value="/WEB-INF/tiles/nieuwcontactpersoon.jsp" />
-	</definition>
 
-	<definition name="contactpersoondetails" extends="contactpersonen">
-		<put-attribute name="title" value="RSVIER Contactpersoondetails" />
-		<put-attribute name="details"
-			value="/WEB-INF/tiles/contactpersoondetails.jsp" />
-	</definition>
 
-	<definition name="privecontact" extends="home.base">
-		<put-attribute name="title" value="RSVIER Prive" />
-		<put-attribute name="content"
-			value="/WEB-INF/tiles/privecontactlijst.jsp" />
-	</definition>
-
-	<definition name="nieuwprivecontact" extends="privecontact">
-		<put-attribute name="title" value="RSVIER Nieuw privecontact" />
-		<put-attribute name="details"
-			value="/WEB-INF/tiles/nieuwprivecontact.jsp" />
-	</definition>
-
-	<definition name="privecontactdetails" extends="privecontact">
-		<put-attribute name="title" value="RSVIER Privecontactdetails" />
-		<put-attribute name="details"
-			value="/WEB-INF/tiles/privecontactdetails.jsp" />
-	</definition>
-
-	<definition name="organisaties" extends="home.base">
-		<put-attribute name="title" value="RSVIER Organisaties" />
-		<put-attribute name="content"
-			value="/WEB-INF/tiles/organisatieslijst.jsp" />
-	</definition>
-
-	<definition name="nieuworganisatie" extends="organisaties">
-		<put-attribute name="title" value="RSVIER Nieuw organisatie" />
-		<put-attribute name="details"
-			value="/WEB-INF/tiles/nieuworganisatie.jsp" />
-	</definition>
-
-	<definition name="organisatiedetails" extends="organisaties">
-		<put-attribute name="title" value="RSVIER Organisatiedetails" />
-		<put-attribute name="details"
-			value="/WEB-INF/tiles/organisatiedetails.jsp" />
-	</definition>
-
-	<definition name="projectinfo" extends="home.base">
-		<put-attribute name="title" value="RSVIER Project info" />
-		<put-attribute name="content" value="/WEB-INF/tiles/projectinfo.jsp" />
-	</definition>
- -->
+	<!-- <definition name="personen" extends="home.base"> <put-attribute name="title" 
+		value="RSVIER Personen" /> <put-attribute name="content" value="/WEB-INF/tiles/personenlijst.jsp" 
+		/> </definition> <definition name="nieuwpersoon" extends="personen"> <put-attribute 
+		name="title" value="RSVIER Nieuw persoon" /> <put-attribute name="details" 
+		value="/WEB-INF/tiles/nieuwpersoon.jsp" /> </definition> <definition name="persoondetails" 
+		extends="personen"> <put-attribute name="title" value="RSVIER Persoondetails" 
+		/> <put-attribute name="details" value="/WEB-INF/tiles/persoondetails.jsp" 
+		/> </definition> <definition name="cursisten" extends="home.base"> <put-attribute 
+		name="title" value="RSVIER Cursisten" /> <put-attribute name="content" value="/WEB-INF/tiles/cursistenlijst.jsp" 
+		/> </definition> <definition name="nieuwcursist" extends="cursisten"> <put-attribute 
+		name="title" value="RSVIER Nieuw cursist" /> <put-attribute name="details" 
+		value="/WEB-INF/tiles/nieuwcursist.jsp" /> </definition> <definition name="cursistdetails" 
+		extends="cursisten"> <put-attribute name="title" value="RSVIER Cursistdetails" 
+		/> <put-attribute name="details" value="/WEB-INF/tiles/cursistdetails.jsp" 
+		/> </definition> <definition name="kandidaten" extends="home.base"> <put-attribute 
+		name="title" value="RSVIER Kandidaten" /> <put-attribute name="content" value="/WEB-INF/tiles/kandidatenlijst.jsp" 
+		/> </definition> <definition name="nieuwkandidaat" extends="kandidaten"> 
+		<put-attribute name="title" value="RSVIER Nieuw kandidaat" /> <put-attribute 
+		name="details" value="/WEB-INF/tiles/nieuwkandidaat.jsp" /> </definition> 
+		<definition name="kandidaatdetails" extends="kandidaten"> <put-attribute 
+		name="title" value="RSVIER Kandidaatdetails" /> <put-attribute name="details" 
+		value="/WEB-INF/tiles/kandidaatdetails.jsp" /> </definition> <definition 
+		name="stagiairs" extends="home.base"> <put-attribute name="title" value="RSVIER 
+		Stagiairs" /> <put-attribute name="content" value="/WEB-INF/tiles/stagiairslijst.jsp" 
+		/> </definition> <definition name="nieuwstagiair" extends="stagiairs"> <put-attribute 
+		name="title" value="RSVIER Nieuw stagiair" /> <put-attribute name="details" 
+		value="/WEB-INF/tiles/nieuwstagiair.jsp" /> </definition> <definition name="stagiairdetails" 
+		extends="stagiairs"> <put-attribute name="title" value="RSVIER Stagiairdetails" 
+		/> <put-attribute name="details" value="/WEB-INF/tiles/stagairdetails.jsp" 
+		/> </definition> <definition name="werknemers" extends="home.base"> <put-attribute 
+		name="title" value="RSVIER Werknemers" /> <put-attribute name="content" value="/WEB-INF/tiles/werknemerslijst.jsp" 
+		/> </definition> <definition name="nieuwwerknemer" extends="werknemers"> 
+		<put-attribute name="title" value="RSVIER Nieuw werknemer" /> <put-attribute 
+		name="details" value="/WEB-INF/tiles/nieuwwerknemer.jsp" /> </definition> 
+		<definition name="werknemerdetails" extends="werknemers"> <put-attribute 
+		name="title" value="RSVIER Werknemerdetails" /> <put-attribute name="details" 
+		value="/WEB-INF/tiles/werknemerdetails.jsp" /> </definition> <definition 
+		name="contactpersonen" extends="home.base"> <put-attribute name="title" value="RSVIER 
+		Contactpersonen" /> <put-attribute name="content" value="/WEB-INF/tiles/contactpersonenlijst.jsp" 
+		/> </definition> <definition name="nieuwcontactpersoon" extends="contactpersonen"> 
+		<put-attribute name="title" value="RSVIER Nieuw contactpersoon" /> <put-attribute 
+		name="details" value="/WEB-INF/tiles/nieuwcontactpersoon.jsp" /> </definition> 
+		<definition name="contactpersoondetails" extends="contactpersonen"> <put-attribute 
+		name="title" value="RSVIER Contactpersoondetails" /> <put-attribute name="details" 
+		value="/WEB-INF/tiles/contactpersoondetails.jsp" /> </definition> <definition 
+		name="privecontact" extends="home.base"> <put-attribute name="title" value="RSVIER 
+		Prive" /> <put-attribute name="content" value="/WEB-INF/tiles/privecontactlijst.jsp" 
+		/> </definition> <definition name="nieuwprivecontact" extends="privecontact"> 
+		<put-attribute name="title" value="RSVIER Nieuw privecontact" /> <put-attribute 
+		name="details" value="/WEB-INF/tiles/nieuwprivecontact.jsp" /> </definition> 
+		<definition name="privecontactdetails" extends="privecontact"> <put-attribute 
+		name="title" value="RSVIER Privecontactdetails" /> <put-attribute name="details" 
+		value="/WEB-INF/tiles/privecontactdetails.jsp" /> </definition> <definition 
+		name="organisaties" extends="home.base"> <put-attribute name="title" value="RSVIER 
+		Organisaties" /> <put-attribute name="content" value="/WEB-INF/tiles/organisatieslijst.jsp" 
+		/> </definition> <definition name="nieuworganisatie" extends="organisaties"> 
+		<put-attribute name="title" value="RSVIER Nieuw organisatie" /> <put-attribute 
+		name="details" value="/WEB-INF/tiles/nieuworganisatie.jsp" /> </definition> 
+		<definition name="organisatiedetails" extends="organisaties"> <put-attribute 
+		name="title" value="RSVIER Organisatiedetails" /> <put-attribute name="details" 
+		value="/WEB-INF/tiles/organisatiedetails.jsp" /> </definition> <definition 
+		name="projectinfo" extends="home.base"> <put-attribute name="title" value="RSVIER 
+		Project info" /> <put-attribute name="content" value="/WEB-INF/tiles/projectinfo.jsp" 
+		/> </definition> -->
 </tiles-definitions>
