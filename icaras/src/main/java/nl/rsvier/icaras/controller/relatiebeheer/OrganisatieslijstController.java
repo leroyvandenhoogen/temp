@@ -1,7 +1,9 @@
 package nl.rsvier.icaras.controller.relatiebeheer;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import nl.rsvier.icaras.core.relatiebeheer.Adres;
 import nl.rsvier.icaras.core.relatiebeheer.Bedrijf;
 import nl.rsvier.icaras.core.relatiebeheer.Zoekinput;
 import nl.rsvier.icaras.service.relatiebeheer.AdresService;
@@ -50,7 +52,27 @@ public class OrganisatieslijstController {
 	}
 	@RequestMapping(value= {"/nieuw"}, method= RequestMethod.GET)
 	public String organisatieToevoegen(ModelMap model) {
+		Bedrijf bedrijf = new Bedrijf();
+		List adresTypes = adresService.getAllTypes();
+		List adressen = new ArrayList();
+		model.addAttribute("adressen", adressen);
+		model.addAttribute("adrestypes", adresTypes);
+		model.addAttribute("bedrijf", bedrijf);
 		return "relatiebeheer/organisaties/nieuw";
+	}
+	
+	@RequestMapping(value= {"/nieuw"}, method= RequestMethod.POST)
+	public String saveOrganisatie(@ModelAttribute("bedrijf") Bedrijf bedrijf, BindingResult result, ModelMap model) {
+		bedrijfService.save(bedrijf);
+		int id = bedrijf.getId();
+		return "relatiebeheer/organisaties/nieuwAdres-{id}";
+	}
+	
+	@RequestMapping(value={"/nieuwAdres-{id}"}, method=RequestMethod.GET)
+	public String adresToevoegen(@ModelAttribute("id") int id, BindingResult result, ModelMap model) {
+		Adres adres = new Adres();
+		model.addAttribute("adres", adres);
+		return "relatiebeheer/organisaties/nieuwAdres";
 	}
 
 //	@RequestMapping(value = { "", "lijst" }, method = RequestMethod.GET)
