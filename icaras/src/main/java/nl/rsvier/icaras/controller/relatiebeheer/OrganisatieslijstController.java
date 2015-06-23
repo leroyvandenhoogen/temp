@@ -1,11 +1,13 @@
 package nl.rsvier.icaras.controller.relatiebeheer;
 
-import java.util.ArrayList;
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import nl.rsvier.icaras.core.relatiebeheer.Adres;
 import nl.rsvier.icaras.core.relatiebeheer.Bedrijf;
 import nl.rsvier.icaras.core.relatiebeheer.BedrijfDTO;
+import nl.rsvier.icaras.core.relatiebeheer.Persoonsrol;
 import nl.rsvier.icaras.core.relatiebeheer.Zoekinput;
 import nl.rsvier.icaras.service.relatiebeheer.AdresService;
 import nl.rsvier.icaras.service.relatiebeheer.BedrijfService;
@@ -99,6 +101,24 @@ public class OrganisatieslijstController {
 		bedrijfDTO.setBedrijf(bedrijfService.get(id));
 		model.addAttribute("bedrijfDTO", bedrijfDTO);
 		return "relatiebeheer/organisaties/nieuwContactpersoon";
+	}
+	
+	@RequestMapping(value={"/nieuwContactpersoon-{id}"}, method=RequestMethod.POST)
+	public String contactpersoonToevoegen(@ModelAttribute("id") int id, BindingResult result, @ModelAttribute("bedrijfDTO")
+		BedrijfDTO bedrijfDTO, BindingResult result2, ModelMap model) {
+		Bedrijf bedrijf = bedrijfService.get(id);
+		persoonService.save(bedrijfDTO.getPersoon());
+		Persoonsrol persoonsrol = new Persoonsrol();
+		persoonsrol.setPersoon(bedrijfDTO.getPersoon());
+		persoonsrol.setBedrijf(bedrijf);
+		persoonsrol.setBegindatum(new Date(Calendar.getInstance().getTimeInMillis()));
+		persoonsrolService.addRol("contactpersoon", persoonsrol);
+		persoonsrolService.save(persoonsrol);
+		bedrijf.addPersoonsrol(persoonsrol);
+		bedrijfService.update(bedrijf);
+		model.addAttribute("bedrijfDTO", bedrijfDTO);
+		model.addAttribute("succes", bedrijfDTO.getPersoon().getVolledigeNaam() + " is toegevoegd");
+		return "relatiebeheer/organisaties/bevestig";
 	}
 
 //	@RequestMapping(value = { "", "lijst" }, method = RequestMethod.GET)
