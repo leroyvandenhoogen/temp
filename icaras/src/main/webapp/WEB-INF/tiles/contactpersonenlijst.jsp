@@ -15,8 +15,9 @@
 				<td>${contactpersoon.voornaam}</td>
 				<td>${contactpersoon.achternaam}</td>
 				<td>${contactpersoon.tussenvoegsel}</td>
-				<td><c:forEach items="${contactpersoon.persoonsrollen}"	var="persoonsrol">
-					<c:if test="${persoonsrol.rol.type =='contactpersoon'}">
+				<td><c:forEach items="${contactpersoon.persoonsrollen}"
+						var="persoonsrol">
+						<c:if test="${persoonsrol.rol.type =='contactpersoon'}">
 						${persoonsrol.bedrijf.naam}
 					</c:if>
 					</c:forEach></td>
@@ -27,7 +28,8 @@
 		</c:forEach>
 		<tr>
 			<td colspan="10"><a
-				href="<c:url value='/contactpersonen/nieuwcontactpersoon' />">Voeg nieuw persoon toe</a></td>
+				href="<c:url value='/contactpersonen/nieuwcontactpersoon' />">Voeg
+					nieuw persoon toe</a></td>
 		</tr>
 	</table>
 </body>
