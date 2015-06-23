@@ -5,7 +5,8 @@
 
 <body>
 	<h1 style="color: red">${gewijzigd}</h1>
-	<a href="<c:url value='/relatiebeheer/personen/zoeken' />">Ga terug naar zoekpagina</a>
+	<a href="<c:url value='/relatiebeheer/personen/zoeken' />">Ga terug
+		naar zoekpagina</a>
 	<form:form method="POST" modelAttribute="persoon">
 		<table class="details">
 			<th>Persoonsgegevens</th>
@@ -33,28 +34,31 @@
 			</tr>
 
 			<tr>
-				<td><label for="geboorteplaats">Geboorteplaats: </label></td>
-				<td><form:input path="geboorteplaats" id="geboorteplaats" /></td>
-				<td><form:errors path="geboorteplaats" cssClass="error" /></td>
-			</tr>
-
-			<tr>
 				<td><label for="geslacht">Geslacht: </label></td>
 				<td><form:input path="geslacht" id="geslacht" /></td>
 				<td><form:errors path="geslacht" cssClass="error" /></td>
 			</tr>
+			
+			<c:forEach items="${persoon.digitaleAdressen}" var="digitaleadres"
+				varStatus="current">
+				<c:if
+					test="${digitaleadres.digitaalAdresType.type == 'email' || digitaleadres.digitaalAdresType.type == 'telefoonnummer' }">
+					<tr class="element">
+						<form:input type="hidden"
+							path="digitaleAdressen[${current.index}].id"
+							value="${digitaleadres.id}" />
+						<td><label>${digitaleadres.digitaalAdresType.type} </label></td>
+						<td><form:input
+								path="digitaleAdressen[${current.index}].omschrijving"
+								id="omschrijving" value="${digitaleadres.omschrijving}"
+								size="30" /></td>
+						<form:input type="hidden"
+							path="digitaleAdressen[${current.index}].digitaalAdresType.id"
+							value="${digitaleadres.digitaalAdresType.id}" />
+					</tr>
+				</c:if>
+			</c:forEach>
 
-			<tr>
-				<td><label for="rijbewijs">Rijbewijs: </label></td>
-				<td><form:input path="rijbewijs" id="rijbewijs" /></td>
-				<td><form:errors path="rijbewijs" cssClass="error" /></td>
-			</tr>
-
-			<tr>
-				<td><label for="nationaliteit">Nationaliteit: </label></td>
-				<td><form:input path="nationaliteit" id="nationaliteit" /></td>
-				<td><form:errors path="nationaliteit" cssClass="nationaliteit" /></td>
-			</tr>
 			<tr>
 				<td><label for="opmerking">Bijzonderheden: </label></td>
 				<td><form:textarea rows="5" cols="20" path="opmerking"
@@ -63,6 +67,7 @@
 			</tr>
 			<tr></tr>
 		</table>
+
 
 		<table class="details">
 			<th>Adresgegevens</th>
@@ -110,17 +115,6 @@
 					<td><form:input path="adressen[${current.index}].land"
 							value="${land}" /></td>
 				</tr>
-				<tr>
-					<td><label>Begin datum: </label></td>
-					<td><form:input type="date"
-							path="adressen[${current.index}].begindatum"
-							value="${begindatum}" /></td>
-				</tr>
-				<tr>
-					<td><label>Eind datum: </label></td>
-					<td><form:input type="date"
-							path="adressen[${current.index}].einddatum" value="${einddatum}" /></td>
-				</tr>
 
 				<td><label>Adres type: </label></td>
 				<td><form:select path="adressen[${current.index}].adresType.id">
@@ -137,31 +131,6 @@
 			</c:forEach>
 		</table>
 
-		<table class="details">
-			<th>Digitaal Adres</th>
-			<c:forEach items="${persoon.digitaleAdressen}" var="digitaleadres"
-				varStatus="current">
-				<tr class="element">
-					<form:input type="hidden"
-						path="digitaleAdressen[${current.index}].id"
-						value="${digitaleadres.id}" />
-					<td><label>${digitaleadres.digitaalAdresType.type} </label></td>
-					<td><form:input
-							path="digitaleAdressen[${current.index}].omschrijving"
-							id="omschrijving" value="${digitaleadres.omschrijving}" size="30" /></td>
-					<td><label>voorkeur </label></td>
-					<td><form:radiobutton
-							path="digitaleAdressen[${current.index}].contactvoorkeur"
-							value="true" />Yes <form:radiobutton
-							path="digitaleAdressen[${current.index}].contactvoorkeur"
-							value="false" />No</td>
-					<form:input type="hidden"
-						path="digitaleAdressen[${current.index}].digitaalAdresType.id"
-						value="${digitaleadres.digitaalAdresType.id}" />
-				</tr>
-			</c:forEach>
-			<tr></tr>
-		</table>
 
 		<table class="details">
 			<th>Persoonsrollen</th>
@@ -188,28 +157,7 @@
 							value="${persoonsrol.einddatum}" size="10" /></td>
 				</tr>
 			</c:forEach>
-			<tr></tr>
-			<td colspan="3"><input type="submit" value="Wijzig Persoon"
-				name="wijzig" /></td>
-			<tr></tr>
-			<td colspan="3"><input type="submit" value="Verwijder Persoon"
-				name="verwijder" /></td>
 		</table>
-		<!--
-			<table class="details">
-			<c:forEach items="${persoon.identiteitsbewijzen}"
-				var="identiteitsbewijs">
-				<tr class="element">
-					<td>${identiteitsbewijs.nummer}</td>
-					<td>${identiteitsbewijs.vervaldatum}</td>
-					<td>${identiteitsbewijs.identiteitsbewijsType}</td>
-				</tr>
-			</c:forEach>
-			<tr></tr>
-						<tr>
-				<td colspan="3"><input type="submit" value="Wijzig Persoon" /></td>
-			</tr>
-		</table>
-		-->
+
 	</form:form>
 </body>
