@@ -33,19 +33,33 @@
 		<put-attribute name="content"
 			value="/WEB-INF/tiles/relatiebeheer/organisaties/nieuworganisatie.jsp" />
 	</definition>
-	
-		<definition name="relatiebeheer/organisaties/nieuwAdres" extends="relatiebeheer">
+
+	<definition name="relatiebeheer/organisaties/nieuwAdres"
+		extends="relatiebeheer">
 		<put-attribute name="title" value="RSVIER Nieuw adres toevoegen" />
 		<put-attribute name="content"
 			value="/WEB-INF/tiles/relatiebeheer/organisaties/nieuwAdres.jsp" />
 	</definition>
-	
-			<definition name="relatiebeheer/organisaties/nieuwContactpersoon" extends="relatiebeheer">
-		<put-attribute name="title" value="RSVIER Nieuw contactpersoon toevoegen" />
+
+	<definition name="relatiebeheer/organisaties/nieuwContactpersoon"
+		extends="relatiebeheer">
+		<put-attribute name="title"
+			value="RSVIER Nieuw contactpersoon toevoegen" />
 		<put-attribute name="content"
 			value="/WEB-INF/tiles/relatiebeheer/organisaties/nieuwContactpersoon.jsp" />
 	</definition>
-		<definition name="relatiebeheer/organisaties/bevestig" extends="relatiebeheer">
+	
+	<definition name="relatiebeheer/organisaties/details"
+		extends="relatiebeheer">
+		<put-attribute name="title"
+			value="RSVIER Organisatie details" />
+		<put-attribute name="content"
+			value="/WEB-INF/tiles/relatiebeheer/organisaties/organisatiedetails.jsp" />
+	</definition>
+	
+	
+	<definition name="relatiebeheer/organisaties/bevestig"
+		extends="relatiebeheer">
 		<put-attribute name="title" value="RSVIER Organisatie toegevoegd" />
 		<put-attribute name="content"
 			value="/WEB-INF/tiles/relatiebeheer/organisaties/bevestig.jsp" />

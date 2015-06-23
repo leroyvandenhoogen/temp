@@ -34,7 +34,8 @@
 
 						<td>${organisatie.opmerking}</td>
 						<td><a
-							href="<c:url value='/organisaties/toon-${organisatie.id}-organisatie' />">Details</a></td>
+							href="<c:url value='/relatiebeheer/organisaties/toon-${organisatie.id}-organisatie' />">Details</a></td>
+							
 					</tr>
 				</c:forEach>
 

@@ -120,6 +120,14 @@ public class OrganisatieslijstController {
 		model.addAttribute("succes", bedrijfDTO.getPersoon().getVolledigeNaam() + " is toegevoegd");
 		return "relatiebeheer/organisaties/bevestig";
 	}
+	
+	@RequestMapping(value={"/toon-{id}-organisatie"}, method=RequestMethod.GET)
+	public String organisatieDetails(@ModelAttribute("id") int id, BindingResult result, ModelMap model) {
+		Bedrijf organisatie = bedrijfService.get(id);
+		System.out.println("////////" + organisatie.getPersoonsrollen().size());
+		model.addAttribute("organisatie", organisatie);
+		return "relatiebeheer/organisaties/details";
+	}
 
 //	@RequestMapping(value = { "", "lijst" }, method = RequestMethod.GET)
 //	public String showOrganisatiesLijst(ModelMap model) {
