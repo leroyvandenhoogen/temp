@@ -5,6 +5,7 @@ import java.util.List;
 
 import nl.rsvier.icaras.core.relatiebeheer.Adres;
 import nl.rsvier.icaras.core.relatiebeheer.Bedrijf;
+import nl.rsvier.icaras.core.relatiebeheer.BedrijfDTO;
 import nl.rsvier.icaras.core.relatiebeheer.Zoekinput;
 import nl.rsvier.icaras.service.relatiebeheer.AdresService;
 import nl.rsvier.icaras.service.relatiebeheer.BedrijfService;
@@ -52,27 +53,52 @@ public class OrganisatieslijstController {
 	}
 	@RequestMapping(value= {"/nieuw"}, method= RequestMethod.GET)
 	public String organisatieToevoegen(ModelMap model) {
-		Bedrijf bedrijf = new Bedrijf();
-		List adresTypes = adresService.getAllTypes();
-		List adressen = new ArrayList();
-		model.addAttribute("adressen", adressen);
-		model.addAttribute("adrestypes", adresTypes);
-		model.addAttribute("bedrijf", bedrijf);
+		BedrijfDTO bedrijfDTO = new BedrijfDTO();
+		bedrijfDTO.setAdresTypes(adresService.getAllTypes());
+		model.addAttribute("bedrijfDTO", bedrijfDTO);
 		return "relatiebeheer/organisaties/nieuw";
 	}
 	
 	@RequestMapping(value= {"/nieuw"}, method= RequestMethod.POST)
-	public String saveOrganisatie(@ModelAttribute("bedrijf") Bedrijf bedrijf, BindingResult result, ModelMap model) {
-		bedrijfService.save(bedrijf);
-		int id = bedrijf.getId();
-		return "relatiebeheer/organisaties/nieuwAdres-{id}";
+	public String saveOrganisatie(@ModelAttribute("bedrijfDTO") BedrijfDTO bedrijfDTO, BindingResult result, ModelMap model) {
+		Bedrijf bedrijf = bedrijfDTO.getBedrijf();
+		Adres adres = bedrijfDTO.getAdres();
+		bedrijf.addAdres(adres);
+		bedrijfService.save(bedrijfDTO.getBedrijf());
+		adresService.save(bedrijfDTO.getAdres());
+		model.addAttribute("bedrijfDTO", bedrijfDTO);
+		model.addAttribute("succes", bedrijfDTO.getBedrijf().getNaam() + " in " + bedrijfDTO.getAdres().getPlaats() + " is toegevoegd");
+		return "relatiebeheer/organisaties/bevestig";
 	}
 	
 	@RequestMapping(value={"/nieuwAdres-{id}"}, method=RequestMethod.GET)
 	public String adresToevoegen(@ModelAttribute("id") int id, BindingResult result, ModelMap model) {
-		Adres adres = new Adres();
-		model.addAttribute("adres", adres);
+		BedrijfDTO bedrijfDTO = new BedrijfDTO();
+		bedrijfDTO.setBedrijf(bedrijfService.get(id));
+		bedrijfDTO.setAdresTypes(adresService.getAllTypes());
+		model.addAttribute("bedrijfDTO", bedrijfDTO);
 		return "relatiebeheer/organisaties/nieuwAdres";
+	}
+	
+	@RequestMapping(value={"/nieuwAdres-{id}"}, method=RequestMethod.POST)
+	public String adresToevoegen(@ModelAttribute("id") int id, BindingResult result, @ModelAttribute("bedrijfDTO") BedrijfDTO bedrijfDTO, BindingResult result2, ModelMap  model) {
+		Bedrijf bedrijf = bedrijfService.get(bedrijfDTO.getBedrijf().getId());
+		bedrijf.addAdres(bedrijfDTO.getAdres());
+		adresService.save(bedrijfDTO.getAdres());
+		bedrijfService.update(bedrijf);
+		model.addAttribute("bedrijfDTO", bedrijfDTO);
+		model.addAttribute("succes", "Nieuw adres voor " + bedrijf.getNaam() + " toegevoegd!");
+		return "relatiebeheer/organisaties/bevestig";
+		
+	}
+	
+	@RequestMapping(value={"/nieuwContactpersoon-{id}"}, method=RequestMethod.GET)
+	public String contactpersoonToevoegen(@ModelAttribute("id") int id, BindingResult result, ModelMap model) {
+		BedrijfDTO bedrijfDTO = new BedrijfDTO();
+		bedrijfDTO.setDigitaalAdresTypes(digitaalAdresService.getAllTypes());
+		bedrijfDTO.setBedrijf(bedrijfService.get(id));
+		model.addAttribute("bedrijfDTO", bedrijfDTO);
+		return "relatiebeheer/organisaties/nieuwContactpersoon";
 	}
 
 //	@RequestMapping(value = { "", "lijst" }, method = RequestMethod.GET)

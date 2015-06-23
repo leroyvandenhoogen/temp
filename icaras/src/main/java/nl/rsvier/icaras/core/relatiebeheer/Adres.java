@@ -162,7 +162,7 @@ public class Adres implements java.io.Serializable {
 
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(iso = ISO.DATE, pattern="yyyy-MM-dd")
-	@Column(name = "begindatum", nullable = false, length = 10)
+	@Column(name = "begindatum", length = 10)
 	public Date getBegindatum() {
 		return this.begindatum;
 	}
