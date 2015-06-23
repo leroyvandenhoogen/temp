@@ -7,6 +7,7 @@ import java.util.List;
 import nl.rsvier.icaras.core.relatiebeheer.Adres;
 import nl.rsvier.icaras.core.relatiebeheer.Bedrijf;
 import nl.rsvier.icaras.core.relatiebeheer.BedrijfDTO;
+import nl.rsvier.icaras.core.relatiebeheer.DigitaalAdres;
 import nl.rsvier.icaras.core.relatiebeheer.Persoonsrol;
 import nl.rsvier.icaras.core.relatiebeheer.Zoekinput;
 import nl.rsvier.icaras.service.relatiebeheer.AdresService;
@@ -116,6 +117,12 @@ public class OrganisatieslijstController {
 		persoonsrolService.save(persoonsrol);
 		bedrijf.addPersoonsrol(persoonsrol);
 		bedrijfService.update(bedrijf);
+		DigitaalAdres dAdres1 = bedrijfDTO.getdAdres1();
+		DigitaalAdres dAdres2 = bedrijfDTO.getdAdres2();
+		dAdres1.setPersoon(bedrijfDTO.getPersoon());
+		dAdres2.setPersoon(bedrijfDTO.getPersoon());
+		digitaalAdresService.save(dAdres1);
+		digitaalAdresService.save(dAdres2);
 		model.addAttribute("bedrijfDTO", bedrijfDTO);
 		model.addAttribute("succes", bedrijfDTO.getPersoon().getVolledigeNaam() + " is toegevoegd");
 		return "relatiebeheer/organisaties/bevestig";
@@ -124,9 +131,23 @@ public class OrganisatieslijstController {
 	@RequestMapping(value={"/toon-{id}-organisatie"}, method=RequestMethod.GET)
 	public String organisatieDetails(@ModelAttribute("id") int id, BindingResult result, ModelMap model) {
 		Bedrijf organisatie = bedrijfService.get(id);
-		System.out.println("////////" + organisatie.getPersoonsrollen().size());
 		model.addAttribute("organisatie", organisatie);
 		return "relatiebeheer/organisaties/details";
+	}
+	
+	@RequestMapping(value={"/verwijder-{id}"}, method=RequestMethod.GET)
+	public String verwijderOrganisatie(@ModelAttribute("id") int id, BindingResult result, ModelMap model) {
+		Bedrijf organisatie = bedrijfService.get(id);
+		String naam = organisatie.getNaam();
+		for (Persoonsrol persoonsrol : organisatie.getPersoonsrollen()) { 
+			persoonsrol.removeBedrijf();
+			persoonsrolService.delete(persoonsrol);
+		} 
+		bedrijfService.delete(organisatie);
+		
+		model.addAttribute("succes", naam + " is verwijderd");
+		return "relatiebeheer/organisaties/bevestigdelete";		
+		
 	}
 
 //	@RequestMapping(value = { "", "lijst" }, method = RequestMethod.GET)

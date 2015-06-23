@@ -10,18 +10,15 @@
 			<th>Organisatiegegevens</th>
 			<tr>
 				<td><label for="naam">Naam: </label></td>
-				<td><form:input path="naam" id="naam" /></td>
+				<td><form:input path="naam" /></td>
 				<td><form:errors path="naam" cssClass="error" /></td>
 			</tr>
-
 			<tr>
-				<td><form:input type="hidden" path="kvkNummer" id="kvkNummer" /></td>
+				<td><form:input type="hidden" path="kvkNummer"/></td>
 			</tr>
-
 			<tr>
 				<td><label for="opmerking">Opmerking: </label></td>
-				<td><form:textarea rows="5" cols="20" path="opmerking"
-						id="opmerking" /></td>
+				<td><form:textarea rows="5" cols="20" path="opmerking"/></td>
 				<td><form:errors path="opmerking" cssClass="error" /></td>
 			</tr>
 
@@ -113,7 +110,7 @@
 			<c:forEach items="${organisatie.adressen}" var="adres"
 				varStatus="loop">
 				<tr>
-					<td><form:input path="adressen[${loop.index}].id"
+					<td><form:input type="hidden" path="adressen[${loop.index}].id"
 							value="${adres.id}" /></td>
 				<tr>
 					<td><label>Adres type: </label></td>
