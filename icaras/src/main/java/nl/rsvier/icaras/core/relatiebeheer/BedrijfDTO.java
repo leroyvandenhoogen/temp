@@ -11,6 +11,7 @@ public class BedrijfDTO {
 	private DigitaalAdres dAdres1;
 	private DigitaalAdres dAdres2;
 	private Persoon persoon;
+	private String input;
 	
 	public Bedrijf getBedrijf() {
 		return bedrijf;
@@ -59,6 +60,12 @@ public class BedrijfDTO {
 	}
 	public void setPersoon(Persoon persoon) {
 		this.persoon = persoon;
+	}
+	public String getInput() {
+		return input;
+	}
+	public void setInput(String input) {
+		this.input = input;
 	}
 	
 }

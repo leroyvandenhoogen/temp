@@ -4,6 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <body>
+<input type="button" value="Ga terug" onclick="history.back();" />
+<tr></tr>
 	<form:form method="POST" modelAttribute="bedrijfDTO">
 		<table class="details">
 			<th>Nieuwe organisatie</th>
@@ -12,22 +14,22 @@
 				<td><form:input path="bedrijf.naam" /></td>
 				<td><form:errors path="bedrijf.naam" cssClass="error" /></td>
 			</tr>
-<!-- 
+			<!-- 
 			<tr>
 				<td><label for="kvknummer">KvkNummer: </label></td>
 				<td><form:input path="bedrijf.kvkNummer" /></td>
 				<td><form:errors path="bedrijf.kvkNummer" cssClass="error" /></td>
 			</tr>
- -->			
+ -->
 			<tr>
 				<td><label for="opmerking">Opmerking: </label></td>
 				<td><form:textarea rows="5" cols="20" path="bedrijf.opmerking" /></td>
 				<td><form:errors path="bedrijf.opmerking" cssClass="error" /></td>
 			</tr>
 
-			
+
 			<th>Adres gegevens:</th>
-			
+
 			<tr>
 				<td><label>Adres type: </label></td>
 				<td><form:select path="adres.adresType.id">
@@ -64,4 +66,5 @@
 		</table>
 		<td colspan="3"><input type="submit" value="submit" /></td>
 	</form:form>
+
 </body>
