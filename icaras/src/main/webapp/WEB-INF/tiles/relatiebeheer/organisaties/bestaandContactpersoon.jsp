@@ -5,13 +5,14 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <body>
+	<input type="button" value="Ga terug" onclick="history.back();"/>
+	<tr></tr>
 	<h1>Zoek een persoon</h1>
 	<br>
-	<form:form method="POST" modelAttribute="zoekinput">
+	<form:form method="POST" modelAttribute="bedrijfDTO">
 		<form:input type="text" path="input" name="zoekinputarea" value="" />
 		<input type="submit" value="zoek" />
 	</form:form>
-	<h2>Zoekcriteria: ${zoekinput.input}</h2>
 
 	<c:choose>
 		<c:when test="${not empty personen}">
@@ -30,24 +31,21 @@
 					<td>Rollen</td>
 					<td></td>
 				</tr>
+				<c:forEach items="${personen}" var="persoon">
+					<tr class="element">
+						<td>${persoon.voornaam}</td>
+						<td>${persoon.achternaam}</td>
+						<td>${persoon.tussenvoegsel}</td>
+						<td>${persoon.persoonsrollen}</td>
+						<td><a
+							href="<c:url value='/relatiebeheer/organisaties/koppel-${bedrijfDTO.bedrijf.id}-${persoon.id}' />">Voeg toe</a></td>
+					</tr>
+				</c:forEach>
 			</table>
-			<div class="personenlijst">
-				<table>
-					<c:forEach items="${personen}" var="persoon">
-						<tr class="element">
-							<td>${persoon.voornaam}</td>
-							<td>${persoon.achternaam}</td>
-							<td>${persoon.tussenvoegsel}</td>
-							<td>${persoon.persoonsrollen}</td>
-							<td><a
-								href="<c:url value='/relatiebeheer/personen/zoekresultaat-${persoon.id}' />">Details</a></td>
-						</tr>
-					</c:forEach>
-				</table>
-			</div>
 		</c:when>
 		<c:otherwise>
 			<h2>Er zijn geen resultaten gevonden</h2>
 		</c:otherwise>
 	</c:choose>
+
 </body>
