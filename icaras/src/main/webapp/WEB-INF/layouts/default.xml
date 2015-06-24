@@ -55,6 +55,13 @@
 			value="/WEB-INF/tiles/relatiebeheer/organisaties/bevestig.jsp" />
 	</definition>
 
+	<definition name="relatiebeheer/organisaties/bevestigdelete"
+		extends="relatiebeheer">
+		<put-attribute name="title" value="RSVIER Organisatie toegevoegd" />
+		<put-attribute name="content"
+			value="/WEB-INF/tiles/relatiebeheer/organisaties/bevestigdelete.jsp" />
+	</definition>
+
 	<!-- persoon pagina's -->
 
 	<definition name="relatiebeheer/personen/zoeken" extends="relatiebeheer">
