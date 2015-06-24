@@ -194,10 +194,10 @@ public class PersoonDaoImpl extends GenericDaoImpl<Persoon> implements
 					.setParameter("tussenvoegsel", parts[0].trim() + "%")
 					.setParameter("achternaam", parts[1].trim() + "%");
 			Query query4 = getSessionFactory().getCurrentSession()
-					.createQuery(sql)
+					.createQuery(sql4)
 					.setParameter("voornaam", parts[0].trim().concat(" ").concat(parts[1].trim()) + "%");
 			Query query5 = getSessionFactory().getCurrentSession()
-					.createQuery(sql2)
+					.createQuery(sql5)
 					.setParameter("achternaam", parts[0].trim().concat(" ").concat(parts[1].trim()) + "%");
 			
 			if(!(query.list().isEmpty() && query2.list().isEmpty())) {
