@@ -38,16 +38,16 @@
 				<td><form:input path="geslacht" id="geslacht" /></td>
 				<td><form:errors path="geslacht" cssClass="error" /></td>
 			</tr>
-			
-			<c:forEach items="${persoon.digitaleAdressen}" var="digitaleadres"
-				varStatus="current">
-				<c:if
-					test="${digitaleadres.digitaalAdresType.type == 'email' || digitaleadres.digitaalAdresType.type == 'telefoonnummer' }">
-					<tr class="element">
+
+			<tr class="element">
+				<td><label>Telefoonnummer: </label></td>
+				<c:forEach items="${persoon.digitaleAdressen}" var="digitaleadres"
+					varStatus="current">
+					<c:if
+						test="${digitaleadres.digitaalAdresType.type == 'telefoonnummer'}">
 						<form:input type="hidden"
 							path="digitaleAdressen[${current.index}].id"
 							value="${digitaleadres.id}" />
-						<td><label>${digitaleadres.digitaalAdresType.type} </label></td>
 						<td><form:input
 								path="digitaleAdressen[${current.index}].omschrijving"
 								id="omschrijving" value="${digitaleadres.omschrijving}"
@@ -55,9 +55,31 @@
 						<form:input type="hidden"
 							path="digitaleAdressen[${current.index}].digitaalAdresType.id"
 							value="${digitaleadres.digitaalAdresType.id}" />
-					</tr>
-				</c:if>
-			</c:forEach>
+
+					</c:if>
+				</c:forEach>
+			</tr>
+
+			<tr class="element">
+				<td><label>Email: </label></td>
+				<c:forEach items="${persoon.digitaleAdressen}" var="digitaleadres"
+					varStatus="current">
+					<c:if test="${digitaleadres.digitaalAdresType.type == 'email'}">
+
+						<form:input type="hidden"
+							path="digitaleAdressen[${current.index}].id"
+							value="${digitaleadres.id}" />
+
+						<td><form:input
+								path="digitaleAdressen[${current.index}].omschrijving"
+								id="omschrijving" value="${digitaleadres.omschrijving}"
+								size="30" /></td>
+						<form:input type="hidden"
+							path="digitaleAdressen[${current.index}].digitaalAdresType.id"
+							value="${digitaleadres.digitaalAdresType.id}" />
+					</c:if>
+				</c:forEach>
+			</tr>
 
 			<tr>
 				<td><label for="opmerking">Bijzonderheden: </label></td>
@@ -73,6 +95,7 @@
 			<th>Adresgegevens</th>
 			<c:forEach items="${persoon.adressen}" var="adres"
 				varStatus="current" begin="0">
+
 				<tr>
 					<td><form:input type="hidden"
 							path="adressen[${current.index}].id" value="${adres.id}"></form:input>
