@@ -154,13 +154,11 @@
 							value="${adres.land}" /></td>
 				</tr>
 				<tr>
-					<td><label for="begindatum">Begin datum: </label></td>
-					<td><form:input path="adressen[${loop.index}].begindatum"
+					<td><form:input type="hidden" path="adressen[${loop.index}].begindatum"
 							value="${adres.begindatum}" /></td>
 				</tr>
 				<tr>
-					<td><label for="einddatum">Eind datum: </label></td>
-					<td><form:input path="adressen[${loop.index}].einddatum"
+					<td><form:input type="hidden" path="adressen[${loop.index}].einddatum"
 							value="${adres.einddatum}" /></td>
 				</tr>
 				<tr></tr>
