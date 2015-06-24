@@ -33,23 +33,29 @@
 		<put-attribute name="content"
 			value="/WEB-INF/tiles/relatiebeheer/organisaties/nieuworganisatie.jsp" />
 	</definition>
-	
-		<definition name="relatiebeheer/organisaties/nieuwAdres" extends="relatiebeheer">
+
+	<definition name="relatiebeheer/organisaties/nieuwAdres"
+		extends="relatiebeheer">
 		<put-attribute name="title" value="RSVIER Nieuw adres toevoegen" />
 		<put-attribute name="content"
 			value="/WEB-INF/tiles/relatiebeheer/organisaties/nieuwAdres.jsp" />
 	</definition>
-	
-			<definition name="relatiebeheer/organisaties/nieuwContactpersoon" extends="relatiebeheer">
-		<put-attribute name="title" value="RSVIER Nieuw contactpersoon toevoegen" />
+
+	<definition name="relatiebeheer/organisaties/nieuwContactpersoon"
+		extends="relatiebeheer">
+		<put-attribute name="title"
+			value="RSVIER Nieuw contactpersoon toevoegen" />
 		<put-attribute name="content"
 			value="/WEB-INF/tiles/relatiebeheer/organisaties/nieuwContactpersoon.jsp" />
 	</definition>
-		<definition name="relatiebeheer/organisaties/bevestig" extends="relatiebeheer">
+	<definition name="relatiebeheer/organisaties/bevestig"
+		extends="relatiebeheer">
 		<put-attribute name="title" value="RSVIER Organisatie toegevoegd" />
 		<put-attribute name="content"
 			value="/WEB-INF/tiles/relatiebeheer/organisaties/bevestig.jsp" />
 	</definition>
+
+	<!-- persoon pagina's -->
 
 	<definition name="relatiebeheer/personen/zoeken" extends="relatiebeheer">
 		<put-attribute name="title" value="RSVIER Personen zoeken" />
@@ -70,6 +76,25 @@
 			value="/WEB-INF/tiles/relatiebeheer/personen/nieuwpersoon.jsp" />
 	</definition>
 
+	<definition name="relatiebeheer/personen/nieuwadres"
+		extends="relatiebeheer">
+		<put-attribute name="title" value="RSVIER Nieuw adres toevoegen" />
+		<put-attribute name="content"
+			value="/WEB-INF/tiles/relatiebeheer/personen/nieuwadres.jsp" />
+	</definition>
+
+	<definition name="relatiebeheer/personen/nieuwpersoonsrol"
+		extends="relatiebeheer">
+		<put-attribute name="title" value="RSVIER Nieuw persoonsrol toevoegen" />
+		<put-attribute name="content"
+			value="/WEB-INF/tiles/relatiebeheer/personen/nieuwpersoonsrol.jsp" />
+
+	</definition>
+	<definition name="relatiebeheer/personen/bevestig" extends="relatiebeheer">
+		<put-attribute name="title" value="RSVIER Persoon toegevoegd" />
+		<put-attribute name="content"
+			value="/WEB-INF/tiles/relatiebeheer/personen/bevestig.jsp" />
+	</definition>
 
 
 	<!-- <definition name="personen" extends="home.base"> <put-attribute name="title" 

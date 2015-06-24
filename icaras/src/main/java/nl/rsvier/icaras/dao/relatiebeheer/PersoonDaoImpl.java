@@ -178,6 +178,8 @@ public class PersoonDaoImpl extends GenericDaoImpl<Persoon> implements
 			String sql = "SELECT p FROM Persoon p WHERE p.voornaam like :voornaam AND p.achternaam like :achternaam";
 			String sql2 = "SELECT p FROM Persoon p WHERE p.voornaam like :voornaam AND p.achternaam like :achternaam";
 			String sql3 = "SELECT p FROM Persoon p WHERE p.tussenvoegsel like :tussenvoegsel AND p.achternaam like :achternaam";
+			String sql4 = "SELECT p FROM Persoon p WHERE p.voornaam like :voornaam";
+			String sql5 = "SELECT p FROM Persoon p WHERE p.achternaam like :achternaam";
 			
 			Query query = getSessionFactory().getCurrentSession()
 					.createQuery(sql)
@@ -191,6 +193,12 @@ public class PersoonDaoImpl extends GenericDaoImpl<Persoon> implements
 					.createQuery(sql3)
 					.setParameter("tussenvoegsel", parts[0].trim() + "%")
 					.setParameter("achternaam", parts[1].trim() + "%");
+			Query query4 = getSessionFactory().getCurrentSession()
+					.createQuery(sql)
+					.setParameter("voornaam", parts[0].trim().concat(" ").concat(parts[1].trim()) + "%");
+			Query query5 = getSessionFactory().getCurrentSession()
+					.createQuery(sql2)
+					.setParameter("achternaam", parts[0].trim().concat(" ").concat(parts[1].trim()) + "%");
 			
 			if(!(query.list().isEmpty() && query2.list().isEmpty())) {
 				
@@ -215,6 +223,14 @@ public class PersoonDaoImpl extends GenericDaoImpl<Persoon> implements
 			
 			if (!(query3.list().isEmpty())){
 				return query3.list();
+			}
+			
+			if (!(query4.list().isEmpty())){
+				return query4.list();
+			}
+			
+			if (!(query5.list().isEmpty())){
+				return query5.list();
 			}
 			
 			if (query.list().isEmpty() && query2.list().isEmpty() && query3.list().isEmpty()) {
