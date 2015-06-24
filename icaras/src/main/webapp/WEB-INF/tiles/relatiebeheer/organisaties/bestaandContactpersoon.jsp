@@ -7,12 +7,11 @@
 <body>
 	<h1>Zoek een persoon</h1>
 	<br>
-	<form:form method="POST" modelAttribute="zoekinput">
+	<form:form method="POST" modelAttribute="bedrijfDTO">
 		<form:input type="text" path="input" name="zoekinputarea" value="" />
 		<input type="submit" value="zoek" />
 	</form:form>
-	<h2>Zoekcriteria: ${zoekinput.input}</h2>
-	
+
 	<c:choose>
 		<c:when test="${not empty personen}">
 			<c:if test="${fn:length(personen) > 1}">
@@ -37,7 +36,7 @@
 						<td>${persoon.tussenvoegsel}</td>
 						<td>${persoon.persoonsrollen}</td>
 						<td><a
-							href="<c:url value='/relatiebeheer/personen/zoekresultaat-${persoon.id}' />">Details</a></td>
+							href="<c:url value='/relatiebeheer/organisaties/koppel-${bedrijfDTO.bedrijf.id}-${persoon.id}' />">Voeg toe</a></td>
 					</tr>
 				</c:forEach>
 			</table>
