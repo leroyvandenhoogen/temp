@@ -4,8 +4,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<script>
+$(document).ready(function() {
+
+    $('#lijst tr').click(function() {
+        var href = $(this).find("a").attr("href");
+        if(href) {
+            window.location = href;
+        }
+    });
+
+});
+</script>
 <body>
-	<input type="button" value="Ga terug" onclick="history.back();"/>
+	<input type="button" value="Ga terug" onclick="history.back();" />
 	<tr></tr>
 	<form:form method="POST" modelAttribute="zoekinput">
 		Zoek een organisatie:<br>
@@ -17,7 +29,7 @@
 		<c:when test="${fn:length(organisaties) > 0}">
 			<h2>Zoekcriteria: ${zoekinput.input}</h2>
 			<h2>Resultatenlijst</h2>
-			<table class="list">
+			<table id="lijst" class="list">
 				<tr class="tabelheader">
 					<td>Naam</td>
 					<td>Plaats</td>
@@ -25,7 +37,7 @@
 					<td></td>
 				</tr>
 				<c:forEach items="${organisaties}" var="organisatie">
-					<tr class="element">
+					<tr>
 						<td>${organisatie.naam}</td>
 
 						<c:forEach items="${organisatie.adressen}" var="adres">
@@ -36,7 +48,7 @@
 
 						<td>${organisatie.opmerking}</td>
 						<td><a
-							href="<c:url value='/relatiebeheer/organisaties/toon-${organisatie.id}-organisatie' />">Details</a></td>
+							href="<c:url value='/relatiebeheer/organisaties/toon-${organisatie.id}-organisatie' />"></a></td>
 						<td><a
 							href="<c:url value='/relatiebeheer/organisaties/verwijder-${organisatie.id}'/>">Verwijder</a></td>
 					</tr>
