@@ -5,6 +5,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <body>
+	<input type="button" value="Ga terug" onclick="history.back();"/>
+	<tr></tr>
 	<form:form method="POST" modelAttribute="zoekinput">
 		Zoek een organisatie:<br>
 		<form:input type="text" path="input" name="zoekinputarea" value="" />
@@ -46,4 +48,6 @@
 			<h2>Er zijn geen resultaten gevonden</h2>
 		</c:otherwise>
 	</c:choose>
+
+
 </body>

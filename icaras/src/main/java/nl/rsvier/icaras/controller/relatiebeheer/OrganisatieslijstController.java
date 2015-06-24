@@ -1,8 +1,11 @@
 package nl.rsvier.icaras.controller.relatiebeheer;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
+import javax.validation.Valid;
 
 import nl.rsvier.icaras.core.relatiebeheer.Adres;
 import nl.rsvier.icaras.core.relatiebeheer.Bedrijf;
@@ -22,6 +25,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -156,6 +160,35 @@ public class OrganisatieslijstController {
 		return "relatiebeheer/organisaties/details";
 	}
 
+	@RequestMapping(value = { "/toon-{id}-organisatie" }, method = RequestMethod.POST)
+	public String updateOrganisatie(@PathVariable int id,
+			@Valid @ModelAttribute("organisatie") Bedrijf organisatie,
+			BindingResult result, ModelMap model) {
+		for (Adres adres : organisatie.getAdressen()) {
+			adres.setBedrijf(organisatie);
+			adresService.update(adres);
+		}
+		for (Persoonsrol pRol : organisatie.getPersoonsrollen()) {
+
+			pRol.setBedrijf(organisatie);
+			for (DigitaalAdres dAdres : pRol.getPersoon().getDigitaleAdressen()) {
+				dAdres.setPersoon(pRol.getPersoon());
+				digitaalAdresService.update(dAdres);
+			}
+			persoonService.update(pRol.getPersoon());
+			persoonsrolService.update(pRol);
+		}
+		bedrijfService.update(organisatie);
+
+		BedrijfDTO bedrijfDTO = new BedrijfDTO();
+		bedrijfDTO.setBedrijf(organisatie);
+		model.addAttribute("bedrijfDTO", bedrijfDTO);
+		model.addAttribute("succes", organisatie.getNaam() + " is aangepast");
+
+		return "relatiebeheer/organisaties/bevestig";
+
+	}
+
 	@RequestMapping(value = { "/verwijder-{id}" }, method = RequestMethod.GET)
 	public String verwijderOrganisatie(@ModelAttribute("id") int id,
 			BindingResult result, ModelMap model) {
@@ -199,7 +232,8 @@ public class OrganisatieslijstController {
 	@RequestMapping(value = { "/koppel-{bedrijfid}-{persoonid}" }, method = RequestMethod.GET)
 	public String koppelPeroonBedrijf(
 			@ModelAttribute("bedrijfid") int bedrijfid, BindingResult result,
-			@ModelAttribute("persoonid") int persoonid, BindingResult result2, ModelMap model) {
+			@ModelAttribute("persoonid") int persoonid, BindingResult result2,
+			ModelMap model) {
 		Bedrijf organisatie = bedrijfService.get(bedrijfid);
 		Persoon persoon = persoonService.get(persoonid);
 		Persoonsrol persoonsrol = new Persoonsrol();
