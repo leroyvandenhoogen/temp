@@ -12,7 +12,7 @@
 		<input type="submit" value="zoek" />
 	</form:form>
 	<h2>Zoekcriteria: ${zoekinput.input}</h2>
-	
+
 	<c:choose>
 		<c:when test="${not empty personen}">
 			<c:if test="${fn:length(personen) > 1}">
@@ -32,17 +32,21 @@
 					<td>Rollen</td>
 					<td></td>
 				</tr>
-				<c:forEach items="${personen}" var="persoon">
-					<tr class="element">
-						<td>${persoon.voornaam}</td>
-						<td>${persoon.achternaam}</td>
-						<td>${persoon.tussenvoegsel}</td>
-						<td>${persoon.persoonsrollen}</td>
-						<td><a
-							href="<c:url value='/relatiebeheer/personen/zoekresultaat-${persoon.id}' />">Details</a></td>
-					</tr>
-				</c:forEach>
 			</table>
+			<div class="personenlijst">
+				<table>
+					<c:forEach items="${personen}" var="persoon">
+						<tr class="element">
+							<td>${persoon.voornaam}</td>
+							<td>${persoon.achternaam}</td>
+							<td>${persoon.tussenvoegsel}</td>
+							<td>${persoon.persoonsrollen}</td>
+							<td><a
+								href="<c:url value='/relatiebeheer/personen/zoekresultaat-${persoon.id}' />">Details</a></td>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
 		</c:when>
 		<c:otherwise>
 			<h2>Er zijn geen resultaten gevonden</h2>

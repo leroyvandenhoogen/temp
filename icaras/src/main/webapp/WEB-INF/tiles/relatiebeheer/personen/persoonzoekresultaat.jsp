@@ -5,10 +5,13 @@
 
 <body>
 	<h1 style="color: red">${gewijzigd}</h1>
-	<a href="<c:url value='/relatiebeheer/personen/zoeken' />">Ga terug
-		naar zoekpagina</a>
+	<p>
+		<input type="submit"
+			onclick="location.href='${pageContext.request.contextPath}/relatiebeheer/personen/zoeken'"
+			value="Ga terug naar zoekpagina" />
+	</p>
 	<form:form method="POST" modelAttribute="persoon">
-		<table class="details">
+		<table class="gegevens-table">
 			<th>Persoonsgegevens</th>
 			<tr>
 				<td><label for="voornaam">Voornaam: </label></td>
@@ -35,8 +38,9 @@
 
 			<tr>
 				<td><label for="geslacht">Geslacht: </label></td>
-				<td><form:input path="geslacht" id="geslacht" /></td>
-				<td><form:errors path="geslacht" cssClass="error" /></td>
+				<td><form:radiobutton path="geslacht" value="M"
+						checked="checked" />Man <form:radiobutton path="geslacht"
+						value="F" />Vrouw</td>
 			</tr>
 
 			<tr class="element">
@@ -90,97 +94,98 @@
 			<tr></tr>
 		</table>
 
-
-		<table class="details">
-			<th>Adresgegevens</th>
-			<c:forEach items="${persoon.adressen}" var="adres"
-				varStatus="current" begin="0">
-
-				<tr>
-					<td><form:input type="hidden"
-							path="adressen[${current.index}].id" value="${adres.id}"></form:input>
-				</tr>
-				<c:if test="${current.index > 0}">
+		<c:if test="${not empty persoon.adressen}">
+			<table class="gegevens-table">
+				<th>Adresgegevens</th>
+				<c:forEach items="${persoon.adressen}" var="adres"
+					varStatus="current" begin="0">
 					<tr>
-						<td><label><strong>Adres ${current.index+1}</strong></label>
+						<td><form:input type="hidden"
+								path="adressen[${current.index}].id" value="${adres.id}"></form:input>
 					</tr>
-				</c:if>
-				<tr>
-					<td><label></label>
-				</tr>
-				<tr>
-					<td><label>Straat: </label></td>
-					<td><form:input path="adressen[${current.index}].straat"
-							value="${straat}" /></td>
-				</tr>
-				<tr>
-					<td><label>Nummer: </label></td>
-					<td><form:input path="adressen[${current.index}].nummer"
-							value="${nummer}" /></td>
-				</tr>
-				<tr>
-					<td><label>Toevoegsel: </label></td>
-					<td><form:input path="adressen[${current.index}].toevoegsel"
-							value="${toevoegsel}" /></td>
-				</tr>
-				<tr>
-					<td><label>Postcode: </label></td>
-					<td><form:input path="adressen[${current.index}].postcode"
-							value="${postcode}" /></td>
-				</tr>
-				<tr>
-					<td><label>Plaats: </label></td>
-					<td><form:input path="adressen[${current.index}].plaats"
-							value="${plaats}" /></td>
-				</tr>
-				<tr>
-					<td><label>Land: </label></td>
-					<td><form:input path="adressen[${current.index}].land"
-							value="${land}" /></td>
-				</tr>
+					<c:if test="${current.index > 0}">
+						<tr>
+							<td><label><strong>Adres ${current.index+1}</strong></label>
+						</tr>
+					</c:if>
+					<tr>
+						<td><label></label>
+					</tr>
+					<tr>
+						<td><label>Straat: </label></td>
+						<td><form:input path="adressen[${current.index}].straat"
+								value="${straat}" /></td>
+					</tr>
+					<tr>
+						<td><label>Nummer: </label></td>
+						<td><form:input path="adressen[${current.index}].nummer"
+								value="${nummer}" /></td>
+					</tr>
+					<tr>
+						<td><label>Toevoegsel: </label></td>
+						<td><form:input path="adressen[${current.index}].toevoegsel"
+								value="${toevoegsel}" /></td>
+					</tr>
+					<tr>
+						<td><label>Postcode: </label></td>
+						<td><form:input path="adressen[${current.index}].postcode"
+								value="${postcode}" /></td>
+					</tr>
+					<tr>
+						<td><label>Plaats: </label></td>
+						<td><form:input path="adressen[${current.index}].plaats"
+								value="${plaats}" /></td>
+					</tr>
+					<tr>
+						<td><label>Land: </label></td>
+						<td><form:input path="adressen[${current.index}].land"
+								value="${land}" /></td>
+					</tr>
 
-				<td><label>Adres type: </label></td>
-				<td><form:select path="adressen[${current.index}].adresType.id">
-						<option value="${adres.adresType.id}" selected>${adres.adresType.type}
-							(huidig)</option>
-						<c:forEach items="${adresTypes}" var="lookupType"
-							varStatus="current" begin="0">
-							<option value="${lookupType.id}">${lookupType.type}</option>
-						</c:forEach>
-					</form:select></td>
-				<tr></tr>
+					<td><label>Adres type: </label></td>
+					<td><form:select
+							path="adressen[${current.index}].adresType.id">
+							<option value="${adres.adresType.id}" selected>${adres.adresType.type}
+								(huidig)</option>
+							<c:forEach items="${adresTypes}" var="lookupType"
+								varStatus="current" begin="0">
+								<option value="${lookupType.id}">${lookupType.type}</option>
+							</c:forEach>
+						</form:select></td>
+					<tr></tr>
 
-				<tr>
-			</c:forEach>
-		</table>
+					<tr>
+				</c:forEach>
+			</table>
+		</c:if>
 
-
-		<table class="details">
-			<th>Persoonsrollen</th>
-			<c:forEach items="${persoon.persoonsrollen}" var="persoonsrol"
-				varStatus="current">
-				<tr class="element">
-					<form:input type="hidden"
-						path="persoonsrollen[${current.index}].id"
-						value="${persoonsrol.id}" />
-					<form:input type="hidden"
-						path="persoonsrollen[${current.index}].rol.id"
-						value="${persoonsrol.rol.id}" />
-					<form:input type="hidden"
-						path="persoonsrollen[${current.index}].rol.type" id="type"
-						value="${persoonsrol.rol.type}" />
-					<td><label>${persoonsrol.rol.type}</label>
-					<td><label>begindatum</label></td>
-					<td><form:input type="date"
-							path="persoonsrollen[${current.index}].begindatum"
-							id="begindatum" value="${persoonsrol.begindatum}" size="10" /></td>
-					<td><label>einddatum </label></td>
-					<td><form:input type="date"
-							path="persoonsrollen[${current.index}].einddatum" id="einddatum"
-							value="${persoonsrol.einddatum}" size="10" /></td>
-				</tr>
-			</c:forEach>
-		</table>
-
+		<c:if test="${not empty persoon.persoonsrollen}">
+			<table class="gegevens-table">
+				<th>Persoonsrollen</th>
+				<c:forEach items="${persoon.persoonsrollen}" var="persoonsrol"
+					varStatus="current">
+					<tr class="element">
+						<form:input type="hidden"
+							path="persoonsrollen[${current.index}].id"
+							value="${persoonsrol.id}" />
+						<form:input type="hidden"
+							path="persoonsrollen[${current.index}].rol.id"
+							value="${persoonsrol.rol.id}" />
+						<form:input type="hidden"
+							path="persoonsrollen[${current.index}].rol.type" id="type"
+							value="${persoonsrol.rol.type}" />
+						<td><label>${persoonsrol.rol.type}</label>
+						<td><label>begindatum</label></td>
+						<td><form:input type="date"
+								path="persoonsrollen[${current.index}].begindatum"
+								id="begindatum" value="${persoonsrol.begindatum}" size="10" /></td>
+						<td><label>einddatum </label></td>
+						<td><form:input type="date"
+								path="persoonsrollen[${current.index}].einddatum" id="einddatum"
+								value="${persoonsrol.einddatum}" size="10" /></td>
+					</tr>
+				</c:forEach>
+			</table>
+		</c:if>
 	</form:form>
 </body>

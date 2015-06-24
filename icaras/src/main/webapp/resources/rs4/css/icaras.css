@@ -77,21 +77,27 @@ div.menu {
 
 div.content {
 	background-color: #e0e0e0;
-	float: left;
-	padding: 20px;
-	height: 750px;
+	margin: 20px;
+	margin-bottom: 0px;
+	height: 100%;
+}
+
+div.personenlijst {
+	width: 470px;
+	height: 465px;
 	overflow-y: auto;
-	width: 100%;
 }
 
 div.details {
 	background-color: #e0e0e0;
 	float: left;
-	padding: 20px;
 }
 
-table.details {
-	
+.gegevens-table{
+	outline: 2px solid black;
+	display: inline-block;
+	vertical-align: top;
+	margin: 5px;
 }
 
 table.details label {
