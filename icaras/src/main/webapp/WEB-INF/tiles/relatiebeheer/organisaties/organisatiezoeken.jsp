@@ -5,20 +5,23 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <script>
-$(document).ready(function() {
+	$(document).ready(function() {
 
-    $('#lijst tr').click(function() {
-        var href = $(this).find("a").attr("href");
-        if(href) {
-            window.location = href;
-        }
-    });
-
-});
+		$('#lijst tr').click(function(e) {
+			if (e.target.type == "checkbox") {
+				e.stopPropagation();
+			} else {
+				var href = $(this).find("a").attr("href");
+				if (href) {
+					window.location = href;
+				}
+			}
+		});
+	});
 </script>
 <body>
 	<input type="button" value="Ga terug" onclick="history.back();" />
-	<tr></tr>
+	</br>
 	<form:form method="POST" modelAttribute="zoekinput">
 		Zoek een organisatie:<br>
 		<form:input type="text" path="input" name="zoekinputarea" value="" />
@@ -37,7 +40,8 @@ $(document).ready(function() {
 					<td></td>
 					<td>Verwijder</td>
 				</tr>
-				<c:forEach items="${organisaties}" var="organisatie">
+				<c:forEach items="${organisaties}" var="organisatie"
+					varStatus="status">
 					<tr>
 						<td>${organisatie.naam}</td>
 
@@ -52,7 +56,11 @@ $(document).ready(function() {
 							href="<c:url value='/relatiebeheer/organisaties/toon-${organisatie.id}-organisatie' />"></a></td>
 						<td><a
 							href="<c:url value='/relatiebeheer/organisaties/verwijder-${organisatie.id}'/>">Verwijder</a></td>
+
+						<td><input type="checkbox" name="checkbutton"
+							value="${status.count}" /></td>
 					</tr>
+
 				</c:forEach>
 
 			</table>
@@ -61,6 +69,4 @@ $(document).ready(function() {
 			<h2>Er zijn geen resultaten gevonden</h2>
 		</c:otherwise>
 	</c:choose>
-
-
 </body>
