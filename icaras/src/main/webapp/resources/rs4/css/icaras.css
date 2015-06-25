@@ -140,3 +140,23 @@ div.footer {
 a.footer {
 	color: white;
 }
+
+table#lijst {
+    border-collapse: collapse;   
+}
+#lijst tr {
+    background-color: #eee;
+    border-top: 1px solid #fff;
+}
+#lijst tr:hover {
+    background-color: #ccc;
+}
+#lijst th {
+    background-color: #fff;
+}
+#lijst th, #example td {
+    padding: 3px 5px;
+}
+#lijst td:hover {
+    cursor: pointer;
+}

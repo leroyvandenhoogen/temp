@@ -35,6 +35,7 @@ $(document).ready(function() {
 					<td>Plaats</td>
 					<td>Opmerking</td>
 					<td></td>
+					<td>Verwijder</td>
 				</tr>
 				<c:forEach items="${organisaties}" var="organisatie">
 					<tr>
