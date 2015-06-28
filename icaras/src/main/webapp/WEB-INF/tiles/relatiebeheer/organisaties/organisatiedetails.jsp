@@ -4,36 +4,106 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <body>
-	<input type="button" value="Ga terug" onclick="history.back();"/>
-	<tr></tr>
-
 	<form:form method="POST" modelAttribute="organisatie">
-		<table class="details">
+		<input type="button" value="Ga terug" onclick="history.back();" />
+		<br>
+		<td colspan="3"><input type="submit" value="Update" /></td>
+
+		<br>
+		<table class="organisiate-details">
+			<tr>
 			<th>Organisatiegegevens</th>
+			</tr>
 			<tr>
 				<td><label for="naam">Naam: </label></td>
 				<td><form:input path="naam" /></td>
 				<td><form:errors path="naam" cssClass="error" /></td>
 			</tr>
 			<tr>
-				<td><form:input type="hidden" path="kvkNummer"/></td>
+				<td><form:input type="hidden" path="kvkNummer" /></td>
 			</tr>
 			<tr>
 				<td><label for="opmerking">Opmerking: </label></td>
-				<td><form:textarea rows="5" cols="20" path="opmerking"/></td>
+				<td><form:textarea rows="5" cols="20" path="opmerking" /></td>
 				<td><form:errors path="opmerking" cssClass="error" /></td>
 			</tr>
 
 			<tr></tr>
+
+			<tr>
+			<th>Adresgegevens</th>
+			</tr>
+			<c:forEach items="${organisatie.adressen}" var="adres"
+				varStatus="loop">
+				<tr>
+					<td><form:input type="hidden"
+							path="adressen[${loop.index}].id" value="${adres.id}" /></td>
+				<tr>
+					<td><label>Adres type: </label></td>
+					<td><form:select path="adressen[${loop.index}].adresType.id">
+							<option value="${adres.adresType.id}" selected>${adres.adresType.type}
+								(huidig)</option>
+							<c:forEach items="${adresTypes}" var="lookupType"
+								varStatus="current" begin="0">
+								<option value="${lookupType.id}">${lookupType.type}</option>
+							</c:forEach>
+						</form:select>
+					</td>
+				</tr>
+				<tr>
+					<td><label for="straat">Straat: </label></td>
+					<td><form:input path="adressen[${loop.index}].straat"
+							value="${adres.straat}" /></td>
+				</tr>
+				<tr>
+					<td><label for="nummer">Nummer: </label></td>
+					<td><form:input path="adressen[${loop.index}].nummer"
+							value="${adres.nummer}" /></td>
+				</tr>
+				<tr>
+					<td><label for="toevoegsel">Toevoegsel: </label></td>
+					<td><form:input path="adressen[${loop.index}].toevoegsel"
+							value="${adres.toevoegsel}" /></td>
+				</tr>
+				<tr>
+					<td><label for="postcode">Postcode: </label></td>
+					<td><form:input path="adressen[${loop.index}].postcode"
+							value="${adres.postcode}" /></td>
+				</tr>
+				<tr>
+					<td><label for="plaats">Plaats: </label></td>
+					<td><form:input path="adressen[${loop.index}].plaats"
+							value="${adres.plaats}" /></td>
+				</tr>
+				<tr>
+					<td><label for="land">Land: </label></td>
+					<td><form:input path="adressen[${loop.index}].land"
+							value="${adres.land}" /></td>
+				</tr>
+				<tr>
+					<td><form:input type="hidden"
+							path="adressen[${loop.index}].begindatum"
+							value="${adres.begindatum}" /></td>
+				</tr>
+				<tr>
+					<td><form:input type="hidden"
+							path="adressen[${loop.index}].einddatum"
+							value="${adres.einddatum}" /></td>
+				</tr>
+				<tr></tr>
+			</c:forEach>
 		</table>
 
-		<table class="details">
+		<table class="organisiate-details">
+			<tr>
 			<th>Contactpersonen</th>
+			</tr>
 			<c:forEach items="${organisatie.persoonsrollen}" var="persoonsrol"
 				varStatus="loop">
 
 				<form:input type="hidden" path="persoonsrollen[${loop.index}].id" />
-				<form:input type="hidden" path="persoonsrollen[${loop.index}].rol.id"/>
+				<form:input type="hidden"
+					path="persoonsrollen[${loop.index}].rol.id" />
 				<form:input type="hidden"
 					path="persoonsrollen[${loop.index}].begindatum"
 					value="${persoonsrol.begindatum}" />
@@ -89,7 +159,8 @@
 						<tr class="element">
 							<form:input type="hidden"
 								path="persoonsrollen[${loop.index}].persoon.digitaleAdressen[${innerloop.index}].id" />
-							<td><label>${digitaalAdres.digitaalAdresType.type}: </label></td>
+							<td><label>${digitaalAdres.digitaalAdresType.type}:
+							</label></td>
 							<td><form:input
 									path="persoonsrollen[${loop.index}].persoon.digitaleAdressen[${innerloop.index}].omschrijving"
 									size="30" /></td>
@@ -106,69 +177,6 @@
 					</c:forEach>
 			</c:forEach>
 		</table>
-
-		<table class="details">
-			<th>Adresgegevens</th>
-			<c:forEach items="${organisatie.adressen}" var="adres"
-				varStatus="loop">
-				<tr>
-					<td><form:input type="hidden" path="adressen[${loop.index}].id"
-							value="${adres.id}" /></td>
-				<tr>
-					<td><label>Adres type: </label></td>
-					<td><form:select path="adressen[${loop.index}].adresType.id">
-							<option value="${adres.adresType.id}" selected>${adres.adresType.type}
-								(huidig)</option>
-							<c:forEach items="${adresTypes}" var="lookupType"
-								varStatus="current" begin="0">
-								<option value="${lookupType.id}">${lookupType.type}</option>
-							</c:forEach>
-						</form:select></td>
-				</tr>
-				<tr>
-					<td><label for="straat">Straat: </label></td>
-					<td><form:input path="adressen[${loop.index}].straat"
-							value="${adres.straat}" /></td>
-				</tr>
-				<tr>
-					<td><label for="nummer">Nummer: </label></td>
-					<td><form:input path="adressen[${loop.index}].nummer"
-							value="${adres.nummer}" /></td>
-				</tr>
-				<tr>
-					<td><label for="toevoegsel">Toevoegsel: </label></td>
-					<td><form:input path="adressen[${loop.index}].toevoegsel"
-							value="${adres.toevoegsel}" /></td>
-				</tr>
-				<tr>
-					<td><label for="postcode">Postcode: </label></td>
-					<td><form:input path="adressen[${loop.index}].postcode"
-							value="${adres.postcode}" /></td>
-				</tr>
-				<tr>
-					<td><label for="plaats">Plaats: </label></td>
-					<td><form:input path="adressen[${loop.index}].plaats"
-							value="${adres.plaats}" /></td>
-				</tr>
-				<tr>
-					<td><label for="land">Land: </label></td>
-					<td><form:input path="adressen[${loop.index}].land"
-							value="${adres.land}" /></td>
-				</tr>
-				<tr>
-					<td><form:input type="hidden" path="adressen[${loop.index}].begindatum"
-							value="${adres.begindatum}" /></td>
-				</tr>
-				<tr>
-					<td><form:input type="hidden" path="adressen[${loop.index}].einddatum"
-							value="${adres.einddatum}" /></td>
-				</tr>
-				<tr></tr>
-			</c:forEach>
-		</table>
-		<tr>
-			<td colspan="3"><input type="submit" value="Update" /></td>
-		</tr>
 	</form:form>
 
 </body>

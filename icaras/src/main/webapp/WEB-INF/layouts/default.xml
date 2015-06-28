@@ -71,6 +71,20 @@
 			value="/WEB-INF/tiles/relatiebeheer/organisaties/bevestigdelete.jsp" />
 	</definition>
 
+	<definition name="relatiebeheer/organisaties/delete" extends="relatiebeheer">
+		<put-attribute name="title" value="Organisatie verwijderen" />
+		<put-attribute name="content"
+			value="/WEB-INF/tiles/relatiebeheer/organisaties/delete.jsp" />
+	</definition>
+
+	<definition name="relatiebeheer/organisaties/zoekContactpersoon"
+		extends="relatiebeheer">
+		<put-attribute name="title"
+			value="RSVIER bestaand contactpersoon toevoegen" />
+		<put-attribute name="content"
+			value="/WEB-INF/tiles/relatiebeheer/organisaties/bestaandContactpersoon.jsp" />
+	</definition>
+
 
 	<definition name="relatiebeheer/personen/zoeken" extends="relatiebeheer">
 		<put-attribute name="title" value="RSVIER Personen zoeken" />
@@ -96,14 +110,16 @@
 		<put-attribute name="content"
 			value="/WEB-INF/tiles/relatiebeheer/personen/bevestig.jsp" />
 	</definition>
-	
-	<definition name="relatiebeheer/personen/nieuwadres" extends="relatiebeheer">
+
+	<definition name="relatiebeheer/personen/nieuwadres"
+		extends="relatiebeheer">
 		<put-attribute name="title" value="RSVIER Adres toevoegen" />
 		<put-attribute name="content"
 			value="/WEB-INF/tiles/relatiebeheer/personen/nieuwadres.jsp" />
 	</definition>
-	
-	<definition name="relatiebeheer/personen/nieuwpersoonsrol" extends="relatiebeheer">
+
+	<definition name="relatiebeheer/personen/nieuwpersoonsrol"
+		extends="relatiebeheer">
 		<put-attribute name="title" value="RSVIER Persoonsrol toevoegen" />
 		<put-attribute name="content"
 			value="/WEB-INF/tiles/relatiebeheer/personen/nieuwpersoonsrol.jsp" />

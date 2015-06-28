@@ -190,6 +190,15 @@ public class OrganisatieslijstController {
 	}
 
 	@RequestMapping(value = { "/verwijder-{id}" }, method = RequestMethod.GET)
+	public String verwijderOrganisatieGET(@ModelAttribute("id") int id,
+			BindingResult result, ModelMap model) {
+		Bedrijf organisatie = bedrijfService.get(id);
+				
+		model.addAttribute("organisatie", organisatie);
+		return "relatiebeheer/organisaties/delete";
+
+	}
+	@RequestMapping(value = { "/verwijder-{id}" }, method = RequestMethod.POST)
 	public String verwijderOrganisatie(@ModelAttribute("id") int id,
 			BindingResult result, ModelMap model) {
 		Bedrijf organisatie = bedrijfService.get(id);

@@ -4,6 +4,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<script>
+$(document).ready(function() {
+
+    $('#lijst tr').click(function() {
+        var href = $(this).find("a").attr("href");
+        if(href) {
+            window.location = href;
+        }
+    });
+
+});
+</script>
+
 <body>
 	<input type="button" value="Ga terug" onclick="history.back();"/>
 	<tr></tr>
@@ -23,7 +36,7 @@
 				<h2>Er is ${fn:length(personen)} persoon gevonden</h2>
 			</c:if>
 			<h3>Personenlijst</h3>
-			<table class="list">
+			<table id="lijst" class="list">
 				<tr class="tabelheader">
 					<td>Voornaam</td>
 					<td>Achternaam</td>

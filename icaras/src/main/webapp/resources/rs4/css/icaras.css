@@ -100,6 +100,15 @@ div.details {
 	margin: 5px;
 }
 
+.organisiate-details {
+	border: 2px dotted #808080;
+	border-radius: 10px;
+	display: inline-block;
+	vertical-align: top;
+	padding: 20px;
+	margin: 20px;
+}
+
 table.details label {
 	
 }
@@ -140,3 +149,24 @@ div.footer {
 a.footer {
 	color: white;
 }
+
+table#lijst {
+    border-collapse: collapse;   
+}
+#lijst tr {
+    background-color: #eee;
+    border-top: 1px solid #fff;
+}
+#lijst tr:hover {
+    background-color: #ccc;
+}
+#lijst th {
+    background-color: #fff;
+}
+#lijst th, #example td {
+    padding: 3px 5px;
+}
+#lijst td:hover {
+    cursor: pointer;
+}
+ 
