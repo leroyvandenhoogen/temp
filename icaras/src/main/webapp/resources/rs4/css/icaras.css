@@ -100,6 +100,15 @@ div.details {
 	margin: 5px;
 }
 
+.organisiate-details {
+	border: 2px dotted #808080;
+	border-radius: 10px;
+	display: inline-block;
+	vertical-align: top;
+	padding: 20px;
+	margin: 20px;
+}
+
 table.details label {
 	
 }
