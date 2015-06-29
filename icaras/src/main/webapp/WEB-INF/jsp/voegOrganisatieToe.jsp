@@ -24,26 +24,28 @@
 			<li class="menubar_item"><a href="/Icaras/getAllOrganisaties">organisaties</a></li>
 		</ul>
 	</div>
-	
+
 	<c:if test="${not empty organisatieForm}">
 		<form:form action="voegOrganisatieToe" method="post"
 			modelAttribute="organisatieForm">
-			<div class="fieldset"><fieldset>
-				<legend>Organisatie</legend>
-				
-				<p>
-				<label for="naam">Naam</label>
-				<form:input name="naam" path="naam" />
-				<form:errors path="naam" cssClass="validationError" />
-				</p>
-				
-				<p>
-				<input type="submit" value="Voeg organisatie toe" />
-				</p>
-				
-			</fieldset></div>
+			<div class="fieldset">
+				<fieldset>
+					<legend>Organisatie</legend>
+
+					<p>
+						<label for="naam">Naam</label>
+						<form:input name="naam" path="naam" />
+						<form:errors path="naam" cssClass="validationError" />
+					</p>
+
+					<p>
+						<input type="submit" value="Voeg organisatie toe" />
+					</p>
+
+				</fieldset>
+			</div>
 		</form:form>
 	</c:if>
-	
+
 </body>
 </html>

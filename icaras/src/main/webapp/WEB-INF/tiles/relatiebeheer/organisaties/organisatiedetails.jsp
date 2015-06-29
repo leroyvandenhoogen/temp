@@ -12,7 +12,7 @@
 		<br>
 		<table class="organisiate-details">
 			<tr>
-			<th>Organisatiegegevens</th>
+				<th>Organisatiegegevens</th>
 			</tr>
 			<tr>
 				<td><label for="naam">Naam: </label></td>
@@ -31,7 +31,7 @@
 			<tr></tr>
 
 			<tr>
-			<th>Adresgegevens</th>
+				<th>Adresgegevens</th>
 			</tr>
 			<c:forEach items="${organisatie.adressen}" var="adres"
 				varStatus="loop">
@@ -47,8 +47,7 @@
 								varStatus="current" begin="0">
 								<option value="${lookupType.id}">${lookupType.type}</option>
 							</c:forEach>
-						</form:select>
-					</td>
+						</form:select></td>
 				</tr>
 				<tr>
 					<td><label for="straat">Straat: </label></td>
@@ -96,7 +95,7 @@
 
 		<table class="organisiate-details">
 			<tr>
-			<th>Contactpersonen</th>
+				<th>Contactpersonen</th>
 			</tr>
 			<c:forEach items="${organisatie.persoonsrollen}" var="persoonsrol"
 				varStatus="loop">

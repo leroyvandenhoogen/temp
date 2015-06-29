@@ -8,7 +8,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <title>Icaras</title>
-<link href="<c:url value="/resources/rs4/css/icaras.css" />" rel="stylesheet">
+<link href="<c:url value="/resources/rs4/css/icaras.css" />"
+	rel="stylesheet">
 </head>
 
 <body>

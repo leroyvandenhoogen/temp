@@ -71,7 +71,8 @@
 			value="/WEB-INF/tiles/relatiebeheer/organisaties/bevestigdelete.jsp" />
 	</definition>
 
-	<definition name="relatiebeheer/organisaties/delete" extends="relatiebeheer">
+	<definition name="relatiebeheer/organisaties/delete"
+		extends="relatiebeheer">
 		<put-attribute name="title" value="Organisatie verwijderen" />
 		<put-attribute name="content"
 			value="/WEB-INF/tiles/relatiebeheer/organisaties/delete.jsp" />

@@ -1,12 +1,10 @@
 package nl.rsvier.icaras.dao.relatiebeheer;
 
-import java.util.List;
-
-import org.springframework.stereotype.Repository;
-
 import nl.rsvier.icaras.core.relatiebeheer.Identiteitsbewijs;
 import nl.rsvier.icaras.core.relatiebeheer.Persoon;
 import nl.rsvier.icaras.dao.GenericDaoImpl;
+
+import org.springframework.stereotype.Repository;
 
 @Repository("IIdentiteitsbewijsDao")
 public class IdentiteitsbewijsDaoImpl extends GenericDaoImpl<Identiteitsbewijs> implements IIdentiteitsbewijsDao {

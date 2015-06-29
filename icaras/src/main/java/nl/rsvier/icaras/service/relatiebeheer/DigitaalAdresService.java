@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import nl.rsvier.icaras.core.relatiebeheer.AdresType;
 import nl.rsvier.icaras.core.relatiebeheer.DigitaalAdres;
 import nl.rsvier.icaras.core.relatiebeheer.DigitaalAdresType;
 import nl.rsvier.icaras.dao.relatiebeheer.DigitaalAdresDaoImpl;

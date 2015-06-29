@@ -1,19 +1,18 @@
 package nl.rsvier.icaras.dao.relatiebeheer;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.transaction.Transactional;
 
 import nl.rsvier.icaras.core.TestAdres;
 import nl.rsvier.icaras.core.relatiebeheer.Adres;
-import nl.rsvier.icaras.core.relatiebeheer.AdresType;
-import nl.rsvier.icaras.core.relatiebeheer.Persoon;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

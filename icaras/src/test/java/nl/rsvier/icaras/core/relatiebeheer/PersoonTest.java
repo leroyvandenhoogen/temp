@@ -1,17 +1,19 @@
 package nl.rsvier.icaras.core.relatiebeheer;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Iterator;
-
-import org.junit.Before;
-import org.junit.Test;
 
 import nl.rsvier.icaras.core.TestAdres;
 import nl.rsvier.icaras.core.TestDigitaalAdres;
 import nl.rsvier.icaras.core.TestIdentiteitsbewijs;
 import nl.rsvier.icaras.core.TestPersoon;
 import nl.rsvier.icaras.core.TestPersoonsrol;
+
+import org.junit.Before;
+import org.junit.Test;
 
 public class PersoonTest {
 

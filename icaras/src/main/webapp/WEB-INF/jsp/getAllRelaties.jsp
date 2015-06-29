@@ -26,53 +26,55 @@
 	</div>
 
 
-<div class="fieldset"><fieldset>
-	<legend>Relaties</legend>
-	
-	<div id="container2">
-		<div id="container1">
-			<div id="col1">
-				<ul id="relatielist">
-		<h3>OrganisatieLijst</h3>
-			<c:if test="${not empty relaties}">
-				<c:forEach items="${relaties}" var="relatie">
-					<c:choose>
-						<c:when
-							test="${relatie.getClass().name == 'nl.rsvier.icaras.core.relatiebeheer.Organisatie'}">
-							<li class="organisatie"><a id="${relatie.id}"
-								class="organisatie" href="getOrganisatie/${relatie.id}"><c:out
-										value="${relatie.naam}" /></a>
-						</c:when>
-					</c:choose>
-				</c:forEach>
-			</c:if>
-			<li class="new"><a
-				href="voegOrganisatieToe">Voeg Organisatie toe</a></li>
-			</ul>
+	<div class="fieldset">
+		<fieldset>
+			<legend>Relaties</legend>
+
+			<div id="container2">
+				<div id="container1">
+					<div id="col1">
+						<ul id="relatielist">
+							<h3>OrganisatieLijst</h3>
+							<c:if test="${not empty relaties}">
+								<c:forEach items="${relaties}" var="relatie">
+									<c:choose>
+										<c:when
+											test="${relatie.getClass().name == 'nl.rsvier.icaras.core.relatiebeheer.Organisatie'}">
+											<li class="organisatie"><a id="${relatie.id}"
+												class="organisatie" href="getOrganisatie/${relatie.id}"><c:out
+														value="${relatie.naam}" /></a>
+										</c:when>
+									</c:choose>
+								</c:forEach>
+							</c:if>
+							<li class="new"><a href="voegOrganisatieToe">Voeg
+									Organisatie toe</a></li>
+						</ul>
+					</div>
+					<div id="col2">
+						<ul id="relatielist">
+							<h3>PersonenLijst</h3>
+							<c:if test="${not empty relaties}">
+								<c:forEach items="${relaties}" var="relatie">
+									<c:choose>
+										<c:when
+											test="${relatie.getClass().name == 'nl.rsvier.icaras.core.relatiebeheer.Persoon'}">
+											<li class="persoon"><a id="${relatie.id}"
+												class="persoon" href="getPersoon/${relatie.id}"><c:out
+														value="${relatie.voornaam} ${relatie.tussenvoegsels} ${relatie.achternaam}" /></a>
+										</c:when>
+									</c:choose>
+								</c:forEach>
+							</c:if>
+							<li class="new"><a href="voegPersoonToe">Voeg Persoon
+									toe</a></li>
+						</ul>
+					</div>
+				</div>
 			</div>
-			<div id="col2">
-				<ul id="relatielist">
-		<h3>PersonenLijst</h3>
-			<c:if test="${not empty relaties}">
-				<c:forEach items="${relaties}" var="relatie">
-					<c:choose>
-						<c:when
-							test="${relatie.getClass().name == 'nl.rsvier.icaras.core.relatiebeheer.Persoon'}">
-							<li class="persoon"><a id="${relatie.id}" class="persoon"
-								href="getPersoon/${relatie.id}"><c:out
-										value="${relatie.voornaam} ${relatie.tussenvoegsels} ${relatie.achternaam}" /></a>
-						</c:when>
-					</c:choose>
-				</c:forEach>
-			</c:if>
-			<li class="new"><a
-				href="voegPersoonToe">Voeg Persoon toe</a></li>
-		</ul>
-			</div>
-		</div>
+
+		</fieldset>
 	</div>
-	
-	</fieldset></div>
 
 </body>
 </html>

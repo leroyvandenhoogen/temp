@@ -26,54 +26,55 @@
 	</div>
 
 	<c:if test="${not empty postbusForm}">
-		<form:form method="post"
-			action="/Icaras/getPostbus"
+		<form:form method="post" action="/Icaras/getPostbus"
 			modelAttribute="postbusForm">
-			<div class="fieldset"><fieldset>
-				<legend>Postbus</legend>
-				
-				<form:input type="hidden" path="relatieId" />
-				<form:input type="hidden" path="postbusId" />
-				
-				<p>
-				<label for="postbusnummer">Postbusnummer</label>
-				<form:input name="postbusnummer" path="postbusnummer" />
-				<form:errors path="postbusnummer" cssClass="validationError" />
-				</p>
-				
-				<p>
-				<label for="postcode">Postcode</label>
-				<form:input name="postcode" path="postcode" />
-				<form:errors path="postcode" cssClass="validationError" />
-				</p>
-				
-				<p>
-				<label for="plaats">Plaats</label>
-				<form:input name="plaats" path="plaats" />
-				<form:errors path="plaats" cssClass="validationError" />
-				</p>
-				
-				<p>
-				<c:choose>
-					<c:when test="${postbusForm.correspondentieAdres}">
-						<input type="checkbox" name="nepwaarde" value="true" checked
-							disabled>
+			<div class="fieldset">
+				<fieldset>
+					<legend>Postbus</legend>
+
+					<form:input type="hidden" path="relatieId" />
+					<form:input type="hidden" path="postbusId" />
+
+					<p>
+						<label for="postbusnummer">Postbusnummer</label>
+						<form:input name="postbusnummer" path="postbusnummer" />
+						<form:errors path="postbusnummer" cssClass="validationError" />
+					</p>
+
+					<p>
+						<label for="postcode">Postcode</label>
+						<form:input name="postcode" path="postcode" />
+						<form:errors path="postcode" cssClass="validationError" />
+					</p>
+
+					<p>
+						<label for="plaats">Plaats</label>
+						<form:input name="plaats" path="plaats" />
+						<form:errors path="plaats" cssClass="validationError" />
+					</p>
+
+					<p>
+						<c:choose>
+							<c:when test="${postbusForm.correspondentieAdres}">
+								<input type="checkbox" name="nepwaarde" value="true" checked
+									disabled>
 							Stuur de post hiernaartoe?
 						<input type="hidden" name="correspondentieAdres" value="true" />
-						<form:input type="hidden" path="correspondentieAdres" />
-					</c:when>
-					<c:otherwise>
-						<input type="checkbox" name="correspondentieAdres" value="true">
+								<form:input type="hidden" path="correspondentieAdres" />
+							</c:when>
+							<c:otherwise>
+								<input type="checkbox" name="correspondentieAdres" value="true">
 						Stuur de post hiernaartoe?
 					</c:otherwise>
-				</c:choose>
-				</p>
-				
-				<p>
-				<input type="submit" value="Voeg postbus toe" />
-				</p>
+						</c:choose>
+					</p>
 
-			</fieldset></div>
+					<p>
+						<input type="submit" value="Voeg postbus toe" />
+					</p>
+
+				</fieldset>
+			</div>
 		</form:form>
 	</c:if>
 

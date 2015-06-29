@@ -53,7 +53,7 @@
 
 	<bean id="validator"
 		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
-		
+
 	<!-- Transaction config -->
 
 	<bean id="transactionManager"

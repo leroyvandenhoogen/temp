@@ -25,19 +25,22 @@
 	</div>
 
 	<c:if test="${not empty organisatie}">
-	<div class="fieldset"><fieldset>
-		<legend>Aanbiedingen</legend>
-		
-		<ul id="aanbiedingenlist">
-			<c:forEach items="${organisatie.bedrijf.aanbiedingen}" var="aanbieding">
-			<li class="">
-				<a href="/Icaras/getPersoon/${aanbieding.persoon.id}">${aanbieding.persoon}</a>
-			</li>
-			</c:forEach>
-			<p>zijn aangeboden aan: ${organisatie.naam}</p>
-		</ul>
-	</fieldset></div>
+		<div class="fieldset">
+			<fieldset>
+				<legend>Aanbiedingen</legend>
+
+				<ul id="aanbiedingenlist">
+					<c:forEach items="${organisatie.bedrijf.aanbiedingen}"
+						var="aanbieding">
+						<li class=""><a
+							href="/Icaras/getPersoon/${aanbieding.persoon.id}">${aanbieding.persoon}</a>
+						</li>
+					</c:forEach>
+					<p>zijn aangeboden aan: ${organisatie.naam}</p>
+				</ul>
+			</fieldset>
+		</div>
 	</c:if>
-	
+
 </body>
 </html>

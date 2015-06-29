@@ -65,11 +65,12 @@
 
 			</table>
 		</c:when>
-		<c:when test="${fn:length(organisaties) == 0 && fn:length(zoekinput.input) > 0}">
+		<c:when
+			test="${fn:length(organisaties) == 0 && fn:length(zoekinput.input) > 0}">
 			<h2>Er zijn geen resultaten gevonden</h2>
-			</c:when>
+		</c:when>
 		<c:otherwise>
-			
+
 		</c:otherwise>
 	</c:choose>
 </body>

@@ -3,11 +3,11 @@ package nl.rsvier.icaras.dao.relatiebeheer;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Query;
-import org.springframework.stereotype.Repository;
-
 import nl.rsvier.icaras.core.relatiebeheer.Persoon;
 import nl.rsvier.icaras.dao.GenericDaoImpl;
+
+import org.hibernate.Query;
+import org.springframework.stereotype.Repository;
 
 @Repository("IPersoonDao")
 public class PersoonDaoImpl extends GenericDaoImpl<Persoon> implements

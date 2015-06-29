@@ -25,20 +25,24 @@
 		</ul>
 	</div>
 
-	<div class="fieldset"><fieldset>
-	<legend>Personen</legend>
-	
-		<ul id="relatielist">
-		<h3>PersonenLijst</h3>
-			<c:if test="${not empty personen}">
-				<c:forEach items="${personen}" var="persoon">
-					<li class="persoon"><a id="${persoon.id}" class="persoon" href="getPersoon/${persoon.id}"><c:out value="${persoon.voornaam} ${persoon.tussenvoegsels} ${persoon.achternaam}" /></a>
-				</c:forEach>
-			</c:if>
-			<li class="new"><a href="voegPersoonToe">Voeg Persoon toe</a></li>
-		</ul>
+	<div class="fieldset">
+		<fieldset>
+			<legend>Personen</legend>
 
-	</fieldset></div>
+			<ul id="relatielist">
+				<h3>PersonenLijst</h3>
+				<c:if test="${not empty personen}">
+					<c:forEach items="${personen}" var="persoon">
+						<li class="persoon"><a id="${persoon.id}" class="persoon"
+							href="getPersoon/${persoon.id}"><c:out
+									value="${persoon.voornaam} ${persoon.tussenvoegsels} ${persoon.achternaam}" /></a>
+					</c:forEach>
+				</c:if>
+				<li class="new"><a href="voegPersoonToe">Voeg Persoon toe</a></li>
+			</ul>
+
+		</fieldset>
+	</div>
 
 </body>
 </html>

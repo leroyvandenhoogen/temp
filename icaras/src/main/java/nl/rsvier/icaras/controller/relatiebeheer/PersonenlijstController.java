@@ -1,27 +1,20 @@
 package nl.rsvier.icaras.controller.relatiebeheer;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import nl.rsvier.icaras.core.relatiebeheer.Adres;
 import nl.rsvier.icaras.core.relatiebeheer.AdresType;
-import nl.rsvier.icaras.core.relatiebeheer.Bedrijf;
-import nl.rsvier.icaras.core.relatiebeheer.BedrijfDTO;
-import nl.rsvier.icaras.core.relatiebeheer.DigitaalAdres;
-import nl.rsvier.icaras.core.relatiebeheer.Identiteitsbewijs;
 import nl.rsvier.icaras.core.relatiebeheer.Persoon;
-import nl.rsvier.icaras.core.relatiebeheer.Persoonsrol;
-import nl.rsvier.icaras.core.relatiebeheer.Zoekinput;
 import nl.rsvier.icaras.service.relatiebeheer.AdresService;
 import nl.rsvier.icaras.service.relatiebeheer.DigitaalAdresService;
 import nl.rsvier.icaras.service.relatiebeheer.IdentiteitsbewijsService;
 import nl.rsvier.icaras.service.relatiebeheer.PersoonService;
 import nl.rsvier.icaras.service.relatiebeheer.PersoonsrolService;
+import nl.rsvier.icaras.util.relatiebeheer.Zoekinput;
 
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

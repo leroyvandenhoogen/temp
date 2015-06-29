@@ -8,7 +8,6 @@ import java.util.Iterator;
 
 import nl.rsvier.icaras.core.TestIdentiteitsbewijs;
 import nl.rsvier.icaras.core.TestPersoon;
-import nl.rsvier.icaras.core.TestPersoonsrol;
 
 import org.junit.Before;
 import org.junit.Test;

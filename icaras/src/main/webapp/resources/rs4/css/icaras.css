@@ -93,7 +93,7 @@ div.details {
 	float: left;
 }
 
-.gegevens-table{
+.gegevens-table {
 	outline: 2px solid black;
 	display: inline-block;
 	vertical-align: top;
@@ -151,22 +151,26 @@ a.footer {
 }
 
 table#lijst {
-    border-collapse: collapse;   
+	border-collapse: collapse;
 }
+
 #lijst tr {
-    background-color: #eee;
-    border-top: 1px solid #fff;
+	background-color: #eee;
+	border-top: 1px solid #fff;
 }
+
 #lijst tr:hover {
-    background-color: #ccc;
+	background-color: #ccc;
 }
+
 #lijst th {
-    background-color: #fff;
+	background-color: #fff;
 }
+
 #lijst th, #example td {
-    padding: 3px 5px;
+	padding: 3px 5px;
 }
+
 #lijst td:hover {
-    cursor: pointer;
+	cursor: pointer;
 }
- 

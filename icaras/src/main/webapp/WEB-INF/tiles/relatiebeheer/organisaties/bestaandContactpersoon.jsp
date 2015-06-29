@@ -18,7 +18,7 @@ $(document).ready(function() {
 </script>
 
 <body>
-	<input type="button" value="Ga terug" onclick="history.back();"/>
+	<input type="button" value="Ga terug" onclick="history.back();" />
 	<tr></tr>
 	<h1>Zoek een persoon</h1>
 	<br>
@@ -51,7 +51,8 @@ $(document).ready(function() {
 						<td>${persoon.tussenvoegsel}</td>
 						<td>${persoon.persoonsrollen}</td>
 						<td><a
-							href="<c:url value='/relatiebeheer/organisaties/koppel-${bedrijfDTO.bedrijf.id}-${persoon.id}' />">Voeg toe</a></td>
+							href="<c:url value='/relatiebeheer/organisaties/koppel-${bedrijfDTO.bedrijf.id}-${persoon.id}' />">Voeg
+								toe</a></td>
 					</tr>
 				</c:forEach>
 			</table>

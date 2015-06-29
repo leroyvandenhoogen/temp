@@ -27,102 +27,110 @@
 	<c:if test="${not empty persoonForm}">
 		<form:form action="/Icaras/updatePersoon" method="post"
 			commandName="persoonForm">
-			<div class="fieldset"><fieldset>
-				<legend>Gegevens</legend>
-				
-				<form:input type="hidden" name="id" path="id" readonly="true" />
+			<div class="fieldset">
+				<fieldset>
+					<legend>Gegevens</legend>
 
-				<p>
-				<label for="voornaam">Voornaam</label>
-				<form:input name="voornaam" path="voornaam" />
-				<form:errors path="voornaam" cssClass="validationError"></form:errors>
-				</p>
-				
-				<p>
-				<label for="tussenvoegsels">Tussenvoegsels</label>
-				<form:input name="tussenvoegsels" path="tussenvoegsels" />
-				<form:errors path="tussenvoegsels" cssClass="validationError"></form:errors>
-				</p>
-				
-				<p>
-				<label for="achternaam">Achternaam</label>
-				<form:input name="achternaam"  path="achternaam" />
-				<form:errors path="achternaam" cssClass="validationError"></form:errors>
-				</p>
-				
-				<p>
-				<label for="geboortedatum">Geboortedatum</label>
-				<form:input name="geboortedatum" path="geboortedatum" />
-				<form:errors path="geboortedatum" cssClass="validationError"></form:errors>
-				</p>
-				
-				<p>
-				<input type="submit" value="Wijzig gegevens">
-				</p>
+					<form:input type="hidden" name="id" path="id" readonly="true" />
 
-			</fieldset></div>
+					<p>
+						<label for="voornaam">Voornaam</label>
+						<form:input name="voornaam" path="voornaam" />
+						<form:errors path="voornaam" cssClass="validationError"></form:errors>
+					</p>
+
+					<p>
+						<label for="tussenvoegsels">Tussenvoegsels</label>
+						<form:input name="tussenvoegsels" path="tussenvoegsels" />
+						<form:errors path="tussenvoegsels" cssClass="validationError"></form:errors>
+					</p>
+
+					<p>
+						<label for="achternaam">Achternaam</label>
+						<form:input name="achternaam" path="achternaam" />
+						<form:errors path="achternaam" cssClass="validationError"></form:errors>
+					</p>
+
+					<p>
+						<label for="geboortedatum">Geboortedatum</label>
+						<form:input name="geboortedatum" path="geboortedatum" />
+						<form:errors path="geboortedatum" cssClass="validationError"></form:errors>
+					</p>
+
+					<p>
+						<input type="submit" value="Wijzig gegevens">
+					</p>
+
+				</fieldset>
+			</div>
 		</form:form>
 
 	</c:if>
-	
+
 	<c:if test="${not empty persoon}">
-	<div class="fieldset"><fieldset>
-		<legend>Adressen</legend>
-		<ul id="adressenlist">
-			<c:forEach items="${persoon.adressen}" var="adres">
-			<li class="adres edit <c:if test="${adres.isCorrespondentieAdres}">correspondentie</c:if>">
-				<c:choose>
-					<c:when test="${adres.isPostbus}">
-						<a href="/Icaras/getPostbus/${persoon.id}/${adres.id}">${adres}</a>
-					</c:when>
-					<c:otherwise>
-						<a href="/Icaras/getAdres/${persoon.id}/${adres.id}">${adres}</a>
-					</c:otherwise>
-				</c:choose>
-			</li>
-			</c:forEach>
-			<li class="new"><a
-				href="/Icaras/voegAdresToe/${persoon.id}">Voeg adres toe</a></li>
-			<li class="new"><a
-				href="/Icaras/voegPostbusToe/${persoon.id}">Voeg postbus toe</a></li>
-		</ul>
-	</fieldset></div>
-	
-	<div class="fieldset"><fieldset>
-		<legend>Nfa's</legend>
-		<ul id="nfalist">
-			<c:forEach items="${persoon.nfaLijst}" var="nfa">
-			<li class="nfa edit <c:out value="${nfa.nfaSoort}"/>">
-				<a href="/Icaras/getNfa/${persoon.id}/${nfa.id}">${nfa.nfaAdres}</a>
-			</li>
-			</c:forEach>
-			<li class="new"><a
-				href="/Icaras/voegNfaToe/${persoon.id}">Voeg een nfa toe</a></li>
-		</ul>
-	</fieldset></div>
-	
-	<div class="fieldset"><fieldset>
-		<legend>Rollen</legend>
-		<ul id="rollenlist">
-			<c:forEach items="${rollenMap}" var="rol">
-				
-				<c:choose>
-					<c:when test="${not empty rol.value}">
-						<li class="rol edit ${rol.key}">
-							<a class="" href="/Icaras/get${rol.key}/${persoon.id}">${rol.key}</a>
+		<div class="fieldset">
+			<fieldset>
+				<legend>Adressen</legend>
+				<ul id="adressenlist">
+					<c:forEach items="${persoon.adressen}" var="adres">
+						<li
+							class="adres edit <c:if test="${adres.isCorrespondentieAdres}">correspondentie</c:if>">
+							<c:choose>
+								<c:when test="${adres.isPostbus}">
+									<a href="/Icaras/getPostbus/${persoon.id}/${adres.id}">${adres}</a>
+								</c:when>
+								<c:otherwise>
+									<a href="/Icaras/getAdres/${persoon.id}/${adres.id}">${adres}</a>
+								</c:otherwise>
+							</c:choose>
 						</li>
-					</c:when>
-					<c:otherwise>
-						<li class="rol new">
-							<a class="new" href="/Icaras/voeg${rol.key}Toe/${persoon.id}">Voeg ${rol.key} toe</a>
+					</c:forEach>
+					<li class="new"><a href="/Icaras/voegAdresToe/${persoon.id}">Voeg
+							adres toe</a></li>
+					<li class="new"><a href="/Icaras/voegPostbusToe/${persoon.id}">Voeg
+							postbus toe</a></li>
+				</ul>
+			</fieldset>
+		</div>
+
+		<div class="fieldset">
+			<fieldset>
+				<legend>Nfa's</legend>
+				<ul id="nfalist">
+					<c:forEach items="${persoon.nfaLijst}" var="nfa">
+						<li class="nfa edit <c:out value="${nfa.nfaSoort}"/>"><a
+							href="/Icaras/getNfa/${persoon.id}/${nfa.id}">${nfa.nfaAdres}</a>
 						</li>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-			
-		</ul>
-	</fieldset></div>
+					</c:forEach>
+					<li class="new"><a href="/Icaras/voegNfaToe/${persoon.id}">Voeg
+							een nfa toe</a></li>
+				</ul>
+			</fieldset>
+		</div>
+
+		<div class="fieldset">
+			<fieldset>
+				<legend>Rollen</legend>
+				<ul id="rollenlist">
+					<c:forEach items="${rollenMap}" var="rol">
+
+						<c:choose>
+							<c:when test="${not empty rol.value}">
+								<li class="rol edit ${rol.key}"><a class=""
+									href="/Icaras/get${rol.key}/${persoon.id}">${rol.key}</a></li>
+							</c:when>
+							<c:otherwise>
+								<li class="rol new"><a class="new"
+									href="/Icaras/voeg${rol.key}Toe/${persoon.id}">Voeg
+										${rol.key} toe</a></li>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+
+				</ul>
+			</fieldset>
+		</div>
 	</c:if>
-	
+
 </body>
 </html>

@@ -36,7 +36,8 @@
 				varStatus="loop">
 
 				<form:input type="hidden" path="persoonsrollen[${loop.index}].id" />
-				<form:input type="hidden" path="persoonsrollen[${loop.index}].rol.id"/>
+				<form:input type="hidden"
+					path="persoonsrollen[${loop.index}].rol.id" />
 				<form:input type="hidden"
 					path="persoonsrollen[${loop.index}].begindatum"
 					value="${persoonsrol.begindatum}" />
@@ -92,7 +93,8 @@
 						<tr class="element">
 							<form:input type="hidden"
 								path="persoonsrollen[${loop.index}].persoon.digitaleAdressen[${innerloop.index}].id" />
-							<td><label>${digitaalAdres.digitaalAdresType.type}: </label></td>
+							<td><label>${digitaalAdres.digitaalAdresType.type}:
+							</label></td>
 							<td><form:input
 									path="persoonsrollen[${loop.index}].persoon.digitaleAdressen[${innerloop.index}].omschrijving"
 									size="30" /></td>

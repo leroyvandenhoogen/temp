@@ -1,8 +1,6 @@
 
 package nl.rsvier.icaras.dao.relatiebeheer;
 
-import java.util.List;
-
 import nl.rsvier.icaras.core.relatiebeheer.Identiteitsbewijs;
 
 public interface IIdentiteitsbewijsDao {

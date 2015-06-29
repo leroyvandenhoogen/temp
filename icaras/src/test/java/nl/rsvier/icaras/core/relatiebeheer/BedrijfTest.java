@@ -9,7 +9,6 @@ import java.util.Iterator;
 import nl.rsvier.icaras.core.TestAdres;
 import nl.rsvier.icaras.core.TestBedrijf;
 import nl.rsvier.icaras.core.TestDigitaalAdres;
-import nl.rsvier.icaras.core.TestIdentiteitsbewijs;
 import nl.rsvier.icaras.core.TestPersoonsrol;
 
 import org.junit.Before;

@@ -21,24 +21,30 @@
 			<li class="menubar_item"><a href="/Icaras/">welkom</a></li>
 			<li class="menubar_item"><a href="/Icaras/getAllRelaties">relaties</a></li>
 			<li class="menubar_item"><a href="/Icaras/getAllPersonen">personen</a></li>
-			<li class="menubar_item active"><a href="/Icaras/getAllOrganisaties">organisaties</a></li>
+			<li class="menubar_item active"><a
+				href="/Icaras/getAllOrganisaties">organisaties</a></li>
 		</ul>
 	</div>
 
-	<div class="fieldset"><fieldset>
-	<legend>Organisaties</legend>
-	
-		<ul id="relatielist">
-		<h3>OrganisatieLijst</h3>
-			<c:if test="${not empty organisaties}">
-				<c:forEach items="${organisaties}" var="organisatie">
-					<li class="organisatie"><a id="${organisatie.id}" class="organisatie" href="getOrganisatie/${organisatie.id}"><c:out value="${organisatie.naam}" /></a>
-				</c:forEach>
-			</c:if>
-			<li class="new"><a href="voegOrganisatieToe">Voeg Organisatie toe</a></li>
-		</ul>
+	<div class="fieldset">
+		<fieldset>
+			<legend>Organisaties</legend>
 
-	</fieldset></div>
+			<ul id="relatielist">
+				<h3>OrganisatieLijst</h3>
+				<c:if test="${not empty organisaties}">
+					<c:forEach items="${organisaties}" var="organisatie">
+						<li class="organisatie"><a id="${organisatie.id}"
+							class="organisatie" href="getOrganisatie/${organisatie.id}"><c:out
+									value="${organisatie.naam}" /></a>
+					</c:forEach>
+				</c:if>
+				<li class="new"><a href="voegOrganisatieToe">Voeg
+						Organisatie toe</a></li>
+			</ul>
+
+		</fieldset>
+	</div>
 
 </body>
 </html>

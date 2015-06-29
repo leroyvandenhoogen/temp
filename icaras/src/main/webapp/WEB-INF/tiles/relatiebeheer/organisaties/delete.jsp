@@ -21,9 +21,8 @@
 				</c:forEach>
 			</tr>
 			<tr>
-				<td>
-					<input type="button" value="Ga terug" onclick="history.back();" />
-				</td>
+				<td><input type="button" value="Ga terug"
+					onclick="history.back();" /></td>
 				<td colspan="3"><input type="submit" value="Bevestig" /></td>
 			</tr>
 		</table>

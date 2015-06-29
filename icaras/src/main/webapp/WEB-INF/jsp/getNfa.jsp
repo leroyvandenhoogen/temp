@@ -26,39 +26,39 @@
 	</div>
 
 	<c:if test="${not empty nfaForm}">
-		<form:form method="post" action="/Icaras/getNfa" modelAttribute="nfaForm">
+		<form:form method="post" action="/Icaras/getNfa"
+			modelAttribute="nfaForm">
 			<div class="fieldset">
 				<fieldset>
 					<legend>Nfa</legend>
-					
+
 					<form:input type="hidden" path="relatieId" />
 					<form:input type="hidden" path="NfaId" />
 
 					<p>
-					<label for="nfaSoort">Nfa soort</label>
-					<form:select path="nfaSoort" disabled="true">
-						<form:options />
-					</form:select>
-					<form:input type="hidden" path="nfaSoort" />
- 					<p>
-
+						<label for="nfaSoort">Nfa soort</label>
+						<form:select path="nfaSoort" disabled="true">
+							<form:options />
+						</form:select>
+						<form:input type="hidden" path="nfaSoort" />
 					<p>
-					<label for="nfaAdres">Nfa adres</label>
-					<form:input name="nfaAdres" path="nfaAdres" />
-					<form:errors path="nfaAdres" cssClass="validationError" />
-					</p>
-					
 					<p>
-					<label for="extraInfo">Extra info</label>
-					<form:input name="extraInfo" path="extraInfo" />
-					<form:errors path="extraInfo" cssClass="validationError" />
-					</p>
-					
-					<p>
-					<input type="submit" value="Wijzig Nfa" />
+						<label for="nfaAdres">Nfa adres</label>
+						<form:input name="nfaAdres" path="nfaAdres" />
+						<form:errors path="nfaAdres" cssClass="validationError" />
 					</p>
 
-					</fieldset>
+					<p>
+						<label for="extraInfo">Extra info</label>
+						<form:input name="extraInfo" path="extraInfo" />
+						<form:errors path="extraInfo" cssClass="validationError" />
+					</p>
+
+					<p>
+						<input type="submit" value="Wijzig Nfa" />
+					</p>
+
+				</fieldset>
 			</div>
 		</form:form>
 	</c:if>

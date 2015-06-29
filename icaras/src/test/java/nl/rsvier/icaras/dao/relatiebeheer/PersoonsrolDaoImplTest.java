@@ -13,7 +13,6 @@ import nl.rsvier.icaras.core.TestPersoon;
 import nl.rsvier.icaras.core.TestPersoonsrol;
 import nl.rsvier.icaras.core.relatiebeheer.Persoon;
 import nl.rsvier.icaras.core.relatiebeheer.Persoonsrol;
-import nl.rsvier.icaras.core.relatiebeheer.Rol;
 
 import org.junit.Before;
 import org.junit.Test;

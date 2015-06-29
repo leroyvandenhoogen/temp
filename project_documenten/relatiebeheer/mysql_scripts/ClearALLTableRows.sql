@@ -1,0 +1,15 @@
+SET SQL_SAFE_UPDATES=0;
+SET foreign_key_checks = 0;
+DELETE FROM icaras.adres;
+DELETE FROM icaras.adres_type;
+DELETE FROM icaras.bedrijf;
+DELETE FROM icaras.digitaal_adres;
+DELETE FROM icaras.digitaal_adres_type;
+DELETE FROM icaras.identiteitsbewijs;
+DELETE FROM icaras.identiteitsbewijs_type;
+DELETE FROM icaras.persoon;
+DELETE FROM icaras.persoonsrol;
+DELETE FROM icaras.rol;
+COMMIT;
+SET SQL_SAFE_UPDATES=1;
+SET foreign_key_checks = 1;

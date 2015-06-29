@@ -1,7 +1,5 @@
 package nl.rsvier.icaras;
 
-import static org.junit.Assert.assertNotNull;
-
 import javax.transaction.Transactional;
 
 import nl.rsvier.icaras.core.TestAdres;

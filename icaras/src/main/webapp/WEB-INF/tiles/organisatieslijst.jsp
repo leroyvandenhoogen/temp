@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <body>
 	<h2>Organisatieslijst</h2>
@@ -14,7 +14,8 @@
 				<td>${organisatie.naam}</td>
 				<td>${organisatie.kvkNummer}</td>
 				<td>${organisatie.opmerking}</td>
-				<td><a href="<c:url value='/organisaties/update-${organisatie.id}-organisatie' />">Details</a></td>
+				<td><a
+					href="<c:url value='/organisaties/update-${organisatie.id}-organisatie' />">Details</a></td>
 			</tr>
 		</c:forEach>
 	</table>

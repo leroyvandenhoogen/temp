@@ -3,7 +3,6 @@ package nl.rsvier.icaras.core;
 import java.util.GregorianCalendar;
 
 import nl.rsvier.icaras.core.relatiebeheer.Persoonsrol;
-import nl.rsvier.icaras.core.relatiebeheer.Rol;
 
 public class TestPersoonsrol {
 	
