@@ -34,7 +34,10 @@
 				<td><form:errors path="persoon.geslacht" cssClass="error" /></td>
 			</tr>
 			<tr></tr>
-			<th>Contactgegevens:</th>
+			<tr></tr>
+
+			<tr>
+			<td></td><td></td><td></td><td>Voorkeur:</td>
 			<tr>
 				<td><form:select path="dAdres1.digitaalAdresType.id">
 						<option value="1" selected>Telefoon</option>
@@ -45,10 +48,8 @@
 					</form:select></td>
 				<td><form:input path="dAdres1.omschrijving" value="06" /></td>
 				<td><form:errors path="dAdres1.omschrijving" cssClass="error" /></td>
-				<td><label>Voorkeur: </label></td>
-				<td><form:radiobutton path="dAdres1.contactvoorkeur"
-						value="true" />Ja <form:radiobutton
-						path="dAdres1.contactvoorkeur" value="false" />Nee</td>
+				<td><form:checkbox path="dAdres1.contactvoorkeur"
+						value="true" /></td>
 			</tr>
 
 			<tr>
@@ -61,10 +62,8 @@
 					</form:select></td>
 				<td><form:input path="dAdres2.omschrijving" /></td>
 				<td><form:errors path="dAdres2.omschrijving" cssClass="error" /></td>
-				<td><label>Voorkeur: </label></td>
-				<td><form:radiobutton path="dAdres2.contactvoorkeur"
-						value="true" />Ja <form:radiobutton
-						path="dAdres2.contactvoorkeur" value="false" />Nee</td>
+				<td><form:checkbox path="dAdres2.contactvoorkeur"
+						value="true" /></td>
 			</tr>
 
 		</table>

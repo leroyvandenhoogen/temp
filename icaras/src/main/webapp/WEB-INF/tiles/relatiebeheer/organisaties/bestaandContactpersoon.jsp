@@ -51,8 +51,7 @@
 						<td>${persoon.tussenvoegsel}</td>
 						<td>${persoon.persoonsrollen}</td>
 						<td><a
-							href="<c:url value='/relatiebeheer/organisaties/koppel-${bedrijfDTO.bedrijf.id}-${persoon.id}' />">Voeg
-								toe</a></td>
+							href="<c:url value='/relatiebeheer/organisaties/koppel-${bedrijfDTO.bedrijf.id}-${persoon.id}' />"></a></td>
 					</tr>
 				</c:forEach>
 			</table>

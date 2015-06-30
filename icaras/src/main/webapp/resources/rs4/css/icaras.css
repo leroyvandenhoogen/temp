@@ -105,6 +105,9 @@ div.details {
 	border-radius: 10px;
 	display: inline-block;
 	vertical-align: top;
+
+	width: 500px;
+	min-height: 400px;
 	padding: 20px;
 	margin: 20px;
 }

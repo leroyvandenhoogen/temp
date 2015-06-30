@@ -20,8 +20,7 @@
 	});
 </script>
 <body>
-	<input type="button" value="Ga terug" onclick="history.back();" />
-	</br>
+
 	<form:form method="POST" modelAttribute="zoekinput">
 		Zoek een organisatie:<br>
 		<form:input type="text" path="input" name="zoekinputarea" value="" />

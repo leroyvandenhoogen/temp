@@ -4,10 +4,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <body>
+	<div class="center">
 	<form:form method="POST" modelAttribute="organisatie">
 		<input type="button" value="Ga terug" onclick="history.back();" />
 		<br>
-		<td colspan="3"><input type="submit" value="Update" /></td>
+		<td colspan="3"><input type="submit" value="Bewerk" /></td>
 
 		<br>
 		<table class="organisiate-details">
@@ -152,6 +153,8 @@
 					<td><form:input type="hidden"
 							path="persoonsrollen[${loop.index}].persoon.nationaliteit" /></td>
 				</tr>
+				
+				<tr><td></td><td></td><td>Voorkeur:</td>
 				<tr>
 					<c:forEach items="${persoonsrol.persoon.digitaleAdressen}"
 						var="digitaalAdres" varStatus="innerloop">
@@ -163,12 +166,10 @@
 							<td><form:input
 									path="persoonsrollen[${loop.index}].persoon.digitaleAdressen[${innerloop.index}].omschrijving"
 									size="30" /></td>
-							<td><label>voorkeur </label></td>
-							<td><form:radiobutton
+							
+							<td><form:checkbox
 									path="persoonsrollen[${loop.index}].persoon.digitaleAdressen[${innerloop.index}].contactvoorkeur"
-									value="true" />Yes <form:radiobutton
-									path="persoonsrollen[${loop.index}].persoon.digitaleAdressen[${innerloop.index}].contactvoorkeur"
-									value="false" />No</td>
+									value="true" /></td>
 							<form:input type="hidden"
 								path="persoonsrollen[${loop.index}].persoon.digitaleAdressen[${innerloop.index}].digitaalAdresType.id" />
 						</tr>
@@ -177,5 +178,5 @@
 			</c:forEach>
 		</table>
 	</form:form>
-
+</div>
 </body>

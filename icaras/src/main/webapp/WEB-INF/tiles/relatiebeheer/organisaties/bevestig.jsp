@@ -1,4 +1,7 @@
 <input type="button" value="Ga terug" onclick="history.back();" />
+<input type="submit"
+		onclick="location.href='${pageContext.request.contextPath}/relatiebeheer/organisaties/zoeken'"
+		value="zoekscherm" />
 </br>
 </br>
 

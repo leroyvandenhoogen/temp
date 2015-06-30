@@ -20,6 +20,7 @@ import nl.rsvier.icaras.service.relatiebeheer.PersoonsrolService;
 import nl.rsvier.icaras.util.relatiebeheer.AchternaamComparator;
 import nl.rsvier.icaras.util.relatiebeheer.BedrijfComparator;
 import nl.rsvier.icaras.util.relatiebeheer.BedrijfDTO;
+import nl.rsvier.icaras.util.relatiebeheer.DAdresComparator;
 import nl.rsvier.icaras.util.relatiebeheer.Zoekinput;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +63,8 @@ public class OrganisatieslijstController {
 			BindingResult result, ModelMap model) {
 		List<Bedrijf> organisaties = bedrijfService
 				.search(zoekinput.getInput());
-		Collections.sort(organisaties, new BedrijfComparator());
+		if (organisaties != null)
+			Collections.sort(organisaties, new BedrijfComparator());
 		model.addAttribute("organisaties", organisaties);
 		model.addAttribute("zoekinput", zoekinput);
 		return "relatiebeheer/organisaties/zoeken";
@@ -159,6 +161,16 @@ public class OrganisatieslijstController {
 	public String organisatieDetails(@ModelAttribute("id") int id,
 			BindingResult result, ModelMap model) {
 		Bedrijf organisatie = bedrijfService.get(id);
+		
+//		de sorter werkt nog niet
+//		for (Persoonsrol pRol : organisatie.getPersoonsrollen()) {
+//			if (pRol.getRol().equals("contactpersoon")) {
+//				Collections.sort(pRol.getPersoon().getDigitaleAdressen(),
+//						new DAdresComparator());
+//			}
+//		}
+//		
+//	
 		model.addAttribute("organisatie", organisatie);
 		return "relatiebeheer/organisaties/details";
 	}
@@ -196,11 +208,12 @@ public class OrganisatieslijstController {
 	public String verwijderOrganisatieGET(@ModelAttribute("id") int id,
 			BindingResult result, ModelMap model) {
 		Bedrijf organisatie = bedrijfService.get(id);
-				
+
 		model.addAttribute("organisatie", organisatie);
 		return "relatiebeheer/organisaties/delete";
 
 	}
+
 	@RequestMapping(value = { "/verwijder-{id}" }, method = RequestMethod.POST)
 	public String verwijderOrganisatie(@ModelAttribute("id") int id,
 			BindingResult result, ModelMap model) {
