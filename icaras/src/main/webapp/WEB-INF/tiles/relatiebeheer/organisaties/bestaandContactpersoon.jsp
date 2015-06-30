@@ -5,16 +5,16 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <script>
-$(document).ready(function() {
+	$(document).ready(function() {
 
-    $('#lijst tr').click(function() {
-        var href = $(this).find("a").attr("href");
-        if(href) {
-            window.location = href;
-        }
-    });
+		$('#lijst tr').click(function() {
+			var href = $(this).find("a").attr("href");
+			if (href) {
+				window.location = href;
+			}
+		});
 
-});
+	});
 </script>
 
 <body>
@@ -57,8 +57,12 @@ $(document).ready(function() {
 				</c:forEach>
 			</table>
 		</c:when>
-		<c:otherwise>
+
+		<c:when
+			test="${fn:length(personen) == 0 && fn:length(bedrijfDTO.input) > 0}">
 			<h2>Er zijn geen resultaten gevonden</h2>
+		</c:when>
+		<c:otherwise>
 		</c:otherwise>
 	</c:choose>
 
