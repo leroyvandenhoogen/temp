@@ -31,7 +31,7 @@
 			<th>Adres gegevens:</th>
 
 			<tr>
-				<td><label>Adres type: </label></td>
+				<td><label>Adres type: </label></t11d>
 				<td><form:select path="adres.adresType.id">
 						<option value="5" selected>bezoek</option>
 						<c:forEach items="${bedrijfDTO.adresTypes}" var="lookupType">
