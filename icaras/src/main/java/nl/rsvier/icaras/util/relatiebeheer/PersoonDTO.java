@@ -8,13 +8,15 @@ import nl.rsvier.icaras.core.relatiebeheer.DigitaalAdres;
 import nl.rsvier.icaras.core.relatiebeheer.DigitaalAdresType;
 import nl.rsvier.icaras.core.relatiebeheer.Persoon;
 import nl.rsvier.icaras.core.relatiebeheer.Persoonsrol;
+import nl.rsvier.icaras.core.relatiebeheer.Rol;
 
 public class PersoonDTO {
 	private Persoon persoon;
 	private Adres adres;
 	private List<AdresType> adresTypes;
-	private Persoonsrol persoonsrol;
 	private List<DigitaalAdresType> digitaalAdresTypes;
+	private List<Rol> rollen;
+	private Persoonsrol persoonsrol;
 	private DigitaalAdres dAdres1;
 	private DigitaalAdres dAdres2;
 	
@@ -36,17 +38,23 @@ public class PersoonDTO {
 	public void setAdresTypes(List<AdresType> adresTypes) {
 		this.adresTypes = adresTypes;
 	}
-	public Persoonsrol getPersoonsrol() {
-		return persoonsrol;
-	}
-	public void setPersoonsrol(Persoonsrol persoonsrol) {
-		this.persoonsrol = persoonsrol;
-	}
 	public List<DigitaalAdresType> getDigitaalAdresTypes() {
 		return digitaalAdresTypes;
 	}
 	public void setDigitaalAdresTypes(List<DigitaalAdresType> digitaalAdresTypes) {
 		this.digitaalAdresTypes = digitaalAdresTypes;
+	}
+	public List<Rol> getRollen() {
+		return rollen;
+	}
+	public void setRollen(List<Rol> rollen) {
+		this.rollen = rollen;
+	}
+	public Persoonsrol getPersoonsrol() {
+		return persoonsrol;
+	}
+	public void setPersoonsrol(Persoonsrol persoonsrol) {
+		this.persoonsrol = persoonsrol;
 	}
 	public DigitaalAdres getdAdres1() {
 		return dAdres1;

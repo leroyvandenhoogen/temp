@@ -1,18 +1,22 @@
 package nl.rsvier.icaras.controller.relatiebeheer;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import nl.rsvier.icaras.core.relatiebeheer.Adres;
 import nl.rsvier.icaras.core.relatiebeheer.AdresType;
+import nl.rsvier.icaras.core.relatiebeheer.DigitaalAdres;
+import nl.rsvier.icaras.core.relatiebeheer.DigitaalAdresType;
 import nl.rsvier.icaras.core.relatiebeheer.Persoon;
 import nl.rsvier.icaras.service.relatiebeheer.AdresService;
 import nl.rsvier.icaras.service.relatiebeheer.DigitaalAdresService;
 import nl.rsvier.icaras.service.relatiebeheer.IdentiteitsbewijsService;
 import nl.rsvier.icaras.service.relatiebeheer.PersoonService;
 import nl.rsvier.icaras.service.relatiebeheer.PersoonsrolService;
+import nl.rsvier.icaras.util.relatiebeheer.PersoonDTO;
 import nl.rsvier.icaras.util.relatiebeheer.Zoekinput;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +65,7 @@ public class PersonenlijstController {
 		List<Persoon> personen = service.searchFullDeluxe(zoekinput.getInput());
 		model.addAttribute("personen", personen);
 		zoekinput.stopTimer();
+//		Collections.sort(personen, new AchternaamComparator());
 		model.addAttribute("zoekinput", zoekinput);
 		return "relatiebeheer/personen/zoeken";
 	}
@@ -80,42 +85,38 @@ public class PersonenlijstController {
 
 	@RequestMapping(value = { "/nieuw" }, method = RequestMethod.GET)
 	public String nieuwPersoon(ModelMap model) {
+		PersoonDTO persoonDTO = new PersoonDTO();
+		persoonDTO.setAdresTypes(adresService.getAllTypes());
 
-		List<AdresType> adresTypes = adresService.getAllTypes();
-		model.addAttribute("adresTypes", adresTypes);
-
-		Persoon persoon = new Persoon();
-		Adres adres = new Adres();
-		AdresType adresType = new AdresType();
-		adres.setAdresType(adresType);
-
-		persoon.addAdres(adres);
-
-		model.addAttribute("persoon", persoon);
-		model.addAttribute("gewijzigd",
-				persoon.getVoornaam() + " " + persoon.getAchternaam()
-						+ " is gewijzigd");
+		model.addAttribute("persoonDTO", persoonDTO);
 
 		return "relatiebeheer/personen/nieuw";
 	}
 
 	@RequestMapping(value = "/nieuw", method = RequestMethod.POST)
 	public String saveNieuwPersoon(
-			@ModelAttribute("persoon") @Valid Persoon persoon,
+			@ModelAttribute("persoonDTO") @Valid PersoonDTO persoonDTO,
 			BindingResult result,
-			@ModelAttribute("adresTypes") @Valid AdresType adresType,
-			BindingResult result2, ModelMap model) {
+			ModelMap model) {
 		
-		if (result.hasErrors() || result2.hasErrors()) {
+		if (result.hasErrors()) {
 			return "relatiebeheer/personen/nieuw";
 		} else {
-			Adres adres = persoon.getAdressen().get(0);
+			Persoon persoon = persoonDTO.getPersoon();
+			Adres adres = persoonDTO.getAdres();
+			DigitaalAdres telefoonnummer = persoonDTO.getdAdres1();
+			DigitaalAdres email = persoonDTO.getdAdres2();
 			persoon.addAdres(adres);
+			persoon.addDigitaalAdres(telefoonnummer);
+			persoon.addDigitaalAdres(email);
 			service.save(persoon);
-			adresService.save(adresType.getType(), adres);
+			adresService.save(adres);
+			digitaalAdresService.save(telefoonnummer);
+			digitaalAdresService.save(email);
 
+			model.addAttribute("persoonDTO", persoonDTO);
 			model.addAttribute("succes",
-					persoon.getVoornaam() + " " + persoon.getAchternaam()
+					persoonDTO.getPersoon().getVolledigeNaam()
 							+ " is toegevoegd");
 			
 			return "relatiebeheer/personen/bevestig";
@@ -124,43 +125,55 @@ public class PersonenlijstController {
 	
 	@RequestMapping(value={"/nieuwadres-{id}"}, method=RequestMethod.GET)
 	public String adresToevoegen(@ModelAttribute("id") int id, BindingResult result, ModelMap model) {
-//		Persoon persoon = service.get(id);
-//		Adres adres = new Adres();
-//		AdresType adresType = new AdresType();
-//		adres.setAdresType(adresType);
-//		
-//		List<AdresType> adresTypes = adresService.getAllTypes();
-//		model.addAttribute("adresTypes", adresTypes);
-//		model.addAttribute("adres", adres);
-//		model.addAttribute("persoon", persoon);
+		PersoonDTO persoonDTO = new PersoonDTO();
+		persoonDTO.setPersoon(service.get(id));
+		persoonDTO.setAdresTypes(adresService.getAllTypes());
+		
+		model.addAttribute("persoonDTO", persoonDTO);
 		
 		return "relatiebeheer/personen/nieuwadres";
 	}
 	
 	@RequestMapping(value={"/nieuwadres-{id}"}, method=RequestMethod.POST)
 	public String adresToevoegen(@ModelAttribute("id") int id, BindingResult result, 
-			@ModelAttribute("persoon") Persoon persoon, BindingResult result2, 
-			@ModelAttribute("adres") Adres adres, BindingResult result3,
-			@ModelAttribute("adresTypes") @Valid AdresType adresType, BindingResult result4,
-			ModelMap  model) {
-		adres.setPersoon(persoon);
-		persoon.addAdres(adres);
-		
+			@ModelAttribute("persoonDTO") PersoonDTO persoonDTO, BindingResult result2, 
+			ModelMap model) {
+		Persoon persoon = service.get(persoonDTO.getPersoon().getId());
+		persoon.addAdres(persoonDTO.getAdres());
+		adresService.save(persoonDTO.getAdres());
 		service.update(persoon);
-		adresService.save(adresType.getType(), adres);
 		
-		model.addAttribute("persoon", persoon);
-		model.addAttribute("succes", "Nieuw adres voor " + persoon.getVolledigeNaam() + " toegevoegd!");
+		model.addAttribute("succes", "Nieuw adres voor " + persoonDTO.getPersoon().getVolledigeNaam() + " toegevoegd!");
+		model.addAttribute("persoonDTO", persoonDTO);
+		
 		return "relatiebeheer/personen/bevestig";
-		
 	}
 	
 	@RequestMapping(value={"/nieuwpersoonsrol-{id}"}, method=RequestMethod.GET)
 	public String persoonsrolToevoegen(@ModelAttribute("id") int id, BindingResult result,
-			
 			ModelMap model) {
+		PersoonDTO persoonDTO = new PersoonDTO();
+		persoonDTO.setPersoon(service.get(id));
+		persoonDTO.setRollen(persoonsrolService.getAllRollen());
+		
+		model.addAttribute("persoonDTO", persoonDTO);
 		
 		return "relatiebeheer/personen/nieuwpersoonsrol";
+	}
+	
+	@RequestMapping(value={"/nieuwpersoonsrol-{id}"}, method=RequestMethod.POST)
+	public String persoonsrolToevoegen(@ModelAttribute("id") int id, BindingResult result,
+			@ModelAttribute("persoonDTO")PersoonDTO persoonDTO, BindingResult result2,
+			ModelMap model) {
+		Persoon persoon = service.get(persoonDTO.getPersoon().getId());
+		persoon.addPersoonsrol(persoonDTO.getPersoonsrol());
+		persoonsrolService.save(persoonDTO.getPersoonsrol());
+		service.update(persoon);
+		
+		model.addAttribute("succes", "Nieuw adres voor " + persoonDTO.getPersoon().getVolledigeNaam() + " toegevoegd!");
+		model.addAttribute("persoonDTO", persoonDTO);
+		
+		return "relatiebeheer/personen/bevestig";
 	}
 
 	// @RequestMapping(value ={"", "lijst"}, method = RequestMethod.GET)
