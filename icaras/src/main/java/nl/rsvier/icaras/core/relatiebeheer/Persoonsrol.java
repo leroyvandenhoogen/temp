@@ -25,12 +25,14 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 public class Persoonsrol implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private int id;
+	private Integer id;
 	private Rol rol;
 	private Bedrijf bedrijf;
 	private Persoon persoon;
 	private Date begindatum;
 	private Date einddatum;
+	private String functie;
+	private String afdeling;
 
 	public Persoonsrol() {
 	}
@@ -122,14 +124,34 @@ public class Persoonsrol implements java.io.Serializable {
 		this.einddatum = einddatum;
 	}
 
+	
+	@Column(name = "functie", nullable = false, length = 45)
+	public String getFunctie() {
+		return functie;
+	}
+
+	public void setFunctie(String functie) {
+		this.functie = functie;
+	}
+	
+	@Column(name = "afdeling", nullable = false, length = 45)
+	public String getAfdeling() {
+		return afdeling;
+	}
+
+	public void setAfdeling(String afdeling) {
+		this.afdeling = afdeling;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result= prime * result + ((getId() == null) ? 0 : getId().hashCode());
 		result = prime * result	+ ((getBegindatum() == null) ? 0 : getBegindatum().hashCode());
 		result = prime * result	+ ((getEinddatum() == null) ? 0 : getEinddatum().hashCode());
 		result = prime * result + ((getRol() == null) ? 0 : getRol().hashCode());
+		result = prime * result + ((getFunctie() == null) ? 0 : getFunctie().hashCode());
+		result = prime * result + ((getAfdeling() == null) ? 0 : getAfdeling().hashCode());
 
 		
 		return result;
@@ -155,10 +177,14 @@ public class Persoonsrol implements java.io.Serializable {
 				return false;
 			}
 			
-			if (this.getId() != null && !this.getId().equals(other.getId())) {
+			if (this.getFunctie() != null && !this.getFunctie().equals(other.getFunctie())) {
 				return false;
 			}
-					
+			
+			if (this.getAfdeling() != null && !this.getAfdeling().equals(other.getAfdeling())) {
+				return false;
+			}
+		
 		}
 		return true;
 	}
