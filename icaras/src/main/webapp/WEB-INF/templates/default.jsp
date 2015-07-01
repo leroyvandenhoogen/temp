@@ -6,8 +6,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.4/jquery.min.js"></script>
+
 <title><tiles:insertAttribute name="title"></tiles:insertAttribute></title>
 
 
