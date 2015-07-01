@@ -43,7 +43,7 @@
 				<td><label for="geslacht">Geslacht: </label></td>
 				<td><form:radiobutton path="persoon.geslacht" value="M"
 						checked="checked" />Man <form:radiobutton path="persoon.geslacht"
-						value="F" />Vrouw</td>
+						value="V" />Vrouw</td>
 			</tr>
 
 			<tr>

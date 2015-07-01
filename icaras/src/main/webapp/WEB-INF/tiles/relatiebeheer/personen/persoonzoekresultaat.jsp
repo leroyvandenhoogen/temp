@@ -39,8 +39,8 @@
 			<tr>
 				<td><label for="geslacht">Geslacht: </label></td>
 				<td><form:radiobutton path="geslacht" value="M"
-						checked="checked" />Man <form:radiobutton path="geslacht"
-						value="F" />Vrouw</td>
+						 />Man <form:radiobutton path="geslacht"
+						value="V" />Vrouw</td>
 			</tr>
 
 			<tr class="element">

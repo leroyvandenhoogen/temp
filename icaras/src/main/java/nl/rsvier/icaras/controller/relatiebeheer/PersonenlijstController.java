@@ -16,6 +16,7 @@ import nl.rsvier.icaras.service.relatiebeheer.DigitaalAdresService;
 import nl.rsvier.icaras.service.relatiebeheer.IdentiteitsbewijsService;
 import nl.rsvier.icaras.service.relatiebeheer.PersoonService;
 import nl.rsvier.icaras.service.relatiebeheer.PersoonsrolService;
+import nl.rsvier.icaras.util.relatiebeheer.AchternaamComparator;
 import nl.rsvier.icaras.util.relatiebeheer.PersoonDTO;
 import nl.rsvier.icaras.util.relatiebeheer.Zoekinput;
 
@@ -65,7 +66,7 @@ public class PersonenlijstController {
 		List<Persoon> personen = service.searchFullDeluxe(zoekinput.getInput());
 		model.addAttribute("personen", personen);
 		zoekinput.stopTimer();
-//		Collections.sort(personen, new AchternaamComparator());
+		Collections.sort(personen, new AchternaamComparator());
 		model.addAttribute("zoekinput", zoekinput);
 		return "relatiebeheer/personen/zoeken";
 	}
@@ -143,7 +144,7 @@ public class PersonenlijstController {
 		adresService.save(persoonDTO.getAdres());
 		service.update(persoon);
 		
-		model.addAttribute("succes", "Nieuw adres voor " + persoonDTO.getPersoon().getVolledigeNaam() + " toegevoegd!");
+		model.addAttribute("succes", "Nieuw adres voor " + persoon.getVolledigeNaam() + " toegevoegd!");
 		model.addAttribute("persoonDTO", persoonDTO);
 		
 		return "relatiebeheer/personen/bevestig";
@@ -170,7 +171,7 @@ public class PersonenlijstController {
 		persoonsrolService.save(persoonDTO.getPersoonsrol());
 		service.update(persoon);
 		
-		model.addAttribute("succes", "Nieuw adres voor " + persoonDTO.getPersoon().getVolledigeNaam() + " toegevoegd!");
+		model.addAttribute("succes", "Nieuw persoonsrol voor " + persoon.getVolledigeNaam() + " toegevoegd!");
 		model.addAttribute("persoonDTO", persoonDTO);
 		
 		return "relatiebeheer/personen/bevestig";
