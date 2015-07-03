@@ -6,6 +6,9 @@ import nl.rsvier.icaras.core.relatiebeheer.BedrijfExpertise;
 import nl.rsvier.icaras.core.relatiebeheer.Expertise;
 import nl.rsvier.icaras.dao.GenericDaoImpl;
 
+import org.springframework.stereotype.Repository;
+
+@Repository("IExpertiseDao")
 public class ExpertiseDaoImpl extends GenericDaoImpl<Expertise> implements IExpertiseDao {
 	
 	public ExpertiseDaoImpl() {
