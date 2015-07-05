@@ -126,6 +126,15 @@
 			value="/WEB-INF/tiles/relatiebeheer/personen/nieuwpersoonsrol.jsp" />
 	</definition>
 
+	<definition name="relatiebeheer/onderhoud" extends="relatiebeheer">
+		<put-attribute name="title" value="RSVIER Relatiebeheer Onderhoud" />
+	</definition>
+	
+	<definition name="relatiebeheer/onderhoud/adrestypes" extends="relatiebeheer/onderhoud">
+		<put-attribute name="title" value="RSVIER Relatiebeheer Onderhoud" />
+		<put-attribute name="content" value="/WEB-INF/tiles/relatiebeheer/onderhoud/adresTypes.jsp"/>
+	</definition>
+	
 
 	<!-- <definition name="personen" extends="home.base"> <put-attribute name="title" 
 		value="RSVIER Personen" /> <put-attribute name="content" value="/WEB-INF/tiles/personenlijst.jsp" 
