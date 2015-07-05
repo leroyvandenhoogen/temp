@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,9 +27,11 @@ public class Bedrijf implements java.io.Serializable {
 	private String naam;
 	private String kvkNummer;
 	private String opmerking;
+	private BedrijfType bedrijfType;
 	private List<DigitaalAdres> digitaleAdressen = new ArrayList<DigitaalAdres>(0);
 	private List<Adres> adressen = new ArrayList<Adres>(0);
 	private List<Persoonsrol> persoonsrollen = new ArrayList<Persoonsrol>(0);
+	private List<BedrijfExpertise> bedrijfExpertises = new ArrayList<BedrijfExpertise>(0);
 
 	public Bedrijf() {
 	}
@@ -68,6 +72,18 @@ public class Bedrijf implements java.io.Serializable {
 
 	public void setOpmerking(String opmerking) {
 		this.opmerking = opmerking;
+	}
+
+	// De types zijn nog niet bepaald, evenals de standaard type en of deze
+	// nullable is
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "bedrijf_type_id")
+	public BedrijfType getBedrijfType() {
+		return bedrijfType;
+	}
+
+	public void setBedrijfType(BedrijfType bedrijfType) {
+		this.bedrijfType = bedrijfType;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bedrijf")
@@ -128,6 +144,26 @@ public class Bedrijf implements java.io.Serializable {
 		if (persoonsrol != null) {
 			toegevoegd = this.getPersoonsrollen().add(persoonsrol);
 			persoonsrol.setBedrijf(this);
+		}
+		return toegevoegd;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bedrijf")
+	public List<BedrijfExpertise> getBedrijfExpertises() {
+		return bedrijfExpertises;
+	}
+
+	public void setBedrijfExpertises(List<BedrijfExpertise> bedrijfExpertises) {
+		if (bedrijfExpertises != null
+				&& !(this.bedrijfExpertises.contains(bedrijfExpertises)))
+			this.bedrijfExpertises = bedrijfExpertises;
+	}
+	
+	public boolean addBedrijfExpertise(BedrijfExpertise bedrijfExpertise) {
+		boolean toegevoegd = false;
+		if (bedrijfExpertise != null) {
+			toegevoegd = this.getBedrijfExpertises().add(bedrijfExpertise);
+			bedrijfExpertise.setBedrijf(this);
 		}
 		return toegevoegd;
 	}

@@ -34,7 +34,7 @@
 			<li><a href="#">Gebruikers</a></li>
 			<li><a href="#">RBS-rollen</a></li>
 			<li><a href="#">Bedrijftypes</a></li>
-			<li><a href="#">Adrestypes</a></li>
+			<li><a href="<c:url value='/relatiebeheer/onderhoud/adrestypes'/>">Adrestypes</a></li>
 			<li><a href="#">Digitaal Adrestypes</a></li>
 			<li><a href="#">Kandidaten</a></li>
 		</ul>
