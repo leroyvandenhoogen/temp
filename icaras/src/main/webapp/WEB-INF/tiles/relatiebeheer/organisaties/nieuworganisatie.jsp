@@ -5,10 +5,19 @@
 
 <body>
 	<input type="button" value="Ga terug" onclick="history.back();" />
-	<tr></tr>
+	<br>
 	<form:form method="POST" modelAttribute="bedrijfDTO">
+		<h2>Nieuwe organisatie</h2>
 		<table class="details">
-			<th>Nieuwe organisatie</th>
+			<tr>
+			<td></td>
+			<td><form:select path="bedrijf.bedrijfType.id">
+						<option value="2" selected>detacheerder</option>
+						<c:forEach items="${bedrijfDTO.bedrijfTypes}" var="lookupType">
+							<option value="${lookupType.id}">${lookupType.type}</option>
+						</c:forEach>
+					</form:select></td>
+			</tr>
 			<tr>
 				<td><label for="naam">Naam: </label></td>
 				<td><form:input path="bedrijf.naam" /></td>
@@ -28,10 +37,10 @@
 			</tr>
 
 
-			<th>Adres gegevens:</th>
+			<tr></tr>
 
 			<tr>
-				<td><label>Adres type: </label></t11d>
+				<td><label>Adres: </label></t11d>
 				<td><form:select path="adres.adresType.id">
 						<option value="5" selected>bezoek</option>
 						<c:forEach items="${bedrijfDTO.adresTypes}" var="lookupType">
