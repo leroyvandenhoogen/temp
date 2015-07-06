@@ -44,3 +44,41 @@ VALUES ('contactpersoon');
 INSERT INTO icaras.rol (type)
 VALUES ('prive');
 COMMIT;
+INSERT INTO icaras.bedrijf_type (type)
+VALUES ('detachering');
+INSERT INTO icaras.bedrijf_type (type)
+VALUES ('leverancier');
+INSERT INTO icaras.bedrijf_type (type)
+VALUES ('eindklant');
+COMMIT;
+INSERT INTO icaras.expertise (type)
+VALUES ('java');
+INSERT INTO icaras.expertise (type)
+VALUES ('php');
+INSERT INTO icaras.expertise (type)
+VALUES ('.net');
+INSERT INTO icaras.expertise (type)
+VALUES ('c++');
+INSERT INTO icaras.expertise (type)
+VALUES ('c#');
+INSERT INTO icaras.expertise (type)
+VALUES ('spring');
+INSERT INTO icaras.expertise (type)
+VALUES ('hibernate');
+INSERT INTO icaras.expertise (type)
+VALUES ('maven');
+INSERT INTO icaras.expertise (type)
+VALUES ('junit');
+INSERT INTO icaras.expertise (type)
+VALUES ('jquery');
+INSERT INTO icaras.expertise (type)
+VALUES ('jsp');
+INSERT INTO icaras.expertise (type)
+VALUES ('css');
+INSERT INTO icaras.expertise (type)
+VALUES ('html');
+INSERT INTO icaras.expertise (type)
+VALUES ('xml');
+INSERT INTO icaras.expertise (type)
+VALUES ('scrum');
+COMMIT;

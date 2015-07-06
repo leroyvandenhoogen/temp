@@ -32,6 +32,7 @@ public class Adres implements java.io.Serializable {
 	private String toevoegsel;
 	private String postcode;
 	private String plaats;
+	private String provincie;
 	private String land;
 	private Date begindatum;
 	private Date einddatum;
@@ -146,6 +147,15 @@ public class Adres implements java.io.Serializable {
 
 	public void setPlaats(String plaats) {
 		this.plaats = plaats;
+	}
+
+	@Column(name = "provincie", length= 45)
+	public String getProvincie() {
+		return provincie;
+	}
+
+	public void setProvincie(String provincie) {
+		this.provincie = provincie;
 	}
 
 	@Column(name = "land", nullable = false, length = 45)

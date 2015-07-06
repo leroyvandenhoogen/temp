@@ -6,6 +6,7 @@ DELETE FROM icaras.digitaal_adres;
 DELETE FROM icaras.identiteitsbewijs;
 DELETE FROM icaras.persoon;
 DELETE FROM icaras.persoonsrol;
+DELETE FROM icaras.bedrijf_expertise;
 COMMIT;
 SET SQL_SAFE_UPDATES=1;
 SET foreign_key_checks = 1;

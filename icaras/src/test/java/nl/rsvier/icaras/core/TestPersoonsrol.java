@@ -6,6 +6,7 @@ import nl.rsvier.icaras.core.relatiebeheer.Persoonsrol;
 
 public class TestPersoonsrol {
 	
+	
 	public static Persoonsrol maakPersoonsrol1() {
 		Persoonsrol persoonsrol = new Persoonsrol();
 		persoonsrol.setBegindatum(new GregorianCalendar(2015, 0, 1).getTime());

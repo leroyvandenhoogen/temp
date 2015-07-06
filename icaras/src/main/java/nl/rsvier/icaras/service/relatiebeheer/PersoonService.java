@@ -104,13 +104,8 @@ public class PersoonService {
 		return persoonsrollen;
 	}
 	
-	public List<Persoon> searchFull(String voornaamAchternaam) {
-		List<Persoon> returnList = persoonDao.searchFull(voornaamAchternaam);
-		return returnList;
-	}
-	
-	public List<Persoon> searchFullDeluxe(String voornaamAchternaam) {
-		List<Persoon> returnList = persoonDao.searchFullDeluxe(voornaamAchternaam);
+	public List<Persoon> search(String voornaamAchternaam) {
+		List<Persoon> returnList = persoonDao.search(voornaamAchternaam);
 		return returnList;
 	}
 }

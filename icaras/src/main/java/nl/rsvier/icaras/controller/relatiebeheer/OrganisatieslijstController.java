@@ -245,7 +245,7 @@ public class OrganisatieslijstController {
 			BindingResult result,
 			@ModelAttribute("bedrijfDTO") BedrijfDTO bedrijfDTO,
 			BindingResult result2, ModelMap model) {
-		List<Persoon> personen = persoonService.searchFullDeluxe(bedrijfDTO
+		List<Persoon> personen = persoonService.search(bedrijfDTO
 				.getInput());
 		Collections.sort(personen, new AchternaamComparator());
 		model.addAttribute("personen", personen);

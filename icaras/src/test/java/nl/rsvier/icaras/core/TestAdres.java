@@ -9,6 +9,9 @@ public class TestAdres {
 			"Enschede", "Apeldoorn", "Haarlem", "Amersfoort", "Arnhem", "Zaanstad", "'s Hertogenbosch", "Haarlemmermeer", "Zoetermeer", "Zwolle"};
 	private static String[] straten = {"Kerkstraat", "Schoolstraat", "Molenstraat", "Dorpsstraat", "Molenweg", "Julianastraat", "Parallelweg", "Nieuwstraat",
 			"Wilhelminastraat", "Sportlaan", "Industrieweg", "Beatrixstraat", "Kastanjelaan", "Stationsweg", "Eikenlaan", "Markt", "Prins Bernhardstraat", "Emmastraat", "Beukenlaan", "'s Gravelandseweg"};
+	private static String[] provincies = {"Noord-Holland", "Zuid-Holland", "Zeeland", "Friesland", "Flevoland", "Utrecht", "Noord-Brabant", "Groningen", "Drenthe", "Overijssel", "Gelderland", "Limburg"};
+	
+	
 	public static Adres maakTestAdres1() {
 		Adres adres = new Adres();
 		
@@ -40,6 +43,7 @@ public class TestAdres {
 		Adres adres = new Adres();
 		adres.setLand("Nederland");
 		adres.setPlaats(plaatsen[((int)(Math.random()*20))]);
+		adres.setProvincie(provincies[((int)(Math.random()*12))]);
 		adres.setNummer(((int)(Math.random()*100)));
 		adres.setPostcode(""+((int)(Math.random()*9000 + 1000) + ""+ ((char)(Math.random()*26 + 'A'))) + "" + ((char)(Math.random()*26 + 'A')));
 		adres.setStraat(straten[((int)(Math.random()*20))]);

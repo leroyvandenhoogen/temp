@@ -130,25 +130,25 @@ public class PersoonDaoImplTest {
 		assertTrue(persoonDao.getAll().containsAll(testlijst));
 	}
 	
-	@Test
-	@Transactional
-	public void testSearchPersoon() {
-		persoonDao.save(persoon1);
-		persoonDao.save(persoon2);
-		
-		persoonDao.flushAndClear();
-		
-		List<Persoon> sjaak	= persoonDao.search("Sjaak", "Trekhaak");
-		assertTrue(sjaak.get(0).equals(persoon1));
-		List<Persoon> koos = persoonDao.search("Koos", "Kansloos");
-		assertTrue(koos.get(0).equals(persoon2));
-		
-		List<Persoon> sjaakLowerCase = persoonDao.search("sjaak", "trekhaak");
-		assertTrue(sjaakLowerCase.get(0).equals(persoon1));
-		List<Persoon> koosLowerCase = persoonDao.search("koos", "kansloos");
-		assertTrue(koosLowerCase.get(0).equals(persoon2));
-		
-	}
+//	@Test
+//	@Transactional
+//	public void testSearchPersoon() {
+//		persoonDao.save(persoon1);
+//		persoonDao.save(persoon2);
+//		
+//		persoonDao.flushAndClear();
+//		
+//		List<Persoon> sjaak	= persoonDao.search("Sjaak", "Trekhaak");
+//		assertTrue(sjaak.get(0).equals(persoon1));
+//		List<Persoon> koos = persoonDao.search("Koos", "Kansloos");
+//		assertTrue(koos.get(0).equals(persoon2));
+//		
+//		List<Persoon> sjaakLowerCase = persoonDao.search("sjaak", "trekhaak");
+//		assertTrue(sjaakLowerCase.get(0).equals(persoon1));
+//		List<Persoon> koosLowerCase = persoonDao.search("koos", "kansloos");
+//		assertTrue(koosLowerCase.get(0).equals(persoon2));
+//		
+//	}
 	
 	@Test
 	@Transactional
@@ -158,43 +158,43 @@ public class PersoonDaoImplTest {
 		
 		persoonDao.flushAndClear();
 		
-		List<Persoon> sjaakVoornaam = persoonDao.searchFull("sjaak");
+		List<Persoon> sjaakVoornaam = persoonDao.search("sjaak");
 		assertTrue(sjaakVoornaam.contains(persoon1));
 		
-		List<Persoon> sjaakAchternaam = persoonDao.searchFull("trekhaak");
+		List<Persoon> sjaakAchternaam = persoonDao.search("trekhaak");
 		assertTrue(sjaakAchternaam.contains(persoon1));
 		
-		List<Persoon> sjaakVoornaamIncomplete = persoonDao.searchFull("sja");
+		List<Persoon> sjaakVoornaamIncomplete = persoonDao.search("sja");
 		assertTrue(sjaakVoornaamIncomplete.contains(persoon1));
 		
-		List<Persoon> sjaakAchternaamIncomplete = persoonDao.searchFull("trek");
+		List<Persoon> sjaakAchternaamIncomplete = persoonDao.search("trek");
 		assertTrue(sjaakAchternaamIncomplete.contains(persoon1));
 		
-		List<Persoon> sjaak	= persoonDao.searchFull("sjaak trekhaak");
+		List<Persoon> sjaak	= persoonDao.search("sjaak trekhaak");
 		assertTrue(sjaak.contains(persoon1));
 		
-		List<Persoon> sjaak2 = persoonDao.searchFull("sjaak, trekhaak");
+		List<Persoon> sjaak2 = persoonDao.search("sjaak, trekhaak");
 		assertTrue(sjaak2.contains(persoon1));
 		
-		List<Persoon> sjaak3 = persoonDao.searchFull("sjaak,trekhaak");
+		List<Persoon> sjaak3 = persoonDao.search("sjaak,trekhaak");
 		assertTrue(sjaak3.contains(persoon1));
 		
-		List<Persoon> sjaakIncomplete = persoonDao.searchFull("sja trek");
+		List<Persoon> sjaakIncomplete = persoonDao.search("sja trek");
 		assertTrue(sjaakIncomplete.contains(persoon1));
 		
-		List<Persoon> sjaakIncomplete2 = persoonDao.searchFull("s trek");
+		List<Persoon> sjaakIncomplete2 = persoonDao.search("s trek");
 		assertTrue(sjaakIncomplete2.contains(persoon1));
 		
-		List<Persoon> sjaakReverse = persoonDao.searchFull("trekhaak sjaak");
+		List<Persoon> sjaakReverse = persoonDao.search("trekhaak sjaak");
 		assertTrue(sjaakReverse.contains(persoon1));
 		
-		List<Persoon> sjaakReverse2 = persoonDao.searchFull("trekhaak, sjaak");
+		List<Persoon> sjaakReverse2 = persoonDao.search("trekhaak, sjaak");
 		assertTrue(sjaakReverse2.contains(persoon1));
 		
-		List<Persoon> sjaakReverse3 = persoonDao.searchFull("trekhaak,sjaak");
+		List<Persoon> sjaakReverse3 = persoonDao.search("trekhaak,sjaak");
 		assertTrue(sjaakReverse3.contains(persoon1));
 		
-		List<Persoon> sjaakIncompleteReverse = persoonDao.searchFull("trek sja");
+		List<Persoon> sjaakIncompleteReverse = persoonDao.search("trek sja");
 		assertTrue(sjaakIncompleteReverse.contains(persoon1));
 	}
 }

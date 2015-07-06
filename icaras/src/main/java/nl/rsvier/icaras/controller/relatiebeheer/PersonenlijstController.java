@@ -63,7 +63,7 @@ public class PersonenlijstController {
 			BindingResult result, ModelMap model) {
 		System.out.println(zoekinput.getInput());
 		zoekinput.startTimer();
-		List<Persoon> personen = service.searchFullDeluxe(zoekinput.getInput());
+		List<Persoon> personen = service.search(zoekinput.getInput());
 		model.addAttribute("personen", personen);
 		zoekinput.stopTimer();
 		Collections.sort(personen, new AchternaamComparator());
