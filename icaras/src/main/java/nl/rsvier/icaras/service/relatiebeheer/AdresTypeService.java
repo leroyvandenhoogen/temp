@@ -28,11 +28,21 @@ public class AdresTypeService {
 			typeDao.save(a);
 	}
 
-	public void saveList(List<AdresType> list) {
-		List<AdresType> dbList = getAllTypes();
+	public void updateList(List<AdresType> list) {
 		for (AdresType type : list) {
-			if (!dbList.contains(type))
-				typeDao.save(type);
+				typeDao.update(type);
 		}
+	}
+	
+	public AdresType get(int id) {
+		return typeDao.getById(id);
+	}
+	
+	public void delete(AdresType type) {
+		typeDao.delete(type);
+	}
+	
+	public void update(AdresType type) {
+		typeDao.update(type);
 	}
 }

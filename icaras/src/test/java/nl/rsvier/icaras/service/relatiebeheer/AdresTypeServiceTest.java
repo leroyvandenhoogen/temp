@@ -64,7 +64,7 @@ public class AdresTypeServiceTest {
 		lijst.add(type);
 		lijst.add(type2);
 		
-		service.saveList(lijst);
+		service.updateList(lijst);
 		
 		List<AdresType> lijst2 = service.getAllTypes();
 		assertTrue("lijst2 is langer dan lijst1", lijst.size() > oldSize);
