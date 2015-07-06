@@ -1,5 +1,8 @@
 package nl.rsvier.icaras;
 
+import java.util.List;
+import java.util.Random;
+
 import javax.transaction.Transactional;
 
 import nl.rsvier.icaras.core.TestAdres;
@@ -9,15 +12,25 @@ import nl.rsvier.icaras.core.TestPersoon;
 import nl.rsvier.icaras.core.TestPersoonsrol;
 import nl.rsvier.icaras.core.relatiebeheer.Adres;
 import nl.rsvier.icaras.core.relatiebeheer.Bedrijf;
+import nl.rsvier.icaras.core.relatiebeheer.BedrijfExpertise;
+import nl.rsvier.icaras.core.relatiebeheer.BedrijfType;
 import nl.rsvier.icaras.core.relatiebeheer.DigitaalAdres;
+import nl.rsvier.icaras.core.relatiebeheer.Expertise;
 import nl.rsvier.icaras.core.relatiebeheer.Persoon;
 import nl.rsvier.icaras.core.relatiebeheer.Persoonsrol;
+import nl.rsvier.icaras.core.relatiebeheer.Rol;
 import nl.rsvier.icaras.service.relatiebeheer.AdresService;
+import nl.rsvier.icaras.service.relatiebeheer.BedrijfExpertiseService;
 import nl.rsvier.icaras.service.relatiebeheer.BedrijfService;
+import nl.rsvier.icaras.service.relatiebeheer.BedrijfTypeService;
 import nl.rsvier.icaras.service.relatiebeheer.DigitaalAdresService;
+import nl.rsvier.icaras.service.relatiebeheer.ExpertiseService;
 import nl.rsvier.icaras.service.relatiebeheer.PersoonService;
 import nl.rsvier.icaras.service.relatiebeheer.PersoonsrolService;
+import nl.rsvier.icaras.service.relatiebeheer.RolService;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,9 +53,27 @@ public class DatabaseVullen {
 	private PersoonsrolService persoonsrolService;
 	@Autowired
 	private BedrijfService bedrijfService;
+	@Autowired
+	private RolService rolService;
+	@Autowired
+	private BedrijfTypeService bedrijfTypeService;
+	@Autowired
+	private ExpertiseService expertiseService;
+	@Autowired
+	private BedrijfExpertiseService bedrijfExpertiseService;
 
-	private String[] rollen = { "cursist", "kandidaat", "stagiair",
-			"werknemer", "prive", "contactpersoon" };
+	private List<Rol> rollen;
+	private List<BedrijfType> bedrijfTypes;
+	private List<Expertise> bedrijfExpertises;
+	
+	private int rollenSize;
+	private int bedrijfTypesSize;
+	private int bedrijfExpertisesSize;
+	
+	
+	
+//		{ "cursist", "kandidaat", "stagiair",
+//			"werknemer", "prive", "contactpersoon" };
 
 	// @Test
 	// @Transactional
@@ -79,6 +110,17 @@ public class DatabaseVullen {
 	// assertNotNull(digitaalAdresService.get(digitaalAdres1.getId()));
 	// }
 
+	@Before
+	@Transactional
+	public void setUp() {
+		rollen = rolService.getAllTypes();
+		bedrijfTypes = bedrijfTypeService.getAllTypes();
+		bedrijfExpertises = expertiseService.getAllTypes();
+		rollenSize = rollen.size();
+		bedrijfTypesSize = bedrijfTypes.size();
+		bedrijfExpertisesSize = bedrijfExpertises.size();
+	}
+	
 	@Test
 	@Transactional
 	public void savePersonen() {
@@ -108,41 +150,48 @@ public class DatabaseVullen {
 		int i = ((int) (Math.random() * 20));
 
 		Adres adres = TestAdres.maakTestAdres3();
-		Adres adres2 = TestAdres.maakTestAdres3();
 
 		if (i < 5) {
 			Persoonsrol persoonsrol = TestPersoonsrol.maakPersoonsrol3();
 			persoonsrol.setPersoon(persoon);
-			persoonsrolService.addRol(rollen[i], persoonsrol);
-			adresService.addAdresType("huis", adres);
-			adresService.addAdresType("post", adres2);
+			persoonsrol.setRol(rollen.get(i));
+			adresService.addAdresType("post", adres);
 			persoon.addAdres(adres);
-			persoon.addAdres(adres2);
 			adres.setPersoon(persoon);
-			adres2.setPersoon(persoon);
 			adresService.save(adres);
-			adresService.save(adres2);
 			persoonsrolService.save(persoonsrol);
 		} else if (i >= 5 && i < 15) {
-			adresService.addAdresType("huis", adres);
-			adresService.addAdresType("post", adres2);
+			adresService.addAdresType("post", adres);
 			persoon.addAdres(adres);
-			persoon.addAdres(adres2);
 			adres.setPersoon(persoon);
-			adres2.setPersoon(persoon);
 			adresService.save(adres);
-			adresService.save(adres2);
 		} else {
 			Persoonsrol persoonsrol = TestPersoonsrol.maakPersoonsrol3();
-			persoonsrol.setPersoon(persoon);
-			persoonsrolService.addRol(rollen[5], persoonsrol);
-			adresService.addAdresType("bezoek", adres);
+			BedrijfExpertise bedrijfExpertise = new BedrijfExpertise();
 			Bedrijf bedrijf = TestBedrijf.maakTestBedrijf3();
+			
+			
+			
+			Random r = new Random();
+			char randomLetter = (char)(r.nextInt(26) + 'a');
+			
+			persoonsrol.setAfdeling("" + ((int) (Math.random() * 11)) + randomLetter);
+			persoonsrol.setFunctie("functie " + ((int) (Math.random() * 11)) + randomLetter);
+			persoonsrol.setPersoon(persoon);
+			persoonsrol.setRol(rollen.get(5));
+			adresService.addAdresType("bezoek", adres);
+			
+			bedrijf.setBedrijfType(bedrijfTypes.get(((int) (Math.random() * bedrijfTypesSize))));
+			bedrijfExpertise.setExpertise(bedrijfExpertises.get(((int) (Math.random() * bedrijfExpertisesSize))));
+		
+			bedrijf.addBedrijfExpertise(bedrijfExpertise);
 			bedrijf.addAdres(adres);
 			adres.setBedrijf(bedrijf);
 			persoonsrol.setBedrijf(bedrijf);
+			bedrijfExpertise.setBedrijf(bedrijf);
 			adresService.save(adres);
 			bedrijfService.save(bedrijf);
+			bedrijfExpertiseService.save(bedrijfExpertise);
 			persoonsrolService.save(persoonsrol);
 		}
 

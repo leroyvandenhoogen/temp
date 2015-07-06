@@ -24,6 +24,7 @@ public class BedrijfDaoImpl extends GenericDaoImpl<Bedrijf> implements
 		super(Bedrijf.class);
 	}
 
+	@Override
 	public List<Bedrijf> search(String string) {
 		List<Bedrijf> mergeLijst1 = new ArrayList<Bedrijf>();
 		List<Bedrijf> mergeLijst2 = new ArrayList<Bedrijf>();
