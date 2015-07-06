@@ -74,6 +74,7 @@ public class OrganisatieslijstController {
 	public String organisatieToevoegen(ModelMap model) {
 		BedrijfDTO bedrijfDTO = new BedrijfDTO();
 		bedrijfDTO.setAdresTypes(adresService.getAllTypes());
+		bedrijfDTO.setBedrijfTypes(bedrijfService.getAllTypes());
 		model.addAttribute("bedrijfDTO", bedrijfDTO);
 		return "relatiebeheer/organisaties/nieuw";
 	}
@@ -87,6 +88,8 @@ public class OrganisatieslijstController {
 		bedrijf.addAdres(adres);
 		bedrijfService.save(bedrijfDTO.getBedrijf());
 		adresService.save(bedrijfDTO.getAdres());
+		int id = bedrijfDTO.getBedrijf().getId();
+		model.addAttribute("organisatie", bedrijf);
 		model.addAttribute("bedrijfDTO", bedrijfDTO);
 		model.addAttribute("succes", bedrijfDTO.getBedrijf().getNaam() + " in "
 				+ bedrijfDTO.getAdres().getPlaats() + " is toegevoegd");

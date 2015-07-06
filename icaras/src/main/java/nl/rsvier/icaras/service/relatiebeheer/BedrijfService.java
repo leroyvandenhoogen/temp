@@ -5,7 +5,9 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import nl.rsvier.icaras.core.relatiebeheer.Bedrijf;
+import nl.rsvier.icaras.core.relatiebeheer.BedrijfType;
 import nl.rsvier.icaras.dao.relatiebeheer.BedrijfDaoImpl;
+import nl.rsvier.icaras.dao.relatiebeheer.BedrijfTypeDaoImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -19,6 +21,8 @@ public class BedrijfService {
 
 	@Autowired
 	BedrijfDaoImpl bedrijfDao;
+	@Autowired
+	BedrijfTypeDaoImpl bedrijfTypeDao;
 	
 	public void save(Bedrijf b) {
 		bedrijfDao.save(b);
@@ -42,5 +46,9 @@ public class BedrijfService {
 	
 	public List<Bedrijf> search(String naam) {
 		return bedrijfDao.search(naam);
+	}
+	
+	public List<BedrijfType> getAllTypes() {
+		return bedrijfTypeDao.getAll();
 	}
 }

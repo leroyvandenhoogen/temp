@@ -5,6 +5,7 @@ import java.util.List;
 import nl.rsvier.icaras.core.relatiebeheer.Adres;
 import nl.rsvier.icaras.core.relatiebeheer.AdresType;
 import nl.rsvier.icaras.core.relatiebeheer.Bedrijf;
+import nl.rsvier.icaras.core.relatiebeheer.BedrijfType;
 import nl.rsvier.icaras.core.relatiebeheer.DigitaalAdres;
 import nl.rsvier.icaras.core.relatiebeheer.DigitaalAdresType;
 import nl.rsvier.icaras.core.relatiebeheer.Persoon;
@@ -16,6 +17,7 @@ public class BedrijfDTO {
 	private List<AdresType> adresTypes;
 	private Persoonsrol persoonsrol;
 	private List<DigitaalAdresType> digitaalAdresTypes;
+	private List<BedrijfType> bedrijfTypes;
 	private DigitaalAdres dAdres1;
 	private DigitaalAdres dAdres2;
 	private Persoon persoon;
@@ -74,6 +76,12 @@ public class BedrijfDTO {
 	}
 	public void setInput(String input) {
 		this.input = input;
+	}
+	public List<BedrijfType> getBedrijfTypes() {
+		return bedrijfTypes;
+	}
+	public void setBedrijfTypes(List<BedrijfType> bedrijfTypes) {
+		this.bedrijfTypes = bedrijfTypes;
 	}
 	
 }
