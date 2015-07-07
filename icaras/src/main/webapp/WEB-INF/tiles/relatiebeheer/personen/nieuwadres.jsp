@@ -40,6 +40,10 @@
 				<td><form:input path="adres.plaats" /></td>
 			</tr>
 			<tr>
+				<td><label>Provincie: </label></td>
+				<td><form:input path="adres.provincie" /></td>
+			</tr>
+			<tr>
 				<td><label>Land: </label></td>
 				<td><form:input path="adres.land" value="Nederland" /></td>
 			</tr>

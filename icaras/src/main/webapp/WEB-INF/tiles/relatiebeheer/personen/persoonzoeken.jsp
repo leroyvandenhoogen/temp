@@ -4,6 +4,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<script>
+	$(document).ready(function() {
+
+		$('#lijst tr').click(function(e) {
+			if (e.target.type == "checkbox") {
+				e.stopPropagation();
+			} else {
+				var href = $(this).find("a").attr("href");
+				if (href) {
+					window.location = href;
+				}
+			}
+		});
+	});
+</script>
 <body>
 	<h1>Zoek een persoon</h1>
 	<br>
@@ -32,7 +47,7 @@
 				</tr>
 			</table>
 			<div class="personenlijst">
-				<table>
+				<table  id="lijst">
 					<c:forEach items="${personen}" var="persoon">
 						<tr class="element">
 							<td>${persoon.voornaam}</td>
@@ -40,7 +55,7 @@
 							<td>${persoon.tussenvoegsel}</td>
 							<td>${persoon.persoonsrollen}</td>
 							<td><a
-								href="<c:url value='/relatiebeheer/personen/zoekresultaat-${persoon.id}' />">Details</a></td>
+								href="<c:url value='/relatiebeheer/personen/zoekresultaat-${persoon.id}' />"></a></td>
 						</tr>
 					</c:forEach>
 				</table>

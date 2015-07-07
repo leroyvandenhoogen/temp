@@ -57,16 +57,14 @@
 				<td><label>Telefoonnummer: </label></td>
 				<form:input type="hidden" path="dAdres1.digitaalAdresType.id"
 					value="1" />
-				<td><form:input path="dAdres1.omschrijving"
-						value="" size="30" /></td>
+				<td><form:input path="dAdres1.omschrijving" value="" size="30" /></td>
 			</tr>
 
 			<tr class="element">
 				<td><label>Email: </label></td>
 				<form:input type="hidden" path="dAdres2.digitaalAdresType.id"
 					value="2" />
-				<td><form:input path="dAdres2.omschrijving"
-						value="" size="30" /></td>
+				<td><form:input path="dAdres2.omschrijving" value="" size="30" /></td>
 			</tr>
 
 			<tr>
@@ -115,6 +113,10 @@
 			<tr>
 				<td><label>Plaats: </label></td>
 				<td><form:input path="adres.plaats" value="" /></td>
+			</tr>
+			<tr>
+				<td><label>Provincie: </label></td>
+				<td><form:input path="adres.provincie" /></td>
 			</tr>
 			<tr>
 				<td><label>Land: </label></td>
