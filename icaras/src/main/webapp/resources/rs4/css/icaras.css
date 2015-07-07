@@ -88,6 +88,13 @@ div.personenlijst {
 	overflow-y: auto;
 }
 
+div.eenderde {
+	min-width: 10%;
+	max-width: 33%;
+	height: 100%;
+	display: inline-block;
+}
+
 div.details {
 	background-color: #e0e0e0;
 	float: left;
@@ -97,7 +104,17 @@ div.details {
 	outline: 2px solid black;
 	display: inline-block;
 	vertical-align: top;
-	margin: 5px;
+	margin-top: 5px;
+	margin-left: 20px;
+	margin-right: 20px;
+	padding: 10px;
+}
+.modal-table{
+	margin-top: 5px;
+	margin-left: 20px;
+	margin-right: 20px;
+	padding: 10px;
+	padding-top: 0px;
 }
 
 .organisiate-details {
@@ -196,11 +213,16 @@ table#lijst {
 .btn:hover {
   background: #357ebd;
 }
+.btn.btn-small{
+	min-width: 40px;
+}
+
 .btn.btn-big {
   font-size: 18px;
   padding: 10px 15px;
   min-width: 80px;
 }
+
 .btn-close {
   color: #aaaaaa;
   font-size: 30px;
@@ -241,7 +263,7 @@ table#lijst {
   left: 50%;
   top: -100%;
   z-index: 11;
-  width: 360px;
+  width: 500px;
   -webkit-transform: translate(0, -500%);
   -ms-transform: translate(0, -500%);
   transform: translate(0, -500%);
