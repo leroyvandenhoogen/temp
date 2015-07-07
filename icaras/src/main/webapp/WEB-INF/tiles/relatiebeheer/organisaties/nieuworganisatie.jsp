@@ -23,13 +23,7 @@
 				<td><form:input path="bedrijf.naam" /></td>
 				<td><form:errors path="bedrijf.naam" cssClass="error" /></td>
 			</tr>
-			<!-- 
-			<tr>
-				<td><label for="kvknummer">KvkNummer: </label></td>
-				<td><form:input path="bedrijf.kvkNummer" /></td>
-				<td><form:errors path="bedrijf.kvkNummer" cssClass="error" /></td>
-			</tr>
- -->
+
 			<tr>
 				<td><label for="opmerking">Opmerking: </label></td>
 				<td><form:textarea rows="5" cols="20" path="bedrijf.opmerking" /></td>
