@@ -57,7 +57,7 @@
 				</tr>
 			</c:forEach>
 			<tr>
-				<td><a href="#modal-one" class="btn btn-big">Bewerk</a></td>
+				<td><a href="#modal-one" class="btn btn-big">Wijzig</a></td>
 				<td><a href="#modal-two" class="btn btn-big">Bewerk</a></td>
 			</tr>
 		</table>
@@ -86,10 +86,13 @@
 					<td>${persoonsrol.persoon.geslacht}</td>
 				</tr>
 				<tr>
-					<td><label>Bijzonderheden: </label></td>
-					<td>${persoonsrol.persoon.opmerking}</td>
+					<td><label>Functie: </label></td>
+					<td>${persoonsrol.functie}</td>
 				</tr>
-
+				<tr>
+					<td><label>Afdeling: </label></td>
+					<td>${persoonsrol.afdeling}</td>
+				</tr>
 				<tr>
 					<c:forEach items="${persoonsrol.persoon.digitaleAdressen}"
 						var="digitaalAdres" varStatus="innerloop">
@@ -98,6 +101,10 @@
 							<td>${digitaalAdres.omschrijving}</td>
 						</tr>
 					</c:forEach>
+				<tr>
+					<td><label>Bijzonderheden: </label></td>
+					<td>${persoonsrol.persoon.opmerking}</td>
+				</tr>
 			</c:forEach>
 			<tr>
 				<td><a href="#modal-three" class="btn btn-big">Nieuw</a></td>
@@ -250,9 +257,14 @@
 							<td><form:input path="persoon.geslacht" value="m" /></td>
 							<td><form:errors path="persoon.geslacht" cssClass="error" /></td>
 						</tr>
-						<tr></tr>
-						<tr></tr>
-
+						<tr>
+							<td><label>Functie: </label></td>
+							<td><form:input path="persoonsrol.functie" /></td>
+						</tr>
+						<tr>
+							<td><label>Afdeling: </label></td>
+							<td><form:input path="persoonsrol.afdeling" /></td>
+						</tr>
 						<tr>
 							<td><form:select path="dAdres1.digitaalAdresType.id">
 									<option value="1" selected>Telefoon</option>
@@ -277,6 +289,12 @@
 							<td><form:input path="dAdres2.omschrijving" /></td>
 							<td><form:errors path="dAdres2.omschrijving"
 									cssClass="error" /></td>
+						</tr>
+						<tr>
+							<td><label>Bijzonderheden: </label></td>
+							<td><form:textarea rows="5" cols="20"
+									path="persoon.opmerking" /></td>
+							<td><form:errors path="persoon.opmerking" cssClass="error" /></td>
 						</tr>
 
 					</table>

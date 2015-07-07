@@ -190,7 +190,7 @@ public class OrganisatieslijstController {
 
 		Bedrijf bedrijf = bedrijfService.get(id);
 		persoonService.save(bedrijfDTO.getPersoon());
-		Persoonsrol persoonsrol = new Persoonsrol();
+		Persoonsrol persoonsrol = bedrijfDTO.getPersoonsrol();
 		persoonsrol.setPersoon(bedrijfDTO.getPersoon());
 		persoonsrol.setBedrijf(bedrijf);
 		persoonsrol.setBegindatum(new Date(Calendar.getInstance()
