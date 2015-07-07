@@ -88,12 +88,8 @@ public class OrganisatieslijstController {
 		bedrijf.addAdres(adres);
 		bedrijfService.save(bedrijfDTO.getBedrijf());
 		adresService.save(bedrijfDTO.getAdres());
-		int id = bedrijfDTO.getBedrijf().getId();
-		model.addAttribute("organisatie", bedrijf);
-		model.addAttribute("bedrijfDTO", bedrijfDTO);
-		model.addAttribute("succes", bedrijfDTO.getBedrijf().getNaam() + " in "
-				+ bedrijfDTO.getAdres().getPlaats() + " is toegevoegd");
-		return "relatiebeheer/organisaties/bevestig";
+		//return ("redirect:toon-" + bedrijfDTO.getBedrijf().getId() + "-organisatie");
+		return ("redirect:" + organisatieDetails(bedrijfDTO.getBedrijf().getId(), result, model));
 	}
 
 	@RequestMapping(value = { "/nieuwAdres-{id}" }, method = RequestMethod.GET)
@@ -164,31 +160,67 @@ public class OrganisatieslijstController {
 	public String organisatieDetails(@ModelAttribute("id") int id,
 			BindingResult result, ModelMap model) {
 		Bedrijf organisatie = bedrijfService.get(id);
-		
-//		de sorter werkt nog niet
-//		for (Persoonsrol pRol : organisatie.getPersoonsrollen()) {
-//			if (pRol.getRol().equals("contactpersoon")) {
-//				Collections.sort(pRol.getPersoon().getDigitaleAdressen(),
-//						new DAdresComparator());
-//			}
-//		}
-//		
-//	
-		model.addAttribute("organisatie", organisatie);
+		BedrijfDTO bedrijfDTO = new BedrijfDTO();
+		bedrijfDTO.setBedrijf(organisatie);
+		bedrijfDTO.setAdresTypes(adresService.getAllTypes());
+		bedrijfDTO.setBedrijfTypes(bedrijfService.getAllTypes());
+		model.addAttribute("bedrijfDTO", bedrijfDTO);
+
 		return "relatiebeheer/organisaties/details";
 	}
 
-	@RequestMapping(value = { "/toon-{id}-organisatie" }, method = RequestMethod.POST)
-	public String updateOrganisatie(@PathVariable int id,
-			@Valid @ModelAttribute("organisatie") Bedrijf organisatie,
+	@RequestMapping(value = { "/toon-{id}-organisatie" }, method = RequestMethod.POST, params="wijzigadres")
+	public String updateAdres(@PathVariable int id,
+			@ModelAttribute("bedrijfDTO") BedrijfDTO bedrijfDTO,
 			BindingResult result, ModelMap model) {
-		for (Adres adres : organisatie.getAdressen()) {
-			adres.setBedrijf(organisatie);
+		for (Adres adres : bedrijfDTO.getBedrijf().getAdressen()) {
+			adres.setBedrijf(bedrijfDTO.getBedrijf());
 			adresService.update(adres);
 		}
-		for (Persoonsrol pRol : organisatie.getPersoonsrollen()) {
+		
+		bedrijfService.update(bedrijfDTO.getBedrijf());
+		//return ("redirect:" + organisatieDetails(bedrijfDTO.getBedrijf().getId(), result, model));
+		return ("redirect:toon-" + bedrijfDTO.getBedrijf().getId() + "-organisatie");
+	}
+	
+	@RequestMapping(value = { "/toon-{id}-organisatie" }, method = RequestMethod.POST, params="nieuwpersoon")
+	public String nieuwPersoon(@PathVariable int id,
+			@ModelAttribute("bedrijfDTO") BedrijfDTO bedrijfDTO,
+			BindingResult result, ModelMap model) {
 
-			pRol.setBedrijf(organisatie);
+		Bedrijf bedrijf = bedrijfService.get(id);
+		persoonService.save(bedrijfDTO.getPersoon());
+		Persoonsrol persoonsrol = bedrijfDTO.getPersoonsrol();
+		persoonsrol.setPersoon(bedrijfDTO.getPersoon());
+		persoonsrol.setBedrijf(bedrijf);
+		persoonsrol.setBegindatum(new Date(Calendar.getInstance()
+				.getTimeInMillis()));
+		persoonsrolService.addRol("contactpersoon", persoonsrol);
+		persoonsrolService.save(persoonsrol);
+		bedrijf.addPersoonsrol(persoonsrol);
+		bedrijfService.update(bedrijf);
+		DigitaalAdres dAdres1 = bedrijfDTO.getdAdres1();
+		DigitaalAdres dAdres2 = bedrijfDTO.getdAdres2();
+		dAdres1.setPersoon(bedrijfDTO.getPersoon());
+		dAdres2.setPersoon(bedrijfDTO.getPersoon());
+		digitaalAdresService.save(dAdres1);
+		digitaalAdresService.save(dAdres2);
+
+		//return ("redirect:" + organisatieDetails(bedrijfDTO.getBedrijf().getId(), result, model));
+		return ("redirect:toon-" + bedrijf.getId() + "-organisatie");
+	}
+	
+	@RequestMapping(value = { "/toon-{id}-organisatie" }, method = RequestMethod.POST)
+	public String updateOrganisatie(@PathVariable int id,
+			@ModelAttribute("bedrijfDTO") BedrijfDTO bedrijfDTO,
+			BindingResult result, ModelMap model) {
+		for (Adres adres : bedrijfDTO.getBedrijf().getAdressen()) {
+			adres.setBedrijf(bedrijfDTO.getBedrijf());
+			adresService.update(adres);
+		}
+		for (Persoonsrol pRol : bedrijfDTO.getBedrijf().getPersoonsrollen()) {
+
+			pRol.setBedrijf(bedrijfDTO.getBedrijf());
 			for (DigitaalAdres dAdres : pRol.getPersoon().getDigitaleAdressen()) {
 				dAdres.setPersoon(pRol.getPersoon());
 				digitaalAdresService.update(dAdres);
@@ -196,12 +228,10 @@ public class OrganisatieslijstController {
 			persoonService.update(pRol.getPersoon());
 			persoonsrolService.update(pRol);
 		}
-		bedrijfService.update(organisatie);
+		bedrijfService.update(bedrijfDTO.getBedrijf());
 
-		BedrijfDTO bedrijfDTO = new BedrijfDTO();
-		bedrijfDTO.setBedrijf(organisatie);
 		model.addAttribute("bedrijfDTO", bedrijfDTO);
-		model.addAttribute("succes", organisatie.getNaam() + " is aangepast");
+		model.addAttribute("succes", bedrijfDTO.getBedrijf().getNaam() + " is aangepast");
 
 		return "relatiebeheer/organisaties/bevestig";
 
@@ -284,56 +314,4 @@ public class OrganisatieslijstController {
 		return "relatiebeheer/organisaties/bevestig";
 	}
 
-	// @RequestMapping(value = { "", "lijst" }, method = RequestMethod.GET)
-	// public String showOrganisatiesLijst(ModelMap model) {
-	// List<Bedrijf> organisaties = bedrijfService.getAll();
-	// model.addAttribute("organisaties", organisaties);
-	// return "organisaties";
-	// }
-	//
-	// @RequestMapping(value = "/update-{id}-organisatie", method =
-	// RequestMethod.GET)
-	// public String updateOrganisatie(@PathVariable int id, ModelMap model) {
-	// ArrayList<AdresType> adresTypes = (ArrayList<AdresType>) adresService
-	// .getAllTypes();
-	// model.addAttribute("adresTypes", adresTypes);
-	// Bedrijf organisatie = bedrijfService.get(id);
-	// model.addAttribute("organisatie", organisatie);
-	// return "organisatiedetails";
-	// }
-	//
-	// @RequestMapping(value = "/update-{id}-organisatie", method =
-	// RequestMethod.POST)
-	// public String updateOrganisatie(@PathVariable int id,
-	// @Valid @ModelAttribute("organisatie") Bedrijf organisatie,
-	// BindingResult result, ModelMap model) {
-	// for (Adres adres : organisatie.getAdressen()) {
-	// adres.setBedrijf(organisatie);
-	// adresService.update(adres);
-	// }
-	// for (Persoonsrol pRol : organisatie.getPersoonsrollen()) {
-	//
-	// pRol.setBedrijf(organisatie);
-	// for (DigitaalAdres dAdres : pRol.getPersoon().getDigitaleAdressen()) {
-	// dAdres.setPersoon(pRol.getPersoon());
-	// digitaalAdresService.update(dAdres);
-	// }
-	// persoonService.update(pRol.getPersoon());
-	// persoonsrolService.update(pRol);
-	// }
-	// bedrijfService.update(organisatie);
-	//
-	// List<Bedrijf> organisaties = bedrijfService.getAll();
-	// model.addAttribute("organisaties", organisaties);
-	//
-	// ArrayList<AdresType> adresTypes = (ArrayList<AdresType>) adresService
-	// .getAllTypes();
-	// model.addAttribute("adresTypes", adresTypes);
-	//
-	// Bedrijf organisatie1 = bedrijfService.get(id);
-	// model.addAttribute("organisatie", organisatie1);
-	//
-	// return "organisatiedetails";
-	//
-	// }
 }
