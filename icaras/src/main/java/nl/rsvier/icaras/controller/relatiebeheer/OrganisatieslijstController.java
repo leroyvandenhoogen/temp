@@ -183,6 +183,26 @@ public class OrganisatieslijstController {
 		return ("redirect:toon-" + bedrijfDTO.getBedrijf().getId() + "-organisatie");
 	}
 	
+	@RequestMapping(value = { "/toon-{id}-organisatie" }, method = RequestMethod.POST, params="wijzigcontact")
+	public String updateContact(@PathVariable int id,
+			@ModelAttribute("bedrijfDTO") BedrijfDTO bedrijfDTO,
+			BindingResult result, ModelMap model) {
+		Bedrijf bedrijf = bedrijfService.get(bedrijfDTO.getBedrijf().getId());
+		for (Persoonsrol pRol : bedrijfDTO.getBedrijf().getPersoonsrollen()) {
+
+			for (DigitaalAdres dAdres : pRol.getPersoon().getDigitaleAdressen()) {
+					dAdres.setPersoon(pRol.getPersoon());
+					digitaalAdresService.update(dAdres);
+				}
+				pRol.setBedrijf(bedrijf);
+				persoonService.update(pRol.getPersoon());
+				persoonsrolService.update(pRol);
+			
+		}
+		
+		return ("redirect:toon-" + bedrijfDTO.getBedrijf().getId() + "-organisatie");
+	}
+	
 	@RequestMapping(value = { "/toon-{id}-organisatie" }, method = RequestMethod.POST, params="nieuwadres")
 	public String nieuwAdres(@PathVariable int id,
 			@ModelAttribute("bedrijfDTO") BedrijfDTO bedrijfDTO,
@@ -280,6 +300,16 @@ public class OrganisatieslijstController {
 		Adres adres = adresService.get(id);
 		int bedrijfId = adres.getBedrijf().getId();
 		adresService.delete(adres);
+		
+		return ("redirect:toon-" + bedrijfId + "-organisatie");
+		}
+	
+	@RequestMapping(value={"/verwijderpersoon-{id}" }, method= RequestMethod.GET)
+	public String verwijderpersoon(@ModelAttribute("id") int id, BindingResult result, ModelMap model) {
+		Persoonsrol pRol = persoonsrolService.get(id);
+		int bedrijfId = pRol.getBedrijf().getId();
+		pRol.setEinddatum(new Date(Calendar.getInstance().getTimeInMillis()));
+		persoonsrolService.update(pRol);
 		
 		return ("redirect:toon-" + bedrijfId + "-organisatie");
 		}

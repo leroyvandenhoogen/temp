@@ -29,9 +29,6 @@
 
 				<tr>
 					<td>${adres.adresType.type} adres:</td>
-					<td><img src="${pageContext.request.contextPath}/resources/rs4/images/icons/simpleicons/notification_error.png"
-								width="10" height="10" >
-					</td>
 				</tr>
 				<tr>
 					<td>${adres.straat} ${adres.nummer} 
@@ -65,6 +62,8 @@
 
 			<c:forEach items="${bedrijfDTO.bedrijf.persoonsrollen}"
 				var="persoonsrol" varStatus="loop">
+				<c:choose>
+				<c:when test="${persoonsrol.einddatum == null}">
 				<tr>
 					<td><c:choose>
 							<c:when test="${persoonsrol.persoon.geslacht eq 'm'}">
@@ -91,11 +90,15 @@
 					<c:forEach items="${persoonsrol.persoon.digitaleAdressen}"
 						var="digitaalAdres" varStatus="innerloop">
 						<tr>
-							<td><c:if
+							<td>${digitaalAdres.omschrijving} 
+							<c:if
 									test="${digitaalAdres.digitaalAdresType.type eq 'email'}">
+									<a href="mailto:${digitaalAdres.omschrijving}">
 									<img
-										src="${pageContext.request.contextPath}/resources/rs4/images/icons/simpleicons/mail.png">
-								</c:if> ${digitaalAdres.omschrijving}</td>
+										src="${pageContext.request.contextPath}/resources/rs4/images/icons/simpleicons/mail.png"
+										height="20" width="20"></a>
+								</c:if>
+							</td>	
 						</tr>
 					</c:forEach>
 				<tr>
@@ -107,10 +110,12 @@
 				<tr>
 					<td></td>
 				</tr>
+				</c:when>
+				</c:choose>
+				
 			</c:forEach>
 			<tr>
-				<td><a href="#modal-three" class="btn btn-big">Nieuw</a></td>
-				<td><a href="#modal-two" class="btn btn-big">Bewerk</a></td>
+				<td><a href="#modal-three" class="btn btn-big">Wijzig</a> <a href="#modal-four" class="btn btn-big">Nieuw</a></td>
 			</tr>
 		</table>
 	</div>
@@ -303,7 +308,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="modal" id="modal-three" aria-hidden="true">
+	<div class="modal" id="modal-four" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-header">
 				<h2>Nieuw Contactpersoon</h2>
@@ -391,5 +396,116 @@
 			</div>
 		</div>
 	</div>
+	<div class="modal" id="modal-three" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-header">
+				<h2>Wijzig Contactpersonen</h2>
 
+				<a href="#close" class="btn-close" aria-hidden="true">×</a>
+				<!--CHANGED TO "#close"-->
+			</div>
+			<div class="modal-body">
+				<form:form method="POST" modelAttribute="bedrijfDTO">
+					<table>
+						<tr>
+							<form:input type="hidden" path="bedrijf.id" />
+						</tr>
+						<c:forEach items="${bedrijfDTO.bedrijf.persoonsrollen}"
+					var="persoonsrol" varStatus="loop">
+									<c:choose>
+				<c:when test="${persoonsrol.einddatum == null}">
+					<form:input type="hidden"
+						path="bedrijf.persoonsrollen[${loop.index}].id" />
+					<form:input type="hidden"
+						path="bedrijf.persoonsrollen[${loop.index}].rol.id" />
+						<form:input type="hidden"
+						path="bedrijf.persoonsrollen[${loop.index}].rol" />
+					<form:input type="hidden"
+						path="bedrijf.persoonsrollen[${loop.index}].begindatum"
+						value="${persoonsrol.begindatum}" />
+					<form:input type="hidden"
+						path="bedrijf.persoonsrollen[${loop.index}].einddatum" />
+					<form:input type="hidden"
+						path="bedrijf.persoonsrollen[${loop.index}].persoon.id" />
+					<tr>
+						<td><label>Voornaam: </label></td>
+						<td><form:input
+								path="bedrijf.persoonsrollen[${loop.index}].persoon.voornaam" /></td>
+						<td><a href="<c:url value='/relatiebeheer/organisaties/verwijderpersoon-${persoonsrol.id}'/>">
+								<img src="${pageContext.request.contextPath}/resources/rs4/images/icons/simpleicons/notification_error.png"
+								width="10" height="10" alt="Verwijder"></a>
+								</td>
+					</tr>
+					<tr>
+						<td><label>Tussenvoegsel: </label></td>
+						<td><form:input
+								path="bedrijf.persoonsrollen[${loop.index}].persoon.tussenvoegsel" /></td>
+					</tr>
+					<tr>
+						<td><label>Achternaam: </label></td>
+						<td><form:input
+								path="bedrijf.persoonsrollen[${loop.index}].persoon.achternaam" /></td>
+					</tr>
+					<tr>
+						<td><label>Geslacht: </label></td>
+						<td><form:input
+								path="bedrijf.persoonsrollen[${loop.index}].persoon.geslacht" /></td>
+					</tr>
+					<tr>
+						<td><label>Bijzonderheden: </label></td>
+						<td><form:textarea rows="5" cols="20"
+								path="bedrijf.persoonsrollen[${loop.index}].persoon.opmerking"
+								id="opmerking" />
+					
+					</tr>
+					<tr>
+						<td><form:input type="hidden"
+								path="bedrijf.persoonsrollen[${loop.index}].persoon.geboortedatum" /></td>
+					</tr>
+					<tr>
+						<td><form:input type="hidden"
+								path="bedrijf.persoonsrollen[${loop.index}].persoon.geboorteplaats" /></td>
+					</tr>
+					<tr>
+						<td><form:input type="hidden"
+								path="bedrijf.persoonsrollen[${loop.index}].persoon.rijbewijs" /></td>
+					</tr>
+					<tr>
+						<td><form:input type="hidden"
+								path="bedrijf.persoonsrollen[${loop.index}].persoon.nationaliteit" /></td>
+					</tr>
+
+					<tr>
+						<c:forEach items="${persoonsrol.persoon.digitaleAdressen}"
+							var="digitaalAdres" varStatus="innerloop">
+							<tr class="element">
+								<form:input type="hidden"
+									path="bedrijf.persoonsrollen[${loop.index}].persoon.digitaleAdressen[${innerloop.index}].id" />
+								<td><label>${digitaalAdres.digitaalAdresType.type}:
+								</label></td>
+								<td><form:input
+										path="bedrijf.persoonsrollen[${loop.index}].persoon.digitaleAdressen[${innerloop.index}].omschrijving"
+										size="30" /></td>
+
+								<form:input type="hidden"
+									path="bedrijf.persoonsrollen[${loop.index}].persoon.digitaleAdressen[${innerloop.index}].digitaalAdresType.id" />
+							</tr>
+
+						</c:forEach>
+				</c:when>
+				</c:choose>
+				</c:forEach>
+						<tr>
+							<td colspan="3"><input type="submit" name="wijzigcontact"
+								value="Opslaan" /></td>
+						</tr>
+					</table>
+				</form:form>
+			</div>
+			<div class="modal-footer">
+				<a href="#close" class="btn">Sluiten</a>
+				<!--CHANGED TO "#close"-->
+			</div>
+		</div>
+	</div>
 </body>
