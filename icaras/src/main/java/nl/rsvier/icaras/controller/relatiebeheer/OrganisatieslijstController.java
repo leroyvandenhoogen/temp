@@ -183,6 +183,27 @@ public class OrganisatieslijstController {
 		return ("redirect:toon-" + bedrijfDTO.getBedrijf().getId() + "-organisatie");
 	}
 	
+	@RequestMapping(value = { "/toon-{id}-organisatie" }, method = RequestMethod.POST, params="wijzigcontact")
+	public String updateContact(@PathVariable int id,
+			@ModelAttribute("bedrijfDTO") BedrijfDTO bedrijfDTO,
+			BindingResult result, ModelMap model) {
+
+		for (Persoonsrol pRol : bedrijfDTO.getBedrijf().getPersoonsrollen()) {
+
+			for (DigitaalAdres dAdres : pRol.getPersoon().getDigitaleAdressen()) {
+					dAdres.setPersoon(pRol.getPersoon());
+					digitaalAdresService.update(dAdres);
+				}
+				Bedrijf bedrijf = bedrijfDTO.getBedrijf();
+				pRol.setBedrijf(bedrijf);
+				persoonService.update(pRol.getPersoon());
+				persoonsrolService.update(pRol);
+			
+		}
+		
+		return ("redirect:toon-" + bedrijfDTO.getBedrijf().getId() + "-organisatie");
+	}
+	
 	@RequestMapping(value = { "/toon-{id}-organisatie" }, method = RequestMethod.POST, params="nieuwadres")
 	public String nieuwAdres(@PathVariable int id,
 			@ModelAttribute("bedrijfDTO") BedrijfDTO bedrijfDTO,
