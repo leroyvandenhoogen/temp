@@ -35,7 +35,6 @@
 				<tr class="tabelheader">
 					<td>Naam</td>
 					<td>Plaats</td>
-					<td>Opmerking</td>
 					<td></td>
 					<td>Verwijder</td>
 				</tr>
@@ -50,7 +49,6 @@
 							</c:if>
 						</c:forEach>
 
-						<td>${organisatie.opmerking}</td>
 						<td><a
 							href="<c:url value='/relatiebeheer/organisaties/toon-${organisatie.id}-organisatie' />"></a></td>
 						<td><a

@@ -12,53 +12,52 @@
 	<div class="center">
 		<br>
 		<table class="organisiate-details">
-			<tr>
-				<td><c:out
-						value="${fn:toUpperCase(bedrijfDTO.bedrijf.bedrijfType.type)}" /></td>
+			<tr id="bold">
+				<td><c:out value="${fn:toUpperCase(bedrijfDTO.bedrijf.naam)}" />
+					(${bedrijfDTO.bedrijf.bedrijfType.type})</td>
 			</tr>
 			<tr>
-				<td>Naam:</td>
-				<td><c:out value="${fn:toUpperCase(bedrijfDTO.bedrijf.naam)}" /></td>
+				<td></td>
 			</tr>
+			<tr>
+				<td></td>
+			</tr>
+
 
 			<c:forEach items="${bedrijfDTO.bedrijf.adressen}" var="adres"
 				varStatus="loop">
+
 				<tr>
-					<c:set var="string2" value="${adres.adresType.type}" />
-					<td><c:out value="${fn:toUpperCase(adres.adresType.type)}" /></td>
+					<td>${adres.adresType.type} adres:</td>
+					<td><img src="${pageContext.request.contextPath}/resources/rs4/images/icons/simpleicons/notification_error.png"
+								width="10" height="10" >
+					</td>
 				</tr>
 				<tr>
-					<td><label>Straat: </label></td>
-					<td>${adres.straat}</td>
+					<td>${adres.straat} ${adres.nummer} 
+					<c:if test="${adres.toevoegsel != ''}">${adres.toevoegsel} </c:if>
+					</td>
 				</tr>
 				<tr>
-					<td><label>Nummer: </label></td>
-					<td>${adres.nummer}</td>
+					<td>${adres.postcode} <c:out
+							value="${fn:toUpperCase(adres.plaats)}" /></td>
 				</tr>
-				<tr>
-					<td><label>Toevoegsel: </label></td>
-					<td>${adres.toevoegsel}</td>
-				</tr>
-				<tr>
-					<td><label>Postcode: </label></td>
-					<td>${adres.postcode}</td>
-				</tr>
-				<tr>
-					<td><label>Plaats: </label></td>
-					<td>${adres.plaats}</td>
-				</tr>
-				<tr>
-					<td><label>Land: </label></td>
-					<td>${adres.land}</td>
-				</tr>
-				<tr>
-					<td><label>Opmerking: </label></td>
-					<td>${bedrijf.opmerking}</td>
-				</tr>
+
+				<c:if test="${adres.land != 'Nederland'}">
+					<tr>
+						<td><c:out value="${fn:toUpperCase(adres.land)}" /></td>
+					</tr>
+				</c:if>
+
 			</c:forEach>
+			<c:if test="${bedrijfDTO.bedrijf.opmerking != ''}">
+					<tr>
+						<td>${bedrijfDTO.bedrijf.opmerking}</td>
+					</tr>
+			</c:if>
 			<tr>
-				<td><a href="#modal-one" class="btn btn-big">Wijzig</a></td>
-				<td><a href="#modal-two" class="btn btn-big">Bewerk</a></td>
+				<td><a href="#modal-one" class="btn btn-big">Wijzig</a> <a
+					href="#modal-two" class="btn btn-big">Extra</a></td>
 			</tr>
 		</table>
 
@@ -67,43 +66,46 @@
 			<c:forEach items="${bedrijfDTO.bedrijf.persoonsrollen}"
 				var="persoonsrol" varStatus="loop">
 				<tr>
-					<th>Contact:</th>
+					<td><c:choose>
+							<c:when test="${persoonsrol.persoon.geslacht eq 'm'}">
+							dhr 
+						</c:when>
+							<c:when test="${persoonsrol.persoon.geslacht eq 'v'}">
+							mvr 
+						</c:when>
+							<c:otherwise>
+
+							</c:otherwise>
+						</c:choose> ${persoonsrol.persoon.voornaam}<c:if
+							test="${persoonsrol.persoon.tussenvoegsel != ''}">
+					${persoonsrol.persoon.tussenvoegsel} 
+					</c:if> ${persoonsrol.persoon.achternaam}</td>
 				</tr>
 				<tr>
-					<td><label>Voornaam: </label></td>
-					<td>${persoonsrol.persoon.voornaam}</td>
-				</tr>
-				<tr>
-					<td><label>Tussenvoegsel: </label></td>
-					<td>${persoonsrol.persoon.tussenvoegsel}</td>
-				</tr>
-				<tr>
-					<td><label>Achternaam: </label></td>
-					<td>${persoonsrol.persoon.achternaam}</td>
-				</tr>
-				<tr>
-					<td><label>Geslacht: </label></td>
-					<td>${persoonsrol.persoon.geslacht}</td>
-				</tr>
-				<tr>
-					<td><label>Functie: </label></td>
 					<td>${persoonsrol.functie}</td>
 				</tr>
 				<tr>
-					<td><label>Afdeling: </label></td>
 					<td>${persoonsrol.afdeling}</td>
 				</tr>
 				<tr>
 					<c:forEach items="${persoonsrol.persoon.digitaleAdressen}"
 						var="digitaalAdres" varStatus="innerloop">
 						<tr>
-							<td>${digitaalAdres.digitaalAdresType.type}</td>
-							<td>${digitaalAdres.omschrijving}</td>
+							<td><c:if
+									test="${digitaalAdres.digitaalAdresType.type eq 'email'}">
+									<img
+										src="${pageContext.request.contextPath}/resources/rs4/images/icons/simpleicons/mail.png">
+								</c:if> ${digitaalAdres.omschrijving}</td>
 						</tr>
 					</c:forEach>
 				<tr>
-					<td><label>Bijzonderheden: </label></td>
 					<td>${persoonsrol.persoon.opmerking}</td>
+				</tr>
+				<tr>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
 				</tr>
 			</c:forEach>
 			<tr>
@@ -144,11 +146,6 @@
 							<td><form:input type="hidden" path="bedrijf.kvkNummer" /></td>
 						</tr>
 
-						<tr></tr>
-
-						<tr>
-							<th>Adresgegevens</th>
-						</tr>
 						<c:forEach items="${bedrijfDTO.bedrijf.adressen}" var="adres"
 							varStatus="loop">
 							<tr>
@@ -160,12 +157,16 @@
 										path="bedrijf.adressen[${loop.index}].adresType.id">
 										<option value="${adres.adresType.id}" selected>${adres.adresType.type}
 											(huidig)</option>
-										<c:forEach items="${adresTypes}" var="lookupType"
+										<c:forEach items="${bedrijfDTO.adresTypes}" var="lookupType"
 											varStatus="current" begin="0">
 											<option value="${lookupType.id}">${lookupType.type}</option>
 										</c:forEach>
-									</form:select></td>
-							</tr>
+									</form:select>
+								</td>
+								<td><a href="<c:url value='/relatiebeheer/organisaties/verwijderadres-${adres.id}'/>">
+								<img src="${pageContext.request.contextPath}/resources/rs4/images/icons/simpleicons/notification_error.png"
+								width="10" height="10" alt="Verwijder"></a>
+								</td>
 							<tr>
 								<td><label for="straat">Straat: </label></td>
 								<td><form:input
@@ -201,16 +202,96 @@
 								<td><form:input path="bedrijf.adressen[${loop.index}].land"
 										value="${adres.land}" /></td>
 							</tr>
+
+							<tr></tr>
+						</c:forEach>
 							<tr>
 								<td><label for="opmerking">Opmerking: </label></td>
 								<td><form:textarea rows="5" cols="20"
 										path="bedrijf.opmerking" /></td>
 								<td><form:errors path="bedrijf.opmerking" cssClass="error" /></td>
 							</tr>
-							<tr></tr>
-						</c:forEach>
 						<tr>
 							<td colspan="3"><input type="submit" name="wijzigadres"
+								value="Opslaan" /></td>
+						</tr>
+					</table>
+				</form:form>
+			</div>
+			<div class="modal-footer">
+				<a href="#close" class="btn">Sluiten</a>
+				<!--CHANGED TO "#close"-->
+			</div>
+		</div>
+	</div>
+	<div class="modal" id="modal-two" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-header">
+				<h2>Extra adres</h2>
+
+				<a href="#close" class="btn-close" aria-hidden="true">×</a>
+				<!--CHANGED TO "#close"-->
+			</div>
+			<div class="modal-body">
+				<form:form method="POST" modelAttribute="bedrijfDTO">
+					<table>
+						<tr>
+							<form:input type="hidden" path="bedrijf.id" />
+						</tr>
+						<tr>
+							<th>Adresgegevens</th>
+						</tr>
+							<tr>
+								<td><label>Adres type: </label></td>
+								<td>
+
+								<form:select
+										path="adres.adresType.id">
+								<c:choose>
+									<c:when test="${fn:length(bedrijfDTO.bedrijf.adressen) > 0}">
+										<option value="1" selected>Post</option>
+									</c:when>
+									<c:otherwise>
+										<option value="5" selected>Bezoek</option>
+									</c:otherwise>
+								</c:choose>
+										<c:forEach items="${bedrijfDTO.adresTypes}" var="lookupType"
+											varStatus="current" begin="0">
+											<option value="${lookupType.id}">${lookupType.type}</option>
+										</c:forEach>
+									</form:select></td>
+							</tr>
+							<tr>
+								<td><label for="straat">Straat: </label></td>
+								<td><form:input
+										path="adres.straat"/></td>
+							</tr>
+							<tr>
+								<td><label for="nummer">Nummer: </label></td>
+								<td><form:input
+										path="adres.nummer"/></td>
+							</tr>
+							<tr>
+								<td><label for="toevoegsel">Toevoegsel: </label></td>
+								<td><form:input
+										path="adres.toevoegsel"/></td>
+							</tr>
+							<tr>
+								<td><label for="postcode">Postcode: </label></td>
+								<td><form:input
+										path="adres.postcode"/></td>
+							</tr>
+							<tr>
+								<td><label for="plaats">Plaats: </label></td>
+								<td><form:input
+										path="adres.plaats"/></td>
+							</tr>
+							<tr>
+								<td><label for="land">Land: </label></td>
+								<td><form:input path="adres.land"  value="Nederland"/></td>
+							</tr>
+						<tr>
+							<td colspan="3"><input type="submit" name="nieuwadres"
 								value="Opslaan" /></td>
 						</tr>
 					</table>
@@ -310,4 +391,5 @@
 			</div>
 		</div>
 	</div>
+
 </body>

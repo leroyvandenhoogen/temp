@@ -5,12 +5,14 @@
 
 <body>
 	<input type="button" value="Ga terug" onclick="history.back();" />
-	<tr></tr>
+	<br>
 	<form:form method="POST" modelAttribute="bedrijfDTO">
 		<form:input type="hidden" path="bedrijf.id" />
 		<h2>Nieuw Persoon</h2>
 		<table class="details">
+			<tr>
 			<th>Persoonsgegevens</th>
+			</tr>
 			<tr>
 				<td><label>Voornaam: </label></td>
 				<td><form:input path="persoon.voornaam" /></td>

@@ -183,6 +183,18 @@ public class OrganisatieslijstController {
 		return ("redirect:toon-" + bedrijfDTO.getBedrijf().getId() + "-organisatie");
 	}
 	
+	@RequestMapping(value = { "/toon-{id}-organisatie" }, method = RequestMethod.POST, params="nieuwadres")
+	public String nieuwAdres(@PathVariable int id,
+			@ModelAttribute("bedrijfDTO") BedrijfDTO bedrijfDTO,
+			BindingResult result, ModelMap model) {
+			Adres adres = bedrijfDTO.getAdres();
+			adres.setBedrijf(bedrijfDTO.getBedrijf());
+			adresService.save(adres);
+					
+		//return ("redirect:" + organisatieDetails(bedrijfDTO.getBedrijf().getId(), result, model));
+		return ("redirect:toon-" + bedrijfDTO.getBedrijf().getId() + "-organisatie");
+	}
+	
 	@RequestMapping(value = { "/toon-{id}-organisatie" }, method = RequestMethod.POST, params="nieuwpersoon")
 	public String nieuwPersoon(@PathVariable int id,
 			@ModelAttribute("bedrijfDTO") BedrijfDTO bedrijfDTO,
@@ -262,6 +274,15 @@ public class OrganisatieslijstController {
 		return "relatiebeheer/organisaties/bevestigdelete";
 
 	}
+	
+	@RequestMapping(value={"/verwijderadres-{id}" }, method= RequestMethod.GET)
+	public String verwijderAdres(@ModelAttribute("id") int id, BindingResult result, ModelMap model) {
+		Adres adres = adresService.get(id);
+		int bedrijfId = adres.getBedrijf().getId();
+		adresService.delete(adres);
+		
+		return ("redirect:toon-" + bedrijfId + "-organisatie");
+		}
 
 	@RequestMapping(value = { "/zoekContactpersoon-{id}" }, method = RequestMethod.GET)
 	public String zoekContactpersoon(@ModelAttribute("id") int id,
