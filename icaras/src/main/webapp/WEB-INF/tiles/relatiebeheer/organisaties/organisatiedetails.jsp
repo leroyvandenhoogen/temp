@@ -62,6 +62,8 @@
 
 			<c:forEach items="${bedrijfDTO.bedrijf.persoonsrollen}"
 				var="persoonsrol" varStatus="loop">
+				<c:choose>
+				<c:when test="${persoonsrol.einddatum == null}">
 				<tr>
 					<td><c:choose>
 							<c:when test="${persoonsrol.persoon.geslacht eq 'm'}">
@@ -108,6 +110,9 @@
 				<tr>
 					<td></td>
 				</tr>
+				</c:when>
+				</c:choose>
+				
 			</c:forEach>
 			<tr>
 				<td><a href="#modal-three" class="btn btn-big">Wijzig</a> <a href="#modal-four" class="btn btn-big">Nieuw</a></td>
@@ -407,7 +412,8 @@
 						</tr>
 						<c:forEach items="${bedrijfDTO.bedrijf.persoonsrollen}"
 					var="persoonsrol" varStatus="loop">
-
+									<c:choose>
+				<c:when test="${persoonsrol.einddatum == null}">
 					<form:input type="hidden"
 						path="bedrijf.persoonsrollen[${loop.index}].id" />
 					<form:input type="hidden"
@@ -425,6 +431,10 @@
 						<td><label>Voornaam: </label></td>
 						<td><form:input
 								path="bedrijf.persoonsrollen[${loop.index}].persoon.voornaam" /></td>
+						<td><a href="<c:url value='/relatiebeheer/organisaties/verwijderpersoon-${persoonsrol.id}'/>">
+								<img src="${pageContext.request.contextPath}/resources/rs4/images/icons/simpleicons/notification_error.png"
+								width="10" height="10" alt="Verwijder"></a>
+								</td>
 					</tr>
 					<tr>
 						<td><label>Tussenvoegsel: </label></td>
@@ -482,7 +492,8 @@
 							</tr>
 
 						</c:forEach>
-				
+				</c:when>
+				</c:choose>
 				</c:forEach>
 						<tr>
 							<td colspan="3"><input type="submit" name="wijzigcontact"
