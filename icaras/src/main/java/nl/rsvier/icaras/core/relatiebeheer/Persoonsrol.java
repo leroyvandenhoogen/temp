@@ -104,7 +104,7 @@ public class Persoonsrol implements java.io.Serializable {
 	}
 	
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(iso = ISO.DATE, pattern="yyyy-MM-dd")
+	@DateTimeFormat(iso = ISO.DATE, pattern="dd-MM-yyyy")
 	@Column(name = "begindatum", nullable = false, length = 10)
 	public Date getBegindatum() {
 		return this.begindatum;
@@ -115,6 +115,7 @@ public class Persoonsrol implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(iso = ISO.DATE, pattern="dd-MM-yyyy")
 	@Column(name = "einddatum", length = 10)
 	public Date getEinddatum() {
 		return this.einddatum;

@@ -28,12 +28,12 @@
 	</form:form>
 
 	<c:choose>
-		<c:when test="${not empty personen}">
-			<c:if test="${fn:length(personen) > 1}">
-				<h2>Er zijn ${fn:length(personen)} personen gevonden</h2>
+		<c:when test="${not empty contactpersonen}">
+			<c:if test="${fn:length(contactpersonen) > 1}">
+				<h2>Er zijn ${fn:length(contactpersonen)} personen gevonden</h2>
 			</c:if>
-			<c:if test="${fn:length(personen) == 1}">
-				<h2>Er is ${fn:length(personen)} persoon gevonden</h2>
+			<c:if test="${fn:length(contactpersonen) == 1}">
+				<h2>Er is ${fn:length(contactpersonen)} persoon gevonden</h2>
 			</c:if>
 			<h3>Personenlijst</h3>
 			<table id="lijst" class="list">
@@ -44,7 +44,7 @@
 					<td>Rollen</td>
 					<td></td>
 				</tr>
-				<c:forEach items="${personen}" var="persoon">
+				<c:forEach items="${contactpersonen}" var="persoon">
 					<tr class="element">
 						<td>${persoon.voornaam}</td>
 						<td>${persoon.achternaam}</td>
@@ -58,7 +58,7 @@
 		</c:when>
 
 		<c:when
-			test="${fn:length(personen) == 0 && fn:length(bedrijfDTO.input) > 0}">
+			test="${fn:length(contactpersonen) == 0 && fn:length(bedrijfDTO.input) > 0}">
 			<h2>Er zijn geen resultaten gevonden</h2>
 		</c:when>
 		<c:otherwise>
