@@ -5,22 +5,21 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
-import javax.validation.Valid;
-
 import nl.rsvier.icaras.core.relatiebeheer.Adres;
 import nl.rsvier.icaras.core.relatiebeheer.Bedrijf;
+import nl.rsvier.icaras.core.relatiebeheer.BedrijfType;
 import nl.rsvier.icaras.core.relatiebeheer.DigitaalAdres;
 import nl.rsvier.icaras.core.relatiebeheer.Persoon;
 import nl.rsvier.icaras.core.relatiebeheer.Persoonsrol;
 import nl.rsvier.icaras.service.relatiebeheer.AdresService;
 import nl.rsvier.icaras.service.relatiebeheer.BedrijfService;
+import nl.rsvier.icaras.service.relatiebeheer.BedrijfTypeService;
 import nl.rsvier.icaras.service.relatiebeheer.DigitaalAdresService;
 import nl.rsvier.icaras.service.relatiebeheer.PersoonService;
 import nl.rsvier.icaras.service.relatiebeheer.PersoonsrolService;
 import nl.rsvier.icaras.util.relatiebeheer.AchternaamComparator;
 import nl.rsvier.icaras.util.relatiebeheer.BedrijfComparator;
 import nl.rsvier.icaras.util.relatiebeheer.BedrijfDTO;
-import nl.rsvier.icaras.util.relatiebeheer.DAdresComparator;
 import nl.rsvier.icaras.util.relatiebeheer.Zoekinput;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +46,8 @@ public class OrganisatieslijstController {
 	PersoonService persoonService;
 	@Autowired
 	DigitaalAdresService digitaalAdresService;
+	@Autowired
+	BedrijfTypeService bedrijfTypeService;
 
 	@RequestMapping(value = { "/zoeken" }, method = RequestMethod.GET)
 	public String zoekOrganisatie(
@@ -86,10 +87,12 @@ public class OrganisatieslijstController {
 		Bedrijf bedrijf = bedrijfDTO.getBedrijf();
 		Adres adres = bedrijfDTO.getAdres();
 		bedrijf.addAdres(adres);
+		int bedrijfTypeId = bedrijfDTO.getBedrijf().getBedrijfType().getId();
+		BedrijfType bedrijfType = bedrijfTypeService.getById(bedrijfTypeId);
+		bedrijfService.addBedrijfType(bedrijfType.getType(), bedrijf);
 		bedrijfService.save(bedrijfDTO.getBedrijf());
 		adresService.save(bedrijfDTO.getAdres());
-		//return ("redirect:toon-" + bedrijfDTO.getBedrijf().getId() + "-organisatie");
-		return ("redirect:" + organisatieDetails(bedrijfDTO.getBedrijf().getId(), result, model));
+		return ("redirect:" + organisatieDetails(bedrijf.getId(), result, model));
 	}
 
 	@RequestMapping(value = { "/nieuwAdres-{id}" }, method = RequestMethod.GET)
@@ -164,6 +167,7 @@ public class OrganisatieslijstController {
 		bedrijfDTO.setBedrijf(organisatie);
 		bedrijfDTO.setAdresTypes(adresService.getAllTypes());
 		bedrijfDTO.setBedrijfTypes(bedrijfService.getAllTypes());
+		bedrijfDTO.setDigitaalAdresTypes(digitaalAdresService.getAllTypes());
 		model.addAttribute("bedrijfDTO", bedrijfDTO);
 
 		return "relatiebeheer/organisaties/details";

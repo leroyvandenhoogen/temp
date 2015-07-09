@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import nl.rsvier.icaras.core.relatiebeheer.Adres;
 import nl.rsvier.icaras.core.relatiebeheer.Bedrijf;
 import nl.rsvier.icaras.core.relatiebeheer.BedrijfType;
 import nl.rsvier.icaras.dao.relatiebeheer.BedrijfDaoImpl;
@@ -28,6 +29,12 @@ public class BedrijfService {
 		bedrijfDao.save(b);
 	}
 	
+	public void save(String bedrijfType, Bedrijf b) {
+		if(addBedrijfType(bedrijfType, b)) {
+			bedrijfDao.save(b);
+		}
+	}
+	
 	public void update(Bedrijf b) {
 		bedrijfDao.update(b);
 	}
@@ -50,5 +57,9 @@ public class BedrijfService {
 	
 	public List<BedrijfType> getAllTypes() {
 		return bedrijfTypeDao.getAll();
+	}
+	
+	public boolean addBedrijfType(String bedrijfType, Bedrijf bedrijf) {
+		return bedrijfTypeDao.addType(bedrijfType, bedrijf);
 	}
 }

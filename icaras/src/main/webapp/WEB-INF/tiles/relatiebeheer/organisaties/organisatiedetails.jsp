@@ -170,7 +170,7 @@
 								</td>
 								<td><a href="<c:url value='/relatiebeheer/organisaties/verwijderadres-${adres.id}'/>">
 								<img src="${pageContext.request.contextPath}/resources/rs4/images/icons/simpleicons/notification_error.png"
-								width="10" height="10" alt="Verwijder"></a>
+								width="20" height="20" alt="Verwijder"></a>
 								</td>
 							<tr>
 								<td><label for="straat">Straat: </label></td>
@@ -433,7 +433,7 @@
 								path="bedrijf.persoonsrollen[${loop.index}].persoon.voornaam" /></td>
 						<td><a href="<c:url value='/relatiebeheer/organisaties/verwijderpersoon-${persoonsrol.id}'/>">
 								<img src="${pageContext.request.contextPath}/resources/rs4/images/icons/simpleicons/notification_error.png"
-								width="10" height="10" alt="Verwijder"></a>
+								width="20" height="20" alt="Verwijder"></a>
 								</td>
 					</tr>
 					<tr>
@@ -452,11 +452,21 @@
 								path="bedrijf.persoonsrollen[${loop.index}].persoon.geslacht" /></td>
 					</tr>
 					<tr>
+						<td><label>Functie: </label></td>
+						<td><form:input
+								path="bedrijf.persoonsrollen[${loop.index}].functie" /></td>
+					</tr>
+					<tr>
+						<td><label>Afdeling: </label></td>
+						<td><form:input
+								path="bedrijf.persoonsrollen[${loop.index}].afdeling" /></td>
+					</tr>
+					
+					<tr>
 						<td><label>Bijzonderheden: </label></td>
 						<td><form:textarea rows="5" cols="20"
 								path="bedrijf.persoonsrollen[${loop.index}].persoon.opmerking"
-								id="opmerking" />
-					
+								id="opmerking" />					
 					</tr>
 					<tr>
 						<td><form:input type="hidden"
