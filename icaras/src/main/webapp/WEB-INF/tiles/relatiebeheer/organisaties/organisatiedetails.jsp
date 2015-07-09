@@ -115,7 +115,9 @@
 				
 			</c:forEach>
 			<tr>
-				<td><a href="#modal-three" class="btn btn-big">Wijzig</a> <a href="#modal-four" class="btn btn-big">Nieuw</a></td>
+				<td><a href="#modal-three" class="btn btn-big">Wijzig</a> 
+				<a href="#modal-four" class="btn btn-big">Nieuw</a>
+				<a href="<c:url value='/relatiebeheer/organisaties/zoekContactpersoon-${bedrijfDTO.bedrijf.id}' />" class="btn btn-big" >Zoek</a></td>
 			</tr>
 		</table>
 	</div>
@@ -136,7 +138,7 @@
 						<tr>
 							<td></td>
 							<td><form:select path="bedrijf.bedrijfType.id">
-									<option value="2" selected>detacheerder</option>
+									<option value="${bedrijfDTO.bedrijf.bedrijfType.id}" selected>${bedrijfDTO.bedrijf.bedrijfType.type}</option>
 									<c:forEach items="${bedrijfDTO.bedrijfTypes}" var="lookupType">
 										<option value="${lookupType.id}">${lookupType.type}</option>
 									</c:forEach>

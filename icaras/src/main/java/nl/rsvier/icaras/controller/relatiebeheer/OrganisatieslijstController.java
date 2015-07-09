@@ -92,7 +92,7 @@ public class OrganisatieslijstController {
 		bedrijfService.addBedrijfType(bedrijfType.getType(), bedrijf);
 		bedrijfService.save(bedrijfDTO.getBedrijf());
 		adresService.save(bedrijfDTO.getAdres());
-		return ("redirect:" + organisatieDetails(bedrijf.getId(), result, model));
+		return ("redirect:toon-" + bedrijf.getId() + "-organisatie");
 	}
 
 	@RequestMapping(value = { "/nieuwAdres-{id}" }, method = RequestMethod.GET)
@@ -359,14 +359,16 @@ public class OrganisatieslijstController {
 		persoonsrolService.save(persoonsrol);
 		organisatie.addPersoonsrol(persoonsrol);
 		bedrijfService.update(organisatie);
-		BedrijfDTO bedrijfDTO = new BedrijfDTO();
-		bedrijfDTO.setBedrijf(organisatie);
-		bedrijfDTO.setPersoon(persoon);
-
-		model.addAttribute("bedrijfDTO", bedrijfDTO);
-		model.addAttribute("succes", bedrijfDTO.getPersoon().getVolledigeNaam()
-				+ " is toegevoegd aan " + bedrijfDTO.getBedrijf().getNaam());
-		return "relatiebeheer/organisaties/bevestig";
+//		BedrijfDTO bedrijfDTO = new BedrijfDTO();
+//		bedrijfDTO.setBedrijf(organisatie);
+//		bedrijfDTO.setPersoon(persoon);
+//
+//		model.addAttribute("bedrijfDTO", bedrijfDTO);
+//		model.addAttribute("succes", bedrijfDTO.getPersoon().getVolledigeNaam()
+//				+ " is toegevoegd aan " + bedrijfDTO.getBedrijf().getNaam());
+//		return "relatiebeheer/organisaties/bevestig";
+		return ("redirect:toon-" + bedrijfid + "-organisatie");
 	}
+	
 
 }
