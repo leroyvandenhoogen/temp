@@ -241,7 +241,7 @@ public class OrganisatieslijstController {
 		List<Persoon> contactpersonen = persoonService.search(bedrijfDTO
 				.getInput());
 		Collections.sort(contactpersonen, new AchternaamComparator());
-		model.addAttribute("personen", contactpersonen);
+		model.addAttribute("contactpersonen", contactpersonen);
 		bedrijfDTO.setBedrijf(bedrijfService.get(id));
 
 		model.addAttribute("bedrijfDTO", bedrijfDTO);
