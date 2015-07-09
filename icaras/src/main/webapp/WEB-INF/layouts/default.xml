@@ -135,6 +135,10 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/relatiebeheer/onderhoud/adresTypes.jsp"/>
 	</definition>
 	
+	<definition name="projectinfo" extends="home.base"> 
+		<put-attribute name="title" value="RSVIER Project info" /> 
+		<put-attribute name="content" value="/WEB-INF/tiles/projectinfo.jsp" /> 
+	</definition>
 
 	<!-- <definition name="personen" extends="home.base"> <put-attribute name="title" 
 		value="RSVIER Personen" /> <put-attribute name="content" value="/WEB-INF/tiles/personenlijst.jsp" 
@@ -196,8 +200,5 @@
 		name="details" value="/WEB-INF/tiles/nieuworganisatie.jsp" /> </definition> 
 		<definition name="organisatiedetails" extends="organisaties"> <put-attribute 
 		name="title" value="RSVIER Organisatiedetails" /> <put-attribute name="details" 
-		value="/WEB-INF/tiles/organisatiedetails.jsp" /> </definition> <definition 
-		name="projectinfo" extends="home.base"> <put-attribute name="title" value="RSVIER 
-		Project info" /> <put-attribute name="content" value="/WEB-INF/tiles/projectinfo.jsp" 
-		/> </definition> -->
+		value="/WEB-INF/tiles/organisatiedetails.jsp" /> </definition>  -->
 </tiles-definitions>
