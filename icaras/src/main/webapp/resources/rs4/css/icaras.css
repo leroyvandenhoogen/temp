@@ -175,7 +175,9 @@ a.footer {
 
 table#lijst {
 	border-collapse: collapse;
-	width: 50%;
+	width: 470px;
+	max-height: 465px;
+	overflow-y: auto;
 }
 
 #lijst tr {
