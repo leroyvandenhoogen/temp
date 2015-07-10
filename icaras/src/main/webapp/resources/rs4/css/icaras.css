@@ -237,7 +237,13 @@ table#lijst {
 
 .btn.btn-big {
   font-size: 18px;
-  padding: 10px 15px;
+  padding: 5px 10px;
+  min-width: 80px;
+}
+
+.btn.btn-small {
+  font-size: 14px;
+  padding: 3px 6px;
   min-width: 80px;
 }
 

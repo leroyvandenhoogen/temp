@@ -18,13 +18,13 @@
 </script>
 
 <body>
-	<input type="button" value="Ga terug" onclick="history.back();" />
+	<input type="button" value="Ga terug" onclick="history.back();" class="btn btn-small"/>
 	<tr></tr>
 	<h1>Zoek een persoon</h1>
 	<br>
 	<form:form method="POST" modelAttribute="bedrijfDTO">
 		<form:input type="text" path="input" name="zoekinputarea" value="" />
-		<input type="submit" value="zoek" />
+		<input type="submit" value="zoek" class="btn btn-small"/>
 	</form:form>
 
 	<c:choose>

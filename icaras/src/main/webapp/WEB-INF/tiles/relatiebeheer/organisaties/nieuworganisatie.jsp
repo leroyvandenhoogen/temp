@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <body>
-	<input type="button" value="Ga terug" onclick="history.back();" />
+	<input type="button" value="Ga terug" onclick="history.back();" class="btn btn-small"/>
 	<br>
 	<form:form method="POST" modelAttribute="bedrijfDTO">
 		<h2>Nieuwe organisatie</h2>
@@ -67,7 +67,7 @@
 				<td><form:input path="adres.land" value="Nederland" /></td>
 			</tr>
 		</table>
-		<td colspan="3"><input type="submit" value="submit" /></td>
+		<td colspan="3"><input type="submit" value="submit" class="btn btn-small"/></td>
 	</form:form>
 
 </body>

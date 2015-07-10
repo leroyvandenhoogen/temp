@@ -5,10 +5,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <body>
-	<input type="button" value="Ga terug" onclick="history.back();" />
+	<input type="button" value="Ga terug" onclick="history.back();" class="btn btn-small"/>
 	<input type="submit"
 		onclick="location.href='${pageContext.request.contextPath}/relatiebeheer/organisaties/zoeken'"
-		value="zoekscherm" />
+		value="zoekscherm" class="btn btn-small"/>
 	<div class="center">
 		<br>
 		<table class="organisiate-details">
@@ -212,7 +212,7 @@
 							</tr>
 						<tr>
 							<td colspan="3"><input type="submit" name="wijzigadres"
-								value="Opslaan" /></td>
+								value="Opslaan" class="btn btn-small"/></td>
 						</tr>
 					</table>
 				</form:form>
@@ -291,7 +291,7 @@
 							</tr>
 						<tr>
 							<td colspan="3"><input type="submit" name="nieuwadres"
-								value="Opslaan" /></td>
+								value="Opslaan" class="btn btn-small"/></td>
 						</tr>
 					</table>
 				</form:form>
@@ -382,7 +382,7 @@
 					</table>
 					<tr>
 						<td colspan="3"><input type="submit" name="nieuwpersoon"
-							value="Opslaan" /></td>
+							value="Opslaan" class="btn btn-small"/></td>
 					</tr>
 				</form:form>
 			</div>
@@ -507,7 +507,7 @@
 				</c:forEach>
 						<tr>
 							<td colspan="3"><input type="submit" name="wijzigcontact"
-								value="Opslaan" /></td>
+								value="Opslaan" class="btn btn-small"/></td>
 						</tr>
 					</table>
 				</form:form>

@@ -24,7 +24,7 @@
 	<form:form method="POST" modelAttribute="zoekinput">
 		Zoek een organisatie:<br>
 		<form:input type="text" path="input" name="zoekinputarea" value="" />
-		<input type="submit" value="zoek" />
+		<input type="submit" value="zoek" class="btn btn-small"/>
 	</form:form>
 
 	<c:choose>
