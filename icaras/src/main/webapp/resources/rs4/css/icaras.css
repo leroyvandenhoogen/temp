@@ -277,7 +277,7 @@ table#lijst {
   border: #333333 solid 1px;
   border-radius: 5px;
   margin-left: -200px;
-  position: fixed;
+  position: absolute;
   left: 50%;
   top: -100%;
   z-index: 11;
