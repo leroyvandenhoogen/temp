@@ -36,6 +36,7 @@
 				<h2>Er is ${fn:length(contactpersonen)} persoon gevonden</h2>
 			</c:if>
 			<h3>Personenlijst</h3>
+			<div class="divlijst">
 			<table id="lijst" class="list">
 				<tr class="tabelheader">
 					<td>Voornaam</td>
@@ -55,6 +56,7 @@
 					</tr>
 				</c:forEach>
 			</table>
+			</div>
 		</c:when>
 
 		<c:when
