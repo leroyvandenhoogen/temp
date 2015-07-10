@@ -94,7 +94,6 @@ public class OrganisatieslijstController {
 		return ("redirect:toon-" + bedrijf.getId() + "-organisatie");
 	}
 
-
 	@RequestMapping(value = { "/toon-{id}-organisatie" }, method = RequestMethod.GET)
 	public String organisatieDetails(@ModelAttribute("id") int id,
 			BindingResult result, ModelMap model) {
@@ -109,7 +108,7 @@ public class OrganisatieslijstController {
 		return "relatiebeheer/organisaties/details";
 	}
 
-	@RequestMapping(value = { "/toon-{id}-organisatie" }, method = RequestMethod.POST, params="wijzigadres")
+	@RequestMapping(value = { "/toon-{id}-organisatie" }, method = RequestMethod.POST, params = "wijzigadres")
 	public String updateAdres(@PathVariable int id,
 			@ModelAttribute("bedrijfDTO") BedrijfDTO bedrijfDTO,
 			BindingResult result, ModelMap model) {
@@ -117,44 +116,47 @@ public class OrganisatieslijstController {
 			adres.setBedrijf(bedrijfDTO.getBedrijf());
 			adresService.update(adres);
 		}
-		
+
 		bedrijfService.update(bedrijfDTO.getBedrijf());
-		//return ("redirect:" + organisatieDetails(bedrijfDTO.getBedrijf().getId(), result, model));
+		// return ("redirect:" +
+		// organisatieDetails(bedrijfDTO.getBedrijf().getId(), result, model));
 		return ("redirect:toon-" + bedrijfDTO.getBedrijf().getId() + "-organisatie");
 	}
-	
-	@RequestMapping(value = { "/toon-{id}-organisatie" }, method = RequestMethod.POST, params="wijzigcontact")
+
+	@RequestMapping(value = { "/toon-{id}-organisatie" }, method = RequestMethod.POST, params = "wijzigcontact")
 	public String updateContact(@PathVariable int id,
 			@ModelAttribute("bedrijfDTO") BedrijfDTO bedrijfDTO,
 			BindingResult result, ModelMap model) {
 		Bedrijf bedrijf = bedrijfService.get(bedrijfDTO.getBedrijf().getId());
 		for (Persoonsrol pRol : bedrijfDTO.getBedrijf().getPersoonsrollen()) {
-
-			for (DigitaalAdres dAdres : pRol.getPersoon().getDigitaleAdressen()) {
+			if (pRol.getEinddatum() == null) {
+				for (DigitaalAdres dAdres : pRol.getPersoon()
+						.getDigitaleAdressen()) {
 					dAdres.setPersoon(pRol.getPersoon());
 					digitaalAdresService.update(dAdres);
 				}
 				pRol.setBedrijf(bedrijf);
 				persoonService.update(pRol.getPersoon());
-				persoonsrolService.update(pRol);			
+				persoonsrolService.update(pRol);
+			}
 		}
-		
 		return ("redirect:toon-" + bedrijfDTO.getBedrijf().getId() + "-organisatie");
 	}
-	
-	@RequestMapping(value = { "/toon-{id}-organisatie" }, method = RequestMethod.POST, params="nieuwadres")
+
+	@RequestMapping(value = { "/toon-{id}-organisatie" }, method = RequestMethod.POST, params = "nieuwadres")
 	public String nieuwAdres(@PathVariable int id,
 			@ModelAttribute("bedrijfDTO") BedrijfDTO bedrijfDTO,
 			BindingResult result, ModelMap model) {
-			Adres adres = bedrijfDTO.getAdres();
-			adres.setBedrijf(bedrijfDTO.getBedrijf());
-			adresService.save(adres);
-					
-		//return ("redirect:" + organisatieDetails(bedrijfDTO.getBedrijf().getId(), result, model));
+		Adres adres = bedrijfDTO.getAdres();
+		adres.setBedrijf(bedrijfDTO.getBedrijf());
+		adresService.save(adres);
+
+		// return ("redirect:" +
+		// organisatieDetails(bedrijfDTO.getBedrijf().getId(), result, model));
 		return ("redirect:toon-" + bedrijfDTO.getBedrijf().getId() + "-organisatie");
 	}
-	
-	@RequestMapping(value = { "/toon-{id}-organisatie" }, method = RequestMethod.POST, params="nieuwpersoon")
+
+	@RequestMapping(value = { "/toon-{id}-organisatie" }, method = RequestMethod.POST, params = "nieuwpersoon")
 	public String nieuwPersoon(@PathVariable int id,
 			@ModelAttribute("bedrijfDTO") BedrijfDTO bedrijfDTO,
 			BindingResult result, ModelMap model) {
@@ -177,28 +179,31 @@ public class OrganisatieslijstController {
 		digitaalAdresService.save(dAdres1);
 		digitaalAdresService.save(dAdres2);
 
-		//return ("redirect:" + organisatieDetails(bedrijfDTO.getBedrijf().getId(), result, model));
+		// return ("redirect:" +
+		// organisatieDetails(bedrijfDTO.getBedrijf().getId(), result, model));
 		return ("redirect:toon-" + bedrijf.getId() + "-organisatie");
 	}
-	
-	@RequestMapping(value={"/verwijderadres-{id}" }, method= RequestMethod.GET)
-	public String verwijderAdres(@ModelAttribute("id") int id, BindingResult result, ModelMap model) {
+
+	@RequestMapping(value = { "/verwijderadres-{id}" }, method = RequestMethod.GET)
+	public String verwijderAdres(@ModelAttribute("id") int id,
+			BindingResult result, ModelMap model) {
 		Adres adres = adresService.get(id);
 		int bedrijfId = adres.getBedrijf().getId();
 		adresService.delete(adres);
-		
+
 		return ("redirect:toon-" + bedrijfId + "-organisatie");
-		}
-	
-	@RequestMapping(value={"/verwijderpersoon-{id}" }, method= RequestMethod.GET)
-	public String verwijderpersoon(@ModelAttribute("id") int id, BindingResult result, ModelMap model) {
+	}
+
+	@RequestMapping(value = { "/verwijderpersoon-{id}" }, method = RequestMethod.GET)
+	public String verwijderpersoon(@ModelAttribute("id") int id,
+			BindingResult result, ModelMap model) {
 		Persoonsrol pRol = persoonsrolService.get(id);
 		int bedrijfId = pRol.getBedrijf().getId();
 		pRol.setEinddatum(new Date(Calendar.getInstance().getTimeInMillis()));
 		persoonsrolService.update(pRol);
-		
+
 		return ("redirect:toon-" + bedrijfId + "-organisatie");
-		}
+	}
 
 	@RequestMapping(value = { "/verwijder-{id}" }, method = RequestMethod.GET)
 	public String verwijderOrganisatieGET(@ModelAttribute("id") int id,
@@ -264,107 +269,114 @@ public class OrganisatieslijstController {
 		persoonsrolService.save(persoonsrol);
 		organisatie.addPersoonsrol(persoonsrol);
 		bedrijfService.update(organisatie);
-//		BedrijfDTO bedrijfDTO = new BedrijfDTO();
-//		bedrijfDTO.setBedrijf(organisatie);
-//		bedrijfDTO.setPersoon(persoon);
-//
-//		model.addAttribute("bedrijfDTO", bedrijfDTO);
-//		model.addAttribute("succes", bedrijfDTO.getPersoon().getVolledigeNaam()
-//				+ " is toegevoegd aan " + bedrijfDTO.getBedrijf().getNaam());
-//		return "relatiebeheer/organisaties/bevestig";
+		// BedrijfDTO bedrijfDTO = new BedrijfDTO();
+		// bedrijfDTO.setBedrijf(organisatie);
+		// bedrijfDTO.setPersoon(persoon);
+		//
+		// model.addAttribute("bedrijfDTO", bedrijfDTO);
+		// model.addAttribute("succes",
+		// bedrijfDTO.getPersoon().getVolledigeNaam()
+		// + " is toegevoegd aan " + bedrijfDTO.getBedrijf().getNaam());
+		// return "relatiebeheer/organisaties/bevestig";
 		return ("redirect:toon-" + bedrijfid + "-organisatie");
 	}
-	
-//	@RequestMapping(value = { "/nieuwAdres-{id}" }, method = RequestMethod.GET)
-//	public String adresToevoegen(@ModelAttribute("id") int id,
-//			BindingResult result, ModelMap model) {
-//		BedrijfDTO bedrijfDTO = new BedrijfDTO();
-//		bedrijfDTO.setBedrijf(bedrijfService.get(id));
-//		bedrijfDTO.setAdresTypes(adresService.getAllTypes());
-//		model.addAttribute("bedrijfDTO", bedrijfDTO);
-//		return "relatiebeheer/organisaties/nieuwAdres";
-//	}
-//
-//	@RequestMapping(value = { "/nieuwAdres-{id}" }, method = RequestMethod.POST)
-//	public String adresToevoegen(@ModelAttribute("id") int id,
-//			BindingResult result,
-//			@ModelAttribute("bedrijfDTO") BedrijfDTO bedrijfDTO,
-//			BindingResult result2, ModelMap model) {
-//		Bedrijf bedrijf = bedrijfService.get(bedrijfDTO.getBedrijf().getId());
-//		bedrijf.addAdres(bedrijfDTO.getAdres());
-//		adresService.save(bedrijfDTO.getAdres());
-//		bedrijfService.update(bedrijf);
-//		model.addAttribute("bedrijfDTO", bedrijfDTO);
-//		model.addAttribute("succes", "Nieuw adres voor " + bedrijf.getNaam()
-//				+ " toegevoegd!");
-//		return "relatiebeheer/organisaties/bevestig";
-//
-//	}
-//
-//	@RequestMapping(value = { "/nieuwContactpersoon-{id}" }, method = RequestMethod.GET)
-//	public String contactpersoonToevoegen(@ModelAttribute("id") int id,
-//			BindingResult result, ModelMap model) {
-//		BedrijfDTO bedrijfDTO = new BedrijfDTO();
-//		bedrijfDTO.setDigitaalAdresTypes(digitaalAdresService.getAllTypes());
-//		bedrijfDTO.setBedrijf(bedrijfService.get(id));
-//		model.addAttribute("bedrijfDTO", bedrijfDTO);
-//		return "relatiebeheer/organisaties/nieuwContactpersoon";
-//	}
-//
-//	@RequestMapping(value = { "/nieuwContactpersoon-{id}" }, method = RequestMethod.POST)
-//	public String contactpersoonToevoegen(@ModelAttribute("id") int id,
-//			BindingResult result,
-//			@ModelAttribute("bedrijfDTO") BedrijfDTO bedrijfDTO,
-//			BindingResult result2, ModelMap model) {
-//		Bedrijf bedrijf = bedrijfService.get(id);
-//		persoonService.save(bedrijfDTO.getPersoon());
-//		Persoonsrol persoonsrol = new Persoonsrol();
-//		persoonsrol.setPersoon(bedrijfDTO.getPersoon());
-//		persoonsrol.setBedrijf(bedrijf);
-//		persoonsrol.setBegindatum(new Date(Calendar.getInstance()
-//				.getTimeInMillis()));
-//		persoonsrolService.addRol("contactpersoon", persoonsrol);
-//		persoonsrolService.save(persoonsrol);
-//		bedrijf.addPersoonsrol(persoonsrol);
-//		bedrijfService.update(bedrijf);
-//		DigitaalAdres dAdres1 = bedrijfDTO.getdAdres1();
-//		DigitaalAdres dAdres2 = bedrijfDTO.getdAdres2();
-//		dAdres1.setPersoon(bedrijfDTO.getPersoon());
-//		dAdres2.setPersoon(bedrijfDTO.getPersoon());
-//		digitaalAdresService.save(dAdres1);
-//		digitaalAdresService.save(dAdres2);
-//		model.addAttribute("bedrijfDTO", bedrijfDTO);
-//		model.addAttribute("succes", bedrijfDTO.getPersoon().getVolledigeNaam()
-//				+ " is toegevoegd");
-//		return "relatiebeheer/organisaties/bevestig";
-//	}
-//	
-//	@RequestMapping(value = { "/toon-{id}-organisatie" }, method = RequestMethod.POST)
-//	public String updateOrganisatie(@PathVariable int id,
-//			@ModelAttribute("bedrijfDTO") BedrijfDTO bedrijfDTO,
-//			BindingResult result, ModelMap model) {
-//		for (Adres adres : bedrijfDTO.getBedrijf().getAdressen()) {
-//			adres.setBedrijf(bedrijfDTO.getBedrijf());
-//			adresService.update(adres);
-//		}
-//		for (Persoonsrol pRol : bedrijfDTO.getBedrijf().getPersoonsrollen()) {
-//
-//			pRol.setBedrijf(bedrijfDTO.getBedrijf());
-//			for (DigitaalAdres dAdres : pRol.getPersoon().getDigitaleAdressen()) {
-//				dAdres.setPersoon(pRol.getPersoon());
-//				digitaalAdresService.update(dAdres);
-//			}
-//			persoonService.update(pRol.getPersoon());
-//			persoonsrolService.update(pRol);
-//		}
-//		bedrijfService.update(bedrijfDTO.getBedrijf());
-//
-//		model.addAttribute("bedrijfDTO", bedrijfDTO);
-//		model.addAttribute("succes", bedrijfDTO.getBedrijf().getNaam() + " is aangepast");
-//
-//		return "relatiebeheer/organisaties/bevestig";
-//
-//	}
-//	
+
+	// @RequestMapping(value = { "/nieuwAdres-{id}" }, method =
+	// RequestMethod.GET)
+	// public String adresToevoegen(@ModelAttribute("id") int id,
+	// BindingResult result, ModelMap model) {
+	// BedrijfDTO bedrijfDTO = new BedrijfDTO();
+	// bedrijfDTO.setBedrijf(bedrijfService.get(id));
+	// bedrijfDTO.setAdresTypes(adresService.getAllTypes());
+	// model.addAttribute("bedrijfDTO", bedrijfDTO);
+	// return "relatiebeheer/organisaties/nieuwAdres";
+	// }
+	//
+	// @RequestMapping(value = { "/nieuwAdres-{id}" }, method =
+	// RequestMethod.POST)
+	// public String adresToevoegen(@ModelAttribute("id") int id,
+	// BindingResult result,
+	// @ModelAttribute("bedrijfDTO") BedrijfDTO bedrijfDTO,
+	// BindingResult result2, ModelMap model) {
+	// Bedrijf bedrijf = bedrijfService.get(bedrijfDTO.getBedrijf().getId());
+	// bedrijf.addAdres(bedrijfDTO.getAdres());
+	// adresService.save(bedrijfDTO.getAdres());
+	// bedrijfService.update(bedrijf);
+	// model.addAttribute("bedrijfDTO", bedrijfDTO);
+	// model.addAttribute("succes", "Nieuw adres voor " + bedrijf.getNaam()
+	// + " toegevoegd!");
+	// return "relatiebeheer/organisaties/bevestig";
+	//
+	// }
+	//
+	// @RequestMapping(value = { "/nieuwContactpersoon-{id}" }, method =
+	// RequestMethod.GET)
+	// public String contactpersoonToevoegen(@ModelAttribute("id") int id,
+	// BindingResult result, ModelMap model) {
+	// BedrijfDTO bedrijfDTO = new BedrijfDTO();
+	// bedrijfDTO.setDigitaalAdresTypes(digitaalAdresService.getAllTypes());
+	// bedrijfDTO.setBedrijf(bedrijfService.get(id));
+	// model.addAttribute("bedrijfDTO", bedrijfDTO);
+	// return "relatiebeheer/organisaties/nieuwContactpersoon";
+	// }
+	//
+	// @RequestMapping(value = { "/nieuwContactpersoon-{id}" }, method =
+	// RequestMethod.POST)
+	// public String contactpersoonToevoegen(@ModelAttribute("id") int id,
+	// BindingResult result,
+	// @ModelAttribute("bedrijfDTO") BedrijfDTO bedrijfDTO,
+	// BindingResult result2, ModelMap model) {
+	// Bedrijf bedrijf = bedrijfService.get(id);
+	// persoonService.save(bedrijfDTO.getPersoon());
+	// Persoonsrol persoonsrol = new Persoonsrol();
+	// persoonsrol.setPersoon(bedrijfDTO.getPersoon());
+	// persoonsrol.setBedrijf(bedrijf);
+	// persoonsrol.setBegindatum(new Date(Calendar.getInstance()
+	// .getTimeInMillis()));
+	// persoonsrolService.addRol("contactpersoon", persoonsrol);
+	// persoonsrolService.save(persoonsrol);
+	// bedrijf.addPersoonsrol(persoonsrol);
+	// bedrijfService.update(bedrijf);
+	// DigitaalAdres dAdres1 = bedrijfDTO.getdAdres1();
+	// DigitaalAdres dAdres2 = bedrijfDTO.getdAdres2();
+	// dAdres1.setPersoon(bedrijfDTO.getPersoon());
+	// dAdres2.setPersoon(bedrijfDTO.getPersoon());
+	// digitaalAdresService.save(dAdres1);
+	// digitaalAdresService.save(dAdres2);
+	// model.addAttribute("bedrijfDTO", bedrijfDTO);
+	// model.addAttribute("succes", bedrijfDTO.getPersoon().getVolledigeNaam()
+	// + " is toegevoegd");
+	// return "relatiebeheer/organisaties/bevestig";
+	// }
+	//
+	// @RequestMapping(value = { "/toon-{id}-organisatie" }, method =
+	// RequestMethod.POST)
+	// public String updateOrganisatie(@PathVariable int id,
+	// @ModelAttribute("bedrijfDTO") BedrijfDTO bedrijfDTO,
+	// BindingResult result, ModelMap model) {
+	// for (Adres adres : bedrijfDTO.getBedrijf().getAdressen()) {
+	// adres.setBedrijf(bedrijfDTO.getBedrijf());
+	// adresService.update(adres);
+	// }
+	// for (Persoonsrol pRol : bedrijfDTO.getBedrijf().getPersoonsrollen()) {
+	//
+	// pRol.setBedrijf(bedrijfDTO.getBedrijf());
+	// for (DigitaalAdres dAdres : pRol.getPersoon().getDigitaleAdressen()) {
+	// dAdres.setPersoon(pRol.getPersoon());
+	// digitaalAdresService.update(dAdres);
+	// }
+	// persoonService.update(pRol.getPersoon());
+	// persoonsrolService.update(pRol);
+	// }
+	// bedrijfService.update(bedrijfDTO.getBedrijf());
+	//
+	// model.addAttribute("bedrijfDTO", bedrijfDTO);
+	// model.addAttribute("succes", bedrijfDTO.getBedrijf().getNaam() +
+	// " is aangepast");
+	//
+	// return "relatiebeheer/organisaties/bevestig";
+	//
+	// }
+	//
 
 }

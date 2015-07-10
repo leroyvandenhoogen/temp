@@ -1,6 +1,8 @@
 * {
 	margin: 0;
 	padding: 0;
+	font-family: 'arial';
+	font-size: 15px;
 }
 
 html, body {
@@ -119,7 +121,7 @@ div.details {
 
 .organisiate-details {
 	border: 2px dotted #808080;
-	border-radius: 10px;
+	border-radius: 5px;
 	display: inline-block;
 	vertical-align: top;
 
@@ -170,8 +172,10 @@ a.footer {
 	color: white;
 }
 
+
 table#lijst {
 	border-collapse: collapse;
+	width: 50%;
 }
 
 #lijst tr {
@@ -193,6 +197,18 @@ table#lijst {
 
 #lijst td:hover {
 	cursor: pointer;
+}
+
+#lijst tr.tabelheader {
+	font-weight: bold;
+}
+
+#lijst td {
+	padding: 5px;
+}
+
+.organisiate-details tr.bold {
+	font-weight: bold;
 }
 
 .btn {

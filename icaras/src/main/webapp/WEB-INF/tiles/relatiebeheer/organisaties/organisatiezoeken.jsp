@@ -30,6 +30,7 @@
 	<c:choose>
 		<c:when test="${fn:length(organisaties) > 0}">
 			<h2>Zoekcriteria: ${zoekinput.input}</h2>
+			<br>
 			<h2>Resultatenlijst</h2>
 			<table id="lijst" class="list">
 				<tr class="tabelheader">
@@ -37,6 +38,7 @@
 					<td>Plaats</td>
 					<td></td>
 					<td>Verwijder</td>
+					<td></td>
 				</tr>
 				<c:forEach items="${organisaties}" var="organisatie"
 					varStatus="status">
