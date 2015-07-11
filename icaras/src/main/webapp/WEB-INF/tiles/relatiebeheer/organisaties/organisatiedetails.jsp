@@ -9,7 +9,7 @@
 	<input type="submit"
 		onclick="location.href='${pageContext.request.contextPath}/relatiebeheer/organisaties/zoeken'"
 		value="zoekscherm" class="btn btn-small"/>
-	<div class="center">
+	<div>
 		<br>
 		<table class="organisiate-details">
 			<tr class="bold">
@@ -154,8 +154,7 @@
 								<td><label>Adres type: </label></td>
 								<td><form:select
 										path="bedrijf.adressen[${loop.index}].adresType.id">
-										<option value="${adres.adresType.id}" selected>${adres.adresType.type}
-											(huidig)</option>
+										<option value="${adres.adresType.id}" selected>${adres.adresType.type} </option>
 										<c:forEach items="${bedrijfDTO.adresTypes}" var="lookupType"
 											varStatus="current" begin="0">
 											<option value="${lookupType.id}">${lookupType.type}</option>

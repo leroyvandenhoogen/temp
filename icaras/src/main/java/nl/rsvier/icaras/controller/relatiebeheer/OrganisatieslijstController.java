@@ -1,6 +1,7 @@
 package nl.rsvier.icaras.controller.relatiebeheer;
 
 import java.sql.Date;
+
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
@@ -69,7 +70,7 @@ public class OrganisatieslijstController {
 		model.addAttribute("zoekinput", zoekinput);
 		return "relatiebeheer/organisaties/zoeken";
 	}
-
+ 
 	@RequestMapping(value = { "/nieuw" }, method = RequestMethod.GET)
 	public String organisatieToevoegen(ModelMap model) {
 		BedrijfDTO bedrijfDTO = new BedrijfDTO();
@@ -118,8 +119,6 @@ public class OrganisatieslijstController {
 		}
 
 		bedrijfService.update(bedrijfDTO.getBedrijf());
-		// return ("redirect:" +
-		// organisatieDetails(bedrijfDTO.getBedrijf().getId(), result, model));
 		return ("redirect:toon-" + bedrijfDTO.getBedrijf().getId() + "-organisatie");
 	}
 
@@ -151,8 +150,6 @@ public class OrganisatieslijstController {
 		adres.setBedrijf(bedrijfDTO.getBedrijf());
 		adresService.save(adres);
 
-		// return ("redirect:" +
-		// organisatieDetails(bedrijfDTO.getBedrijf().getId(), result, model));
 		return ("redirect:toon-" + bedrijfDTO.getBedrijf().getId() + "-organisatie");
 	}
 
@@ -179,8 +176,6 @@ public class OrganisatieslijstController {
 		digitaalAdresService.save(dAdres1);
 		digitaalAdresService.save(dAdres2);
 
-		// return ("redirect:" +
-		// organisatieDetails(bedrijfDTO.getBedrijf().getId(), result, model));
 		return ("redirect:toon-" + bedrijf.getId() + "-organisatie");
 	}
 
@@ -269,15 +264,7 @@ public class OrganisatieslijstController {
 		persoonsrolService.save(persoonsrol);
 		organisatie.addPersoonsrol(persoonsrol);
 		bedrijfService.update(organisatie);
-		// BedrijfDTO bedrijfDTO = new BedrijfDTO();
-		// bedrijfDTO.setBedrijf(organisatie);
-		// bedrijfDTO.setPersoon(persoon);
-		//
-		// model.addAttribute("bedrijfDTO", bedrijfDTO);
-		// model.addAttribute("succes",
-		// bedrijfDTO.getPersoon().getVolledigeNaam()
-		// + " is toegevoegd aan " + bedrijfDTO.getBedrijf().getNaam());
-		// return "relatiebeheer/organisaties/bevestig";
+		
 		return ("redirect:toon-" + bedrijfid + "-organisatie");
 	}
 
