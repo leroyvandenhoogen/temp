@@ -402,13 +402,13 @@
 			</div>
 			<div class="modal-body">
 				<form:form method="POST" modelAttribute="bedrijfDTO">
-					<table>
+					<table class="wijzig">
 						<tr>
 							<form:input type="hidden" path="bedrijf.id" />
 						</tr>
-						<c:forEach items="${bedrijfDTO.bedrijf.persoonsrollen}"
+				<c:forEach items="${bedrijfDTO.bedrijf.persoonsrollen}"
 					var="persoonsrol" varStatus="loop">
-									<c:choose>
+				<c:choose>
 				<c:when test="${persoonsrol.einddatum == null}">
 					<form:input type="hidden"
 						path="bedrijf.persoonsrollen[${loop.index}].id" />
@@ -422,7 +422,7 @@
 						path="bedrijf.persoonsrollen[${loop.index}].einddatum" />
 					<form:input type="hidden"
 						path="bedrijf.persoonsrollen[${loop.index}].persoon.id" />
-					<tr>
+						<tr class="bold">
 						<td><label>Voornaam: </label></td>
 						<td><form:input
 								path="bedrijf.persoonsrollen[${loop.index}].persoon.voornaam" /></td>
@@ -480,8 +480,6 @@
 						<td><form:input type="hidden"
 								path="bedrijf.persoonsrollen[${loop.index}].persoon.nationaliteit" /></td>
 					</tr>
-
-					<tr>
 						<c:forEach items="${persoonsrol.persoon.digitaleAdressen}"
 							var="digitaalAdres" varStatus="innerloop">
 							<tr class="element">
@@ -496,7 +494,6 @@
 								<form:input type="hidden"
 									path="bedrijf.persoonsrollen[${loop.index}].persoon.digitaleAdressen[${innerloop.index}].digitaalAdresType.id" />
 							</tr>
-
 						</c:forEach>
 				</c:when>
 				<c:otherwise>

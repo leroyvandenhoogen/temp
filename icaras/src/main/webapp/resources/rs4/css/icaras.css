@@ -291,6 +291,8 @@ div.divlijst {
   top: -100%;
   z-index: 11;
   width: 500px;
+  max-height: 700px;
+  overflow-y: auto;
   -webkit-transform: translate(0, -500%);
   -ms-transform: translate(0, -500%);
   transform: translate(0, -500%);
@@ -302,6 +304,11 @@ div.divlijst {
 .modal-body {
   padding: 20px;
 }
+
+.wijzig tr.bold {	
+	font-weight: bold;
+}
+
 .modal-header,
 .modal-footer {
   padding: 10px 20px;
