@@ -279,7 +279,7 @@ div.divlijst {
   -webkit-transform: translate(0, 0);
   -ms-transform: translate(0, 0);
   transform: translate(0, 0);
-  top: 20%;
+  top: 10%;
 }
 .modal-dialog {
   background: #fefefe;
@@ -291,7 +291,7 @@ div.divlijst {
   top: -100%;
   z-index: 11;
   width: 500px;
-  max-height: 700px;
+  max-height: 750px;
   overflow-y: auto;
   -webkit-transform: translate(0, -500%);
   -ms-transform: translate(0, -500%);

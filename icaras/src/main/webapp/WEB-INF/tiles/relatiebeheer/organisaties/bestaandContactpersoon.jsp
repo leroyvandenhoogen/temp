@@ -35,6 +35,9 @@
 			<c:if test="${fn:length(contactpersonen) == 1}">
 				<h2>Er is ${fn:length(contactpersonen)} persoon gevonden</h2>
 			</c:if>
+			<br>
+			<h2>Zoekcriteria: ${bedrijfDTO.input}</h2>
+			<br>
 			<h3>Personenlijst</h3>
 			<div class="divlijst">
 			<table id="lijst" class="list">
