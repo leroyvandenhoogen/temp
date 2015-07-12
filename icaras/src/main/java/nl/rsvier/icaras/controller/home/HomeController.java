@@ -3,58 +3,39 @@ package nl.rsvier.icaras.controller.home;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * Algemene controller voor de domeinen van ICARAS
+ */
 @Controller
 public class HomeController {
+	
+	/**
+	 * Beginpunt van de site
+	 * @return home
+	 */
 	@RequestMapping("/")
 	public String showHome() {
 		return "home";
 	}
 	
-	@RequestMapping("/cursisten")
-	public String showCursistenLijst() {
-		return "cursisten";
+	/**
+	 * relatiebeheer domein
+	 * @return relatiebeheer 
+	 */
+	@RequestMapping("/relatiebeheer")
+	public String showRelatiebeheer(){
+		return "relatiebeheer";
 	}
 	
-//	@RequestMapping("/personen")
-//	public String showPersonenLijst() {
-//		return "personen";
-//	}
-
-	@RequestMapping("/kandidaten")
-	public String showKandidatenLijst() {
-		return "kandidaten";
-	}
-	
-	@RequestMapping("/stagiairs")
-	public String showStagiairsLijst() {
-		return "stagiairs";
-	}
-	
-	@RequestMapping("/werknemers")
-	public String showWerknemersLijst() {
-		return "werknemers";
-	}
-	
-//	@RequestMapping("/contactpersonen")
-//	public String showContactPersonenLijst() {
-//		return "contactpersonen";
-//	}
-	
-	@RequestMapping("/prive")
-	public String showPriveLijst() {
-		return "prive";
-	}
-	
-	@RequestMapping("/organisaties")
-	public String showOrganisatieLijst() {
-		return "organisaties";
-	}
-	
+	/**
+	 * project info 
+	 * @return projectinfo
+	 */
 	@RequestMapping("/projectinfo")
 	public String showProjectInfo() {
 		return"projectinfo";
 	}
-	  
+
 }
 
 

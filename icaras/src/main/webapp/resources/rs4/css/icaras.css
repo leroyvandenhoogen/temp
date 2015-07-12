@@ -1,6 +1,8 @@
 * {
 	margin: 0;
 	padding: 0;
+	font-family: 'arial';
+	font-size: 15px;
 }
 
 html, body {
@@ -119,7 +121,7 @@ div.details {
 
 .organisiate-details {
 	border: 2px dotted #808080;
-	border-radius: 10px;
+	border-radius: 5px;
 	display: inline-block;
 	vertical-align: top;
 
@@ -170,8 +172,15 @@ a.footer {
 	color: white;
 }
 
+
 table#lijst {
 	border-collapse: collapse;
+}
+
+div.divlijst {
+	max-height: 465px;
+	overflow-y: auto;
+	width: 470px;
 }
 
 #lijst tr {
@@ -193,6 +202,18 @@ table#lijst {
 
 #lijst td:hover {
 	cursor: pointer;
+}
+
+#lijst tr.tabelheader {
+	font-weight: bold;
+}
+
+#lijst td {
+	padding: 5px;
+}
+
+.organisiate-details tr.bold {
+	font-weight: bold;
 }
 
 .btn {
@@ -219,7 +240,13 @@ table#lijst {
 
 .btn.btn-big {
   font-size: 18px;
-  padding: 10px 15px;
+  padding: 5px 10px;
+  min-width: 80px;
+}
+
+.btn.btn-small {
+  font-size: 14px;
+  padding: 3px 6px;
   min-width: 80px;
 }
 
@@ -252,18 +279,20 @@ table#lijst {
   -webkit-transform: translate(0, 0);
   -ms-transform: translate(0, 0);
   transform: translate(0, 0);
-  top: 20%;
+  top: 10%;
 }
 .modal-dialog {
   background: #fefefe;
   border: #333333 solid 1px;
   border-radius: 5px;
   margin-left: -200px;
-  position: fixed;
+  position: absolute;
   left: 50%;
   top: -100%;
   z-index: 11;
   width: 500px;
+  max-height: 750px;
+  overflow-y: auto;
   -webkit-transform: translate(0, -500%);
   -ms-transform: translate(0, -500%);
   transform: translate(0, -500%);
@@ -275,6 +304,11 @@ table#lijst {
 .modal-body {
   padding: 20px;
 }
+
+.wijzig tr.bold {	
+	font-weight: bold;
+}
+
 .modal-header,
 .modal-footer {
   padding: 10px 20px;

@@ -5,29 +5,21 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <body>
-	<input type="button" value="Ga terug" onclick="history.back();" />
+	<input type="button" value="Ga terug" onclick="history.back();" class="btn btn-small"/>
 	<input type="submit"
 		onclick="location.href='${pageContext.request.contextPath}/relatiebeheer/organisaties/zoeken'"
-		value="zoekscherm" />
-	<div class="center">
+		value="zoekscherm" class="btn btn-small"/>
+	<div>
 		<br>
 		<table class="organisiate-details">
-			<tr id="bold">
+			<tr class="bold">
 				<td><c:out value="${fn:toUpperCase(bedrijfDTO.bedrijf.naam)}" />
 					(${bedrijfDTO.bedrijf.bedrijfType.type})</td>
 			</tr>
-			<tr>
-				<td></td>
-			</tr>
-			<tr>
-				<td></td>
-			</tr>
-
-
 			<c:forEach items="${bedrijfDTO.bedrijf.adressen}" var="adres"
 				varStatus="loop">
 
-				<tr>
+				<tr class="bold">
 					<td>${adres.adresType.type} adres:</td>
 				</tr>
 				<tr>
@@ -64,12 +56,12 @@
 				var="persoonsrol" varStatus="loop">
 				<c:choose>
 				<c:when test="${persoonsrol.einddatum == null}">
-				<tr>
+				<tr class="bold">
 					<td><c:choose>
-							<c:when test="${persoonsrol.persoon.geslacht eq 'm'}">
+							<c:when test="${persoonsrol.persoon.geslacht eq 'M'}">
 							dhr 
 						</c:when>
-							<c:when test="${persoonsrol.persoon.geslacht eq 'v'}">
+							<c:when test="${persoonsrol.persoon.geslacht eq 'V'}">
 							mvr 
 						</c:when>
 							<c:otherwise>
@@ -86,7 +78,7 @@
 				<tr>
 					<td>${persoonsrol.afdeling}</td>
 				</tr>
-				<tr>
+				
 					<c:forEach items="${persoonsrol.persoon.digitaleAdressen}"
 						var="digitaalAdres" varStatus="innerloop">
 						<tr>
@@ -96,10 +88,10 @@
 									<a href="mailto:${digitaalAdres.omschrijving}">
 									<img
 										src="${pageContext.request.contextPath}/resources/rs4/images/icons/simpleicons/mail.png"
-										height="20" width="20"></a>
+										height="18" width="20"></a>
 								</c:if>
 							</td>	
-						</tr>
+						
 					</c:forEach>
 				<tr>
 					<td>${persoonsrol.persoon.opmerking}</td>
@@ -115,7 +107,9 @@
 				
 			</c:forEach>
 			<tr>
-				<td><a href="#modal-three" class="btn btn-big">Wijzig</a> <a href="#modal-four" class="btn btn-big">Nieuw</a></td>
+				<td><a href="#modal-three" class="btn btn-big">Wijzig</a> 
+				<a href="#modal-four" class="btn btn-big">Nieuw</a>
+				<a href="<c:url value='/relatiebeheer/organisaties/zoekContactpersoon-${bedrijfDTO.bedrijf.id}' />" class="btn btn-big" >Zoek</a></td>
 			</tr>
 		</table>
 	</div>
@@ -136,7 +130,7 @@
 						<tr>
 							<td></td>
 							<td><form:select path="bedrijf.bedrijfType.id">
-									<option value="2" selected>detacheerder</option>
+									<option value="${bedrijfDTO.bedrijf.bedrijfType.id}" selected>${bedrijfDTO.bedrijf.bedrijfType.type}</option>
 									<c:forEach items="${bedrijfDTO.bedrijfTypes}" var="lookupType">
 										<option value="${lookupType.id}">${lookupType.type}</option>
 									</c:forEach>
@@ -156,12 +150,11 @@
 							<tr>
 								<td><form:input type="hidden"
 										path="bedrijf.adressen[${loop.index}].id" value="${adres.id}" /></td>
-							<tr>
+							<tr class="bold">
 								<td><label>Adres type: </label></td>
 								<td><form:select
 										path="bedrijf.adressen[${loop.index}].adresType.id">
-										<option value="${adres.adresType.id}" selected>${adres.adresType.type}
-											(huidig)</option>
+										<option value="${adres.adresType.id}" selected>${adres.adresType.type} </option>
 										<c:forEach items="${bedrijfDTO.adresTypes}" var="lookupType"
 											varStatus="current" begin="0">
 											<option value="${lookupType.id}">${lookupType.type}</option>
@@ -170,7 +163,7 @@
 								</td>
 								<td><a href="<c:url value='/relatiebeheer/organisaties/verwijderadres-${adres.id}'/>">
 								<img src="${pageContext.request.contextPath}/resources/rs4/images/icons/simpleicons/notification_error.png"
-								width="10" height="10" alt="Verwijder"></a>
+								width="20" height="20" alt="Verwijder"></a>
 								</td>
 							<tr>
 								<td><label for="straat">Straat: </label></td>
@@ -212,13 +205,13 @@
 						</c:forEach>
 							<tr>
 								<td><label for="opmerking">Opmerking: </label></td>
-								<td><form:textarea rows="5" cols="20"
+								<td><form:textarea rows="2" cols="28"
 										path="bedrijf.opmerking" /></td>
 								<td><form:errors path="bedrijf.opmerking" cssClass="error" /></td>
 							</tr>
 						<tr>
 							<td colspan="3"><input type="submit" name="wijzigadres"
-								value="Opslaan" /></td>
+								value="Opslaan" class="btn btn-small"/></td>
 						</tr>
 					</table>
 				</form:form>
@@ -297,7 +290,7 @@
 							</tr>
 						<tr>
 							<td colspan="3"><input type="submit" name="nieuwadres"
-								value="Opslaan" /></td>
+								value="Opslaan" class="btn btn-small"/></td>
 						</tr>
 					</table>
 				</form:form>
@@ -337,12 +330,14 @@
 							<td><form:errors path="persoon.tussenvoegsel"
 									cssClass="error" /></td>
 						</tr>
-
+						
 						<tr>
 							<td><label for="geslacht">Geslacht: </label></td>
-							<td><form:input path="persoon.geslacht" value="m" /></td>
-							<td><form:errors path="persoon.geslacht" cssClass="error" /></td>
+							<td><form:radiobutton path="persoon.geslacht" value="M"
+						checked="checked" />Man <form:radiobutton path="persoon.geslacht"
+						value="V" />Vrouw</td>
 						</tr>
+						
 						<tr>
 							<td><label>Functie: </label></td>
 							<td><form:input path="persoonsrol.functie" /></td>
@@ -386,7 +381,7 @@
 					</table>
 					<tr>
 						<td colspan="3"><input type="submit" name="nieuwpersoon"
-							value="Opslaan" /></td>
+							value="Opslaan" class="btn btn-small"/></td>
 					</tr>
 				</form:form>
 			</div>
@@ -406,13 +401,13 @@
 			</div>
 			<div class="modal-body">
 				<form:form method="POST" modelAttribute="bedrijfDTO">
-					<table>
+					<table class="wijzig">
 						<tr>
 							<form:input type="hidden" path="bedrijf.id" />
 						</tr>
-						<c:forEach items="${bedrijfDTO.bedrijf.persoonsrollen}"
+				<c:forEach items="${bedrijfDTO.bedrijf.persoonsrollen}"
 					var="persoonsrol" varStatus="loop">
-									<c:choose>
+				<c:choose>
 				<c:when test="${persoonsrol.einddatum == null}">
 					<form:input type="hidden"
 						path="bedrijf.persoonsrollen[${loop.index}].id" />
@@ -421,19 +416,18 @@
 						<form:input type="hidden"
 						path="bedrijf.persoonsrollen[${loop.index}].rol" />
 					<form:input type="hidden"
-						path="bedrijf.persoonsrollen[${loop.index}].begindatum"
-						value="${persoonsrol.begindatum}" />
+						path="bedrijf.persoonsrollen[${loop.index}].begindatum" />
 					<form:input type="hidden"
 						path="bedrijf.persoonsrollen[${loop.index}].einddatum" />
 					<form:input type="hidden"
 						path="bedrijf.persoonsrollen[${loop.index}].persoon.id" />
-					<tr>
+						<tr class="bold">
 						<td><label>Voornaam: </label></td>
 						<td><form:input
 								path="bedrijf.persoonsrollen[${loop.index}].persoon.voornaam" /></td>
 						<td><a href="<c:url value='/relatiebeheer/organisaties/verwijderpersoon-${persoonsrol.id}'/>">
 								<img src="${pageContext.request.contextPath}/resources/rs4/images/icons/simpleicons/notification_error.png"
-								width="10" height="10" alt="Verwijder"></a>
+								width="20" height="20" alt="Verwijder"></a>
 								</td>
 					</tr>
 					<tr>
@@ -447,16 +441,27 @@
 								path="bedrijf.persoonsrollen[${loop.index}].persoon.achternaam" /></td>
 					</tr>
 					<tr>
-						<td><label>Geslacht: </label></td>
-						<td><form:input
-								path="bedrijf.persoonsrollen[${loop.index}].persoon.geslacht" /></td>
+						<td><label for="geslacht">Geslacht: </label></td>
+						<td><form:radiobutton path="bedrijf.persoonsrollen[${loop.index}].persoon.geslacht" value="M"
+						checked="checked" />Man <form:radiobutton path="bedrijf.persoonsrollen[${loop.index}].persoon.geslacht"
+						value="V" />Vrouw</td>
 					</tr>
 					<tr>
-						<td><label>Bijzonderheden: </label></td>
-						<td><form:textarea rows="5" cols="20"
-								path="bedrijf.persoonsrollen[${loop.index}].persoon.opmerking"
-								id="opmerking" />
+						<td><label>Functie: </label></td>
+						<td><form:input
+								path="bedrijf.persoonsrollen[${loop.index}].functie" /></td>
+					</tr>
+					<tr>
+						<td><label>Afdeling: </label></td>
+						<td><form:input
+								path="bedrijf.persoonsrollen[${loop.index}].afdeling" /></td>
+					</tr>
 					
+					<tr>
+						<td><label>Bijzonderheden: </label></td>
+						<td><form:textarea rows="2" cols="28"
+								path="bedrijf.persoonsrollen[${loop.index}].persoon.opmerking"
+								id="opmerking" />					
 					</tr>
 					<tr>
 						<td><form:input type="hidden"
@@ -474,8 +479,6 @@
 						<td><form:input type="hidden"
 								path="bedrijf.persoonsrollen[${loop.index}].persoon.nationaliteit" /></td>
 					</tr>
-
-					<tr>
 						<c:forEach items="${persoonsrol.persoon.digitaleAdressen}"
 							var="digitaalAdres" varStatus="innerloop">
 							<tr class="element">
@@ -490,14 +493,17 @@
 								<form:input type="hidden"
 									path="bedrijf.persoonsrollen[${loop.index}].persoon.digitaleAdressen[${innerloop.index}].digitaalAdresType.id" />
 							</tr>
-
 						</c:forEach>
 				</c:when>
+				<c:otherwise>
+					<form:input type="hidden" path="bedrijf.persoonsrollen[${loop.index}].id" />
+					<form:input type="hidden" path="bedrijf.persoonsrollen[${loop.index}].einddatum" />				
+				</c:otherwise>
 				</c:choose>
 				</c:forEach>
 						<tr>
 							<td colspan="3"><input type="submit" name="wijzigcontact"
-								value="Opslaan" /></td>
+								value="Opslaan" class="btn btn-small"/></td>
 						</tr>
 					</table>
 				</form:form>
