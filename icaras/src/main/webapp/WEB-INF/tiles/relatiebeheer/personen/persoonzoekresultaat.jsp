@@ -56,7 +56,7 @@
 
 					<tr class="element">
 						<td><label>Telefoonnummer: </label></td>
-						<c:forEach items="${persoonDTO.digitaleAdressen}"
+						<c:forEach items="${persoonDTO.persoon.digitaleAdressen}"
 							var="digitaleadres" varStatus="current">
 							<c:if
 								test="${digitaleadres.digitaalAdresType.type == 'telefoonnummer'}">
@@ -80,7 +80,7 @@
 
 					<tr class="element">
 						<td><label>Email: </label></td>
-						<c:forEach items="${persoonDTO.digitaleAdressen}"
+						<c:forEach items="${persoonDTO.persoon.digitaleAdressen}"
 							var="digitaleadres" varStatus="current">
 							<c:if test="${digitaleadres.digitaalAdresType.type == 'email'}">
 
@@ -175,9 +175,14 @@
 
 							<td><label>Adres type: </label></td>
 							<td><form:select
-									path="adressen[${current.index}].adresType.id">
+									path="persoon.adressen[${current.index}].adresType.id">
 									<option value="${adres.adresType.id}" selected>${adres.adresType.type}
 										(huidig)</option>
+
+									<!--  
+									<option value="${adres.adresType.id}" selected>${adres.adresType.type}
+										(huidig)</option>
+										-->
 									<c:forEach items="${adresTypes}" var="lookupType"
 										varStatus="current" begin="0">
 										<option value="${lookupType.id}">${lookupType.type}</option>
@@ -252,6 +257,9 @@
 					<table class="gegevens-table">
 						<th>Persoon</th>
 						<tr>
+							<form:input type="hidden" path="persoon.id" />
+						</tr>
+						<tr>
 							<td><label for="voornaam">Voornaam: </label></td>
 							<td><form:input path="persoonDTO.persoon.voornaam"
 									id="voornaam" /></td>
@@ -291,7 +299,7 @@
 
 						<tr class="element">
 							<td><label>Telefoonnummer: </label></td>
-							<c:forEach items="${persoonDTO.digitaleAdressen}"
+							<c:forEach items="${persoonDTO.persoon.digitaleAdressen}"
 								var="digitaleadres" varStatus="current">
 								<c:if
 									test="${digitaleadres.digitaalAdresType.type == 'telefoonnummer'}">
@@ -315,7 +323,7 @@
 
 						<tr class="element">
 							<td><label>Email: </label></td>
-							<c:forEach items="${persoonDTO.digitaleAdressen}"
+							<c:forEach items="${persoonDTO.persoon.digitaleAdressen}"
 								var="digitaleadres" varStatus="current">
 								<c:if test="${digitaleadres.digitaalAdresType.type == 'email'}">
 
@@ -370,6 +378,9 @@
 			</div>
 			<div class="modal-body">
 				<form:form method="POST" modelAttribute="persoonDTO">
+					<tr>
+						<form:input type="hidden" path="persoon.id" />
+					</tr>
 					<c:if test="${not empty persoonDTO.persoon.adressen}">
 						<table class="gegevens-table">
 							<th>Adres</th>
@@ -377,7 +388,8 @@
 								varStatus="current" begin="0">
 								<tr>
 									<td><form:input type="hidden"
-											path="adressen[${current.index}].id" value="${adres.id}"></form:input>
+											path="persoon.adressen[${current.index}].id"
+											value="${adres.id}"></form:input>
 								</tr>
 								<c:if test="${current.index > 0}">
 									<tr>
@@ -390,54 +402,59 @@
 								</tr>
 								<tr>
 									<td><label>Straat: </label></td>
-									<td><form:input path="adressen[${current.index}].straat"
-											value="${straat}" /></td>
+									<td><form:input
+											path="persoon.adressen[${current.index}].straat"
+											value="${adres.straat}" /></td>
 								</tr>
 								<tr>
 									<td><label>Nummer: </label></td>
-									<td><form:input path="adressen[${current.index}].nummer"
-											value="${nummer}" /></td>
+									<td><form:input
+											path="persoon.adressen[${current.index}].nummer"
+											value="${adres.nummer}" /></td>
 								</tr>
 								<tr>
 									<td><label>Toevoegsel: </label></td>
 									<td><form:input
-											path="adressen[${current.index}].toevoegsel"
-											value="${toevoegsel}" /></td>
+											path="persoon.adressen[${current.index}].toevoegsel"
+											value="${adres.toevoegsel}" /></td>
 								</tr>
 								<tr>
 									<td><label>Postcode: </label></td>
-									<td><form:input path="adressen[${current.index}].postcode"
-											value="${postcode}" /></td>
+									<td><form:input
+											path="persoon.adressen[${current.index}].postcode"
+											value="${adres.postcode}" /></td>
 								</tr>
 								<tr>
 									<td><label>Plaats: </label></td>
-									<td><form:input path="adressen[${current.index}].plaats"
-											value="${plaats}" /></td>
+									<td><form:input
+											path="persoon.adressen[${current.index}].plaats"
+											value="${adres.plaats}" /></td>
 								</tr>
 								<tr>
 									<td><label>Provincie: </label></td>
 									<td><form:input
-											path="adressen[${current.index}].provincie"
-											value="${provincie}" /></td>
+											path="persoon.adressen[${current.index}].provincie"
+											value="${adres.provincie}" /></td>
 								</tr>
 								<tr>
 									<td><label>Land: </label></td>
-									<td><form:input path="adressen[${current.index}].land"
-											value="${land}" /></td>
+									<td><form:input
+											path="persoon.adressen[${current.index}].land"
+											value="${adres.land}" /></td>
 								</tr>
 
 								<td><label>Adres type: </label></td>
-								<td><form:select
-										path="adressen[${current.index}].adresType.id">
+								<td><form:select path="persoon.adressen[${current.index}].adresType.id">
 										<option value="${adres.adresType.id}" selected>${adres.adresType.type}
 											(huidig)</option>
+
 										<c:forEach items="${adresTypes}" var="lookupType"
 											varStatus="current" begin="0">
 											<option value="${lookupType.id}">${lookupType.type}</option>
 										</c:forEach>
 									</form:select></td>
 								<tr>
-									<td colspan="3"><input type="submit" name="wijzig"
+									<td colspan="3"><input type="submit" name="wijzigadres"
 										value="Wijzig" /></td>
 								</tr>
 								<tr></tr>

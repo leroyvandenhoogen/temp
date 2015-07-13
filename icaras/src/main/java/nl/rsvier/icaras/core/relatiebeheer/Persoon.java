@@ -167,7 +167,7 @@ public class Persoon implements java.io.Serializable {
 		return verwijderd;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "persoon")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon")
 	@Cascade(CascadeType.ALL)
 	public List<Adres> getAdressen() {
 		return this.adressen;

@@ -53,7 +53,8 @@ public class PersonenlijstController {
 
 	@ModelAttribute("adresTypes")
 	public ArrayList<AdresType> createAdresTypeList() {
-		ArrayList<AdresType> adresTypes = (ArrayList<AdresType>) adresService.getAllTypes();
+		ArrayList<AdresType> adresTypes = (ArrayList<AdresType>) adresService
+				.getAllTypes();
 		return adresTypes;
 	}
 
@@ -85,17 +86,17 @@ public class PersonenlijstController {
 		persoonDTO.setAdressen(persoon.getAdressen());
 		persoonDTO.setDigitaleAdressen(persoon.getDigitaleAdressen());
 		persoonDTO.setPersoonsrollen(persoon.getPersoonsrollen());
-		
+
 		model.addAttribute("persoonDTO", persoonDTO);
 
 		return "relatiebeheer/personen/zoekresultaat";
 	}
-	
-	@RequestMapping(value = { "/zoekresultaat-{id}" }, method = RequestMethod.POST, params="wijzigpersoon")
-	public String zoekResultaat(@PathVariable int id, 
-				@ModelAttribute("persoonDTO") PersoonDTO persoonDTO, BindingResult result1,
-			ModelMap model) {
-		
+
+	@RequestMapping(value = { "/zoekresultaat-{id}" }, method = RequestMethod.POST, params = "wijzigpersoon")
+	public String wijzigPersoon(@PathVariable int id,
+			@ModelAttribute("persoonDTO") PersoonDTO persoonDTO,
+			BindingResult result1, ModelMap model) {
+
 		Persoon tempPersoon = persoonDTO.getPersoon();
 		Persoon wijzigPersoon = service.get(id);
 		wijzigPersoon.setVoornaam(tempPersoon.getVoornaam());
@@ -103,22 +104,36 @@ public class PersonenlijstController {
 		wijzigPersoon.setTussenvoegsel(tempPersoon.getTussenvoegsel());
 		wijzigPersoon.setGeboortedatum(tempPersoon.getGeboortedatum());
 		wijzigPersoon.setGeslacht(tempPersoon.getGeslacht());
-		wijzigPersoon.setDigitaleAdressen(persoonDTO.getDigitaleAdressen());
+		wijzigPersoon.setDigitaleAdressen(persoonDTO.getPersoon()
+				.getDigitaleAdressen());
 		wijzigPersoon.setOpmerking(tempPersoon.getOpmerking());
 
 		service.update(wijzigPersoon);
-		persoonDTO.setPersoon(wijzigPersoon);
-		persoonDTO.setAdressen(wijzigPersoon.getAdressen());
-		persoonDTO.setDigitaleAdressen(wijzigPersoon.getDigitaleAdressen());
-		persoonDTO.setPersoonsrollen(wijzigPersoon.getPersoonsrollen());
-		
-		model.addAttribute("persoonDTO", persoonDTO);
+		// persoonDTO.setPersoon(wijzigPersoon);
+		// persoonDTO.setAdressen(wijzigPersoon.getAdressen());
+		// persoonDTO.setDigitaleAdressen(wijzigPersoon.getDigitaleAdressen());
+		// persoonDTO.setPersoonsrollen(wijzigPersoon.getPersoonsrollen());
+		//
+		// model.addAttribute("persoonDTO", persoonDTO);
 
-		return "relatiebeheer/personen/zoekresultaat";
+		return ("redirect:zoekresultaat-" + persoonDTO.getPersoon().getId());
 	}
-	
-	
-	
+
+	@RequestMapping(value = { "/zoekresultaat-{id}" }, method = RequestMethod.POST, params = "wijzigadres")
+	public String wijzigAdres(@PathVariable int id,
+			@ModelAttribute("persoonDTO") PersoonDTO persoonDTO,
+			BindingResult result1, ModelMap model) {
+		Persoon wijzigPersoon = service.get(id);
+		for (Adres adres : persoonDTO.getPersoon().getAdressen()) {
+			adres.setPersoon(wijzigPersoon);
+			adresService.update(adres);
+
+		}
+
+		service.update(wijzigPersoon);
+
+		return ("redirect:zoekresultaat-" + persoonDTO.getPersoon().getId());
+	}
 
 	@RequestMapping(value = { "/nieuw" }, method = RequestMethod.GET)
 	public String nieuwPersoon(ModelMap model) {
