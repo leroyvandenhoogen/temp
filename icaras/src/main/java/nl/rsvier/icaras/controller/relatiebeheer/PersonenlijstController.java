@@ -11,6 +11,7 @@ import nl.rsvier.icaras.core.relatiebeheer.AdresType;
 import nl.rsvier.icaras.core.relatiebeheer.DigitaalAdres;
 import nl.rsvier.icaras.core.relatiebeheer.DigitaalAdresType;
 import nl.rsvier.icaras.core.relatiebeheer.Persoon;
+import nl.rsvier.icaras.core.relatiebeheer.Persoonsrol;
 import nl.rsvier.icaras.service.relatiebeheer.AdresService;
 import nl.rsvier.icaras.service.relatiebeheer.DigitaalAdresService;
 import nl.rsvier.icaras.service.relatiebeheer.IdentiteitsbewijsService;
@@ -116,7 +117,7 @@ public class PersonenlijstController {
 		//
 		// model.addAttribute("persoonDTO", persoonDTO);
 
-		return ("redirect:zoekresultaat-" + persoonDTO.getPersoon().getId());
+		return ("redirect:zoekresultaat-" + wijzigPersoon.getId());
 	}
 
 	@RequestMapping(value = { "/zoekresultaat-{id}" }, method = RequestMethod.POST, params = "wijzigadres")
@@ -132,7 +133,23 @@ public class PersonenlijstController {
 
 		service.update(wijzigPersoon);
 
-		return ("redirect:zoekresultaat-" + persoonDTO.getPersoon().getId());
+		return ("redirect:zoekresultaat-" + wijzigPersoon.getId());
+	}
+	
+	@RequestMapping(value = { "/zoekresultaat-{id}" }, method = RequestMethod.POST, params = "wijzigrol")
+	public String wijzigRol(@PathVariable int id,
+			@ModelAttribute("persoonDTO") PersoonDTO persoonDTO,
+			BindingResult result1, ModelMap model) {
+		Persoon wijzigPersoon = service.get(id);
+		for (Persoonsrol persoonsrol : persoonDTO.getPersoon().getPersoonsrollen()) {
+			persoonsrol.setPersoon(wijzigPersoon);
+			persoonsrolService.update(persoonsrol);
+
+		}
+
+		service.update(wijzigPersoon);
+
+		return ("redirect:zoekresultaat-" + wijzigPersoon.getId());
 	}
 
 	@RequestMapping(value = { "/nieuw" }, method = RequestMethod.GET)
