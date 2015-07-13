@@ -126,7 +126,7 @@ public class Persoonsrol implements java.io.Serializable {
 	}
 
 	
-	@Column(name = "functie", nullable = false, length = 45)
+	@Column(name = "functie", length = 45)
 	public String getFunctie() {
 		return functie;
 	}
@@ -135,7 +135,7 @@ public class Persoonsrol implements java.io.Serializable {
 		this.functie = functie;
 	}
 	
-	@Column(name = "afdeling", nullable = false, length = 45)
+	@Column(name = "afdeling", length = 45)
 	public String getAfdeling() {
 		return afdeling;
 	}

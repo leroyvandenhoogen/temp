@@ -217,16 +217,19 @@
 								<form:input type="hidden"
 									path="persoonsrollen[${current.index}].rol.type" id="type"
 									value="${persoonsrol.rol.type}" />
-								<td><label>${persoonsrol.rol.type}: </label>
+								<td><label>${persoonsrol.rol.type} </label>
 								<td><label>Begin:</label></td>
-								<td><form:input type="date"
+								<td><form:input
 										path="persoonsrollen[${current.index}].begindatum"
-										id="begindatum" value="${persoonsrol.begindatum}" size="10" /></td>
+										id="begindatum" size="10" /></td>
 								<td><label>Eind:</label></td>
-								<td><form:input type="date"
+								<td><form:input
 										path="persoonsrollen[${current.index}].einddatum"
-										id="einddatum" value="${persoonsrol.einddatum}" size="10" /></td>
+										id="einddatum" size="10" /></td>
 							</tr>
+
+
+
 						</c:forEach>
 						<table class="modal-table">
 							<tr>
@@ -444,7 +447,8 @@
 								</tr>
 
 								<td><label>Adres type: </label></td>
-								<td><form:select path="persoon.adressen[${current.index}].adresType.id">
+								<td><form:select
+										path="persoon.adressen[${current.index}].adresType.id">
 										<option value="${adres.adresType.id}" selected>${adres.adresType.type}
 											(huidig)</option>
 
@@ -492,27 +496,27 @@
 								var="persoonsrol" varStatus="current">
 								<tr class="element">
 									<form:input type="hidden"
-										path="persoonsrollen[${current.index}].id"
+										path="persoon.persoonsrollen[${current.index}].id"
 										value="${persoonsrol.id}" />
 									<form:input type="hidden"
-										path="persoonsrollen[${current.index}].rol.id"
+										path="persoon.persoonsrollen[${current.index}].rol.id"
 										value="${persoonsrol.rol.id}" />
 									<form:input type="hidden"
-										path="persoonsrollen[${current.index}].rol.type" id="type"
+										path="persoon.persoonsrollen[${current.index}].rol.type"
 										value="${persoonsrol.rol.type}" />
 									<td><label>${persoonsrol.rol.type}</label>
 									<td><label>begindatum</label></td>
-									<td><form:input type="date"
-											path="persoonsrollen[${current.index}].begindatum"
-											id="begindatum" value="${persoonsrol.begindatum}" size="10" /></td>
+									<td><form:input
+											path="persoon.persoonsrollen[${current.index}].begindatum"
+											size="10" /></td>
 									<td><label>einddatum </label></td>
-									<td><form:input type="date"
-											path="persoonsrollen[${current.index}].einddatum"
-											id="einddatum" value="${persoonsrol.einddatum}" size="10" /></td>
+									<td><form:input
+											path="persoon.persoonsrollen[${current.index}].einddatum"
+											size="10" /></td>
 								</tr>
 							</c:forEach>
 							<tr>
-								<td colspan="3"><input type="submit" name="wijzig"
+								<td colspan="3"><input type="submit" name="wijzigrol"
 									value="Wijzig" /></td>
 							</tr>
 						</table>
