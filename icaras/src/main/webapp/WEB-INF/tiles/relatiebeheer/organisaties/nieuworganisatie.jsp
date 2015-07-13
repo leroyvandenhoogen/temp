@@ -24,13 +24,6 @@
 				<td><form:errors path="bedrijf.naam" cssClass="error" /></td>
 			</tr>
 
-			<tr>
-				<td><label for="opmerking">Opmerking: </label></td>
-				<td><form:textarea rows="5" cols="20" path="bedrijf.opmerking" /></td>
-				<td><form:errors path="bedrijf.opmerking" cssClass="error" /></td>
-			</tr>
-
-
 			<tr></tr>
 
 			<tr>
@@ -66,7 +59,14 @@
 				<td><label>Land: </label></td>
 				<td><form:input path="adres.land" value="Nederland" /></td>
 			</tr>
+			
+			<tr>
+				<td><label for="opmerking">Opmerking: </label></td>
+				<td><form:textarea rows="2" cols="28" path="bedrijf.opmerking" /></td>
+				<td><form:errors path="bedrijf.opmerking" cssClass="error" /></td>
+			</tr>
 		</table>
+		
 		<td colspan="3"><input type="submit" value="submit" class="btn btn-small"/></td>
 	</form:form>
 

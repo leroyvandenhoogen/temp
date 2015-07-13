@@ -373,7 +373,7 @@
 						</tr>
 						<tr>
 							<td><label>Bijzonderheden: </label></td>
-							<td><form:textarea rows="5" cols="20"
+							<td><form:textarea rows="2" cols="28"
 									path="persoon.opmerking" /></td>
 							<td><form:errors path="persoon.opmerking" cssClass="error" /></td>
 						</tr>
@@ -456,13 +456,7 @@
 						<td><form:input
 								path="bedrijf.persoonsrollen[${loop.index}].afdeling" /></td>
 					</tr>
-					
-					<tr>
-						<td><label>Bijzonderheden: </label></td>
-						<td><form:textarea rows="2" cols="28"
-								path="bedrijf.persoonsrollen[${loop.index}].persoon.opmerking"
-								id="opmerking" />					
-					</tr>
+
 					<tr>
 						<td><form:input type="hidden"
 								path="bedrijf.persoonsrollen[${loop.index}].persoon.geboortedatum" /></td>
@@ -494,6 +488,13 @@
 									path="bedrijf.persoonsrollen[${loop.index}].persoon.digitaleAdressen[${innerloop.index}].digitaalAdresType.id" />
 							</tr>
 						</c:forEach>
+											
+					<tr>
+						<td><label>Bijzonderheden: </label></td>
+						<td><form:textarea rows="2" cols="28"
+								path="bedrijf.persoonsrollen[${loop.index}].persoon.opmerking"
+								id="opmerking" />					
+					</tr>
 				</c:when>
 				<c:otherwise>
 					<form:input type="hidden" path="bedrijf.persoonsrollen[${loop.index}].id" />
