@@ -252,4 +252,14 @@ public class Adres implements java.io.Serializable {
 		}
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Adres [straat=" + straat + ", nummer=" + nummer
+				+ ", toevoegsel=" + toevoegsel + ", postcode=" + postcode
+				+ ", plaats=" + plaats + ", provincie=" + provincie + ", land="
+				+ land + "]";
+	}
+	
+	
 }
