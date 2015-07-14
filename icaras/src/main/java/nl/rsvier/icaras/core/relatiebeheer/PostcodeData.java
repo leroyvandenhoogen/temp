@@ -23,6 +23,7 @@ public class PostcodeData implements java.io.Serializable {
 	private String stad;
 	private String gemeente;
 	private String provincie;
+	private String nummertype;
 	private Double lat;
 	private Double lon;
 	
@@ -102,6 +103,15 @@ public class PostcodeData implements java.io.Serializable {
 
 	public void setProvincie(String provincie) {
 		this.provincie = provincie;
+	}
+
+	@Column(name = "numbertype")
+	public String getNummertype() {
+		return nummertype;
+	}
+
+	public void setNummertype(String nummertype) {
+		this.nummertype = nummertype;
 	}
 
 	@Column(name = "lat")
