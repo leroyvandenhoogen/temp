@@ -18,33 +18,21 @@
 					<th>Persoon</th>
 					<tr>
 						<td><label for="voornaam">Voornaam: </label></td>
-						<td><form:input path="persoonDTO.persoon.voornaam"
-								id="voornaam" /></td>
-						<td><form:errors path="persoonDTO.persoon.voornaam"
-								cssClass="error" /></td>
+						<td>${persoonDTO.persoon.voornaam}</td>
 					</tr>
 					<tr>
 						<td><label for="achternaam">Achternaam: </label></td>
-						<td><form:input path="persoonDTO.persoon.achternaam"
-								id="achternaam" /></td>
-						<td><form:errors path="persoonDTO.persoon.achternaam"
-								cssClass="error" /></td>
+						<td>${persoonDTO.persoon.achternaam}</td>
 					</tr>
 
 					<tr>
 						<td><label for="tussenvoegsel">Tussenvoegsel: </label></td>
-						<td><form:input path="persoonDTO.persoon.tussenvoegsel"
-								id="tussenvoegsel" /></td>
-						<td><form:errors path="persoonDTO.persoon.tussenvoegsel"
-								cssClass="error" /></td>
+						<td>${persoonDTO.persoon.tussenvoegsel}</td>
 					</tr>
 
 					<tr>
 						<td><label for="geboortedatum">Geboortedatum: </label></td>
-						<td><form:input path="persoonDTO.persoon.geboortedatum"
-								id="geboortedatum" /></td>
-						<td><form:errors path="persoonDTO.persoon.geboortedatum"
-								cssClass="geboortedatum" /></td>
+						<td>${persoonDTO.persoon.geboortedatum}</td>
 					</tr>
 
 					<tr>
@@ -60,20 +48,7 @@
 							var="digitaleadres" varStatus="current">
 							<c:if
 								test="${digitaleadres.digitaalAdresType.type == 'telefoonnummer'}">
-								<form:input type="hidden"
-									path="digitaleAdressen[${current.index}].id"
-									value="${digitaleadres.id}" />
-								<form:input type="hidden"
-									path="digitaleAdressen[${current.index}].digitaalAdresType.type"
-									value="${digitaleadres.digitaalAdresType.type}" />
-								<td><form:input
-										path="digitaleAdressen[${current.index}].omschrijving"
-										id="omschrijving" value="${digitaleadres.omschrijving}"
-										size="25" /></td>
-								<form:input type="hidden"
-									path="digitaleAdressen[${current.index}].digitaalAdresType.id"
-									value="${digitaleadres.digitaalAdresType.id}" />
-
+								<td>${digitaleadres.omschrijving}</td>
 							</c:if>
 						</c:forEach>
 					</tr>
@@ -83,30 +58,15 @@
 						<c:forEach items="${persoonDTO.persoon.digitaleAdressen}"
 							var="digitaleadres" varStatus="current">
 							<c:if test="${digitaleadres.digitaalAdresType.type == 'email'}">
-
-								<form:input type="hidden"
-									path="digitaleAdressen[${current.index}].id"
-									value="${digitaleadres.id}" />
-								<form:input type="hidden"
-									path="digitaleAdressen[${current.index}].digitaalAdresType.type"
-									value="${digitaleadres.digitaalAdresType.type}" />
-								<td><form:input
-										path="digitaleAdressen[${current.index}].omschrijving"
-										id="omschrijving" value="${digitaleadres.omschrijving}"
-										size="25" /></td>
-								<form:input type="hidden"
-									path="digitaleAdressen[${current.index}].digitaalAdresType.id"
-									value="${digitaleadres.digitaalAdresType.id}" />
+								<td>${digitaleadres.omschrijving}</td>
 							</c:if>
 						</c:forEach>
 					</tr>
 
 					<tr>
-						<td><label for="opmerking">Bijzonderheden: </label></td>
-						<td><form:textarea rows="5" cols="20"
-								path="persoonDTO.persoon.opmerking" id="opmerking" />
-						<td><form:errors path="persoonDTO.persoon.opmerking"
-								cssClass="error" /></td>
+						<td><label>Bijzonderheden: </label></td>
+						<td><textarea rows="5" cols="15"
+								${persoonDTO.persoon.opmerking} /></textarea></td>
 					</tr>
 					<table class="modal-table">
 						<tr>
@@ -118,15 +78,11 @@
 			</div>
 
 			<div class="eenderde">
-				<c:if test="${not empty persoonDTO.persoon.adressen}">
-					<table class="gegevens-table">
-						<th>Adres</th>
+				<table class="gegevens-table">
+					<th>Adres</th>
+					<c:if test="${not empty persoonDTO.persoon.adressen}">
 						<c:forEach items="${persoonDTO.persoon.adressen}" var="adres"
 							varStatus="current" begin="0">
-							<tr>
-								<td><form:input type="hidden"
-										path="adressen[${current.index}].id" value="${adres.id}"></form:input>
-							</tr>
 							<c:if test="${current.index > 0}">
 								<tr>
 									<td><label><strong>Adres
@@ -134,113 +90,84 @@
 								</tr>
 							</c:if>
 							<tr>
-								<td><label></label>
-							</tr>
-							<tr>
 								<td><label>Straat: </label></td>
-								<td><form:input path="adressen[${current.index}].straat"
-										value="${straat}" /></td>
+								<td>${adres.straat}</td>
 							</tr>
 							<tr>
 								<td><label>Nummer: </label></td>
-								<td><form:input path="adressen[${current.index}].nummer"
-										value="${nummer}" /></td>
+								<td>${adres.nummer}</td>
 							</tr>
 							<tr>
 								<td><label>Toevoegsel: </label></td>
-								<td><form:input
-										path="adressen[${current.index}].toevoegsel"
-										value="${toevoegsel}" /></td>
+								<td>${adres.toevoegsel}</td>
 							</tr>
 							<tr>
 								<td><label>Postcode: </label></td>
-								<td><form:input path="adressen[${current.index}].postcode"
-										value="${postcode}" /></td>
+								<td>${adres.postcode}</td>
 							</tr>
 							<tr>
 								<td><label>Plaats: </label></td>
-								<td><form:input path="adressen[${current.index}].plaats"
-										value="${plaats}" /></td>
+								<td>${adres.plaats}</td>
 							</tr>
 							<tr>
 								<td><label>Provincie: </label></td>
-								<td><form:input path="adressen[${current.index}].provincie"
-										value="${provincie}" /></td>
+								<td>${adres.provincie}</td>
 							</tr>
 							<tr>
 								<td><label>Land: </label></td>
-								<td><form:input path="adressen[${current.index}].land"
-										value="${land}" /></td>
+								<td>${adres.land}</td>
 							</tr>
 
 							<td><label>Adres type: </label></td>
-							<td><form:select
-									path="persoon.adressen[${current.index}].adresType.id">
-									<option value="${adres.adresType.id}" selected>${adres.adresType.type}
-									</option>
-
-									<!--  
-									<option value="${adres.adresType.id}" selected>${adres.adresType.type}
-										(huidig)</option>
-										-->
-									<c:forEach items="${adresTypes}" var="lookupType"
-										varStatus="current" begin="0">
-										<option value="${lookupType.id}">${lookupType.type}</option>
-									</c:forEach>
-								</form:select></td>
+							<td>${adres.adresType.type}</td>
 						</c:forEach>
-						<table class="modal-table">
-							<tr>
-								<td><a href="#modal-wijzigadres" class="btn btn-small">Wijzig</a></td>
-								<td><a href="#modal-deleteadres" class="btn btn-small">Delete</a></td>
-								<td><a href="#modal-nieuwadres" class="btn btn-small">Voeg
-										toe</a></td>
-							</tr>
-						</table>
+					</c:if>
+					<table class="modal-table">
+						<tr>
+							<td><a href="#modal-wijzigadres" class="btn btn-small">Wijzig</a></td>
+							<td><a href="#modal-deleteadres" class="btn btn-small">Delete</a></td>
+							<td><a href="#modal-nieuwadres" class="btn btn-small">Voeg
+									toe</a></td>
+						</tr>
 					</table>
-				</c:if>
+				</table>
 			</div>
 
 			<div class="eenderde">
-				<c:if test="${not empty persoonDTO.persoon.persoonsrollen}">
-					<table class="gegevens-table">
-						<th>Rol</th>
+				<table class="gegevens-table">
+					<th>Rol</th>
+					<c:if test="${not empty persoonDTO.persoon.persoonsrollen}">
 						<c:forEach items="${persoonDTO.persoon.persoonsrollen}"
 							var="persoonsrol" varStatus="current">
 							<tr class="element">
-								<form:input type="hidden"
-									path="persoonsrollen[${current.index}].id"
-									value="${persoonsrol.id}" />
-								<form:input type="hidden"
-									path="persoonsrollen[${current.index}].rol.id"
-									value="${persoonsrol.rol.id}" />
-								<form:input type="hidden"
-									path="persoonsrollen[${current.index}].rol.type" id="type"
-									value="${persoonsrol.rol.type}" />
 								<td><label>${persoonsrol.rol.type} </label>
 								<td><label>Begin:</label></td>
-								<td><form:input
-										path="persoonsrollen[${current.index}].begindatum"
-										id="begindatum" size="10" /></td>
+								<td>${persoonsrol.begindatum}</td>
 								<td><label>Eind:</label></td>
-								<td><form:input
-										path="persoonsrollen[${current.index}].einddatum"
-										id="einddatum" size="10" /></td>
+								<td>${persoonsrol.einddatum}</td>
 							</tr>
 
-
-
+							<c:if test="${persoonsrol.rol.type eq 'contactpersoon'}">
+								<tr>
+									<td></td>
+									<td><label>Functie:</label></td>
+									<td>${persoonsrol.functie}</td>
+									<td><label>Afdeling:</label></td>
+									<td>${persoonsrol.afdeling}</td>
+								</tr>
+							</c:if>
 						</c:forEach>
-						<table class="modal-table">
-							<tr>
-								<td><a href="#modal-wijzigrol" class="btn btn-small">Wijzig</a></td>
-								<td><a href="#modal-deleterol" class="btn btn-small">Delete</a></td>
-								<td><a href="#modal-nieuwrol" class="btn btn-small">Voeg
-										toe</a></td>
-							</tr>
-						</table>
+					</c:if>
+					<table class="modal-table">
+						<tr>
+							<td><a href="#modal-wijzigrol" class="btn btn-small">Wijzig</a></td>
+							<td><a href="#modal-deleterol" class="btn btn-small">Delete</a></td>
+							<td><a href="#modal-nieuwrol" class="btn btn-small">Voeg
+									toe</a></td>
+						</tr>
 					</table>
-				</c:if>
+				</table>
+
 			</div>
 		</form:form>
 	</div>
