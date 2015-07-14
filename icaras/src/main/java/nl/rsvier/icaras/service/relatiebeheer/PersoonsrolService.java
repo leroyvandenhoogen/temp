@@ -9,11 +9,14 @@ import nl.rsvier.icaras.dao.relatiebeheer.PersoonsrolDaoImpl;
 import nl.rsvier.icaras.dao.relatiebeheer.RolDaoImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service("persoonsrolService")
+@Service("IPersoonsrolService")
 @Transactional
+@Scope(value="singleton", proxyMode=ScopedProxyMode.TARGET_CLASS)
 public class PersoonsrolService {
 
 	@Autowired

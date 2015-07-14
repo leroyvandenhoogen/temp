@@ -177,7 +177,7 @@
 							<td><form:select
 									path="persoon.adressen[${current.index}].adresType.id">
 									<option value="${adres.adresType.id}" selected>${adres.adresType.type}
-										(huidig)</option>
+									</option>
 
 									<!--  
 									<option value="${adres.adresType.id}" selected>${adres.adresType.type}
@@ -188,15 +188,15 @@
 										<option value="${lookupType.id}">${lookupType.type}</option>
 									</c:forEach>
 								</form:select></td>
-							<table class="modal-table">
-								<tr>
-									<td><a href="#modal-wijzigadres" class="btn btn-small">Wijzig</a></td>
-									<td><a href="#modal-deleteadres" class="btn btn-small">Delete</a></td>
-									<td><a href="#modal-nieuwadres" class="btn btn-small">Voeg
-											toe</a></td>
-								</tr>
-							</table>
 						</c:forEach>
+						<table class="modal-table">
+							<tr>
+								<td><a href="#modal-wijzigadres" class="btn btn-small">Wijzig</a></td>
+								<td><a href="#modal-deleteadres" class="btn btn-small">Delete</a></td>
+								<td><a href="#modal-nieuwadres" class="btn btn-small">Voeg
+										toe</a></td>
+							</tr>
+						</table>
 					</table>
 				</c:if>
 			</div>
@@ -457,14 +457,11 @@
 											<option value="${lookupType.id}">${lookupType.type}</option>
 										</c:forEach>
 									</form:select></td>
-								<tr>
-									<td colspan="3"><input type="submit" name="wijzigadres"
-										value="Wijzig" /></td>
-								</tr>
-								<tr></tr>
-
-								<tr>
 							</c:forEach>
+							<tr>
+								<td colspan="3"><input type="submit" name="wijzigadres"
+									value="Wijzig" /></td>
+							</tr>
 						</table>
 					</c:if>
 
@@ -479,13 +476,85 @@
 	<!-- /Modal -->
 
 	<!-- Modal -->
+	<div class="modal" id="modal-nieuwadres" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-header">
+				<h2>Nieuw adres</h2>
+
+				<a href="#close" class="btn-close" aria-hidden="true">×</a>
+				<!--CHANGED TO "#close"-->
+			</div>
+			<div class="modal-body">
+				<form:form method="POST" modelAttribute="persoonDTO">
+					<tr>
+						<form:input type="hidden" path="persoon.id" />
+					</tr>
+					<table class="gegevens-table">
+						<th>Adres</th>
+						<tr>
+							<td><label>Straat: </label></td>
+							<td><form:input path="adres.straat" value="${adres.straat}" /></td>
+						</tr>
+						<tr>
+							<td><label>Nummer: </label></td>
+							<td><form:input path="adres.nummer" value="${adres.nummer}" /></td>
+						</tr>
+						<tr>
+							<td><label>Toevoegsel: </label></td>
+							<td><form:input path="adres.toevoegsel"
+									value="${adres.toevoegsel}" /></td>
+						</tr>
+						<tr>
+							<td><label>Postcode: </label></td>
+							<td><form:input path="adres.postcode"
+									value="${adres.postcode}" /></td>
+						</tr>
+						<tr>
+							<td><label>Plaats: </label></td>
+							<td><form:input path="adres.plaats" value="${adres.plaats}" /></td>
+						</tr>
+						<tr>
+							<td><label>Provincie: </label></td>
+							<td><form:input path="adres.provincie"
+									value="${adres.provincie}" /></td>
+						</tr>
+						<tr>
+							<td><label>Land: </label></td>
+							<td><form:input path="adres.land" value="${adres.land}" /></td>
+						</tr>
+
+						<td><label>Adres type: </label></td>
+						<td><form:select path="adres.adresType.id">
+								<option value="1" selected>post</option>
+
+								<c:forEach items="${adresTypes}" var="lookupType"
+									varStatus="current" begin="0">
+									<option value="${lookupType.id}">${lookupType.type}</option>
+								</c:forEach>
+							</form:select></td>
+						<tr>
+							<td colspan="3"><input type="submit" name="nieuwadres"
+								value="Voeg toe" /></td>
+						</tr>
+					</table>
+				</form:form>
+			</div>
+			<div class="modal-footer">
+				<a href="#close" class="btn">Sluiten</a>
+				<!--CHANGED TO "#close"-->
+			</div>
+		</div>
+	</div>
+	<!-- /Modal -->
+
+
+
 	<div class="modal" id="modal-wijzigrol" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-header">
 				<h2>Wijzig gegevens</h2>
 
 				<a href="#close" class="btn-close" aria-hidden="true">×</a>
-				<!--CHANGED TO "#close"-->
 			</div>
 			<div class="modal-body">
 				<form:form method="POST" modelAttribute="persoonDTO">
@@ -493,18 +562,25 @@
 						<table class="gegevens-table">
 							<th>Rol</th>
 							<c:forEach items="${persoonDTO.persoon.persoonsrollen}"
-								var="persoonsrol" varStatus="current">
+								var="persoonsrol" varStatus="current" begin="0">
 								<tr class="element">
+
 									<form:input type="hidden"
-										path="persoon.persoonsrollen[${current.index}].id"
-										value="${persoonsrol.id}" />
+										path="persoon.persoonsrollen[${current.index}].persoon.id" />
 									<form:input type="hidden"
-										path="persoon.persoonsrollen[${current.index}].rol.id"
-										value="${persoonsrol.rol.id}" />
-									<form:input type="hidden"
-										path="persoon.persoonsrollen[${current.index}].rol.type"
-										value="${persoonsrol.rol.type}" />
-									<td><label>${persoonsrol.rol.type}</label>
+										path="persoon.persoonsrollen[${current.index}].id" />
+									<td><form:select
+											path="persoon.persoonsrollen[${current.index}].rol.id">
+											<option value="${persoonsrol.rol.id}" selected>${persoonsrol.rol.type}
+											</option>
+
+											<c:forEach items="${rollen}" var="lookupType"
+												varStatus="loop" begin="0">
+												<option value="${lookupType.id}">${lookupType.type}</option>
+											</c:forEach>
+										</form:select></td>
+
+
 									<td><label>begindatum</label></td>
 									<td><form:input
 											path="persoon.persoonsrollen[${current.index}].begindatum"
@@ -525,11 +601,46 @@
 			</div>
 			<div class="modal-footer">
 				<a href="#close" class="btn">Sluiten</a>
-				<!--CHANGED TO "#close"-->
 			</div>
 		</div>
 	</div>
-	<!-- /Modal -->
+
+
+
+
+	<div class="modal" id="modal-nieuwrol" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-header">
+				<h2>Wijzig gegevens</h2>
+
+				<a href="#close" class="btn-close" aria-hidden="true">×</a>
+			</div>
+			<div class="modal-body">
+				<form:form method="POST" modelAttribute="persoonDTO">
+					<table class="gegevens-table">
+						<th>Rol</th>
+						<tr class="element">
+
+
+							<td><label>begindatum</label></td>
+							<td><form:input path="persoonsrol.begindatum" size="10" /></td>
+							<td><label>einddatum </label></td>
+							<td><form:input path="persoonsrol.einddatum" size="10" /></td>
+						</tr>
+						<tr>
+							<td colspan="3"><input type="submit" name="nieuwrol"
+								value="Voeg toe" /></td>
+						</tr>
+					</table>
+				</form:form>
+			</div>
+			<div class="modal-footer">
+				<a href="#close" class="btn">Sluiten</a>
+
+			</div>
+		</div>
+	</div>
+
 
 	<script
 		src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>

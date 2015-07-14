@@ -226,7 +226,7 @@ public class Persoon implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persoon")
-	@Cascade({CascadeType.DELETE})
+	@Cascade({CascadeType.ALL})
 	public List<Persoonsrol> getPersoonsrollen() {
 		return this.persoonsrollen;
 	}
