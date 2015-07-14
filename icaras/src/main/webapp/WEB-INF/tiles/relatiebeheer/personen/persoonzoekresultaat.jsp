@@ -2,6 +2,8 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 
 <body>
 	<h1 style="color: red">${gewijzigd}</h1>
@@ -30,9 +32,11 @@
 						<td>${persoonDTO.persoon.tussenvoegsel}</td>
 					</tr>
 
+					<fmt:formatDate value="${persoonDTO.persoon.geboortedatum}"
+						var="geboortedatumFormat" pattern="dd-MM-yyyy" />
 					<tr>
 						<td><label for="geboortedatum">Geboortedatum: </label></td>
-						<td>${persoonDTO.persoon.geboortedatum}</td>
+						<td>${geboortedatumFormat}</td>
 					</tr>
 
 					<tr>
@@ -142,9 +146,13 @@
 							<tr class="element">
 								<td><label>${persoonsrol.rol.type} </label>
 								<td><label>Begin:</label></td>
-								<td>${persoonsrol.begindatum}</td>
+								<fmt:formatDate value="${persoonsrol.begindatum}"
+									var="begindatumFormat" pattern="dd-MM-yyyy" />
+								<td>${begindatumFormat}</td>
 								<td><label>Eind:</label></td>
-								<td>${persoonsrol.einddatum}</td>
+								<fmt:formatDate value="${persoonsrol.einddatum}"
+									var="einddatumFormat" pattern="dd-MM-yyyy" />
+								<td>${einddatumFormat}</td>
 							</tr>
 
 							<c:if test="${persoonsrol.rol.type eq 'contactpersoon'}">
@@ -548,9 +556,20 @@
 						<th>Rol</th>
 						<tr class="element">
 
+							<td><form:select path="persoonsrol.rol.id">
+									<option value="1" selected>cursist</option>
+
+									<c:forEach items="${rollen}" var="lookupType" varStatus="loop"
+										begin="0">
+										<option value="${lookupType.id}">${lookupType.type}</option>
+									</c:forEach>
+								</form:select></td>
 
 							<td><label>begindatum</label></td>
-							<td><form:input path="persoonsrol.begindatum" size="10" /></td>
+							<jsp:useBean id="now" class="java.util.Date">
+							<fmt:formatDate value="${now}" var="datumVandaagFormat" pattern="dd-MM-yyyy"/>
+							</jsp:useBean>
+							<td><form:input path="persoonsrol.begindatum" size="10" value="${datumVandaagFormat}"/></td>
 							<td><label>einddatum </label></td>
 							<td><form:input path="persoonsrol.einddatum" size="10" /></td>
 						</tr>

@@ -61,7 +61,7 @@ public class PersonenlijstController {
 				.getAllTypes();
 		return adresTypes;
 	}
-	
+
 	@ModelAttribute("rollen")
 	public ArrayList<Rol> createRollenList() {
 		ArrayList<Rol> rollen = (ArrayList<Rol>) persoonsrolService
@@ -144,12 +144,12 @@ public class PersonenlijstController {
 
 		return ("redirect:zoekresultaat-" + wijzigPersoon.getId());
 	}
-	
+
 	@RequestMapping(value = { "/zoekresultaat-{id}" }, method = RequestMethod.POST, params = "nieuwadres")
 	public String nieuwAdres(@PathVariable int id,
 			@ModelAttribute("persoonDTO") PersoonDTO persoonDTO,
 			BindingResult result1, ModelMap model) {
-		
+
 		Persoon wijzigPersoon = service.get(id);
 		wijzigPersoon.addAdres(persoonDTO.getAdres());
 		adresService.save(persoonDTO.getAdres());
@@ -157,51 +157,56 @@ public class PersonenlijstController {
 
 		return ("redirect:zoekresultaat-" + wijzigPersoon.getId());
 	}
-	
+
 	@RequestMapping(value = { "/zoekresultaat-{id}" }, method = RequestMethod.POST, params = "wijzigrol")
 	public String wijzigRol(@PathVariable int id,
 			@ModelAttribute("persoonDTO") PersoonDTO persoonDTO,
 			BindingResult result1, ModelMap model) {
 		Persoon wijzigPersoon = service.get(id);
-		
-		for(int i = 0; i < wijzigPersoon.getPersoonsrollen().size(); i++) {
-			Persoonsrol temp = persoonDTO.getPersoon().getPersoonsrollen().get(i);
-			Persoonsrol wijzigPersoonsrol = wijzigPersoon.getPersoonsrollen().get(i);
+
+		for (int i = 0; i < wijzigPersoon.getPersoonsrollen().size(); i++) {
+			Persoonsrol temp = persoonDTO.getPersoon().getPersoonsrollen()
+					.get(i);
+			Persoonsrol wijzigPersoonsrol = wijzigPersoon.getPersoonsrollen()
+					.get(i);
 			wijzigPersoonsrol.setBegindatum(temp.getBegindatum());
 			wijzigPersoonsrol.setEinddatum(temp.getEinddatum());
 			wijzigPersoonsrol.setRol(temp.getRol());
 			persoonsrolService.update(wijzigPersoonsrol);
 		}
-		
-//		for (Persoonsrol persoonsrol : persoonDTO.getPersoon().getPersoonsrollen()) {
-//			persoonsrol.setPersoon(wijzigPersoon);
-//			if(persoonsrol.getBedrijf() != null) {
-//				bedrijfService.update(persoonsrol.getBedrijf());
-//			}
-//			persoonsrolService.update(persoonsrol);
-//
-//		}
-//
-//		service.update(wijzigPersoon);
 
 		return ("redirect:zoekresultaat-" + wijzigPersoon.getId());
 	}
-	
-//	@RequestMapping(value = { "/zoekresultaat-{id}" }, method = RequestMethod.POST, params = "nieuwrol")
-//	public String wijzigRol(@PathVariable int id,
-//			@ModelAttribute("persoonDTO") PersoonDTO persoonDTO,
-//			BindingResult result1, ModelMap model) {
-//		Persoon wijzigPersoon = service.get(id);
-//		for (Persoonsrol persoonsrol : persoonDTO.getPersoon().getPersoonsrollen()) {
-//			persoonsrol.setPersoon(wijzigPersoon);
-//			persoonsrolService.update(persoonsrol);
-//
-//		}
-//
-//		service.update(wijzigPersoon);
-//
-//		return ("redirect:zoekresultaat-" + wijzigPersoon.getId());
-//	}
+
+	@RequestMapping(value = { "/zoekresultaat-{id}" }, method = RequestMethod.POST, params = "nieuwrol")
+	public String nieuwRol(@PathVariable int id,
+			@ModelAttribute("persoonDTO") PersoonDTO persoonDTO,
+			BindingResult result1, ModelMap model) {
+		Persoon wijzigPersoon = service.get(id);
+		wijzigPersoon.addPersoonsrol(persoonDTO.getPersoonsrol());
+		persoonsrolService.save(persoonDTO.getPersoonsrol());
+		service.update(wijzigPersoon);
+
+		return ("redirect:zoekresultaat-" + wijzigPersoon.getId());
+	}
+
+	// @RequestMapping(value = { "/zoekresultaat-{id}" }, method =
+	// RequestMethod.POST, params = "nieuwrol")
+	// public String wijzigRol(@PathVariable int id,
+	// @ModelAttribute("persoonDTO") PersoonDTO persoonDTO,
+	// BindingResult result1, ModelMap model) {
+	// Persoon wijzigPersoon = service.get(id);
+	// for (Persoonsrol persoonsrol :
+	// persoonDTO.getPersoon().getPersoonsrollen()) {
+	// persoonsrol.setPersoon(wijzigPersoon);
+	// persoonsrolService.update(persoonsrol);
+	//
+	// }
+	//
+	// service.update(wijzigPersoon);
+	//
+	// return ("redirect:zoekresultaat-" + wijzigPersoon.getId());
+	// }
 
 	@RequestMapping(value = { "/nieuw" }, method = RequestMethod.GET)
 	public String nieuwPersoon(ModelMap model) {
@@ -244,64 +249,68 @@ public class PersonenlijstController {
 		}
 	}
 
-//	@RequestMapping(value = { "/nieuwadres-{id}" }, method = RequestMethod.GET)
-//	public String adresToevoegen(@ModelAttribute("id") int id,
-//			BindingResult result, ModelMap model) {
-//		PersoonDTO persoonDTO = new PersoonDTO();
-//		persoonDTO.setPersoon(service.get(id));
-//		persoonDTO.setAdresTypes(adresService.getAllTypes());
-//
-//		model.addAttribute("persoonDTO", persoonDTO);
-//
-//		return "relatiebeheer/personen/nieuwadres";
-//	}
-//
-//	@RequestMapping(value = { "/nieuwadres-{id}" }, method = RequestMethod.POST)
-//	public String adresToevoegen(@ModelAttribute("id") int id,
-//			BindingResult result,
-//			@ModelAttribute("persoonDTO") PersoonDTO persoonDTO,
-//			BindingResult result2, ModelMap model) {
-//		Persoon persoon = service.get(persoonDTO.getPersoon().getId());
-//		persoon.addAdres(persoonDTO.getAdres());
-//		adresService.save(persoonDTO.getAdres());
-//		service.update(persoon);
-//
-//		model.addAttribute("succes",
-//				"Nieuw adres voor " + persoon.getVolledigeNaam()
-//						+ " toegevoegd!");
-//		model.addAttribute("persoonDTO", persoonDTO);
-//
-//		return "relatiebeheer/personen/bevestig";
-//	}
-//
-//	@RequestMapping(value = { "/nieuwpersoonsrol-{id}" }, method = RequestMethod.GET)
-//	public String persoonsrolToevoegen(@ModelAttribute("id") int id,
-//			BindingResult result, ModelMap model) {
-//		PersoonDTO persoonDTO = new PersoonDTO();
-//		persoonDTO.setPersoon(service.get(id));
-//		persoonDTO.setRollen(persoonsrolService.getAllRollen());
-//
-//		model.addAttribute("persoonDTO", persoonDTO);
-//
-//		return "relatiebeheer/personen/nieuwpersoonsrol";
-//	}
-//
-//	@RequestMapping(value = { "/nieuwpersoonsrol-{id}" }, method = RequestMethod.POST)
-//	public String persoonsrolToevoegen(@ModelAttribute("id") int id,
-//			BindingResult result,
-//			@ModelAttribute("persoonDTO") PersoonDTO persoonDTO,
-//			BindingResult result2, ModelMap model) {
-//		Persoon persoon = service.get(persoonDTO.getPersoon().getId());
-//		persoon.addPersoonsrol(persoonDTO.getPersoonsrol());
-//		persoonsrolService.save(persoonDTO.getPersoonsrol());
-//		service.update(persoon);
-//
-//		model.addAttribute("succes",
-//				"Nieuw persoonsrol voor " + persoon.getVolledigeNaam()
-//						+ " toegevoegd!");
-//		model.addAttribute("persoonDTO", persoonDTO);
-//
-//		return "relatiebeheer/personen/bevestig";
-//	}
-//
+	// @RequestMapping(value = { "/nieuwadres-{id}" }, method =
+	// RequestMethod.GET)
+	// public String adresToevoegen(@ModelAttribute("id") int id,
+	// BindingResult result, ModelMap model) {
+	// PersoonDTO persoonDTO = new PersoonDTO();
+	// persoonDTO.setPersoon(service.get(id));
+	// persoonDTO.setAdresTypes(adresService.getAllTypes());
+	//
+	// model.addAttribute("persoonDTO", persoonDTO);
+	//
+	// return "relatiebeheer/personen/nieuwadres";
+	// }
+	//
+	// @RequestMapping(value = { "/nieuwadres-{id}" }, method =
+	// RequestMethod.POST)
+	// public String adresToevoegen(@ModelAttribute("id") int id,
+	// BindingResult result,
+	// @ModelAttribute("persoonDTO") PersoonDTO persoonDTO,
+	// BindingResult result2, ModelMap model) {
+	// Persoon persoon = service.get(persoonDTO.getPersoon().getId());
+	// persoon.addAdres(persoonDTO.getAdres());
+	// adresService.save(persoonDTO.getAdres());
+	// service.update(persoon);
+	//
+	// model.addAttribute("succes",
+	// "Nieuw adres voor " + persoon.getVolledigeNaam()
+	// + " toegevoegd!");
+	// model.addAttribute("persoonDTO", persoonDTO);
+	//
+	// return "relatiebeheer/personen/bevestig";
+	// }
+	//
+	// @RequestMapping(value = { "/nieuwpersoonsrol-{id}" }, method =
+	// RequestMethod.GET)
+	// public String persoonsrolToevoegen(@ModelAttribute("id") int id,
+	// BindingResult result, ModelMap model) {
+	// PersoonDTO persoonDTO = new PersoonDTO();
+	// persoonDTO.setPersoon(service.get(id));
+	// persoonDTO.setRollen(persoonsrolService.getAllRollen());
+	//
+	// model.addAttribute("persoonDTO", persoonDTO);
+	//
+	// return "relatiebeheer/personen/nieuwpersoonsrol";
+	// }
+	//
+	// @RequestMapping(value = { "/nieuwpersoonsrol-{id}" }, method =
+	// RequestMethod.POST)
+	// public String persoonsrolToevoegen(@ModelAttribute("id") int id,
+	// BindingResult result,
+	// @ModelAttribute("persoonDTO") PersoonDTO persoonDTO,
+	// BindingResult result2, ModelMap model) {
+	// Persoon persoon = service.get(persoonDTO.getPersoon().getId());
+	// persoon.addPersoonsrol(persoonDTO.getPersoonsrol());
+	// persoonsrolService.save(persoonDTO.getPersoonsrol());
+	// service.update(persoon);
+	//
+	// model.addAttribute("succes",
+	// "Nieuw persoonsrol voor " + persoon.getVolledigeNaam()
+	// + " toegevoegd!");
+	// model.addAttribute("persoonDTO", persoonDTO);
+	//
+	// return "relatiebeheer/personen/bevestig";
+	// }
+	//
 }
