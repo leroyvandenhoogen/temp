@@ -76,6 +76,7 @@ public class OrganisatieslijstController {
 		BedrijfDTO bedrijfDTO = new BedrijfDTO();
 		bedrijfDTO.setAdresTypes(adresService.getAllTypes());
 		bedrijfDTO.setBedrijfTypes(bedrijfService.getAllTypes());
+		bedrijfDTO.setDigitaalAdresTypes(digitaalAdresService.getAllTypes());
 		model.addAttribute("bedrijfDTO", bedrijfDTO);
 		return "relatiebeheer/organisaties/nieuw";
 	}
@@ -87,6 +88,19 @@ public class OrganisatieslijstController {
 		Bedrijf bedrijf = bedrijfDTO.getBedrijf();
 		Adres adres = bedrijfDTO.getAdres();
 		bedrijf.addAdres(adres);
+		DigitaalAdres telefoon = bedrijfDTO.getdAdres1();
+		digitaalAdresService.addAdresType("telefoonnummer", telefoon);
+		bedrijf.addDigitaalAdres(telefoon);
+		DigitaalAdres email = bedrijfDTO.getdAdres2();
+		bedrijf.addDigitaalAdres(email);
+		digitaalAdresService.addAdresType("email", email);
+		DigitaalAdres website = bedrijfDTO.getdAdres3();
+		bedrijf.addDigitaalAdres(website);
+		digitaalAdresService.addAdresType("website", website);
+		DigitaalAdres fax = bedrijfDTO.getdAdres4();
+		bedrijf.addDigitaalAdres(fax);
+		digitaalAdresService.addAdresType("fax", fax);
+		
 		int bedrijfTypeId = bedrijfDTO.getBedrijf().getBedrijfType().getId();
 		BedrijfType bedrijfType = bedrijfTypeService.getById(bedrijfTypeId);
 		bedrijfService.addBedrijfType(bedrijfType.getType(), bedrijf);
@@ -116,6 +130,11 @@ public class OrganisatieslijstController {
 		for (Adres adres : bedrijfDTO.getBedrijf().getAdressen()) {
 			adres.setBedrijf(bedrijfDTO.getBedrijf());
 			adresService.update(adres);
+		}
+		
+		for (DigitaalAdres dAdres : bedrijfDTO.getBedrijf().getDigitaleAdressen()) {
+			dAdres.setBedrijf(bedrijfDTO.getBedrijf());
+			digitaalAdresService.update(dAdres);
 		}
 
 		bedrijfService.update(bedrijfDTO.getBedrijf());

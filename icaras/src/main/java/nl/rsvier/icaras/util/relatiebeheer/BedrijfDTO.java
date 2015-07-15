@@ -20,6 +20,8 @@ public class BedrijfDTO {
 	private List<BedrijfType> bedrijfTypes;
 	private DigitaalAdres dAdres1;
 	private DigitaalAdres dAdres2;
+	private DigitaalAdres dAdres3;
+	private DigitaalAdres dAdres4;
 	private Persoon persoon;
 	private String input;
 	
@@ -64,6 +66,18 @@ public class BedrijfDTO {
 	}
 	public void setdAdres2(DigitaalAdres dAdres2) {
 		this.dAdres2 = dAdres2;
+	}
+	public DigitaalAdres getdAdres3() {
+		return dAdres3;
+	}
+	public void setdAdres3(DigitaalAdres dAdres3) {
+		this.dAdres3 = dAdres3;
+	}
+	public DigitaalAdres getdAdres4() {
+		return dAdres4;
+	}
+	public void setdAdres4(DigitaalAdres dAdres4) {
+		this.dAdres4 = dAdres4;
 	}
 	public Persoon getPersoon() {
 		return persoon;

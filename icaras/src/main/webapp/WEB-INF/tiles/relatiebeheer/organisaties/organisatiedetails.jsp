@@ -16,6 +16,18 @@
 				<td><c:out value="${fn:toUpperCase(bedrijfDTO.bedrijf.naam)}" />
 					(${bedrijfDTO.bedrijf.bedrijfType.type})</td>
 			</tr>
+			<c:forEach items="${bedrijfDTO.bedrijf.digitaleAdressen}" var = "digitaalAdres" varStatus="loop">
+				<tr>
+					<td>${digitaalAdres.omschrijving} 
+						<c:if test="${digitaalAdres.digitaalAdresType.type eq 'email'}">
+							<a href="mailto:${digitaalAdres.omschrijving}">
+							<img src="${pageContext.request.contextPath}/resources/rs4/images/icons/simpleicons/mail.png"
+										height="18" width="20"></a>
+						</c:if>
+					</td>	
+				</tr>
+			</c:forEach>	
+					
 			<c:forEach items="${bedrijfDTO.bedrijf.adressen}" var="adres"
 				varStatus="loop">
 
@@ -144,6 +156,27 @@
 						<tr>
 							<td><form:input type="hidden" path="bedrijf.kvkNummer" /></td>
 						</tr>
+												
+						<c:forEach items="${bedrijfDTO.bedrijf.digitaleAdressen}" var="digitaalAdres"
+							varStatus="loop">
+							<tr>
+								<td><form:input type="hidden"
+										path="bedrijf.digitaleAdressen[${loop.index}].id" value="${digitaalAdres.id}" /></td>									
+							<tr>
+								<td><form:select
+										path="bedrijf.digitaleAdressen[${loop.index}].digitaalAdresType.id">
+										<option value="bedrijf.digitaleAdressen[${loop.index}].digitaalAdresType.id" selected>${digitaalAdres.digitaalAdresType.type}</option>
+										<c:forEach items="${bedrijfDTO.digitaalAdresTypes}" var="lookupType"
+											varStatus="current" begin="0">
+											<option value="${lookupType.id}">${lookupType.type}</option>
+										</c:forEach>
+									</form:select>
+								</td>
+								<td><form:input
+										path="bedrijf.digitaleAdressen[${loop.index}].omschrijving"/>
+								</td>
+							</tr>
+						</c:forEach>
 
 						<c:forEach items="${bedrijfDTO.bedrijf.adressen}" var="adres"
 							varStatus="loop">
