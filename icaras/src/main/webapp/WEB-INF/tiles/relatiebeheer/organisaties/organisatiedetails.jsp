@@ -5,13 +5,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <body>
+	<div>
 	<input type="button" value="Ga terug" onclick="history.back();" class="btn btn-small"/>
 	<input type="submit"
 		onclick="location.href='${pageContext.request.contextPath}/relatiebeheer/organisaties/zoeken'"
 		value="zoekscherm" class="btn btn-small"/>
-	<div>
+	</div>
+	<div class="outer">
 		<br>
 		<table class="organisiate-details">
+			<tr>
+				<td><a href="#modal-one" class="btn btn-small">Wijzig</a> <a
+					href="#modal-two" class="btn btn-small">Extra</a></td>
+			</tr>
 			<tr class="bold">
 				<td><c:out value="${fn:toUpperCase(bedrijfDTO.bedrijf.naam)}" />
 					(${bedrijfDTO.bedrijf.bedrijfType.type})</td>
@@ -56,13 +62,14 @@
 						<td>${bedrijfDTO.bedrijf.opmerking}</td>
 					</tr>
 			</c:if>
-			<tr>
-				<td><a href="#modal-one" class="btn btn-big">Wijzig</a> <a
-					href="#modal-two" class="btn btn-big">Extra</a></td>
-			</tr>
 		</table>
 
 		<table class="organisiate-details">
+			<tr>
+				<td><a href="#modal-three" class="btn btn-small">Wijzig</a> 
+				<a href="#modal-four" class="btn btn-small">Nieuw</a>
+				<a href="<c:url value='/relatiebeheer/organisaties/zoekContactpersoon-${bedrijfDTO.bedrijf.id}' />" class="btn btn-small" >Zoek</a></td>
+			</tr>
 
 			<c:forEach items="${bedrijfDTO.bedrijf.persoonsrollen}"
 				var="persoonsrol" varStatus="loop">
@@ -118,17 +125,13 @@
 				</c:choose>
 				
 			</c:forEach>
-			<tr>
-				<td><a href="#modal-three" class="btn btn-big">Wijzig</a> 
-				<a href="#modal-four" class="btn btn-big">Nieuw</a>
-				<a href="<c:url value='/relatiebeheer/organisaties/zoekContactpersoon-${bedrijfDTO.bedrijf.id}' />" class="btn btn-big" >Zoek</a></td>
-			</tr>
+
 		</table>
 	</div>
 	<div class="modal" id="modal-one" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-header">
-				<h2>Bewerk organisatie</h2>
+				<h2>Wijzig organisatie</h2>
 
 				<a href="#close" class="btn-close" aria-hidden="true">×</a>
 				<!--CHANGED TO "#close"-->

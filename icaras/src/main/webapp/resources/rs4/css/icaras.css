@@ -25,6 +25,13 @@ div.header {
 	background-color: #db000b;
 }
 
+div.outer {
+	text-align: center;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 ul {
 	padding: 0;
 	list-style: none;
@@ -120,6 +127,7 @@ div.details {
 }
 
 .organisiate-details {
+	text-align: left;
 	border: 2px dotted #808080;
 	border-radius: 5px;
 	display: inline-block;
