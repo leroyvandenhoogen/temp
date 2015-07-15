@@ -55,16 +55,16 @@
 
 			<tr class="element">
 				<td><label>Telefoonnummer: </label></td>
-				<form:input type="hidden" path="dAdres1.digitaalAdresType.id"
+				<form:input type="hidden" path="digitaalAdres1.digitaalAdresType.id"
 					value="1" />
-				<td><form:input path="dAdres1.omschrijving" value="" size="30" /></td>
+				<td><form:input path="digitaalAdres1.omschrijving" value="" size="30" /></td>
 			</tr>
 
 			<tr class="element">
 				<td><label>Email: </label></td>
-				<form:input type="hidden" path="dAdres2.digitaalAdresType.id"
+				<form:input type="hidden" path="digitaalAdres2.digitaalAdresType.id"
 					value="2" />
-				<td><form:input path="dAdres2.omschrijving" value="" size="30" /></td>
+				<td><form:input path="digitaalAdres2.omschrijving" value="" size="30" /></td>
 			</tr>
 
 			<tr>
