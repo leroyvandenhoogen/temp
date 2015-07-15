@@ -1,7 +1,9 @@
 package nl.rsvier.icaras.dao.relatiebeheer;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import nl.rsvier.icaras.core.relatiebeheer.Adres;
 import nl.rsvier.icaras.core.relatiebeheer.Bedrijf;
@@ -33,7 +35,7 @@ public class BedrijfDaoImpl extends GenericDaoImpl<Bedrijf> implements
 		lijst2 = queryPlaats(string.trim());
 
 		if (isNotEmpty(lijst1, lijst2)) {
-			return merge2Lists(lijst1, lijst2);
+			return removeDuplicates(merge2Lists(lijst1, lijst2));
 		}
 
 		if (!isSplit(string))
@@ -45,7 +47,7 @@ public class BedrijfDaoImpl extends GenericDaoImpl<Bedrijf> implements
 			lijst1 = queryNaamPlaats(parts[0], parts[1]);
 			lijst2 = queryNaamPlaats(parts[1], parts[0]);
 			if(isNotEmpty(lijst1, lijst2))
-				return merge2Lists(lijst1, lijst2);
+				return removeDuplicates(merge2Lists(lijst1, lijst2));
 			return null;
 		}
 		
@@ -59,7 +61,7 @@ public class BedrijfDaoImpl extends GenericDaoImpl<Bedrijf> implements
 			if(isNotEmpty(lijst1, lijst2))
 				mergeLijst2 = merge2Lists(lijst1, lijst2);
 			if(isNotEmpty(mergeLijst1, mergeLijst2))
-				return merge2Lists(mergeLijst1, mergeLijst2);			
+				return removeDuplicates(merge2Lists(mergeLijst1, mergeLijst2));			
 			return null;
 		}
 		
@@ -77,7 +79,7 @@ public class BedrijfDaoImpl extends GenericDaoImpl<Bedrijf> implements
 			if(isNotEmpty(lijst1, lijst2))
 				mergeLijst3 = merge2Lists(lijst1, lijst2);
 			if(isNotEmpty(mergeLijst1, mergeLijst2, mergeLijst3))
-				return merge3Lists(mergeLijst1, mergeLijst2, mergeLijst3);
+				return removeDuplicates(merge3Lists(mergeLijst1, mergeLijst2, mergeLijst3));
 			return null;
 		}
 		
@@ -85,11 +87,20 @@ public class BedrijfDaoImpl extends GenericDaoImpl<Bedrijf> implements
 			lijst1 = queryNaamPlaats(parts[0].concat(" ").concat(parts[1]), "%"+parts[parts.length -1]);
 			lijst2 = queryNaamPlaats("%"+parts[parts.length -1], parts[0].concat(" ").concat(parts[1]));
 			if(isNotEmpty(lijst1, lijst2))
-				return mergeLijst1 = merge2Lists(lijst1, lijst2);
+				return removeDuplicates(merge2Lists(lijst1, lijst2));
 		}
 		return null;
 	}
 
+	private List<Bedrijf> removeDuplicates(List<Bedrijf> lijst) {
+		Set<Bedrijf> hashSet = new HashSet<Bedrijf>();
+		
+		for(Bedrijf b: lijst) {
+			hashSet.add(b);
+		}
+		return new ArrayList<Bedrijf>(hashSet);
+	}
+	
 	private boolean isNotEmpty(List<Bedrijf> lijst1, List<Bedrijf> lijst2) {
 		if (lijst1 != null || lijst2 != null)
 			return true;
