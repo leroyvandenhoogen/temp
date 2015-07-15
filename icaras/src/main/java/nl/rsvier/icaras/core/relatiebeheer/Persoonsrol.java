@@ -60,6 +60,7 @@ public class Persoonsrol implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "bedrijf_id")
+	@Cascade(CascadeType.ALL)
 	public Bedrijf getBedrijf() {
 		return this.bedrijf;
 	}
