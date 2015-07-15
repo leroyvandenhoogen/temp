@@ -161,11 +161,12 @@
 							varStatus="loop">
 							<tr>
 								<td><form:input type="hidden"
-										path="bedrijf.digitaleAdressen[${loop.index}].id" value="${digitaalAdres.id}" /></td>									
+										path="bedrijf.digitaleAdressen[${loop.index}].id" value="${digitaalAdres.id}" /></td>
+							</tr>									
 							<tr>
 								<td><form:select
 										path="bedrijf.digitaleAdressen[${loop.index}].digitaalAdresType.id">
-										<option value="bedrijf.digitaleAdressen[${loop.index}].digitaalAdresType.id" selected>${digitaalAdres.digitaalAdresType.type}</option>
+										<option value="${digitaalAdres.digitaalAdresType.id}" selected>${digitaalAdres.digitaalAdresType.type}</option>
 										<c:forEach items="${bedrijfDTO.digitaalAdresTypes}" var="lookupType"
 											varStatus="current" begin="0">
 											<option value="${lookupType.id}">${lookupType.type}</option>
