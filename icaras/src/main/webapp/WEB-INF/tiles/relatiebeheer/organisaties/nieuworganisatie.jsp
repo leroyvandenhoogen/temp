@@ -24,10 +24,28 @@
 				<td><form:errors path="bedrijf.naam" cssClass="error" /></td>
 			</tr>
 
-			<tr></tr>
+			<tr>
+				<td><label>Telefoon: </label></td>
+				<td><form:input path="dAdres1.omschrijving" /></td>
+			</tr>
+			
+			<tr>
+				<td><label>Email: </label></td>
+				<td><form:input path="dAdres2.omschrijving" /></td>
+			</tr>
+			
+			<tr>
+				<td><label>Website: </label></td>
+				<td><form:input path="dAdres3.omschrijving" /></td>
+			</tr>
+			
+			<tr>
+				<td><label>Fax: </label></td>
+				<td><form:input path="dAdres4.omschrijving" /></td>
+			</tr>
 
 			<tr>
-				<td><label>Adres: </label></t11d>
+				<td><label>Adres: </label></td>
 				<td><form:select path="adres.adresType.id">
 						<option value="5" selected>bezoek</option>
 						<c:forEach items="${bedrijfDTO.adresTypes}" var="lookupType">
