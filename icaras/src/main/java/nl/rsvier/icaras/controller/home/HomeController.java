@@ -35,6 +35,15 @@ public class HomeController {
 	public String showProjectInfo() {
 		return"projectinfo";
 	}
+	
+	/**
+	 * login pagina
+	 * @return
+	 */
+	@RequestMapping("/login")
+	public String showLogin() {
+		return "login";
+	}
 
 }
 
