@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import nl.rsvier.icaras.core.relatiebeheer.Adres;
 import nl.rsvier.icaras.core.relatiebeheer.Bedrijf;
 import nl.rsvier.icaras.core.relatiebeheer.BedrijfType;
 import nl.rsvier.icaras.dao.relatiebeheer.BedrijfDaoImpl;

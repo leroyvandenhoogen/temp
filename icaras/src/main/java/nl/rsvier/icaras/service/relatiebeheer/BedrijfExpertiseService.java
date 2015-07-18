@@ -5,7 +5,6 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import nl.rsvier.icaras.core.relatiebeheer.BedrijfExpertise;
-import nl.rsvier.icaras.core.relatiebeheer.BedrijfExpertise;
 import nl.rsvier.icaras.core.relatiebeheer.Expertise;
 import nl.rsvier.icaras.dao.relatiebeheer.BedrijfExpertiseDaoImpl;
 import nl.rsvier.icaras.dao.relatiebeheer.ExpertiseDaoImpl;

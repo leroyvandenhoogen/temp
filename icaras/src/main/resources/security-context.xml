@@ -13,8 +13,14 @@
 				<security:user name="scott" authorities="admin"
 					password="tiger" />
 			</security:user-service>
+		
 		</security:authentication-provider>
 		
+		<security:authentication-provider user-service-ref="myUserDetailsService" >
+
+			<security:password-encoder hash="bcrypt" />    
+
+		</security:authentication-provider>
 	</security:authentication-manager>
 
 	<security:http use-expressions="true">
