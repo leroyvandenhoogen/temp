@@ -8,12 +8,13 @@
 	<security:authentication-manager>
 		<security:authentication-provider>
 			<security:user-service>
+				<security:user name="admin" authorities="admin"
+					password="admin" />
 				<security:user name="scott" authorities="admin"
 					password="tiger" />
-				<security:user name="zog" authorities="admin"
-					password="zog" />
 			</security:user-service>
 		</security:authentication-provider>
+		
 	</security:authentication-manager>
 
 	<security:http use-expressions="true">
@@ -23,6 +24,7 @@
 		<security:intercept-url pattern="/resources/**" access="permitAll" />
 		<security:intercept-url pattern="/login" access="permitAll" />
 		<security:intercept-url pattern="/**" access="denyAll" />
-		<security:form-login login-page="/login" />
+		<security:form-login login-page="/login"
+			authentication-failure-url="/login?error=true" />
 	</security:http>
 </beans>
