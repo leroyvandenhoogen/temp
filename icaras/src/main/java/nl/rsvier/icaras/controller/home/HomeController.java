@@ -78,10 +78,14 @@ public class HomeController {
 			result.rejectValue("username", "DuplicateKey.user.username", "Deze gebruikersnaam is al in gebruik");
 			return "nieuwaccount";
 		}
-		userService.save(user, "nieuw");
+		userService.save(user, "ROLE_USER");
 		return "bevestigaccount";
 	}
 
+	@RequestMapping("/loggedout")
+	public String showLoggedout() {
+		return "loggedout";
+	}
 }
 
 

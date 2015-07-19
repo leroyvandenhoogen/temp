@@ -29,6 +29,10 @@ div.header {
 	background-color: #db000b;
 }
 
+div.right {
+	float: right;
+}
+
 div.outer {
 	text-align: center;
 	display: block;

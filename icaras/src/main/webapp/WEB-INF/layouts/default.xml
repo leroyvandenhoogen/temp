@@ -21,6 +21,11 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/login.jsp" />	
 	</definition>
 	
+	<definition name="loggedout" extends="home.base">
+		<put-attribute name="title" value="RSVIER Uitloggen" />
+		<put-attribute name="content" value="/WEB-INF/tiles/loggedout.jsp" />	
+	</definition>
+	
 	<definition name="nieuwaccount" extends="home.base">
 		<put-attribute name="title" value="Maak een account aan" />
 		<put-attribute name="content" value="/WEB-INF/tiles/nieuwaccount.jsp" />	

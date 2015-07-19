@@ -24,15 +24,16 @@
 	</security:authentication-manager>
 
 	<security:http use-expressions="true">
-		<security:intercept-url pattern="/relatiebeheer" access="isAuthenticated()" />
-		<security:intercept-url pattern="/relatiebeheer/**" access="isAuthenticated()" />
 		<security:intercept-url pattern="/" access="permitAll" />
 		<security:intercept-url pattern="/resources/**" access="permitAll" />
 		<security:intercept-url pattern="/nieuwaccount" access="permitAll" />
 		<security:intercept-url pattern="/bevestigaccount" access="permitAll" />
 		<security:intercept-url pattern="/login" access="permitAll" />
+		<security:intercept-url pattern="/loggedout" access="permitAll" />
+		<security:intercept-url pattern="/relatiebeheer" access="isAuthenticated()" />
+		<security:intercept-url pattern="/relatiebeheer/**" access="isAuthenticated()" />
 		<security:intercept-url pattern="/**" access="denyAll" />
-		<security:form-login login-page="/login"
-			authentication-failure-url="/login?error=true" />
+		<security:form-login login-page="/login" authentication-failure-url="/login?error=true" />
+		<security:logout logout-success-url="/loggedout" />
 	</security:http>
 </beans>
