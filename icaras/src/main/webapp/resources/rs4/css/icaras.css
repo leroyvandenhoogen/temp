@@ -184,6 +184,10 @@ a.footer {
 	color: white;
 }
 
+.error {
+	font-size: small;
+	color: red;
+}
 
 table#lijst {
 	border-collapse: collapse;

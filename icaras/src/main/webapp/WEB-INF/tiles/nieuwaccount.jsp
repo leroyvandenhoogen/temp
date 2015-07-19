@@ -7,22 +7,25 @@
 	<input type="button" value="Ga terug" onclick="history.back();" />
 	<br>
 	<form:form method="POST" modelAttribute="user">
-		<table class="details">
+		<table>
 			<tr>
 				<td><label>Gebruikersnaam: </label></td>
 				<td><form:input path="username" /></td>
+				<td><form:errors path="username" cssClass="error"></form:errors></td>
 			</tr>
 			<tr>
 				<td><label>Email: </label></td>
 				<td><form:input path="email" /></td>
+				<td><form:errors path="email" cssClass="error"></form:errors></td>
 			</tr>
 			<tr>
 				<td><label>Wachtwoord: </label></td>
-				<td><form:input path="password" /></td>
+				<td><form:input path="password" type="password"/></td>
+				<td><form:errors path="password" cssClass="error"></form:errors></td>
 			</tr>
 			<tr>
 				<td><label>Wachtwoord nogmaals: </label></td>
-				<td><input name="confirmpass"/></td>
+				<td><input name="confirmpass" type="password"/></td>
 			</tr>
 		</table>
 		<td colspan="3"><input type="submit" value="submit" /></td>

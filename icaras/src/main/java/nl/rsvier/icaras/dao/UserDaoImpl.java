@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nl.rsvier.icaras.core.User;
+import nl.rsvier.icaras.core.UserRole;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class UserDaoImpl extends GenericDaoImpl<User> implements IUserDao {

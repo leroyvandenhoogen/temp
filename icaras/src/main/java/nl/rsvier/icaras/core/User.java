@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import nl.rsvier.icaras.util.ValidEmail;
+
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
@@ -56,8 +58,8 @@ public class User implements java.io.Serializable {
 	}
 
 	@NotBlank(message="Wachtwoord mag niet leeg zijn")
-	@Pattern(regexp="^\\S+$")
-	@Size(min=8, max=15, message="Wachtwoord moet tussen de 4 en 15 letters lang zijn")
+	@Pattern(regexp="^\\S+$", message ="Wachtwoord mag geen spaties bevatten")
+	@Size(min=4, max=15, message="Wachtwoord moet tussen de 4 en 15 letters lang zijn")
 	@Column(name="password", nullable = false, length = 60)
 	public String getPassword() {
 		return password;
@@ -67,7 +69,7 @@ public class User implements java.io.Serializable {
 		this.password = password;
 	}
 
-	
+	@ValidEmail(message="Geen geldig email formaat")
 	public String getEmail() {
 		return email;
 	}
@@ -93,5 +95,12 @@ public class User implements java.io.Serializable {
 	public void setUserRole(Set<UserRole> userRole) {
 		this.userRole = userRole;
 	}
+
+	public void addUserRole(UserRole userRole) {
+		if (!getUserRole().contains(userRole))
+			getUserRole().add(userRole);
+		
+	}
+
 
 }

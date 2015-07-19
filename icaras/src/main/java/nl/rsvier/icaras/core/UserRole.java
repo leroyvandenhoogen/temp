@@ -14,7 +14,7 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name = "user_roles", catalog = "icaras", uniqueConstraints = @UniqueConstraint(columnNames = {
 		"role", "username" }))
-public class UserRole {
+public class UserRole implements java.io.Serializable {
 
 	private Integer userRoleId;
 	private User user;

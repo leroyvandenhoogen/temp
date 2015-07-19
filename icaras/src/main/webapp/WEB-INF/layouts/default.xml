@@ -26,7 +26,7 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/nieuwaccount.jsp" />	
 	</definition>
 	
-	<definition name="bevestig" extends="home.base">
+	<definition name="bevestigaccount" extends="home.base">
 		<put-attribute name="title" value="Account aangemaakt" />
 		<put-attribute name="content" value="/WEB-INF/tiles/bevestigaccount.jsp" />	
 	</definition>

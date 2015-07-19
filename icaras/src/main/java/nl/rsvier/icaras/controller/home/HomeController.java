@@ -1,11 +1,14 @@
 package nl.rsvier.icaras.controller.home;
 
-import nl.rsvier.icaras.core.User;
+import javax.validation.Valid;
 
+import nl.rsvier.icaras.core.User;
+import nl.rsvier.icaras.service.UserService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -14,7 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class HomeController {
-	
+	@Autowired
+	UserService userService;
 	/**
 	 * Beginpunt van de site
 	 * @return home
@@ -62,8 +66,13 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value={"/nieuwaccount"}, method=RequestMethod.POST)
-	public String creeerAccount(@ModelAttribute("user") User user, BindingResult result, ModelMap model) {
+	public String creeerAccount(@Valid User user, BindingResult result) {
 
+		if(result.hasErrors()) {
+			return "nieuwaccount";
+		}
+		user.setEnabled(true);
+		userService.save(user, "nieuw");
 		return "bevestigaccount";
 	}
 
