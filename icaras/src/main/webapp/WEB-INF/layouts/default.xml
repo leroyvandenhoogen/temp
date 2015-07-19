@@ -14,13 +14,21 @@
 	</definition>
 
 	<definition name="home" extends="home.base">
-	
 	</definition>
 	
 	<definition name="login" extends="home.base">
 		<put-attribute name="title" value="RSVIER Login" />
-		<put-attribute name="content" value="/WEB-INF/tiles/login.jsp" />
+		<put-attribute name="content" value="/WEB-INF/tiles/login.jsp" />	
+	</definition>
 	
+	<definition name="nieuwaccount" extends="home.base">
+		<put-attribute name="title" value="Maak een account aan" />
+		<put-attribute name="content" value="/WEB-INF/tiles/nieuwaccount.jsp" />	
+	</definition>
+	
+	<definition name="bevestig" extends="home.base">
+		<put-attribute name="title" value="Account aangemaakt" />
+		<put-attribute name="content" value="/WEB-INF/tiles/bevestigaccount.jsp" />	
 	</definition>
 
 	<definition name="relatiebeheer" extends="home.base">

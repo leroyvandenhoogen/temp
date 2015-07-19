@@ -6,11 +6,11 @@
 
 
 <body onload='document.f.username.focus();'>
-	<h3>Login with Username and Password</h3>
+	<h3>Inloggen</h3>
 
 	<c:if test="${param.error != null}">
 		
-		<p class="error">Login failed
+		<p class="error">Uw login is mislukt
 		
 		</p>
 	
@@ -20,11 +20,11 @@
 		method='POST'>
 		<table>
 			<tr>
-				<td>User:</td>
+				<td>Gebruikersnaam:</td>
 				<td><input type='text' name='username' value=''></td>
 			</tr>
 			<tr>
-				<td>Password:</td>
+				<td>Wachtwoord:</td>
 				<td><input type='password' name='password' /></td>
 			</tr>
 			<tr>
@@ -33,4 +33,10 @@
 			</tr>
 		</table>
 	</form:form>
+	
+	<div>
+	<a href="<c:url value='/nieuwaccount'/>">Account aanmaken </a>
+	<br>
+	<a href="<c:url value='/'/>">Wachtwoord vergeten </a>
+	</div>
 </body>
