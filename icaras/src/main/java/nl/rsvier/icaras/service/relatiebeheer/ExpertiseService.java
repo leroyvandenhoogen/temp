@@ -4,7 +4,6 @@ import java.util.List;
 
 import nl.rsvier.icaras.core.relatiebeheer.Expertise;
 import nl.rsvier.icaras.dao.relatiebeheer.ExpertiseDaoImpl;
-import nl.rsvier.icaras.dao.relatiebeheer.RolDaoImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;

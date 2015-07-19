@@ -12,7 +12,7 @@
 			<tr>
 			<td></td>
 			<td><form:select path="bedrijf.bedrijfType.id">
-						<option value="2" selected>detacheerder</option>
+						<option value="2" selected>detacheerdering</option>
 						<c:forEach items="${bedrijfDTO.bedrijfTypes}" var="lookupType">
 							<option value="${lookupType.id}">${lookupType.type}</option>
 						</c:forEach>
