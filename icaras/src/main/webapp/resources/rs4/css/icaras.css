@@ -9,10 +9,13 @@ html, body {
 	height: 100%;
 }
 
-p.error {
+.error {
 	color: red;
 }
 
+.valid {
+	color: green;
+}
 .wrapper {
 	min-height: 100%;
 	height: auto !important;
