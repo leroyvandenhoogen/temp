@@ -6,6 +6,7 @@ import nl.rsvier.icaras.core.User;
 import nl.rsvier.icaras.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -72,6 +73,11 @@ public class HomeController {
 			return "nieuwaccount";
 		}
 		user.setEnabled(true);
+		
+		if(userService.exists(user.getUsername())) {
+			result.rejectValue("username", "DuplicateKey.user.username", "Deze gebruikersnaam is al in gebruik");
+			return "nieuwaccount";
+		}
 		userService.save(user, "nieuw");
 		return "bevestigaccount";
 	}
