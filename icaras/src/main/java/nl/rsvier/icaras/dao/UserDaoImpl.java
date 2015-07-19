@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nl.rsvier.icaras.core.User;
-import nl.rsvier.icaras.core.UserRole;
 
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class UserDaoImpl extends GenericDaoImpl<User> implements IUserDao {
@@ -38,7 +36,7 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements IUserDao {
 		Query query = getSessionFactory().getCurrentSession().createQuery(sql)
 				.setParameter("string", username.trim());
 
-		if(query.list().isEmpty())
+		if (query.list().isEmpty())
 			return false;
 		else
 			return true;

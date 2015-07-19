@@ -59,7 +59,7 @@ public class User implements java.io.Serializable {
 
 	@NotBlank(message="Wachtwoord mag niet leeg zijn")
 	@Pattern(regexp="^\\S+$", message ="Wachtwoord mag geen spaties bevatten")
-	@Size(min=4, max=15, message="Wachtwoord moet tussen de 4 en 15 letters lang zijn")
+	@Size(min=4, message="Wachtwoord moet tussen de 4 en 15 letters lang zijn")
 	@Column(name="password", nullable = false, length = 60)
 	public String getPassword() {
 		return password;

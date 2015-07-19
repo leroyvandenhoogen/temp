@@ -8,17 +8,21 @@
 
 		$("#password").keyup(checkPasswordsMatch);
 		$("#confirmpass").keyup(checkPasswordsMatch);
+		
 		$("#details").submit(canSubmit);
 	}
 
 	function canSubmit() {
+		var password = $("#password").val();
+		var confirmpass = $("#confirmpass").val();
+		
 		if(password != confirmpass) {
 			alert("Wachtwoorden komen niet overeen!")
 			return false;
 		}
-		else {
+		else 
 			return true;
-		}
+		
 	}
 	function checkPasswordsMatch() {
 		var password = $("#password").val();

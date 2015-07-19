@@ -7,6 +7,8 @@ import nl.rsvier.icaras.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -72,6 +74,9 @@ public class HomeController {
 		if(result.hasErrors()) {
 			return "nieuwaccount";
 		}
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String hashedPassword = passwordEncoder.encode(user.getPassword());
+		user.setPassword(hashedPassword);
 		user.setEnabled(true);
 		
 		if(userService.exists(user.getUsername())) {
