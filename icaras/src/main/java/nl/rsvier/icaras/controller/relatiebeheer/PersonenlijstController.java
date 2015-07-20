@@ -183,6 +183,15 @@ public class PersonenlijstController {
 			@ModelAttribute("persoonDTO") PersoonDTO persoonDTO,
 			BindingResult result1, ModelMap model) {
 		Persoon wijzigPersoon = service.get(id);
+		List<Persoonsrol> persoonsrolLijst = wijzigPersoon.getPersoonsrollen();
+		
+		if (persoonsrolLijst != null && persoonsrolLijst.size() > 0) {
+			Persoonsrol inactiefPersoonsrol = persoonsrolLijst
+					.get(persoonsrolLijst.size() - 1);
+			inactiefPersoonsrol.setEinddatum(persoonDTO.getPersoonsrol()
+					.getBegindatum());
+		}
+		
 		wijzigPersoon.addPersoonsrol(persoonDTO.getPersoonsrol());
 		persoonsrolService.save(persoonDTO.getPersoonsrol());
 		service.update(wijzigPersoon);

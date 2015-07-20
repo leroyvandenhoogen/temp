@@ -12,149 +12,157 @@
 			onclick="location.href='${pageContext.request.contextPath}/relatiebeheer/personen/zoeken'"
 			value="Terug naar zoekpagina" />
 	</p>
-	<div class="content">
-		<form:form method="POST" modelAttribute="persoonDTO">
-			<div class="eenderde">
+	<div class="eenderde">
+		<table class="modal-table">
+			<tr>
+				<td><a href="#modal-wijzigpersoon" class="btn btn-small">Wijzig</a></td>
+				<td><a href="#modal-deletepersoon" class="btn btn-small">Delete</a></td>
+			</tr>
+		</table>
+		<table class="gegevens-table">
+			<th>Persoon</th>
+			<tr>
+				<td><label for="voornaam">Voornaam: </label></td>
+				<td>${persoonDTO.persoon.voornaam}</td>
+			</tr>
+			<tr>
+				<td><label for="achternaam">Achternaam: </label></td>
+				<td>${persoonDTO.persoon.achternaam}</td>
+			</tr>
 
-				<table class="gegevens-table">
-					<th>Persoon</th>
-					<tr>
-						<td><label for="voornaam">Voornaam: </label></td>
-						<td>${persoonDTO.persoon.voornaam}</td>
-					</tr>
-					<tr>
-						<td><label for="achternaam">Achternaam: </label></td>
-						<td>${persoonDTO.persoon.achternaam}</td>
-					</tr>
+			<tr>
+				<td><label for="tussenvoegsel">Tussenvoegsel: </label></td>
+				<td>${persoonDTO.persoon.tussenvoegsel}</td>
+			</tr>
 
-					<tr>
-						<td><label for="tussenvoegsel">Tussenvoegsel: </label></td>
-						<td>${persoonDTO.persoon.tussenvoegsel}</td>
-					</tr>
+			<fmt:formatDate value="${persoonDTO.persoon.geboortedatum}"
+				var="geboortedatumFormat" pattern="dd-MM-yyyy" />
+			<tr>
+				<td><label for="geboortedatum">Geboortedatum: </label></td>
+				<td>${geboortedatumFormat}</td>
+			</tr>
 
-					<fmt:formatDate value="${persoonDTO.persoon.geboortedatum}"
-						var="geboortedatumFormat" pattern="dd-MM-yyyy" />
-					<tr>
-						<td><label for="geboortedatum">Geboortedatum: </label></td>
-						<td>${geboortedatumFormat}</td>
-					</tr>
+			<tr>
+				<td><label for="geslacht">Geslacht: </label></td>
+				<td><form:radiobutton path="persoonDTO.persoon.geslacht"
+						value="M" />Man <form:radiobutton
+						path="persoonDTO.persoon.geslacht" value="V" />Vrouw</td>
+			</tr>
 
-					<tr>
-						<td><label for="geslacht">Geslacht: </label></td>
-						<td><form:radiobutton path="persoonDTO.persoon.geslacht"
-								value="M" />Man <form:radiobutton
-								path="persoonDTO.persoon.geslacht" value="V" />Vrouw</td>
-					</tr>
-
-					<tr class="element">
-						<td><label>Telefoonnummer: </label></td>
-						<c:forEach items="${persoonDTO.persoon.digitaleAdressen}"
-							var="digitaleadres" varStatus="current">
-							<c:if
-								test="${digitaleadres.digitaalAdresType.type == 'telefoonnummer'}">
-								<td>${digitaleadres.omschrijving}</td>
-							</c:if>
-						</c:forEach>
-					</tr>
-
-					<tr class="element">
-						<td><label>Email: </label></td>
-						<c:forEach items="${persoonDTO.persoon.digitaleAdressen}"
-							var="digitaleadres" varStatus="current">
-							<c:if test="${digitaleadres.digitaalAdresType.type == 'email'}">
-								<td>${digitaleadres.omschrijving}</td>
-							</c:if>
-						</c:forEach>
-					</tr>
-
-					<tr>
-						<td><label>Bijzonderheden: </label></td>
-						<td><textarea rows="5" cols="15"
-								${persoonDTO.persoon.opmerking} /></textarea></td>
-					</tr>
-					<table class="modal-table">
-						<tr>
-							<td><a href="#modal-wijzigpersoon" class="btn btn-small">Wijzig</a></td>
-							<td><a href="#modal-deletepersoon" class="btn btn-small">Delete</a></td>
-						</tr>
-					</table>
-				</table>
-			</div>
-
-			<div class="eenderde">
-				<table class="gegevens-table">
-					<th>Adres</th>
-					<c:if test="${not empty persoonDTO.persoon.adressen}">
-						<c:forEach items="${persoonDTO.persoon.adressen}" var="adres"
-							varStatus="current" begin="0">
-							<c:if test="${current.index > 0}">
-								<tr>
-									<td><label><strong>Adres
-												${current.index+1}</strong></label>
-								</tr>
-							</c:if>
-							<tr>
-								<td><label>Straat: </label></td>
-								<td>${adres.straat}</td>
-							</tr>
-							<tr>
-								<td><label>Nummer: </label></td>
-								<td>${adres.nummer}</td>
-							</tr>
-							<tr>
-								<td><label>Toevoegsel: </label></td>
-								<td>${adres.toevoegsel}</td>
-							</tr>
-							<tr>
-								<td><label>Postcode: </label></td>
-								<td>${adres.postcode}</td>
-							</tr>
-							<tr>
-								<td><label>Plaats: </label></td>
-								<td>${adres.plaats}</td>
-							</tr>
-							<tr>
-								<td><label>Provincie: </label></td>
-								<td>${adres.provincie}</td>
-							</tr>
-							<tr>
-								<td><label>Land: </label></td>
-								<td>${adres.land}</td>
-							</tr>
-
-							<td><label>Adres type: </label></td>
-							<td>${adres.adresType.type}</td>
-						</c:forEach>
+			<tr class="element">
+				<td><label>Telefoonnummer: </label></td>
+				<c:forEach items="${persoonDTO.persoon.digitaleAdressen}"
+					var="digitaleadres" varStatus="current">
+					<c:if
+						test="${digitaleadres.digitaalAdresType.type == 'telefoonnummer'}">
+						<td>${digitaleadres.omschrijving}</td>
 					</c:if>
-					<table class="modal-table">
+				</c:forEach>
+			</tr>
+
+			<tr class="element">
+				<td><label>Email: </label></td>
+				<c:forEach items="${persoonDTO.persoon.digitaleAdressen}"
+					var="digitaleadres" varStatus="current">
+					<c:if test="${digitaleadres.digitaalAdresType.type == 'email'}">
+						<td>${digitaleadres.omschrijving}</td>
+					</c:if>
+				</c:forEach>
+			</tr>
+
+			<tr>
+				<td><label>Bijzonderheden: </label></td>
+				<td><textarea rows="5" cols="15"
+						${persoonDTO.persoon.opmerking} /></textarea></td>
+			</tr>
+
+		</table>
+	</div>
+
+	<div class="eenderde">
+		<table class="modal-table">
+			<tr>
+				<td><a href="#modal-wijzigadres" class="btn btn-small">Wijzig</a></td>
+				<td><a href="#modal-deleteadres" class="btn btn-small">Delete</a></td>
+				<td><a href="#modal-nieuwadres" class="btn btn-small">Voeg
+						toe</a></td>
+			</tr>
+		</table>
+		<table class="gegevens-table">
+			<th>Adres</th>
+			<c:if test="${not empty persoonDTO.persoon.adressen}">
+				<c:forEach items="${persoonDTO.persoon.adressen}" var="adres"
+					varStatus="current" begin="0">
+					<c:if test="${current.index > 0}">
 						<tr>
-							<td><a href="#modal-wijzigadres" class="btn btn-small">Wijzig</a></td>
-							<td><a href="#modal-deleteadres" class="btn btn-small">Delete</a></td>
-							<td><a href="#modal-nieuwadres" class="btn btn-small">Voeg
-									toe</a></td>
+							<td><label><strong>Adres ${current.index+1}</strong></label>
 						</tr>
-					</table>
-				</table>
-			</div>
+					</c:if>
+					<tr>
+						<td><label>Straat: </label></td>
+						<td>${adres.straat}</td>
+					</tr>
+					<tr>
+						<td><label>Nummer: </label></td>
+						<td>${adres.nummer}</td>
+					</tr>
+					<tr>
+						<td><label>Toevoegsel: </label></td>
+						<td>${adres.toevoegsel}</td>
+					</tr>
+					<tr>
+						<td><label>Postcode: </label></td>
+						<td>${adres.postcode}</td>
+					</tr>
+					<tr>
+						<td><label>Plaats: </label></td>
+						<td>${adres.plaats}</td>
+					</tr>
+					<tr>
+						<td><label>Provincie: </label></td>
+						<td>${adres.provincie}</td>
+					</tr>
+					<tr>
+						<td><label>Land: </label></td>
+						<td>${adres.land}</td>
+					</tr>
 
-			<div class="eenderde">
-				<table class="gegevens-table">
-					<th>Rol</th>
-					<c:if test="${not empty persoonDTO.persoon.persoonsrollen}">
-						<c:forEach items="${persoonDTO.persoon.persoonsrollen}"
-							var="persoonsrol" varStatus="current">
-							<tr class="element">
-								<td><label>${persoonsrol.rol.type} </label>
-								<td><label>Begin:</label></td>
-								<fmt:formatDate value="${persoonsrol.begindatum}"
-									var="begindatumFormat" pattern="dd-MM-yyyy" />
-								<td>${begindatumFormat}</td>
-								<td><label>Eind:</label></td>
-								<fmt:formatDate value="${persoonsrol.einddatum}"
-									var="einddatumFormat" pattern="dd-MM-yyyy" />
-								<td>${einddatumFormat}</td>
-							</tr>
+					<td><label>Adres type: </label></td>
+					<td>${adres.adresType.type}</td>
+				</c:forEach>
+			</c:if>
+		</table>
+	</div>
 
+	<div class="eenderde">
+		<table class="modal-table">
+			<tr>
+				<td><a href="#modal-wijzigrol" class="btn btn-small">Wijzig</a></td>
+				<td><a href="#modal-deleterol" class="btn btn-small">Delete</a></td>
+				<td><a href="#modal-nieuwrol" class="btn btn-small">Voeg
+						toe</a></td>
+			</tr>
+		</table>
+		<table class="gegevens-table">
+			<th>Actieve rol</th>
+			<c:if test="${not empty persoonDTO.persoon.persoonsrollen}">
+				<c:forEach items="${persoonDTO.persoon.persoonsrollen}"
+					var="persoonsrol" varStatus="current">
+					<c:if test="${persoonsrol.einddatum == null}">
+						<tr class="element">
+							<td><label>${persoonsrol.rol.type} </label>
+							<td><label>Aanvang:</label></td>
+							<fmt:formatDate value="${persoonsrol.begindatum}"
+								var="begindatumFormat" pattern="dd-MM-yyyy" />
+							<td>${begindatumFormat}</td>
+							<!-- 
+									<td><label>Eind:</label></td>
+									<fmt:formatDate value="${persoonsrol.einddatum}"
+										var="einddatumFormat" pattern="dd-MM-yyyy" />
+									<td>${einddatumFormat}</td>
+									 -->
+						</tr>
+						<!--  
 							<c:if test="${persoonsrol.rol.type eq 'contactpersoon'}">
 								<tr>
 									<td></td>
@@ -164,20 +172,12 @@
 									<td>${persoonsrol.afdeling}</td>
 								</tr>
 							</c:if>
-						</c:forEach>
+							
+-->
 					</c:if>
-					<table class="modal-table">
-						<tr>
-							<td><a href="#modal-wijzigrol" class="btn btn-small">Wijzig</a></td>
-							<td><a href="#modal-deleterol" class="btn btn-small">Delete</a></td>
-							<td><a href="#modal-nieuwrol" class="btn btn-small">Voeg
-									toe</a></td>
-						</tr>
-					</table>
-				</table>
-
-			</div>
-		</form:form>
+				</c:forEach>
+			</c:if>
+		</table>
 	</div>
 	<div class="wrap"></div>
 
@@ -567,9 +567,11 @@
 
 							<td><label>begindatum</label></td>
 							<jsp:useBean id="now" class="java.util.Date">
-							<fmt:formatDate value="${now}" var="datumVandaagFormat" pattern="dd-MM-yyyy"/>
+								<fmt:formatDate value="${now}" var="datumVandaagFormat"
+									pattern="dd-MM-yyyy" />
 							</jsp:useBean>
-							<td><form:input path="persoonsrol.begindatum" size="10" value="${datumVandaagFormat}"/></td>
+							<td><form:input path="persoonsrol.begindatum" size="10"
+									value="${datumVandaagFormat}" /></td>
 							<td><label>einddatum </label></td>
 							<td><form:input path="persoonsrol.einddatum" size="10" /></td>
 						</tr>
