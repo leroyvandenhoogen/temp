@@ -6,15 +6,6 @@
 
 
 	<security:authentication-manager>
-		<security:authentication-provider>
-			<security:user-service>
-				<security:user name="admin" authorities="admin"
-					password="admin" />
-				<security:user name="scott" authorities="admin"
-					password="tiger" />
-			</security:user-service>
-		
-		</security:authentication-provider>
 		
 		<security:authentication-provider user-service-ref="myUserDetailsService" >
 
