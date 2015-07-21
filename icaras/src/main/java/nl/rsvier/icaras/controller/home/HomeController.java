@@ -42,7 +42,9 @@ public class HomeController {
 	 * @return home
 	 */
 	@RequestMapping("/")
-	public String showHome() {
+	public String showHome(ModelMap model, Principal principal) {
+		String name = principal.getName();
+		model.addAttribute("inlognaam", name);
 		return "home";
 	}
 
@@ -111,11 +113,6 @@ public class HomeController {
 		return "bevestigaccount";
 	}
 
-	@RequestMapping("/loggedout")
-	public String showLoggedout() {
-		return "loggedout";
-	}
-	
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
 	public ModelAndView accesssDenied(Principal user) {
  

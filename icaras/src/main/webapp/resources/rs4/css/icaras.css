@@ -35,6 +35,8 @@ div.header {
 }
 
 div.title {
+	text-align: center;
+	width: 63vw;
 	float: center;
 	position: absolute;
 	left: 18.5vw;

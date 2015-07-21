@@ -21,18 +21,6 @@
 		</div>
 	</div>
 </sec:authorize>
-<c:if test="${not authenticated}">
-	<div class="inlogwrapper">
-		<div class="inlognaam">
-			<h2>Je bent niet ingelogd</h2>
-		</div>
-		<div class="inlogbutton">
-			<a class ="login" href="/Icaras/login"> <input type="button"
-				value="Log in" />
-			</a>
-		</div>
-	</div>
-</c:if>
 
 <div class="title">
 	<img
@@ -40,16 +28,16 @@
 
 	<a class="title" href="<c:url value='/'/>">RSVIER Icaras</a>
 
-
-	<ul>
-		<li><a href="#">Intakemodule</a></li>
-		<li><a href="#">Cursistbeheer</a></li>
-		<li><a href="#">Arbeidsmarkt</a></li>
-		<li><a href="/Icaras/relatiebeheer">Relatiebeheer</a></li>
-		<li><a href="#">Agendabeheer</a></li>
-		<li><a href="#">Systeem</a></li>
-	</ul>
-
+	<sec:authorize access="isAuthenticated()">
+		<ul>
+			<li><a href="#">Intakemodule</a></li>
+			<li><a href="#">Cursistbeheer</a></li>
+			<li><a href="#">Arbeidsmarkt</a></li>
+			<li><a href="/Icaras/relatiebeheer">Relatiebeheer</a></li>
+			<li><a href="#">Agendabeheer</a></li>
+			<li><a href="#">Systeem</a></li>
+		</ul>
+	</sec:authorize>
 
 </div>
 
