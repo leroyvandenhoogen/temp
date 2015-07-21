@@ -71,4 +71,31 @@ public class UserService {
 	public boolean exists(String username) {
 		return userDao.exists(username);
 	}
+	
+	public boolean exists(String username, String email) {
+		return userDao.exists(username, email);
+	}
+	
+	public void resetPassword (String username) {
+		User user = userDao.findByUserName(username);
+		String password = PasswordGenerator.generate();
+		String email = user.getEmail();
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String hashedPassword = passwordEncoder.encode(password);
+		user.setPassword(hashedPassword);
+
+		userDao.update(user);
+
+		ApplicationContext context = new ClassPathXmlApplicationContext(
+				"Spring-Mail.xml");
+
+		MailMail mm = (MailMail) context.getBean("mailMail");
+		mm.sendMail(
+				"icaras@rsvier.nl",
+				email,
+				"Icaras account", String.format("%s%n%n%s%n%s%n%n%s%n", "Beste gebruiker,",
+						"je hebt een nieuw wachtwoord aangevraagd voor Icaras.",
+						"Wachtwoord: " + password,
+						"Na het inloggen kan je de wachtwoord wijzigen"));
+	}
 }
