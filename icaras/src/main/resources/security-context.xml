@@ -16,7 +16,7 @@
 
 	<security:http use-expressions="true">
 		<security:access-denied-handler error-page="/403" />
-		<security:intercept-url pattern="/" access="permitAll" />
+		<security:intercept-url pattern="/" access="isAuthenticated()" />
 		<security:intercept-url pattern="/resources/**" access="permitAll" />
 		<security:intercept-url pattern="/nieuwaccount" access="permitAll" />
 		<security:intercept-url pattern="/bevestigaccount" access="permitAll" />
