@@ -99,17 +99,13 @@ public class HomeController {
 		if (result.hasErrors()) {
 			return "nieuwaccount";
 		}
-		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		String hashedPassword = passwordEncoder.encode(user.getPassword());
-		user.setPassword(hashedPassword);
-		user.setEnabled(true);
 
 		if (userService.exists(user.getUsername())) {
 			result.rejectValue("username", "DuplicateKey.user.username",
 					"Deze gebruikersnaam is al in gebruik");
 			return "nieuwaccount";
 		}
-		userService.save(user, "ROLE_USER");
+		userService.save(user);
 		return "bevestigaccount";
 	}
 

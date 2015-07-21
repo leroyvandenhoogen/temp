@@ -6,10 +6,13 @@ import nl.rsvier.icaras.core.User;
 import nl.rsvier.icaras.core.UserRole;
 import nl.rsvier.icaras.dao.UserDaoImpl;
 import nl.rsvier.icaras.dao.UserRoleDaoImpl;
+import nl.rsvier.icaras.util.PasswordGenerator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service("userService")
@@ -23,20 +26,26 @@ public class UserService {
 	UserRoleDaoImpl userRoleDao;
 
 	public void save(User user) {
-		userDao.save(user);
-	}
-
-	public void save(User user, String role) {
+		String password = PasswordGenerator.generate();
+		String email = user.getEmail();
+		String name = user.getEmail();
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); 
+		String hashedPassword = passwordEncoder.encode(password);
+		user.setPassword(hashedPassword);
+		user.setEnabled(true);
+		
 		userDao.save(user);
 		UserRole userRole = new UserRole();
 		userRole.setUser(user);
-		userRole.setRole(role);
+		userRole.setRole("ROLE_USER");
 		userRoleDao.save(userRole);
 		user.addUserRole(userRole);
-
 	}
 
 	public void update(User user) {
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); 
+		String hashedPassword = passwordEncoder.encode(user.getPassword());
+		user.setPassword(hashedPassword);
 		userDao.update(user);
 	}
 
