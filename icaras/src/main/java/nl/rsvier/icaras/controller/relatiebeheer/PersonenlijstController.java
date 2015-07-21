@@ -1,5 +1,6 @@
 package nl.rsvier.icaras.controller.relatiebeheer;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -34,7 +35,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
 @RequestMapping("/relatiebeheer/personen")
-@SessionAttributes({ "personen", "zoekinput", "adresTypes", "rollen" })
+@SessionAttributes({ "personen", "zoekinput", "adresTypes", "rollen"})
 public class PersonenlijstController {
 
 	@Autowired

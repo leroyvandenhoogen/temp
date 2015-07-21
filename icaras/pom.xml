@@ -207,6 +207,11 @@
 			<artifactId>spring-security-web</artifactId>
 			<version>4.0.1.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>4.0.1.RELEASE</version>
+		</dependency>
 
 		<dependency>
 			<groupId>javax.validation</groupId>
@@ -245,4 +250,5 @@
 		<version>1</version>
 		<relativePath>..</relativePath>
 	</parent>
+	<groupId>org.springframework.security</groupId>
 </project>
