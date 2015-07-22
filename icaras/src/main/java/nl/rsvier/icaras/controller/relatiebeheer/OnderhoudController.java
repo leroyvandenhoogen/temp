@@ -59,7 +59,7 @@ public class OnderhoudController {
 					"Deze gebruikersnaam is al in gebruik");
 			return "onderhoud/gebruiker/nieuw";
 		}
-		userService.save(user, "ROLE_USER");
+		userService.save(user);
 		return "onderhoud/gebruiker/bevestig";
 	}
 	/**
