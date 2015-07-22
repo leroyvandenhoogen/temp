@@ -24,6 +24,8 @@
 		<security:intercept-url pattern="/relatiebeheer" access="isAuthenticated()" />
 		<security:intercept-url pattern="/relatiebeheer/onderhoud/adrestypes" access="hasRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/relatiebeheer/**" access="isAuthenticated()" />
+		<security:intercept-url pattern="/onderhoud" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/onderhoud/**" access="hasRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/**" access="denyAll" />
 		<security:form-login login-page="/login" authentication-failure-url="/login?error=true" />
 		<security:logout logout-success-url="/" />

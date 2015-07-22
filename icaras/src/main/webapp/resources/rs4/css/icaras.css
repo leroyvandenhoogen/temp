@@ -61,6 +61,10 @@ div.outer {
 	margin-left: auto;
 	margin-right: auto;
 }
+a.current {
+	color: #fff;
+	background: #ffff00;
+}
 
 ul {
 	padding: 0;

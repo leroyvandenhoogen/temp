@@ -28,14 +28,4 @@
 			<li><a href="#">Contactpersonen</a></li>
 			<li><a href="#">Prive</a></li>
 		</ul>
-	<li><a href="<c:url value='/onderhoud'/>">Onderhoud &#9662;</a>
-		<ul>
-			<li><a href="#">Gebruikers-rollen</a></li>
-			<li><a href="#">Gebruikers</a></li>
-			<li><a href="#">RBS-rollen</a></li>
-			<li><a href="#">Bedrijftypes</a></li>
-			<li><a href="<c:url value='/relatiebeheer/onderhoud/adrestypes'/>">Adrestypes</a></li>
-			<li><a href="#">Digitaal Adrestypes</a></li>
-			<li><a href="#">Kandidaten</a></li>
-		</ul>
 </ul>
