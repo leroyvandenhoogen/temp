@@ -54,6 +54,13 @@ public class HomeController {
 
 		return "relatiebeheer";
 	}
+	
+	@RequestMapping("/onderhoud")
+	public String showOnderhoud(ModelMap model, Principal principal) {
+		String name = principal.getName();
+		model.addAttribute("inlognaam", name);
+		return "onderhoud";
+	}
 
 	/**
 	 * project info

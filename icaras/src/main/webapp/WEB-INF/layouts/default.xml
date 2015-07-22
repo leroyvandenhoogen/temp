@@ -15,30 +15,20 @@
 
 	<definition name="home" extends="home.base">
 	</definition>
-	
+
 	<definition name="login" extends="home.base">
 		<put-attribute name="title" value="RSVIER Login" />
-		<put-attribute name="content" value="/WEB-INF/tiles/login.jsp" />	
+		<put-attribute name="content" value="/WEB-INF/tiles/login.jsp" />
 	</definition>
-	
+
 	<definition name="loggedout" extends="home.base">
 		<put-attribute name="title" value="RSVIER Uitloggen" />
-		<put-attribute name="content" value="/WEB-INF/tiles/loggedout.jsp" />	
+		<put-attribute name="content" value="/WEB-INF/tiles/loggedout.jsp" />
 	</definition>
-	
-	<definition name="nieuwaccount" extends="home.base">
-		<put-attribute name="title" value="Maak een account aan" />
-		<put-attribute name="content" value="/WEB-INF/tiles/nieuwaccount.jsp" />	
-	</definition>
-	
-	<definition name="bevestigaccount" extends="home.base">
-		<put-attribute name="title" value="Account aangemaakt" />
-		<put-attribute name="content" value="/WEB-INF/tiles/bevestigaccount.jsp" />	
-	</definition>
-	
+
 	<definition name="403" extends="home.base">
 		<put-attribute name="title" value="Access denied" />
-		<put-attribute name="content" value="/WEB-INF/tiles/403.jsp" />	
+		<put-attribute name="content" value="/WEB-INF/tiles/403.jsp" />
 	</definition>
 
 	<definition name="relatiebeheer" extends="home.base">
@@ -151,18 +141,30 @@
 			value="/WEB-INF/tiles/relatiebeheer/personen/nieuwpersoonsrol.jsp" />
 	</definition>
 
-	<definition name="relatiebeheer/onderhoud" extends="relatiebeheer">
-		<put-attribute name="title" value="RSVIER Relatiebeheer Onderhoud" />
+	<definition name="onderhoud" extends="home.base">
+		<put-attribute name="title" value="RSVIER Onderhoud" />
+		<put-attribute name="menu" value="/WEB-INF/tiles/onderhoud/menu.jsp" />
 	</definition>
-	
-	<definition name="relatiebeheer/onderhoud/adrestypes" extends="relatiebeheer/onderhoud">
-		<put-attribute name="title" value="RSVIER Relatiebeheer Onderhoud" />
-		<put-attribute name="content" value="/WEB-INF/tiles/relatiebeheer/onderhoud/adresTypes.jsp"/>
+
+	<definition name="onderhoud/gebruiker/nieuw" extends="onderhoud">
+		<put-attribute name="title" value="Maak een account aan" />
+		<put-attribute name="content" value="/WEB-INF/tiles/onderhoud/nieuwaccount.jsp" />
 	</definition>
-	
-	<definition name="projectinfo" extends="home.base"> 
-		<put-attribute name="title" value="RSVIER Project info" /> 
-		<put-attribute name="content" value="/WEB-INF/tiles/projectinfo.jsp" /> 
+
+	<definition name="onderhoud/gebruiker/bevestig" extends="onderhoud">
+		<put-attribute name="title" value="Account aangemaakt" />
+		<put-attribute name="content" value="/WEB-INF/tiles/onderhoud/bevestigaccount.jsp" />
+	</definition>
+
+	<definition name="onderhoud/lookuptable/adrestypes" extends="onderhoud">
+		<put-attribute name="title" value="RSVIER Onderhoud" />
+		<put-attribute name="content"
+			value="/WEB-INF/tiles/onderhoud/adresTypes.jsp" />
+	</definition>
+
+	<definition name="projectinfo" extends="home.base">
+		<put-attribute name="title" value="RSVIER Project info" />
+		<put-attribute name="content" value="/WEB-INF/tiles/projectinfo.jsp" />
 	</definition>
 
 	<!-- <definition name="personen" extends="home.base"> <put-attribute name="title" 
@@ -225,5 +227,5 @@
 		name="details" value="/WEB-INF/tiles/nieuworganisatie.jsp" /> </definition> 
 		<definition name="organisatiedetails" extends="organisaties"> <put-attribute 
 		name="title" value="RSVIER Organisatiedetails" /> <put-attribute name="details" 
-		value="/WEB-INF/tiles/organisatiedetails.jsp" /> </definition>  -->
+		value="/WEB-INF/tiles/organisatiedetails.jsp" /> </definition> -->
 </tiles-definitions>

@@ -33,9 +33,11 @@
 			<li><a href="#">Intakemodule</a></li>
 			<li><a href="#">Cursistbeheer</a></li>
 			<li><a href="#">Arbeidsmarkt</a></li>
-			<li><a href="/Icaras/relatiebeheer">Relatiebeheer</a></li>
+			<li><a href="/Icaras/relatiebeheer" <c:if test="${pageContext.request.requestURI eq '/Icaras/relatiebeheer'}">class="current"</c:if>>Relatiebeheer</a></li>
 			<li><a href="#">Agendabeheer</a></li>
-			<li><a href="#">Systeem</a></li>
+			<sec:authorize access="hasRole('ROLE_ADMIN')"> 
+			<li><a href="/Icaras/onderhoud">Onderhoud</a></li>
+			</sec:authorize>
 		</ul>
 	</sec:authorize>
 
